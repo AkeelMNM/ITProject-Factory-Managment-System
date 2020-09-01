@@ -31,3 +31,8 @@ function check() {
 		document.getElementById('Pwd_msg').innerHTML = 'Password not matching';
 	  }
 }
+
+function Reset() {
+
+	$("name").empty()
+}

@@ -221,103 +221,13 @@ div.bigDiv
 /* -------------------------------------------------------------------------------------------------------------- */
 
 
-/* ---------------------- Right side Search and View Table --------------------------------------- */
 
-div.table /* table div */
-{
-	border-collapse: collapse;
-	width: 59%;
-	height:82%;
-	float:left;
-	overflow:hidden;
-    overflow-y: scroll;
-    overflow-x: scroll;
-    margin-left:15px;
-    margin-top:20px;
-    
-}
-.table::-webkit-scrollbar {
-    display: none;
-}
-
-div.search{  /* search div */
-	
-	float:left;
-	width: 58%;
-	margin-top:30px;
-	padding-left:20px;
-}
-
-#se{  /* search input field */
-
-	width: 100%;
-	height:25px;
-}
-table.view  /* view record table */
-{
-	border-collapse: collapse;
-	width: 100%;
-	table-layout: fixed;
-	
-}
-
-tr.viewTr{background-color: #f2f2f2;}  /* view record table row class*/
-.viewTr:hover {background-color:#def2f1;} /* view record table row hover class*/
-
-td.tData  /* view record table data class */
-{
-	text-align: center;
-	padding:6px;
-	width:150px;
-	font-size: 14px;
-}
-
-th  /* view record table header */
-{	
-	background-color: #b34426;
-	color: white;
-	top: 0;
-    z-index: 2;
-    position: sticky;
-    position: -webkit-sticky;
-    text-align: center;
-	padding:6px;
-	width:150px;
-	height:35px;
-	font-size: 15px;
-}
-
-
-.editbutton {  /* view record table records edit button */
-
-  background-color:	#ed3330;
-  border: none;
-  color: white;
-  padding: 7px ;
-  text-align: center;
-  text-decoration: none;
-  font-size: 13px;
-  transition: 0.3s;
-  cursor:pointer;
-  border-radius:5px;
-  width:100px;
-  align:center;
-  margin-left:5px;
-
-  
-}
-/* Change background color of edit button on hover */
-.editbutton:hover {
-  background-color: #434343;
-}
-/* ------------------------------------------------------------------------------------------------------------------------ */
-
-/* ---------------------- Left Side Form --------------------------------------- */
+/* ----------------------- Form Css--------------------------------------- */
 
 div.left  /* form div */
 {
 	border-collapse: collapse;
-	width: 39%;
+	width: 100%;
 	height: 500px;
 	float:left;
 }
@@ -325,16 +235,16 @@ div.left  /* form div */
 #insertTit
 {
 	text-decoration: underline;
-	font-weight: bold;
-	margin-right:450px;
-	font-size: 19px;
+	margin-right:80%;
+	font-size: 18px;
+	margin-top:-200px;
 }
 
 form { 
 	
-	margin-top:3px;
-	margin-left:7px;
-	width:100%;
+	margin-top:5px;
+	margin-left:70px;
+	width:90%;
 }
 
 
@@ -353,7 +263,7 @@ td /* table data class */
 	font-size: 14px;
 }
 
-.submitbutton {   /* Insert form table Create button */ 
+.submitbutton {  /* Update form table Update button */
 
   background-color:	#2B7A78;
   border: none;
@@ -364,17 +274,17 @@ td /* table data class */
   font-size: 13px;
   transition: 0.3s;
   cursor:pointer;
-  border-radius:5px;
-  width:150px;
+  width:300px;
   align:center;
-  margin-left:6px;
-  margin-top:-6px;
+  margin-left:80%;
+  
+  
 
 
   
 }
 
-.resetbutton{  /* insert form table reset button */
+.deletebutton{  /* Update form table delete button */
 
   background-color:	#ed3330;
   border: none;
@@ -385,12 +295,12 @@ td /* table data class */
   font-size: 13px;
   transition: 0.3s;
   cursor:pointer;
-  border-radius:5px;
-  width:100px;
+  width:300px;
   align:center;
   float:left;
-  margin-left:300px;
-  margin-top:-6px;
+  margin-left:80%;
+  margin-top:7px;
+  
  
   
 }
@@ -404,13 +314,26 @@ td /* table data class */
   background-color: #434343;
 }
 
-.vl  /* vertical line class */
-{
-	  border-left: 2px solid black;
-	  height: 500px;
-	  float:left;
-	  margin-top:05px;	  
+#hrid{ /* Insert form head title*/
+	
+	margin-top:-5px;
+	border: 1px solid;
+	width:1470px;
+	margin-left:-50px;
 }
+
+.removebutton{  /* HR Update Leave Page form Remove button */
+
+  background-color:#ed3330; 
+  border: none;
+  color:white;
+   padding:3px ;
+  transition: 0.3s;
+  cursor:pointer;
+
+}
+
+   
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 
