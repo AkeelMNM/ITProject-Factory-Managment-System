@@ -42,7 +42,7 @@
 				</li>
 				  <li><a class="menu" href="#">Manage Employee</a></li>
 				  <li><a class="menu" href="#">Manage Jobs</a></li>
-				  <li><a class="menu" href="#">Employee Performace Tracking</a></li>
+				  <li><a class="menu" href="#">Employee Performance Tracking</a></li>
 				  <li><a class="menu" href="#">Manage Account</a></li>
 				  <li><a class="menu" href="#">Manage Employee Leaves</a></li>
 		</ul>
@@ -76,12 +76,12 @@
 		<table class="form" style="margin-top:2%;">
 				<tr>
 					<td style="text-align: center;">Date:</td>
-					<td><input type="date" name="date" tabindex="1" required></td>
+					<td><input type="date" name="date" required></td>
 				</tr>
 				<tr>
 					<td style="text-align: center;">Month : </td>
 					<td class="select">
-						<select id="dep"  name="acctype" tabindex="2" style="width: 200px;" required> 
+						<select id="dep"  name="acctype" style="width: 200px;" required> 
 								<option> --Select Month-- </option>
 								<option value="January">January</option>
 								<option value="February"> February </option>
@@ -106,7 +106,7 @@
 				%>
 				<tr>
 					<td style="text-align: center">
-						<select id="dep"  name="name[]" tabindex="3" style="width: 150px;" required> 
+						<select id="dep"  name="name[]" style="width: 150px;" required> 
 								<option> --Select Name-- </option> 
 								<%/*
 									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
@@ -123,7 +123,7 @@
 								%>
 							</select>
 					</td>
-					<td style="text-align: center"><input type="checkbox"  name="absent[]" value="Absent" tabindex="4" checked></td>
+					<td style="text-align: center"><input type="checkbox"  name="absent[]" value="Absent" checked></td>
 					<td><input type="submit" value="Remove" class="removebutton"></td>
 				</tr>
 				<%

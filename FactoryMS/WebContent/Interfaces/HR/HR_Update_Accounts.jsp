@@ -42,7 +42,7 @@
 				</li>
 				  <li><a class="menu" href="#">Manage Employee</a></li>
 				  <li><a class="menu" href="#">Manage Jobs</a></li>
-				  <li><a class="menu" href="#">Employee Performace Tracking</a></li>
+				  <li><a class="menu" href="#">Employee Performance Tracking</a></li>
 				  <li><a class="menu" href="#">Manage Account</a></li>
 				  <li><a class="menu" href="#">Manage Employee Leaves</a></li>
 		</ul>
@@ -77,7 +77,7 @@
 				<tr>
 					<td for="dep">Account Type : </td>
 					<td>
-						<select id="dep"  name="acctype" tabindex="1" style="width: 250px;" required> 
+						<select id="dep"  name="acctype" style="width: 250px;" required> 
 								<option> --Select Type-- </option>
 								<option value="Manager"> Manager </option>
 								<option value="Administrator"> Administrator </option>
@@ -88,7 +88,7 @@
 				<tr>
 					<td for="dep">Employee Name : </td>
 					<td>
-						<select id="dep"  name="name" tabindex="2" style="width: 250px;" required> 
+						<select id="dep"  name="name" style="width: 250px;" required> 
 								<option> --Select Name-- </option> 
 								<%/*
 									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
@@ -108,21 +108,21 @@
 				</tr>
 				<tr>
 					<td>Employee Email:</td>
-					<td><input type="text" name="email" tabindex="3" size="55" required></td>
+					<td><input type="text" name="email" size="55" required></td>
 				</tr>
 				<tr>
 					<td>Enter Password:</td>
-					<td><input type="password" name="password" id="pwd" tabindex="3" size="55" required></td>
+					<td><input type="password" name="password" id="pwd"  size="55" required></td>
 				</tr>
 				<tr>
 					<td>Re-enter Password : </td>
-					<td><input type="password" name="repassword" id="confirm_pwd" tabindex="4" size="55" onkeyup="check()" required ><br>
+					<td><input type="password" name="repassword" id="confirm_pwd"  size="55" onkeyup="check()" required ><br>
 					<span id='Pwd_msg'></td>
 				</tr>
 				<tr>
 					<td>Status : </td>
-					<td><input type="radio" name="status" value="active" tabindex="5" checked="checked"> Active
-					<input type="radio" name="status" value="inactive" tabindex="6" > Inactive</td>
+					<td><input type="radio" name="status" value="active"  checked="checked"> Active
+					<input type="radio" name="status" value="inactive" > Inactive</td>
 				</tr>
 			</table>
 

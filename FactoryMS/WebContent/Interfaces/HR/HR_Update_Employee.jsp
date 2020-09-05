@@ -42,7 +42,7 @@
 				</li>
 				  <li><a class="menu" href="#">Manage Employee</a></li>
 				  <li><a class="menu" href="#">Manage Jobs</a></li>
-				  <li><a class="menu" href="#">Employee Performace Tracking</a></li>
+				  <li><a class="menu" href="#">Employee Performance Tracking</a></li>
 				  <li><a class="menu" href="#">Manage Account</a></li>
 				  <li><a class="menu" href="#">Manage Employee Leaves</a></li>
 		</ul>
@@ -76,10 +76,10 @@
 		<table class="form">
 				<tr>
 					<td>Employee Name : </td>
-					<td><input type="text" name="name" tabindex="1" size="55" required></td>
+					<td><input type="text" name="name"  size="55" required></td>
 					<td for="dep">Job Title : </td>
 					<td>
-						<select id="dep"  name="job" tabindex="10" style="width: 250px;" required> 
+						<select name="job"  style="width: 250px;" required> 
 								<option> --Select Job-- </option> 
 								<%/*
 									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
@@ -100,44 +100,44 @@
 				</tr>
 				<tr>
 					<td>Date of birth : </td>
-					<td><input type="Date" name="DOB" tabindex="2"  required></td>
+					<td><input type="Date" name="DOB" required></td>
 					
 					<td >Joint Date : </td>
-					<td><input type="date" name="Joint_date" tabindex="12" required></td>
+					<td><input type="date" name="Joint_date" required></td>
 					
 				</tr>
 				<tr>
 					<td>NIC : </td>
-					<td><input type="text" name="NIC" tabindex="3" size="55" required pattern="[0-9]{9}[v|V]" ></td>
+					<td><input type="text" name="NIC" size="55" required pattern="[0-9]{9}[v|V]|[0-9]{12}" ></td>
 					<td>Qualification : </td>
-					<td><textarea rows="4" cols="55" name="qualification" tabindex="12" required></textarea></td>
+					<td><textarea rows="4" cols="55" name="qualification" required></textarea></td>
 					
 				</tr>
 				<tr>
 					<td>Gender : </td>
-					<td><input type="radio" name="gender" value="Male" tabindex="4" checked="checked"> Male
-					<input type="radio" name="gender" value="Female" tabindex="5" > Female</td>
+					<td><input type="radio" name="gender" value="Male" checked="checked"> Male
+					<input type="radio" name="gender" value="Female" > Female</td>
 					
 				</tr>
 				<tr>
 					<td>Marital Status : </td>
-					<td><input type="radio" name="MaritalStatus" value="Single" tabindex="6" checked="checked"> Single	
-					<input type="radio" name="MaritalStatus" value="Married" tabindex="7" > Married</td>
+					<td><input type="radio" name="MaritalStatus" value="Single" checked="checked"> Single	
+					<input type="radio" name="MaritalStatus" value="Married" > Married</td>
 					
 				</tr>
 				<tr>
 					<td>Contact Number : </td>
-					<td><input type="text" name="PhoneNo" tabindex="8" size="55" required pattern="[0-9]{10}" ></td>
+					<td><input type="text" name="PhoneNo" size="55" required pattern="[0-9]{10}" ></td>
 					
 				</tr>
 				<tr>
 					<td>Email : </td>
-					<td><input type="text" name="NIC" tabindex="3" size="55" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A_Za-z]{2,3}" ></td>
+					<td><input type="text" name="NIC" size="55" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A_Za-z]{2,3}" ></td>
 					
 				</tr>
 				<tr>
 					<td>Address : </td>
-					<td><textarea rows="4" cols="55" name="Address" tabindex="9" required></textarea></td>
+					<td><textarea rows="4" cols="55" name="Address" required></textarea></td>
 				</tr>
 			</table>
 

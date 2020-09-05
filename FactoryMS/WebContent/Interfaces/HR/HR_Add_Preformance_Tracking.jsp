@@ -42,7 +42,7 @@
 				</li>
 				  <li><a class="menu" href="#">Manage Employee</a></li>
 				  <li><a class="menu" href="#">Manage Jobs</a></li>
-				  <li><a class="menu" href="#">Employee Performace Tracking</a></li>
+				  <li><a class="menu" href="#">Employee Performance Tracking</a></li>
 				  <li><a class="menu" href="#">Manage Account</a></li>
 				  <li><a class="menu" href="#">Manage Employee Leaves</a></li>
 		</ul>
