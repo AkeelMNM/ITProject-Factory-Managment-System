@@ -277,7 +277,7 @@ th  /* view record table header */
 	background-color: #b34426;
 	color: white;
 	top: 0;
-    z-index: 2;
+    z-index: 0;
     position: sticky;
     position: -webkit-sticky;
     text-align: center;

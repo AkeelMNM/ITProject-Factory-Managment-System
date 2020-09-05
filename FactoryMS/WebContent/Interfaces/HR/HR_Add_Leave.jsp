@@ -82,7 +82,7 @@
 				<tr>
 					<td style="text-align: center;">Month : </td>
 					<td>
-						<select id="dep"  name="acctype" tabindex="2" style="width: 200px;" required> 
+						<select id="dep"  name="month" tabindex="2" style="width: 200px;" required> 
 								<option> --Select Month-- </option>
 								<option value="January">January</option>
 								<option value="February"> February </option>
