@@ -17,6 +17,9 @@ public interface AccountService {
 	//Add Account for Account table
 	public void addAccount(Account Account);
 	
+	//Get EmployeeID for Account table
+	public String getEmployeeID(String EmployeeName);
+	
 	//Get Account ID in Account table
 	public String getAccountID(String EmployeeID);
 	

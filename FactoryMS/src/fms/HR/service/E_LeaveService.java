@@ -19,7 +19,7 @@ public interface E_LeaveService {
 		public void addLeave(E_Leave Leave);
 		
 		//Get Leave ID in E_Leave table
-		public String getLeaveID(String LeaveID);
+		public String getLeaveID(String EmployeeID);
 		
 		//Get particular Leave from E_Leave table
 		public ArrayList<E_Leave> getLeaveByID(String LeaveID);
@@ -35,4 +35,7 @@ public interface E_LeaveService {
 		
 		// Get Employee Name in E_Leave table
 		public String getEmpoyeeName(String LeaveID);
+		
+		//Get Employee ID in E_Leave Table
+		public String getEmployeeID(String LeaveID);
 }

@@ -31,6 +31,12 @@ public interface EmployeeService {
 		
 		// Get Employee Name in Employee table
 		public String getEmployeeName(String EmployeeID);
+		
+		//Get Employee ID in Employee Table
+		public String getEmployeeID(String EmployeeName);
+		
+		//Get Job ID in Employee Table
+		public String getJobID(String JobName);
 	
 
 }

@@ -33,4 +33,7 @@ public interface PerformanceTrackingService {
 	
 	// Get Employee Name in PerformanceTracking table
 	public String getEmpoyeeName(String performanceTrackingID);
+			
+	//Get Employee ID in Performance Tracking Table
+	public String getEmployeeID(String performanceTrackingID);
 }

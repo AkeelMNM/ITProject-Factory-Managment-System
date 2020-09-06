@@ -7,9 +7,9 @@ public class Job {
 	private String creatingDate;
 	private String BasicSalary;
 	private String SalPayMethod;
-	private double EtfRate;
-	private double EpfRate;
-	private double OtRate;
+	private String EtfRate;
+	private String EpfRate;
+	private String OtRate;
 	
 	public Job() {
 		super();
@@ -55,27 +55,27 @@ public class Job {
 		SalPayMethod = salPayMethod;
 	}
 
-	public double getEtfRate() {
+	public String getEtfRate() {
 		return EtfRate;
 	}
 
-	public void setEtfRate(double etfRate) {
+	public void setEtfRate(String etfRate) {
 		EtfRate = etfRate;
 	}
 
-	public double getEpfRate() {
+	public String getEpfRate() {
 		return EpfRate;
 	}
 
-	public void setEpfRate(double epfRate) {
+	public void setEpfRate(String epfRate) {
 		EpfRate = epfRate;
 	}
 
-	public double getOtRate() {
+	public String getOtRate() {
 		return OtRate;
 	}
 
-	public void setOtRate(double otRate) {
+	public void setOtRate(String otRate) {
 		OtRate = otRate;
 	}
 
