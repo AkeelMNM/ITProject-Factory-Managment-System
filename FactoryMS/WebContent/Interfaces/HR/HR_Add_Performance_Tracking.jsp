@@ -1,11 +1,12 @@
 <%@page import="fms.HR.service.SearchServieImpt"%>
 <%@page import="fms.HR.service.EmployeeServiceImpt"%>
 <%@page import="fms.HR.service.EmployeeService"%>
-<%@page import="com.fms.model.Employee"%>
 <%@page import="fms.HR.service.JobServiceImpt"%>
 <%@page import="fms.HR.service.JobService"%>
 <%@page import="java.util.ArrayList"%>
-
+<%@page import="fms.HR.service.PerformanceTrackingServiceImpt"%>
+<%@page import="fms.HR.service.PerformanceTrackingService"%>
+<%@page import="com.fms.model.PerformanceTracking"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -48,9 +49,9 @@
 					  <li><a class="menu" href="#">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="#">Manage Employee</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Employee.jsp">Manage Employee</a></li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Jobs.jsp">Manage Jobs</a></li>
-				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Performance_Tracking.jsp">Employee Performance Tracking</a></li>
+				  <li><a class="menu" href="#">Employee Performance Tracking</a></li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Accounts.jsp">Manage Account</a></li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Leave.jsp">Manage Employee Leaves</a></li>
 		</ul>
@@ -80,46 +81,12 @@
 
 		<label id="insertTit">INSERT FORM</label>
 		
-		<form method="POST" action="${pageContext.request.contextPath}/AddEmployeeServlet">
+		<form method="POST" action="${pageContext.request.contextPath}/AddPerfromanceTrackingServlet">
 		<table class="form">
 				<tr>
-					<td>Employee Name : </td>
-					<td><input type="text" name="name" size="55" required></td>
-				</tr>
-				<tr>
-					<td>Date of birth : </td>
-					<td><input type="Date" name="DOB"  required></td>
-				</tr>
-				<tr>
-					<td>NIC : </td>
-					<td><input type="text" name="NIC" size="55" required pattern="[0-9]{9}[v|V]|[0-9]{12}"></td>
-				</tr>
-				<tr>
-					<td>Gender : </td>
-					<td><input type="radio" name="gender" value="Male"  checked="checked"> Male
-					<input type="radio" name="gender" value="Female" > Female</td>
-				</tr>
-				<tr>
-					<td>Marital Status : </td>
-					<td><input type="radio" name="MaritalStatus" value="Single" checked="checked"> Single	
-					<input type="radio" name="MaritalStatus" value="Married"> Married</td>
-				</tr>
-				<tr>
-					<td>Contact Number : </td>
-					<td><input type="text" name="PhoneNo"  size="55" required pattern="[0-9]{10}" ></td>
-				</tr>
-				<tr>
-					<td>Email : </td>
-					<td><input type="text" name="email"  size="55" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A_Za-z]{2,3}" ></td>
-				</tr>
-				<tr>
-					<td>Address : </td>
-					<td><textarea rows="3" cols="55" name="Address"  required></textarea></td>
-				</tr>
-				<tr>
-					<td>Job Title : </td>
+					<td >Job Title : </td>
 					<td>
-						<select  name="job" style="width: 250px;" required> 
+						<select name="job" tabindex="1" style="width: 250px;" required> 
 								<option> --Select Job-- </option> 
 								<%
 									JobService jobservice = new JobServiceImpt();
@@ -138,16 +105,71 @@
 					</td>
 				</tr>
 				<tr>
-					<td >Joint Date : </td>
-					<td><input type="date" name="Joint_date" required></td>
+					<td>Employee Name : </td>
+					<td>
+						<select name="name" tabindex="2" style="width: 250px;" required> 
+								<option> --Select Name-- </option> 
+								<%
+									EmployeeService empservice= new EmployeeServiceImpt();
+									ArrayList<String> nameList =empservice.getAllEmployeeName();
+									
+									for(String name : nameList)
+									{
+								%>
+							
+								<option value="<%=name%>">  <%=name%>  </option> 			
+									
+								<%
+									}
+								%>
+							</select>
+					</td>
+				</tr>
+
+				<tr>
+					<td>Time in: </td>
+					<td><input type="time" name="timein" tabindex="3"  required></td>
 				</tr>
 				<tr>
-					<td>Qualification : </td>
-					<td><textarea rows="3" cols="55" name="qualification" required></textarea></td>
+					<td>Lunch in : </td>
+					<td><input type="time" name="lunchin" tabindex="4" size="55" required  ></td>
+				</tr>
+				<tr>
+					<td>Lunch out : </td>
+					<td><input type="time" name="lunchout" tabindex="5" size="55" required ></td>
+				</tr>
+				<tr>
+					<td>Time out : </td>
+					<td><input type="time" name="timeout" tabindex="6" size="55" required ></td>
+				</tr>
+				<tr>
+					<td >Over Time (hr) : </td>
+					<td><input type="number" name="overtime" tabindex="7"  min="0" max="24" step=".1" required></td>
+				</tr>
+				<tr>
+					<td colspan="2" ><label style="font-weight:bold;">Performance Details</label><hr></td>
+				</tr>
+				<tr>
+					<td>Performance : </td>
+					<td>
+						<select name="performance" tabindex="8" style="width: 250px;" required> 
+								<option> --Select State-- </option>
+								<option value="1">Poor</option>
+								<option value="2">Fair </option>
+								<option value="3">Average</option>
+								<option value="4">Good</option>
+								<option value="5">Excellent </option> 
+								
+							</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Description : </td>
+					<td><textarea rows="5" cols="55" name="description" tabindex="9" required></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="reset" value="Reset" class="resetbutton">
-					<input type="submit" value="Create" class="submitbutton"></td>
+					<input type="submit" value="Submit" class="submitbutton"></td>
 				</tr>
 			</table>
 			</form>
@@ -155,9 +177,9 @@
 		
 <div class="vl"></div>
 		<div class="search">
-		<form action="" method="post">
-			<input type="text" name="search" id="se" placeholder="search here.......">
-		</form>
+			<form action="" method="post">
+				<input type="text" name="search" id="se" placeholder="search here.......">
+			</form>
 		</div>
 		
 		<div class ="table">
@@ -165,53 +187,52 @@
 			<table class="view">
 				<tr class="viewTr" id ="myHeader">
 						<th >Employee Name</th>
-						<th >DOB</th>
-						<th >NIC</th>
-						<th >Gender</th>
-						<th >Marital Status</th>
-						<th >Email</th>
-						<th >Contact No</th>
-						<th >Address</th>
 						<th >Job Title</th>
-						<th >Date Joined</th>
-						<th >Qualification</th>
+						<th >Time In</th>
+						<th >Lunch In</th>
+						<th >Lunch Out</th>
+						<th >Time Out</th>
+						<th >Over Time (hr)</th>
+						<th >Performance</th>
+						<th >Description</th>
 						<th >Action</th>
 				</tr>
 				<%
-				EmployeeService empservice = new EmployeeServiceImpt();
-				ArrayList<Employee> employeeList = new ArrayList<Employee>();
+				PerformanceTrackingService PTservice = new PerformanceTrackingServiceImpt();
+				ArrayList<PerformanceTracking> PTList = new ArrayList<PerformanceTracking>();
 				
 				String data = request.getParameter("search");
 				if(data != null){
 					SearchServieImpt se =new SearchServieImpt();
-					employeeList = se.searchEmployee(data);
+					PTList= se.searchPerformanceTracking(data);
 				}
 				else{
-					employeeList = empservice.getEmployee();
+					PTList = PTservice.getPerformacneTracking();
 				}
 				
-				for(Employee employee : employeeList)
+				for(PerformanceTracking pt : PTList)
 				{
 				%>
+				
 				 <tr class="viewTr">
-						<td class ="tData"><%=employee.getName()%></td>
-						<td class ="tData"><%=employee.getDOB()%></td>
-						<td class ="tData"><%=employee.getNIC()%></td>
-						<td class ="tData"><%=employee.getGender()%></td>
-						<td class ="tData"><%=employee.getMaritalStatus()%></td>
-						<td class ="tData"><%=employee.getEmail()%></td>
-						<td class ="tData"><%=employee.getContactNo()%></td>
-						<td class ="tData"><%=employee.getAddress()%></td>
-						<td class ="tData"><%=employee.getJobTitle()%></td>
-						<td class ="tData"><%=employee.getJointDate()%></td>
-						<td class ="tData"><%=employee.getQualification()%></td>
-						<td class ="tData"><form method="POST" action="${pageContext.request.contextPath}/Interfaces/HR/HR_Update_Employee.jsp">
-								<input type="hidden" name ="EID" value="<%=employee.getEmpID()%>">
+						<td class ="tData"><%=pt.getEmpName()%></td>
+						<td class ="tData"><%=pt.getJobTitle()%></td>
+						<td class ="tData"><%=pt.getTimeIn()%></td>
+						<td class ="tData"><%=pt.getLunchIn()%></td>
+						<td class ="tData"><%=pt.getLunchOut()%></td>
+						<td class ="tData"><%=pt.getTimeOut()%></td>
+						<td class ="tData"><%=pt.getOvetTime()%></td>
+						<td class ="tData"><%=pt.getPerformace()%></td>
+						<td class ="tData"><%=pt.getDescription()%></td>
+						
+						<td class ="tData"><form method="POST" action="${pageContext.request.contextPath}/Interfaces/HR/HR_Update_Performance_Tracking.jsp">
+								<input type="hidden" name ="PTID" value="<%=pt.getEPTID()%>">
 								<input type="submit" value="Edit" class="editbutton">
 						</form></td>
 					</tr>
 				<%
 				}
+				
 				%>
 						
 				</table>

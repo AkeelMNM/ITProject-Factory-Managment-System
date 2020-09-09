@@ -19,7 +19,7 @@ window.onclick = function(event) {
   }
 }
 
-function check() {
+function check() { // checking password match
 	  if (document.getElementById('pwd').value ==
 	  document.getElementById('confirm_pwd').value)
 	  {
@@ -32,7 +32,26 @@ function check() {
 	  }
 }
 
-function Reset() {
+function calc() { // Calculating EPF and ETF for the job
+    var txtFirstNumberValue = document.getElementById('bs').value;
 
-	$("name").empty()
+    var sal = parseInt(txtFirstNumberValue);
+    var etf= 0.03 * sal;
+    var epf= 0.08 * sal;
+    
+        document.getElementById('fetf').value = etf;
+        document.getElementById('fepf').value = epf;
+
+}
+
+function delet(){
+	
+	document.form1.ACTION = "/${pageContext.request.contextPath}/DeleteJobServlet";
+    form1.submit();
+}
+
+function update(){
+	
+	document.form1.ACTION = "/${pageContext.request.contextPath}/UpdateJobServlet";
+    form1.submit();
 }

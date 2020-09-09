@@ -32,6 +32,9 @@ public class HRCommonConstants {
 	//Constant for query id for get Employee Name in HRQuery.xml 
 	public static final String Query_ID_GET_EMPLOYEE_NAME = "get_emp_name";
 	
+	//Constant for query id for get Employee Name in HRQuery.xml 
+	public static final String Query_ID_GET_ALL_EMPLOYEE_NAME = "get_all_emp_name";
+	
 	//Constant for query id for remove Employee in HRQuery.xml 
 	public static final String Query_ID_REMOVE_EMPLOYEE ="remove_employee";
 	
@@ -70,6 +73,9 @@ public class HRCommonConstants {
 	
 	//Constant for query id for get All Job IDs in HRQuery.xml 
 	public static final String Query_ID_ALL_JOB_IDS ="get_jobids";
+	
+	//Constant for query id for get All Job Names in HRQuery.xml 
+	public static final String Query_ID_ALL_JOB_NAMES ="get_jobnames";
 	
 	//Constant for Job ID prefix 
 	public static final String JOB_ID_PREFIX ="J00";
@@ -159,7 +165,10 @@ public class HRCommonConstants {
 	public static final String Query_ID_GET_LEAVE_ID ="get_leaveId";
 	
 	//Constant for query id for get an Leave in HRQuery.xml 
-	public static final String Query_ID_GET_LEAVE ="get_leave";
+	public static final String Query_ID_GET_AN_EMPLOYEE_LEAVES ="get_leaves";
+	
+	//Constant for query id for get an Leave in HRQuery.xml 
+	public static final String Query_ID_GET_LEAVES_BY_DATE ="get_leaves_by_date";
 	
 	//Constant for query id for get All Leave in HRQuery.xml 
 	public static final String Query_ID_GET_ALL_LEAVE ="get_all_leave";
@@ -178,6 +187,9 @@ public class HRCommonConstants {
 	
 	//Constant for query id for get Employee Name in HRQuery.xml
 	public static final String Query_ID_GET_EMPLOYEE_NAME_IN_LEV ="get_employeename_in_lev";
+	
+	//Constant for query id for get Employee Name in HRQuery.xml
+	public static final String Query_ID_GET_LEAVE_ID_BY_NAME ="get_leaveid_in_by_name";
 	
 	//Constant for Leave ID prefix 
 	public static final String LEAVE_ID_PREFIX ="L00";

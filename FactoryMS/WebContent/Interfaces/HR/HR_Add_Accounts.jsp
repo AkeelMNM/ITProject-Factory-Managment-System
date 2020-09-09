@@ -1,3 +1,10 @@
+<%@page import="fms.HR.service.SearchServieImpt"%>
+<%@page import="fms.HR.service.EmployeeServiceImpt"%>
+<%@page import="fms.HR.service.EmployeeService"%>
+<%@page import="com.fms.model.Account"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fms.HR.service.AccountServiceImpt"%>
+<%@page import="fms.HR.service.AccountService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -40,11 +47,11 @@
 					  <li><a class="menu" href="#">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="#">Manage Employee</a></li>
-				  <li><a class="menu" href="#">Manage Jobs</a></li>
-				  <li><a class="menu" href="#">Employee Performance Tracking</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Employee.jsp">Manage Employee</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Jobs.jsp">Manage Jobs</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Performance_Tracking.jsp">Employee Performance Tracking</a></li>
 				  <li><a class="menu" href="#">Manage Account</a></li>
-				  <li><a class="menu" href="#">Manage Employee Leaves</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Leave.jsp">Manage Employee Leaves</a></li>
 		</ul>
 
 <div id="bodyDiv">
@@ -72,11 +79,11 @@
 		<br>
 		<label id="insertTit">INSERT FORM</label>
 		
-		<form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet" style="margin-top:50px;">
+		<form method="POST" action="${pageContext.request.contextPath}/AddAccountServlet" style="margin-top:50px;">
 		<table class="form">
 				
 				<tr>
-					<td f>Account Type : </td>
+					<td >Account Type : </td>
 					<td>
 						<select id="dep"  name="acctype" style="width: 250px;" required> 
 								<option> --Select Type-- </option>
@@ -91,18 +98,18 @@
 					<td>
 						<select  name="name" style="width: 250px;" required> 
 								<option> --Select Name-- </option> 
-								<%/*
-									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
-									ArrayList<Department> DepartmentList = iHRviewDepartment.getDepartments();
+								<%
+									EmployeeService empservice= new EmployeeServiceImpt();
+									ArrayList<String> nameList =empservice.getAllEmployeeName();
 									
-									for(Department dep : DepartmentList)
-									{*/
+									for(String name : nameList)
+									{
 								%>
 							
-								<option value="<%//=dep.getName() %>">  <%//=dep.getName() %>  </option> 			
+								<option value="<%=name%>">  <%=name%>  </option> 			
 									
 								<%
-									//}
+									}
 								%>
 							</select>
 					</td>
@@ -139,7 +146,9 @@
 		
 <div class="vl"></div>
 		<div class="search">
-			<input type="text" name="JobTitle" id="se" required>
+			<form action="" method="post">
+				<input type="text" name="search" id="se" placeholder="search here.......">
+			</form>
 		</div>
 		
 		<div class ="table">
@@ -151,105 +160,39 @@
 						<th >Password</th>
 						<th >Account Type</th>
 						<th >Account Status</th>
-
-						<th >Edit</th>
+						<th >Action</th>
 				</tr>
-				<tr class="viewTr">
-						<td class ="tData" >Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">199842626411</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">Tea Producer</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">Male</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">7/65 Pereadeniya,Kandy</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">Male</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">7/65 Pereadeniya,Kandy</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">7/65 Pereadeniya,Kandy</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">7/65 Pereadeniya,Kandy</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">Male</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-		
 				
-		
-					<!--  <tr>
-						<td><%//=attendance.getEmployee()%></td>
-						<td><%//=attendance.getDepartment()%></td>
-						<td><%//=attendance.getToday_Date()%></td>
-						<td><%//=attendance.getStart_Time()%></td>
-						<td><%//=attendance.getEnd_Time()%></td>
-						<td></td>
-						<td><form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
-								<input type="hidden" name ="AttID" value="<%//=attendance.getAttendanceID()%>">
-								<input type="hidden" name ="EID" value="<%//=EmployeeID%>">
-								<input type="submit" value="Remove Attendance" class="editbutton">
+				<%
+				AccountService acservice = new AccountServiceImpt();
+				ArrayList<Account> acList = new ArrayList<Account>();
+				
+				String data = request.getParameter("search");
+				if(data != null){
+					SearchServieImpt se =new SearchServieImpt();
+					acList = se.searchAccount(data);
+				}
+				else{
+					acList = acservice.getAccount();
+				}
+				
+				for(Account ac : acList)
+				{
+				%>
+				<tr class="viewTr">
+						<td class ="tData" ><%=ac.getEmpName()%></td>
+						<td class ="tData" ><%=ac.getUserName()%></td>
+						<td class ="tData" ><%=ac.getPassword()%></td>
+						<td class ="tData" ><%=ac.getAccType()%></td>
+						<td class ="tData" ><%=ac.getStatus()%></td>
+						<td class ="tData"><form method="POST" action="${pageContext.request.contextPath}/Interfaces/HR/HR_Update_Accounts.jsp">
+								<input type="hidden" name ="AID" value="<%=ac.getAccID()%>">
+								<input type="submit" value="Edit" class="editbutton">
 						</form></td>
-					</tr>-->
+					</tr>
+				<%
+				}
+				%>
 						
 				</table>
 		</div>

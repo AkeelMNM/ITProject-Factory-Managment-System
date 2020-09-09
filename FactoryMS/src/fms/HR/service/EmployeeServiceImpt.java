@@ -55,8 +55,8 @@ public class EmployeeServiceImpt implements EmployeeService {
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE, Employee.getNIC());
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,Employee.getGender());
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,Employee.getMaritalStatus());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,Employee.getContactNo());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,Employee.getEmail());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,Employee.getEmail());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,Employee.getContactNo());
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TEN,Employee.getAddress());
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ELEVEN,Employee.getJobTitle());
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWELVE,Employee.getJointDate());
@@ -99,9 +99,10 @@ public class EmployeeServiceImpt implements EmployeeService {
 	/** -------------    Get Employee by ID from Employee table         ------------------------**/
 	
 	@Override
-	public ArrayList<Employee> getEmployeeByID(String EmployeeID) {
+	public Employee getEmployeeByID(String EmployeeID) {
 	
-	ArrayList<Employee> employeeList = new ArrayList<Employee>();
+	
+		Employee employee = new Employee();
 	
 		if(EmployeeID != null && !EmployeeID.isEmpty())
 		{
@@ -119,7 +120,6 @@ public class EmployeeServiceImpt implements EmployeeService {
 					
 						while(result.next())
 						{
-								Employee employee = new Employee();
 								
 								employee.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
 								employee.setJobID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
@@ -128,14 +128,14 @@ public class EmployeeServiceImpt implements EmployeeService {
 								employee.setNIC(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
 								employee.setGender(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
 								employee.setMaritalStatus(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
-								employee.setContactNo(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
-								employee.setEmail(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
+								employee.setEmail(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
+								employee.setContactNo(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
 								employee.setAddress(result.getString(HRCommonConstants.COLUMN_INDEX_TEN));
 								employee.setJobTitle(result.getString(HRCommonConstants.COLUMN_INDEX_ELEVEN));
 								employee.setJointDate(result.getString(HRCommonConstants.COLUMN_INDEX_TWELVE));
 								employee.setQualification(result.getString(HRCommonConstants.COLUMN_INDEX_THIRTEEN));
 								
-								employeeList.add(employee);
+								
 						}
 					
 			} 
@@ -165,7 +165,7 @@ public class EmployeeServiceImpt implements EmployeeService {
 					
 			}
 		}
-		return employeeList;
+		return employee;
 	}
 
 	
@@ -197,8 +197,8 @@ public class EmployeeServiceImpt implements EmployeeService {
 							employee.setNIC(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
 							employee.setGender(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
 							employee.setMaritalStatus(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
-							employee.setContactNo(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
-							employee.setEmail(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
+							employee.setEmail(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
+							employee.setContactNo(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
 							employee.setAddress(result.getString(HRCommonConstants.COLUMN_INDEX_TEN));
 							employee.setJobTitle(result.getString(HRCommonConstants.COLUMN_INDEX_ELEVEN));
 							employee.setJointDate(result.getString(HRCommonConstants.COLUMN_INDEX_TWELVE));
@@ -252,20 +252,18 @@ public class EmployeeServiceImpt implements EmployeeService {
 					//Update Employee Query will be Retrieve from HRQuery.xml
 					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_UPDATE_EMPLOYEE));
 					
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Employee.getEmpID());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,Employee.getJobID());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,Employee.getName());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,Employee.getDOB() );
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE, Employee.getNIC());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,Employee.getGender());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,Employee.getMaritalStatus());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,Employee.getContactNo());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,Employee.getEmail());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TEN,Employee.getAddress());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ELEVEN,Employee.getJobTitle());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWELVE,Employee.getJointDate());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THIRTEEN,Employee.getQualification());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOURTEEN, EmployeeID);
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Employee.getName());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,Employee.getDOB() );
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE, Employee.getNIC());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,Employee.getGender());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE,Employee.getMaritalStatus());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,Employee.getEmail());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,Employee.getContactNo());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,Employee.getAddress());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,Employee.getJobTitle());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TEN,Employee.getJointDate());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ELEVEN,Employee.getQualification());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWELVE, EmployeeID);
 					preparedStatement.executeUpdate();
 			}
 			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
@@ -519,6 +517,53 @@ public class EmployeeServiceImpt implements EmployeeService {
 		return JobID;
 	}
 	
+	@Override
+	public ArrayList<String> getAllEmployeeName() {
+
+		ArrayList<String> arraylist = new ArrayList<String>();
+		
+		try {
+				
+				connection = DBConnection.getDBConnection();
+				
+				//Get All Employee ID will be Retrieve from HRQuery.xml
+				preparedStatement = connection.prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_ALL_EMPLOYEE_NAME));
+				
+				ResultSet result = preparedStatement.executeQuery();
+				while(result.next())
+				{
+					arraylist.add(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
+				}	
+		} 
+		catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
+		{	
+				log.log(Level.SEVERE,e.getMessage());
+		}
+		finally
+		{
+				//Closing DB Connection and Prepared statement
+				try 
+				{
+					
+					if(preparedStatement != null)
+					{
+						preparedStatement.close();
+					}
+					if(connection != null)
+					{
+						connection.close();
+					}
+					
+				} 
+				catch (SQLException e) 
+				{
+					log.log(Level.SEVERE,e.getMessage());
+				}
+				
+		}
+		return arraylist;
+	}
+	
 	/**---------------------------                 Array of Employee id list will be return            ---------------------------**/
 	
 	private ArrayList<String> getEmployeeIDs()
@@ -566,6 +611,7 @@ public class EmployeeServiceImpt implements EmployeeService {
 			}
 				return arraylist;
 	}
+
 
 
 	

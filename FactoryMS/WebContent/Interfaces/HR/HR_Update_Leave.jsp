@@ -1,3 +1,7 @@
+<%@page import="com.fms.model.E_Leave"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fms.HR.service.E_LeaveServiceImpt"%>
+<%@page import="fms.HR.service.E_LeaveService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -67,22 +71,37 @@
 					AttendanceService attendanceService = new AttendanceServiceImpt();
 					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
 					
+					String date = null;
+					
+					if(request.getParameter("Date") != null){
+						
+						date = request.getParameter("Date");
+					}
+					
+					if(request.getParameter("ldate") != null){
+						
+						date = request.getParameter("ldate");
+					}
+					
+					String month = request.getParameter("umonth");
+					E_LeaveService leaveservice = new E_LeaveServiceImpt();
+					ArrayList<E_Leave> leavelist = leaveservice.getLeaveByDate(date);
 		%>
 		<div class ="left">
 		<br>
 		<label id="insertTit" style="margin-right:80%;">Job Details Update Form</label>
 		
-		<form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
+		<form method="POST" id="yourForm">
 		<table class="form" style="margin-top:2%;">
 				<tr>
 					<td style="text-align: center;">Date:</td>
-					<td><input type="date" name="date" required></td>
+					<td><input type="date" name="date" value="<%=date%>" required></td>
 				</tr>
 				<tr>
 					<td style="text-align: center;">Month : </td>
 					<td class="select">
-						<select id="dep"  name="acctype" style="width: 200px;" required> 
-								<option> --Select Month-- </option>
+						<select  name="month" style="width: 200px;" required> 
+								<option value="<%=month%>"><%=month%></option>
 								<option value="January">January</option>
 								<option value="February"> February </option>
 								<option value="March"> March </option>
@@ -102,39 +121,35 @@
 					<tr><td style="text-align: center; text-decoration: underline;">Employee Name</td>
 					<td  style="text-align: center; text-decoration: underline;">Absent</td></tr>
 				<%
-					for(int i=0;i<8;i++){
+						for (int i=0; i<leavelist.size(); i++){
+					        
 				%>
 				<tr>
 					<td style="text-align: center">
-						<select id="dep"  name="name[]" style="width: 150px;" required> 
-								<option> --Select Name-- </option> 
-								<%/*
-									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
-									ArrayList<Department> DepartmentList = iHRviewDepartment.getDepartments();
-									
-									for(Department dep : DepartmentList)
-									{*/
-								%>
-							
-								<option value="<%//=dep.getName() %>">  <%//=dep.getName() %>  </option> 			
-									
-								<%
-									//}
-								%>
+						<select id="rest"  name="name[]" style="width: 150px;" > 
+								<option value="<%=leavelist.get(i).getEmpName()%>">  <%=leavelist.get(i).getEmpName()%>  </option> 			
 							</select>
 					</td>
-					<td style="text-align: center"><input type="checkbox"  name="absent[]" value="Absent" checked></td>
-					<td><input type="submit" value="Remove" class="removebutton"></td>
+					<td style="text-align: center"><input type="checkbox" id="restch"  name="absent[]" value="Absent" checked></td>
+					<td>
+					<input type="hidden" id="did" value="<%=leavelist.get(i).getLeaveID()%>">
+					<input type="hidden" id="ddate" value="<%=leavelist.get(i).getDate()%>">
+					<input type="submit" value="Remove" class="removebutton" onclick="document.searchPagosForm.action ='${pageContext.request.contextPath}/DeleteLeaveServlet';document.yourForm.submit()">
+					</td>
 				</tr>
 				<%
-					}
+						}
 				%>
 			</table>
 
 					<hr id="hrid" style="margin-top:7px;">
 
-					<input type="submit" value="Update Leave Details" class="submitbutton">
-
+					<input type="submit" value="Update Leave Details" class="submitbutton" onclick="document.searchPagosForm.action ='${pageContext.request.contextPath}/UpdateLeaveServlet';document.yourForm.submit()">
+					<a href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Leave.jsp"><button class="deletebutton" >Cancel</button></a>
+			</form>
+			<form method="POST" id ="removeform" action="${pageContext.request.contextPath}/DeleteLeaveServlet">
+				<input type="hidden" name="lid" >
+				<input type="hidden" name="ldate" id="a">
 			</form>
 		</div>
 

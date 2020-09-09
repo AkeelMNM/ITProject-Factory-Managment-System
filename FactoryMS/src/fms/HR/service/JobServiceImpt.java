@@ -45,7 +45,7 @@ public class JobServiceImpt implements JobService {
 	@Override
 	public void addJob(Job Job) {
 
-		String JobID=HRCommonUtil.generateEIDs(getJobIDs());
+		String JobID=HRCommonUtil.generateJIDs(getJobIDs());
 		
 		try
 		{
@@ -102,9 +102,9 @@ public class JobServiceImpt implements JobService {
 	/** -------------    Get Job by id from Job table        ------------------------**/
 	
 	@Override
-	public ArrayList<Job> getJobByID(String JobID) {
+	public Job getJobByID(String JobID) {
 	
-		ArrayList<Job> jobList = new ArrayList<Job>();
+		Job job = new Job();
 		
 		if(JobID != null && !JobID.isEmpty())
 		{
@@ -122,7 +122,6 @@ public class JobServiceImpt implements JobService {
 					
 						while(result.next())
 						{
-								Job job = new Job();
 								
 								job.setJobID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
 								job.setJobTitle(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
@@ -133,7 +132,7 @@ public class JobServiceImpt implements JobService {
 								job.setEpfRate(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
 								job.setOtRate(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
 								
-								jobList.add(job);
+								
 						}
 					
 			} 
@@ -163,7 +162,7 @@ public class JobServiceImpt implements JobService {
 					
 			}
 		}
-		return jobList;
+		return job;
 	}
 
 	/** -------------    Get All Job from Job table        ------------------------**/
@@ -178,7 +177,7 @@ public class JobServiceImpt implements JobService {
 					connection = DBConnection.getDBConnection();
 					
 					//Get All Job  Query will be Retrieve from HRQuery.xml
-					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_JOB));
+					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_ALL_JOB));
 					
 					ResultSet result = preparedStatement.executeQuery();
 					
@@ -244,15 +243,15 @@ public class JobServiceImpt implements JobService {
 					//Update Job Query will be Retrieve from HRQuery.xml
 					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_UPDATE_JOB));
 					
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Job.getJobID());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,Job.getJobTitle());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,Job.getCreatingDate());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,Job.getBasicSalary());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE, Job.getSalPayMethod());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,Job.getEtfRate());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,Job.getEpfRate());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,Job.getOtRate());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,JobID);
+					
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Job.getJobTitle());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,Job.getCreatingDate());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,Job.getBasicSalary());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR, Job.getSalPayMethod());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE,Job.getEtfRate());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,Job.getEpfRate());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,Job.getOtRate());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,JobID);
 					preparedStatement.executeUpdate();
 			}
 			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
@@ -335,6 +334,53 @@ public class JobServiceImpt implements JobService {
 		
 	}
 	
+	@Override
+	public ArrayList<String> getJobName() {
+
+		ArrayList<String> arraylist = new ArrayList<String>();
+		
+		try {
+				
+				connection = DBConnection.getDBConnection();
+				
+				//Get All Employee ID will be Retrieve from HRQuery.xml
+				preparedStatement = connection.prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_ALL_JOB_NAMES));
+				
+				ResultSet result = preparedStatement.executeQuery();
+				while(result.next())
+				{
+					arraylist.add(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
+				}	
+		} 
+		catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
+		{	
+				log.log(Level.SEVERE,e.getMessage());
+		}
+		finally
+		{
+				//Closing DB Connection and Prepared statement
+				try 
+				{
+					
+					if(preparedStatement != null)
+					{
+						preparedStatement.close();
+					}
+					if(connection != null)
+					{
+						connection.close();
+					}
+					
+				} 
+				catch (SQLException e) 
+				{
+					log.log(Level.SEVERE,e.getMessage());
+				}
+				
+		}
+			return arraylist;
+	}
+	
 	private ArrayList<String> getJobIDs()
 	{
 			ArrayList<String> arraylist = new ArrayList<String>();
@@ -380,5 +426,9 @@ public class JobServiceImpt implements JobService {
 			}
 				return arraylist;
 	}
+
+	
+
+	
 
 }

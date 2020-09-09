@@ -7,114 +7,6 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/Home & Login/Home_Styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="${pageContext.request.contextPath}/CSS & javaScript/Home & Login/Home_Script.js"></script>
-<style>
-
-.button {
-
-  background-color:#E85A4F;
-  border: none;
-  color: white;
-  text-align: center;
-  text-decoration: none;
-  font-size: 14px;
-  transition: 0.3s;
-  width:100%;
-  size:10%;
-  cursor:pointer;
-  margin-top:5px;
-  
-}
-/* Change background color of buttons on hover */
-.button:hover {
-  background-color: #0299a6;
-}
-
-/* Create an active/current "tab button" class */
-.button button.active {
-  background-color: #ccc;
-}
-.headdiv
-{
-	float:left;
-	width:100%;
-	height:20%;
-	
-	
-}
-.logindiv
-{
-	float:left;
-	width:755px;
-	height:500px;
-	
-	
-	
-	
-}
-.loginform
-{
-	float:left;
-	width:30%;
-	height:70%;
-	margin-top:70px;
-	margin-left:540px;
-	box-shadow: 5px 5px 5px #888888;
-	background: #def2f1;
-	
-}
-.descdiv
-{
-	float:left;
-	width:49%;
-	height:500px;
-	
-	
-}
-.vl 
-{
-	  border-left: 2px solid white;
-	  height: 500px;
-	  float:left;
-	  
-	  
-}
-.inputtype {width:95%;}
-table{width:100%;}
-
-h2
-{
-	font-family:'Gabriela';
-	font-size:50px;
-	text-align:center;
-}
-h3
-{
-	font-family:'Gabriela';
-	font-size:25px;
-	text-align:center;
-}
-tr{width:100%;}
-
-input[type="text"]{ padding: 10px 10px; line-height:5px; border: 1.5px solid #555; }
-input[type="password"]{ padding: 10px 10px; line-height:5px; border: 1.5px solid #555; }
-input[type="submit"]{ padding: 10px 10px; line-height:15px; }
-
-.tbltd
-{
-	font-size:20px;
-	padding-top:10px;
-	text-align:left;
-}
-#tdbutton{padding-top:20px;}
-.tdsp{padding-top:5px;}
-
-.footer
-{
-	width:100%;
-	color:white;
-}
-
-</style>
 </head>
 <body>
 <!-- +++++++++++++++++++++++++++++++++ Header Part +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -161,43 +53,38 @@ input[type="submit"]{ padding: 10px 10px; line-height:15px; }
 					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
 					
 		%>
-		
-		 
-		<div  class="loginform">
-		<h3><u>LOGIN</u></h3>
-				<form method="POST" action="LoginServlet">
-				<table>
-						<tr>
-							 <td class="tbltd">Username</td>
-						</tr>
-						
-						<tr >
-							 <td class="tdsp"><input type ="text" name ="username" placeholder="Email Address" class="inputtype"></td>
-						</tr> 
-						<tr>
-							<td class="tbltd">Password</td>
-						</tr>
-						
-						<tr>
-							<td class="tdsp"><input type="password" name="password" placeholder="Password" class="inputtype"></td>
-						</tr>
-						
-						<tr>
-							<td id="tdbutton"><input type="submit" value="Sign in" class="button"></td>
-						</tr>
-						<%
-							if(request.getAttribute("result") == "NoResult"){
-						%>
-						<tr>
-						<td>Username or Password is Invalid</td>
-						</tr>
-						<%
-							}
-						%>
-				</table>
-				</form>
-		</div>
 
+		<h2>Welcome to Accountant Home Page  </h2>
+		
+		<div class="divAcc">
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Payroll.png" alt="payrollLogo" class="functionlogo">
+							<label>Payroll Management</label>
+						</a>
+				</div>
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Profile.png" alt="ProfileFlLogo" class="functionlogo">
+							<label>User Profile</label>
+						</a>
+				</div>
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Tech Support.png" alt="TechSlLogo" class="functionlogo">
+							<label>Technical Support</label>
+						</a>
+				</div>
+				
+		</div>
+		
+		
+		
+		
+		
+		
+		
+		
 		
 
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

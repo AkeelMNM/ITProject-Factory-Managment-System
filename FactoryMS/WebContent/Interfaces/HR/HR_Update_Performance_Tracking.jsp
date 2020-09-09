@@ -1,3 +1,11 @@
+<%@page import="fms.HR.service.JobServiceImpt"%>
+<%@page import="fms.HR.service.JobService"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fms.HR.service.EmployeeServiceImpt"%>
+<%@page import="fms.HR.service.EmployeeService"%>
+<%@page import="com.fms.model.PerformanceTracking"%>
+<%@page import="fms.HR.service.PerformanceTrackingServiceImpt"%>
+<%@page import="fms.HR.service.PerformanceTrackingService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -67,30 +75,33 @@
 					AttendanceService attendanceService = new AttendanceServiceImpt();
 					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
 					
+					String PTID = request.getParameter("PTID");
+					PerformanceTrackingService PS = new PerformanceTrackingServiceImpt();
+					PerformanceTracking pt = PS.getPerformacneTrackingByID(PTID);
 		%>
 		<div class ="left">
 		<br>
 		<label id="insertTit" style="margin-right:70%;">Employee Performance Tracking Details Update Form</label>
 		
-		<form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
+		<form method="POST" action="${pageContext.request.contextPath}/UpdatePerfromanceTrackingServlet">
 		<table class="form" style="margin-top:2%;">
 				<tr>
 					<td for="dep">Job Title : </td>
 					<td>
 						<select id="dep"  name="job" tabindex="1" style="width: 250px;" required> 
-								<option> --Select Job-- </option> 
-								<%/*
-									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
-									ArrayList<Department> DepartmentList = iHRviewDepartment.getDepartments();
+								<option value="<%=pt.getJobTitle()%>"><%=pt.getJobTitle()%></option> 
+								<%
+									JobService jobservice = new JobServiceImpt();
+									ArrayList<String> jobnameList = jobservice.getJobName();
 									
-									for(Department dep : DepartmentList)
-									{*/
+									for(String name : jobnameList)
+									{
 								%>
 							
-								<option value="<%//=dep.getName() %>">  <%//=dep.getName() %>  </option> 			
+									<option value="<%=name%>">  <%=name%>  </option> 			
 									
 								<%
-									//}
+									}
 								%>
 							</select>
 					</td>
@@ -101,75 +112,71 @@
 					<td for="dep">Employee Name : </td>
 					<td>
 						<select id="dep"  name="name" tabindex="2" style="width: 250px;" required> 
-								<option> --Select Name-- </option> 
-								<%/*
-									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
-									ArrayList<Department> DepartmentList = iHRviewDepartment.getDepartments();
+								<option value="<%=pt.getEmpName()%>"> <%=pt.getEmpName()%> </option> 
+								<%
+									EmployeeService empservice= new EmployeeServiceImpt();
+									ArrayList<String> nameList =empservice.getAllEmployeeName();
 									
-									for(Department dep : DepartmentList)
-									{*/
+									for(String name : nameList)
+									{
 								%>
 							
-								<option value="<%//=dep.getName() %>">  <%//=dep.getName() %>  </option> 			
+								<option value="<%=name%>">  <%=name%>  </option> 			
 									
 								<%
-									//}
+									}
 								%>
 							</select>
 					</td>
 					<td></td><td></td>
-					<td for="dep">Performance : </td>
+					<td>Performance : </td>
 					<td>
-						<select id="dep"  name="department" tabindex="3" style="width: 250px;" required> 
-								<option> --Select State-- </option> 
-								<%/*
-									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
-									ArrayList<Department> DepartmentList = iHRviewDepartment.getDepartments();
-									
-									for(Department dep : DepartmentList)
-									{*/
-								%>
-							
-								<option value="<%//=dep.getName() %>">  <%//=dep.getName() %>  </option> 			
-									
-								<%
-									//}
-								%>
+						<select id="dep"  name="performance" tabindex="3" style="width: 250px;" required> 
+								<option value="<%=pt.getPerformace()%>"> <%=pt.getPerformace()%> </option> 
+								<option value="1">Poor</option>
+								<option value="2">Fair </option>
+								<option value="3">Average</option>
+								<option value="4">Good</option>
+								<option value="5">Excellent </option> 
 							</select>
 					</td>
 				</tr>
 
 				<tr>
 					<td>Time in: </td>
-					<td><input type="time" name="timein" tabindex="4"  required></td>
+					<td><input type="time" name="timein" tabindex="4" value="<%=pt.getTimeIn()%>" required></td>
 					<td></td><td></td>
 					<td>Description : </td>
-					<td><textarea rows="5" cols="55" name="JobTitle" tabindex="5" required></textarea></td>
+					<td><textarea rows="5" cols="55" name="description" tabindex="5" required><%=pt.getDescription()%></textarea></td>
 				</tr>
 				<tr>
 					<td>Lunch in : </td>
-					<td><input type="time" name="lunchin" tabindex="6"  required  ></td>
+					<td><input type="time" name="lunchin" tabindex="6" value="<%=pt.getLunchIn()%>"  required  ></td>
 				</tr>
 				<tr>
 					<td>Lunch out : </td>
-					<td><input type="time" name="lunchout" tabindex="7"  required ></td>
+					<td><input type="time" name="lunchout" tabindex="7" value="<%=pt.getLunchOut()%>" required ></td>
 				</tr>
 				<tr>
 					<td>Time out : </td>
-					<td><input type="time" name="timeout" tabindex="8" required ></td>
+					<td><input type="time" name="timeout" tabindex="8" value="<%=pt.getTimeOut()%>" required ></td>
 				</tr>
 				<tr>
-					<td >Over Time : </td>
-					<td><input type="text" name="overtime" tabindex="9" size="35" required></td>
+					<td >Over Time (hr) : </td>
+					<td><input type="text" name="overtime"  value="<%=pt.getOvetTime()%> "tabindex="9" size="35" required></td>
 				</tr>
 
 			</table>
 
 					<hr id="hrid" style="margin-top:7px;">
-
+					<input type="hidden" name="PTID" value="<%=pt.getEPTID()%>">
+					<input type="hidden" name="empID" value="<%=pt.getEmpID()%>">
 					<input type="submit" value="Update Tracking Details" class="submitbutton">
 
-					<input type="submit" value="Delete Tracking Details" class="deletebutton">
+			</form>
+			<form method="POST" action="${pageContext.request.contextPath}/DeletePerfromanceTrackingServlet">
+					<input type="hidden" name="epID" value="<%=pt.getEPTID()%>">
+					<input type="submit" value="Delete Tracking Details" class="deletebutton" onclick="return confirm('Are you sure you want to delete?')">
 
 			</form>
 		</div>

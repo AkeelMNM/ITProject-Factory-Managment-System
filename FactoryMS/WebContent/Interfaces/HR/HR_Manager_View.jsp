@@ -1,3 +1,21 @@
+
+<%@page import="fms.HR.service.E_LeaveServiceImpt"%>
+<%@page import="fms.HR.service.E_LeaveService"%>
+<%@page import="fms.HR.service.JobServiceImpt"%>
+<%@page import="fms.HR.service.JobService"%>
+<%@page import="fms.HR.service.AccountServiceImpt"%>
+<%@page import="fms.HR.service.AccountService"%>
+<%@page import="fms.HR.service.PerformanceTrackingServiceImpt"%>
+<%@page import="fms.HR.service.PerformanceTrackingService"%>
+<%@page import="com.fms.model.E_Leave"%>
+<%@page import="com.fms.model.Job"%>
+<%@page import="com.fms.model.Account"%>
+<%@page import="com.fms.model.PerformanceTracking"%>
+<%@page import="fms.HR.service.EmployeeServiceImpt"%>
+<%@page import="fms.HR.service.EmployeeService"%>
+<%@page import="com.fms.model.Employee"%>
+<%@page import="fms.HR.service.SearchServieImpt"%>
+<%@page import="java.util.ArrayList"%>
 <html>
 <head>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Manager_Styles.css">
@@ -32,12 +50,12 @@
 					  <li><a class="menu" href="#">Production</a></li>
 					  <li><a class="menu" href="#">Inventory</a></li>
 					  <li><a class="menu" href="#">Sales</a></li>
-					  <li><a class="menu" href="#">Exspesne</a></li>
+					  <li><a class="menu" href="#">Exspense</a></li>
 					  <li><a class="menu" href="#">Payroll</a></li>
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="#">HR Management</a></li>
-				  <li><a class="menu" href="#">Report</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_Report.jsp">Report</a></li>
 		</ul>
 
 <div id="bodyDiv">
@@ -46,9 +64,10 @@
 				
 				<div class="vl"></div>
 		<div class="search">
-			<form>
-				<input type="text" name="JobTitle"  id="se" placeholder="Search here......"required>
-				<select name="db_tables" tabindex="10" id="sedr" required> 
+			<form action="" method="post">
+				<input type="text" name="sdata"  id="se" placeholder="Search here......">
+				<select name="db_tables" tabindex="10" id="sedr" required>
+								<option> Select </option>
 								<option value="Employee"> Employee </option>
 								<option value="Perfomance_Tracking"> Performance Tracking </option>
 								<option value="Account"> Accounts </option>
@@ -61,9 +80,28 @@
 		</div>
 		
 		<div class ="table">
-
 			<table class="view">
-				<tr class="viewTr">
+		<%
+		String tname = null;
+		String data = null;
+		tname =request.getParameter("db_tables");
+		data = request.getParameter("sdata");
+		SearchServieImpt se =new SearchServieImpt();
+		
+		if("Employee".equals(tname)){
+			
+			ArrayList<Employee> employeeList = new ArrayList<Employee>();
+			
+			if(data == ""){
+				EmployeeService empservice = new EmployeeServiceImpt();
+				employeeList = empservice.getEmployee();
+			}
+			else{
+				employeeList = se.searchEmployee(data);
+			}
+		%>
+					<tr class="viewTr">
+
 						<th >Employee Name</th>
 						<th >DOB</th>
 						<th >NIC</th>
@@ -77,41 +115,216 @@
 						<th >Qualification</th>
 						
 				</tr>
+		<% 
+				for(Employee employee : employeeList){
+		%>
+				 <tr class="viewTr">
+						<td class ="tData"><%=employee.getName()%></td>
+						<td class ="tData"><%=employee.getDOB()%></td>
+						<td class ="tData"><%=employee.getNIC()%></td>
+						<td class ="tData"><%=employee.getGender()%></td>
+						<td class ="tData"><%=employee.getMaritalStatus()%></td>
+						<td class ="tData"><%=employee.getEmail()%></td>
+						<td class ="tData"><%=employee.getContactNo()%></td>
+						<td class ="tData"><%=employee.getAddress()%></td>
+						<td class ="tData"><%=employee.getJobTitle()%></td>
+						<td class ="tData"><%=employee.getJointDate()%></td>
+						<td class ="tData"><%=employee.getQualification()%></td>
+					</tr>
+		
+		<%}
+		}
+		else if ("Perfomance_Tracking".equals(tname)){
+			
+			ArrayList<PerformanceTracking> PTList = new ArrayList<PerformanceTracking>();
+			
+			if(data == ""){
+				PerformanceTrackingService PTservice = new PerformanceTrackingServiceImpt();
+				PTList = PTservice.getPerformacneTracking();
+			}
+			else{
+				PTList = se.searchPerformanceTracking(data);
+			}
+			
+		%>
+					<tr class="viewTr" id ="myHeader">
+							<th >Employee Name</th>
+							<th >Job Title</th>
+							<th >Time In</th>
+							<th >Lunch In</th>
+							<th >Lunch Out</th>
+							<th >Time Out</th>
+							<th >Over Time (hr)</th>
+							<th >Performance</th>
+							<th >Description</th>
+							
+					</tr>
+				
+				<% for(PerformanceTracking pt : PTList){
+				%>
+				
+				 	<tr class="viewTr">
+						<td class ="tData"><%=pt.getEmpName()%></td>
+						<td class ="tData"><%=pt.getJobTitle()%></td>
+						<td class ="tData"><%=pt.getTimeIn()%></td>
+						<td class ="tData"><%=pt.getLunchIn()%></td>
+						<td class ="tData"><%=pt.getLunchOut()%></td>
+						<td class ="tData"><%=pt.getTimeOut()%></td>
+						<td class ="tData"><%=pt.getOvetTime()%></td>
+						<td class ="tData"><%=pt.getPerformace()%></td>
+						<td class ="tData"><%=pt.getDescription()%></td>
+					</tr>
 				<%
-					for(int i= 0 ; i<10;i++){
+				}
+		}
+		else if ("Account".equals(tname)){
+			
+			ArrayList<Account> acList = new ArrayList<Account>();
+			
+			if(data == ""){
+				
+				AccountService acservice = new AccountServiceImpt();
+				acList = acservice.getAccount();
+			}
+			else{
+		 		acList = se.searchAccount(data);
+				
+			}
+		%>
+				<tr class="viewTr" id ="myHeader">
+							<th >Employee Name</th>
+							<th >Employee Mail</th>
+							<th >Password</th>
+							<th >Account Type</th>
+							<th >Account Status</th>
+							
+					</tr>
+					
+				<% for(Account ac : acList){
 				%>
 				<tr class="viewTr">
-						<td class ="tData" >Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">199842626411</td>
-						<td class ="tData">Male</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">123@gmail.com</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">7/65 Pereadeniya,Kandy</td>
-						<td class ="tData">Tea Producer</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">2 year in Tea Production</td>
+						<td class ="tData" ><%=ac.getEmpName()%></td>
+						<td class ="tData" ><%=ac.getUserName()%></td>
+						<td class ="tData" ><%=ac.getPassword()%></td>
+						<td class ="tData" ><%=ac.getAccType()%></td>
+						<td class ="tData" ><%=ac.getStatus()%></td>
+					</tr>
+		<%
+			}
+		}
+		else if ("Jobs".equals(tname)){
+			
+			ArrayList<Job> jobList = new ArrayList<Job>();
+			
+			if(data == ""){
+				JobService jobservice = new JobServiceImpt();
+				jobList =jobservice.getJob();
+			}
+			else{
+				jobList = se.searchJob(data);
+			}
+			%>
+			<tr class="viewTr" id ="myHeader">
+				<th >Job Title</th>
+				<th >Created Date</th>
+				<th >Basic Salary</th>
+				<th >Salary Paying Method</th>
+				<th >ETF Rate</th>
+				<th >EPF Rate</th>
+				<th >Over Time Rate</th>
+				
+			</tr>
+			<% for( Job job : jobList){
+			%>
+ 				<tr class="viewTr">
+						<td class ="tData"><%=job.getJobTitle()%></td>
+						<td class ="tData"><%=job.getCreatingDate()%></td>
+						<td class ="tData"><%=job.getBasicSalary()%></td>
+						<td class ="tData"><%=job.getSalPayMethod()%></td>
+						<td class ="tData"><%=job.getEtfRate()%></td>
+						<td class ="tData"><%=job.getEpfRate()%></td>
+						<td class ="tData"><%=job.getOtRate()%></td>
+					</tr>
+					
+			
+		<%}
+		}
+		else if ("E_Leave".equals(tname)){
+			
+			ArrayList<E_Leave> leaveList = new ArrayList<E_Leave>();
+			
+			if(data == ""){
+				E_LeaveService leaveservice = new E_LeaveServiceImpt();
+				leaveList = leaveservice.getLeave();
+			}
+			else{
+				
+				leaveList = se.searchLeave(data);
+			}
+			
+			%>
+				<tr class="viewTr" id ="myHeader">
+						<th >Employee Name</th>
+						<th >Date</th>
+						<th >Month</th>
+						<th >Status</th>
 						
 				</tr>
-				<%
-					}
+				
+				<% for(E_Leave leave : leaveList){
 				%>
+				
+				<tr class="viewTr">
+						<td class ="tData" ><%=leave.getEmpName()%></td>
+						<td class ="tData"><%=leave.getDate()%></td>
+						<td class ="tData"><%=leave.getMonth()%></td>
+						<td class ="tData"><%=leave.getLeave_Status()%></td>
 
-					<!--  <tr>
-						<td><%//=attendance.getEmployee()%></td>
-						<td><%//=attendance.getDepartment()%></td>
-						<td><%//=attendance.getToday_Date()%></td>
-						<td><%//=attendance.getStart_Time()%></td>
-						<td><%//=attendance.getEnd_Time()%></td>
-						<td></td>
-						<td><form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
-								<input type="hidden" name ="AttID" value="<%//=attendance.getAttendanceID()%>">
-								<input type="hidden" name ="EID" value="<%//=EmployeeID%>">
-								<input type="submit" value="Remove Attendance" class="editbutton">
-						</form></td>
-					</tr>-->
-						
+				</tr>
+		<% }
+		}
+		else{
+			EmployeeService empservice = new EmployeeServiceImpt();
+			ArrayList<Employee> empList = empservice.getEmployee();
+			
+			%>
+			<tr class="viewTr">
+
+			<th >Employee Name</th>
+			<th >DOB</th>
+			<th >NIC</th>
+			<th >Gender</th>
+			<th >Marital Status</th>
+			<th >Email</th>
+			<th >Contact No</th>
+			<th >Address</th>
+			<th >Job Title</th>
+			<th >Date Joined</th>
+			<th >Qualification</th>
+			
+	</tr>
+		<% 
+			for(Employee employee : empList){
+		%>
+			 <tr class="viewTr">
+					<td class ="tData"><%=employee.getName()%></td>
+					<td class ="tData"><%=employee.getDOB()%></td>
+					<td class ="tData"><%=employee.getNIC()%></td>
+					<td class ="tData"><%=employee.getGender()%></td>
+					<td class ="tData"><%=employee.getMaritalStatus()%></td>
+					<td class ="tData"><%=employee.getEmail()%></td>
+					<td class ="tData"><%=employee.getContactNo()%></td>
+					<td class ="tData"><%=employee.getAddress()%></td>
+					<td class ="tData"><%=employee.getJobTitle()%></td>
+					<td class ="tData"><%=employee.getJointDate()%></td>
+					<td class ="tData"><%=employee.getQualification()%></td>
+				</tr>
+	
+		<%
+			}
+		}
+		%>
+		
 				</table>
 		</div>
 				

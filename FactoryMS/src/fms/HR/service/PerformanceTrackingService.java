@@ -20,7 +20,7 @@ public interface PerformanceTrackingService {
 	public String getPerformacneTrackingID(String EmployeeID);
 	
 	//Get particular PerformacneTracking Details from PerformacneTracking table
-	public ArrayList<PerformanceTracking> getPerformacneTrackingByID(String performanceTrackingID);
+	public PerformanceTracking getPerformacneTrackingByID(String performanceTrackingID);
 
 	//Get All Performance Tracking Details from PerformanceTracking table
 	public ArrayList<PerformanceTracking> getPerformacneTracking();

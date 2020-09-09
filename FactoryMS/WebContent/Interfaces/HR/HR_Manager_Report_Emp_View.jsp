@@ -1,3 +1,6 @@
+<%@page import="fms.HR.service.EmployeeServiceImpt"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fms.HR.service.EmployeeService"%>
 <html>
 <head>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Manager_Report_View_Styles.css">
@@ -36,8 +39,8 @@
 					  <li><a class="menu" href="#">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="#">HR Management</a></li>
-				  <li><a class="menu" href="#">Report</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR Management</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_Report.jsp">Report</a></li>
 		</ul>
 
 <div id="bodyDiv">
@@ -51,11 +54,19 @@
 			<tr>
 					<td class="reptoolbartxt">Select Employee:</td><td><select name="db_tables"  class="reviewdr" required>
 									<option> --Select Name-- </option> 
-									<option value="Employee"> Employee </option>
-									<option value="Perfomance_Tracking"> Performance Tracking </option>
-									<option value="Account"> Accounts </option>
-									<option value="Jobs"> Jobs </option>
-									<option value="E_Leave"> Employee Leave </option>  
+									<%
+									EmployeeService empservice= new EmployeeServiceImpt();
+									ArrayList<String> nameList =empservice.getAllEmployeeName();
+									
+									for(String name : nameList)
+									{
+								%>
+							
+										<option value="<%=name%>">  <%=name%>  </option> 			
+									
+								<%
+									}
+								%>  
 									
 					</select></td>
 					<td class="reptoolbartxt">Month:</td><td><select name="month" class="reviewdr" required> 

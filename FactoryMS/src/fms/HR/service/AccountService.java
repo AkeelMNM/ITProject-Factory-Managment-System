@@ -24,7 +24,7 @@ public interface AccountService {
 	public String getAccountID(String EmployeeID);
 	
 	//Get particular Account from Account table
-	public ArrayList<Account> getAccountByID(String AccountID);
+	public Account getAccountByID(String AccountID);
 
 	//Get All Account from Account table
 	public ArrayList<Account> getAccount();

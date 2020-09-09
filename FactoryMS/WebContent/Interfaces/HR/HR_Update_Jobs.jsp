@@ -1,3 +1,6 @@
+<%@page import="com.fms.model.Job"%>
+<%@page import="fms.HR.service.JobServiceImpt"%>
+<%@page import="fms.HR.service.JobService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -67,24 +70,29 @@
 					AttendanceService attendanceService = new AttendanceServiceImpt();
 					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
 					
+					
+					String jobID = request.getParameter("JID");
+					JobService JS = new JobServiceImpt();
+					Job job = JS.getJobByID(jobID);
+
 		%>
 		<div class ="left">
 		<br><br>
 		<label id="insertTit" style="margin-right:80%;">Job Details Update Form</label>
 		
-		<form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
+		<form method="POST" action="${pageContext.request.contextPath}/UpdateJobServlet">
 		<table class="form" style="margin-top:3%;">
 				<tr>
 					<td>Job Title :</td>
-					<td><input type="text" name="jobtitle" size="55" required></td>
+					<td><input type="text" name="jobtitle" size="55" value="<%=job.getJobTitle()%>" required></td>
 				</tr>
 				<tr>
 					<td>Creating Date : </td>
-					<td><input type="date" name="cdate" required></td>
+					<td><input type="date" name="date" value="<%=job.getCreatingDate()%>" required></td>
 				</tr>
 				<tr>
 					<td>Basic Salary : </td>
-					<td><input type="text" name="salary" size="55" required ></td>
+					<td><input type="text" name="salary" value="<%=job.getBasicSalary()%>" size="55" id ="bs" oninput="calc()" required ></td>
 				</tr>
 				<tr>
 					<td>Salary Paying Method : </td>
@@ -93,23 +101,26 @@
 				</tr>
 				<tr>
 					<td>ETF Rate : </td>
-					<td><input type="text" name="etf" size="55" required ></td>
+					<td><input type="text" name="etf" size="55" value="<%=job.getEtfRate()%>" id ="fetf" required ></td>
 				</tr>
 				<tr>
 					<td >EPF Rate : </td>
-					<td><input type="text" name="epf" size="55" required></td>
+					<td><input type="text" name="epf" size="55" value="<%=job.getEpfRate()%>" id ="fepf" required></td>
 				</tr>
 				<tr>
 					<td >Over Time Rate : </td>
-					<td><input type="text" name="ot" size="55" required></td>
+					<td><input type="text" name="ot" size="55" value="<%=job.getOtRate()%>" required></td>
 				</tr>
 			</table>
 
 					<hr id="hrid" style="margin-top:7px;">
-
+					<input type="hidden" name="jobID" value="<%=job.getJobID()%>">
 					<input type="submit" value="Update Job" class="submitbutton">
 
-					<input type="submit" value="Delete Job" class="deletebutton">
+			</form>
+			<form method="POST" action="${pageContext.request.contextPath}/DeleteJobServlet">
+					<input type="hidden" name="jobID" value="<%=job.getJobID()%>">
+					<input type="submit" value="Delete Job" class="deletebutton" onclick="return confirm('If you Wish to Remove This Data It Might Remove Other Datas that Referencing this Data \nAre you sure you want to delete?')">
 
 			</form>
 		</div>

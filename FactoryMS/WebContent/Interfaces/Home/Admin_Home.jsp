@@ -28,7 +28,7 @@
 						<img src="${pageContext.request.contextPath}/Images_UserProfile/AB.jpg" alt="UserLogo" id="Userlogo">								
 
 </div>
-<div style="float:left; width:100%;"><hr></div>
+<div style="float:left; width:100%; margin-top:-4px"><hr></div>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 
 
@@ -54,64 +54,63 @@
 					
 		%>
 
-		<label id="insertTit">INSERT FORM</label>
+		<h2>Welcome to Administrator Home Page  </h2>
 		
 		
-		<table>
-		<tr>
-			<td>
-				<a href="#">
-					<img src="${pageContext.request.contextPath}/Images/Purchase.png" alt="PurchaseLogo" class="functionlogo">
-					<label>Purchase Management</label>
-				</a>
-			</td>
-			<td>
-				<a href="#">
-					<img src="${pageContext.request.contextPath}/Images/Production.png" alt="ProductLogo" class="functionlogo">
-					<label>Production Management</label>
-				</a>
-			</td>
-			<td>
-				<a href="#">
-					<img src="${pageContext.request.contextPath}/Images/Inventory.png" alt="inventoryLogo" class="functionlogo">
-					<label>Inventory Management</label>
-				</a>
-			</td>
-			<td>
-				<a href="#">
-					<img src="${pageContext.request.contextPath}/Images/Sales.png" alt="salesLogo" class="functionlogo">
-					<label>Sales Management</label>
-				</a>
-			</td>
-		</tr>
-		<tr>
-			<td>
-				<a href="#">
-					<img src="${pageContext.request.contextPath}/Images/Expense.png" alt="expenseLogo" class="functionlogo">
-					<label>Expense Management</label>
-				</a>
-			</td>
-			<td>
-				<a href="#">
-					<img src="${pageContext.request.contextPath}/Images/HR.png" alt="hrLogo" class="functionlogo">
-					<label>Human Resource Management</label>
-				</a>
-			</td>
-			<td>
-				<a href="#">
-					<img src="${pageContext.request.contextPath}/Images/Tech Support.png" alt="TechSlLogo" class="functionlogo">
-					<label>Technical Support</label>
-				</a>
-			</td>
-			<td>
-				<a href="#">
-					<img src="${pageContext.request.contextPath}/Images/Profile.png" alt="ProfileFlLogo" class="functionlogo">
-					<label>User Profile</label>
-				</a>
-			</td>
-		</tr>
+		<div class="divB">		
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Purchase.png" alt="PurchaseLogo" class="functionlogo">
+							Purchase Management
 		
-		</table>
+						</a>
+				</div>
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Production.png" alt="ProductLogo" class="functionlogo">
+							Production Management
+						</a>
+				</div>
+				<div class="icondiv">
+					
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Inventory.png" alt="inventoryLogo" class="functionlogo">
+							<label>Inventory Management</label>
+						</a>
+				</div>
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Sales.png" alt="salesLogo" class="functionlogo">
+							<label>Sales Management</label>
+						</a>
+				</div>
+		</div>
+		<div class="divC">
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Expense.png" alt="expenseLogo" class="functionlogo">
+							<label>Expense Management</label>
+						</a>
+				</div>
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/HR.png" alt="hrLogo" class="functionlogo">
+							<label>Human Resource Management</label>
+						</a>
+				</div>
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Profile.png" alt="ProfileFlLogo" class="functionlogo">
+							<label>User Profile</label>
+						</a>
+				</div>
+				<div class="icondiv">
+						<a href="#">
+							<img src="${pageContext.request.contextPath}/Images/Tech Support.png" alt="TechSlLogo" class="functionlogo">
+							<label>Technical Support</label>
+						</a>
+				</div>
+		</div>
 		
 		
 		

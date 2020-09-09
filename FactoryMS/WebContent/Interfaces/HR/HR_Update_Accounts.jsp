@@ -1,3 +1,9 @@
+<%@page import="com.fms.model.Account"%>
+<%@page import="fms.HR.service.AccountServiceImpt"%>
+<%@page import="fms.HR.service.AccountService"%>
+<%@page import="fms.HR.service.EmployeeServiceImpt"%>
+<%@page import="fms.HR.service.EmployeeService"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -67,18 +73,22 @@
 					AttendanceService attendanceService = new AttendanceServiceImpt();
 					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
 					
+					String AccID = request.getParameter("AID");
+					AccountService AS = new AccountServiceImpt();
+					Account acc = AS.getAccountByID(AccID);
+					
 		%>
 		<div class ="left">
 		<br><br>
 		<label id="insertTit" style="margin-right:70%;">Employee Account Details Update Form</label>
 		
-		<form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
+		<form method="POST" action="${pageContext.request.contextPath}/UpdateAccountServlet">
 		<table class="form" style="margin-top:3%;">
 				<tr>
 					<td for="dep">Account Type : </td>
 					<td>
 						<select id="dep"  name="acctype" style="width: 250px;" required> 
-								<option> --Select Type-- </option>
+								<option value="<%=acc.getAccType()%>"> <%=acc.getAccType()%> </option>
 								<option value="Manager"> Manager </option>
 								<option value="Administrator"> Administrator </option>
 								<option value="Accountant"> Accountant </option>
@@ -88,35 +98,36 @@
 				<tr>
 					<td for="dep">Employee Name : </td>
 					<td>
-						<select id="dep"  name="name" style="width: 250px;" required> 
-								<option> --Select Name-- </option> 
-								<%/*
-									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
-									ArrayList<Department> DepartmentList = iHRviewDepartment.getDepartments();
+						<select id="dep"  name="name" style="width: 250px;" required>  
+								<option value="<%=acc.getEmpName()%>"><%=acc.getEmpName()%> </option> 
+								<%
+									EmployeeService empservice= new EmployeeServiceImpt();
+									ArrayList<String> nameList =empservice.getAllEmployeeName();
 									
-									for(Department dep : DepartmentList)
-									{*/
+									for(String name : nameList)
+									{
 								%>
 							
-								<option value="<%//=dep.getName() %>">  <%//=dep.getName() %>  </option> 			
+								<option value="<%=name%>">  <%=name%>  </option> 			
 									
 								<%
-									//}
+									}
 								%>
 							</select>
+							
 					</td>
 				</tr>
 				<tr>
 					<td>Employee Email:</td>
-					<td><input type="text" name="email" size="55" required></td>
+					<td><input type="text" name="email" size="55"value="<%=acc.getUserName()%>" required></td>
 				</tr>
 				<tr>
 					<td>Enter Password:</td>
-					<td><input type="password" name="password" id="pwd"  size="55" required></td>
+					<td><input type="password" name="password" id="pwd" value="<%=acc.getPassword()%>" size="55" required></td>
 				</tr>
 				<tr>
 					<td>Re-enter Password : </td>
-					<td><input type="password" name="repassword" id="confirm_pwd"  size="55" onkeyup="check()" required ><br>
+					<td><input type="password" name="repassword" id="confirm_pwd" value="<%=acc.getPassword()%>" size="55" onkeyup="check()" required ><br>
 					<span id='Pwd_msg'></td>
 				</tr>
 				<tr>
@@ -127,11 +138,15 @@
 			</table>
 
 					<hr id="hrid" style="margin-top:7px;">
-
+					<input type="hidden" name="AccID" value="<%=acc.getAccID()%>">
+					<input type="hidden" name="empID" value="<%=acc.getEmpID()%>">
 					<input type="submit" value="Update Account" class="submitbutton">
 
-					<input type="submit" value="Delete Account" class="deletebutton">
 
+			</form>
+			<form method="POST" action="${pageContext.request.contextPath}/DeleteAccountServlet">
+					<input type="hidden" name="AccID" value="<%=acc.getAccID()%>">
+					<input type="submit" value="Delete Account" class="deletebutton" onclick="return confirm('Are you sure you want to delete?')">
 			</form>
 		</div>
 

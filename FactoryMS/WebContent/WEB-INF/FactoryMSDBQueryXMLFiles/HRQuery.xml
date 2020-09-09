@@ -1,1 +1,385 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+<!-- SQL Queries -->
+<Querys>
+
+		<!-- ********* Employee SQL Queries ************ -->
+
+		<!-- Insert Employee  -->
+		<query id="insert_employee">
+		<![CDATA[
+			insert into employee(EmpID,JobsID,Employee_Name,DOB,NIC,Gender,Marital_Status,Email,Contact_No,Address,Job_Title,Date_Joined,Qualification)
+			values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</query>
+		
+		<!-- Get Employee Name by Employee ID  -->
+		<query id="get_emp_name">
+		<![CDATA[
+			select Employee_Name from employee where EmpID = ?
+		]]>
+		</query>
+		
+		<!-- Select Employee by Employee ID  -->
+		<query id="get_employee">
+		<![CDATA[
+			select * from employee where EmpID = ?
+		]]>
+		</query>
+		
+		<!-- Select Employee ID by Employee Name  -->
+		<query id="get_employeeId">
+		<![CDATA[
+			select EmpID from employee where Employee_Name = ?
+		]]>
+		</query>
+		
+		<!-- Select All Employee  -->
+		<query id="get_all_employee">
+		<![CDATA[
+			select * from employee
+		]]>
+		</query>
+		
+		<!-- Update Employee by ID -->
+		<query id="update_employee">
+		<![CDATA[
+			update employee
+			set Employee_Name = ?,DOB = ?,NIC = ?,Gender = ?,Marital_Status = ?,
+			Email = ?,Contact_No = ?,Address = ?,Job_Title = ?,Date_Joined = ?,Qualification = ?
+			where EmpID = ?
+		]]>
+		</query>
+		
+		<!-- Delete Employee -->
+		<query id="remove_employee">
+		<![CDATA[
+			delete from employee where EmpID = ?
+		]]>
+		</query>
+		
+		<!-- Get Employee IDs  -->
+		<query id="get_employeeids">
+		<![CDATA[
+			select EmpID from employee
+		]]>
+		</query>
+		
+		<!-- Get All Employee Name  -->
+		<query id="get_all_emp_name">
+		<![CDATA[
+			select Employee_Name from employee
+		]]>
+		</query>
+		
+		<!-- Get Job ID  -->
+		<query id="get_employeejobid">
+		<![CDATA[
+			select JobsID from jobs where Job_Title = ?
+		]]>
+		</query>
+		
+		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		
+		
+		<!-- ********* Job SQL Queries ************ -->
+		
+		<!-- Insert Job  -->
+		<query id="insert_job">
+		<![CDATA[
+			insert into jobs(JobsID,Job_Title,Create_Date,Basic_Salary,Salary_Payment_Methoed,ETF_Rate,EPF_Rate,Over_Time_Rate)
+			values(?, ?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</query>
+		
+		<!-- Select job ID by job Name  -->
+		<query id="get_jobId">
+		<![CDATA[
+			select JobsID from jobs where Job_Title = ?
+		]]>
+		</query>
+		
+		<!-- Select Job by Job ID  -->
+		<query id="get_job">
+		<![CDATA[
+			select * from jobs where JobsID = ?
+		]]>
+		</query>
+		
+		
+		<!-- Select All Employee  -->
+		<query id="get_all_job">
+		<![CDATA[
+			select * from jobs
+		]]>
+		</query>
+		
+		<!-- Update Employee by ID -->
+		<query id="update_job">
+		<![CDATA[
+			update jobs
+			set Job_Title = ? ,Create_Date = ? ,Basic_Salary = ? ,Salary_Payment_Methoed = ? ,
+			ETF_Rate = ? ,EPF_Rate = ? ,Over_Time_Rate = ? 
+			where JobsID = ?
+		]]>
+		</query>
+		
+		<!-- Delete Job -->
+		<query id="remove_job">
+		<![CDATA[
+			delete from jobs where JobsID = ?
+		]]>
+		</query>
+		
+		<!-- Get Job IDs  -->
+		<query id="get_jobids">
+		<![CDATA[
+			select JobsID from jobs
+		]]>
+		</query>
+		
+		<!-- Get Job IDs  -->
+		<query id="get_jobnames">
+		<![CDATA[
+			select Job_Title from jobs
+		]]>
+		</query>
+		
+		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		
+		
+		<!-- ********* Performance Tracking SQL Queries ************ -->
+			
+		<!-- Insert performance Tracking  -->
+		<query id="insert_perfromance_tracking">
+		<![CDATA[
+			insert into perfomance_tracking(EPTID,EmpID,Emp_Job_Title,Emp_Name,Time_In,Lunch_In,Lunch_Out,Time_Out,Over_Time,Performace,Description)
+			values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</query>
+		
+		<!-- Select performance Tracking ID by Employee ID  -->
+		<query id="get_perfromance_trackingId">
+		<![CDATA[
+			select EPTID from perfomance_tracking where EmpID = ?
+		]]>
+		</query>
+		
+		<!-- Select performance Tracking by performance Tracking ID  -->
+		<query id="get_perfromance_tracking">
+		<![CDATA[
+			select * from perfomance_tracking where EPTID = ?
+		]]>
+		</query>
+		
+		
+		<!-- Select All Employee  -->
+		<query id="get_all_perfromance_tracking">
+		<![CDATA[
+			select * from perfomance_tracking
+		]]>
+		</query>
+		
+		<!-- Update Employee by ID -->
+		<query id="update_perfromance_tracking">
+		<![CDATA[
+			update perfomance_tracking
+			set Emp_Job_Title = ?,Emp_Name = ?,Time_In = ?,Lunch_In = ?,
+			Lunch_Out = ?,Time_Out = ?,Over_Time = ?,Performace = ?,Description = ?
+			where EPTID = ?
+		]]>
+		</query>
+		
+		<!-- Delete performance Tracking -->
+		<query id="remove_perfromance_tracking">
+		<![CDATA[
+			delete from perfomance_tracking where EPTID = ?
+		]]>
+		</query>
+		
+		<!-- Get performance Tracking IDs  -->
+		<query id="get_perfromance_trackingids">
+		<![CDATA[
+			select EPTID from perfomance_tracking
+		]]>
+		</query>
+		
+		<!-- Get  Employee ID by performance Tracking ID  -->
+		<query id="get_employeeId_in_pt">
+		<![CDATA[
+			select EmpID from perfomance_tracking where EPTID = ?
+		]]>
+		</query>
+		
+		<!-- Get Employee Name by performance Tracking ID  -->
+		<query id="get_employeename_in_pt">
+		<![CDATA[
+			select Emp_Name from perfomance_tracking where EPTID = ?
+		]]>
+		</query>
+		
+		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		
+		
+		<!-- ********* Account SQL Queries ************ -->
+		
+		<!-- Insert Account  -->
+		<query id="insert_account">
+		<![CDATA[
+			insert into account(AccID,EmpID,Employee_Name ,UserName,Password,Status,AccountType,Profile_Image)
+			values(?, ?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</query>
+		
+		<!-- Select Account ID by Name  -->
+		<query id="get_accountId">
+		<![CDATA[
+			select AccID from account where EmpID = ?
+		]]>
+		</query>
+		
+		<!-- Select Account by Account ID  -->
+		<query id="get_account">
+		<![CDATA[
+			select * from account where AccID = ?
+		]]>
+		</query>
+		
+		
+		<!-- Select All Account  -->
+		<query id="get_all_account">
+		<![CDATA[
+			select * from account
+		]]>
+		</query>
+		
+		<!-- Update Account by ID -->
+		<query id="update_account">
+		<![CDATA[
+			update account
+			set Employee_Name = ? ,UserName = ?,Password = ?,Status = ?,AccountType = ?,Profile_Image = ?
+			where AccID = ?
+		]]>
+		</query>
+		
+		<!-- Delete Account -->
+		<query id="remove_account">
+		<![CDATA[
+			delete from account where AccID = ?
+		]]>
+		</query>
+		
+		<!-- Get Account IDs  -->
+		<query id="get_accountids">
+		<![CDATA[
+			select AccID from account
+		]]>
+		</query>
+		
+		<!-- Get  Employee ID by Account ID  -->
+		<query id="get_employeeId_in_ac">
+		<![CDATA[
+			select EmpID from account where AccID = ?
+		]]>
+		</query>
+		
+		<!-- Get Employee Name by Account ID  -->
+		<query id="get_employeename_in_ac">
+		<![CDATA[
+			select Employee_Name from account where AccID = ?
+		]]>
+		</query>
+		
+		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		
+		
+		<!-- ********* Leave SQL Queries ************ -->
+		
+		<!-- Insert Leave  -->
+		<query id="insert_leave">
+		<![CDATA[
+			insert into e_leave(LeaveID,EmpID,Emp_Name,Date,Month,Leave_Status)
+			values(?, ?, ?, ?, ?, ?)
+		]]>
+		</query>
+		
+		<!-- Select Leave ID by Name  -->
+		<query id="get_leaveId">
+		<![CDATA[
+			select LeaveID from e_leave where EmpID = ?
+		]]>
+		</query>
+		
+		<!-- Select Leaves by Employee ID  -->
+		<query id="get_leaves">
+		<![CDATA[
+			select * from e_leave where EmpID = ?
+		]]>
+		</query>
+		
+		<!-- Select Leaves by Date  -->
+		<query id="get_leaves_by_date">
+		<![CDATA[
+			select * from e_leave where Date = ?
+		]]>
+		</query>
+		
+		
+		<!-- Select All Leave  -->
+		<query id="get_all_leave">
+		<![CDATA[
+			select * from e_leave
+		]]>
+		</query>
+		
+		<!-- Update Leave by ID -->
+		<query id="update_leave">
+		<![CDATA[
+			update e_leave
+			set Emp_Name = ?,Date = ?,Month = ?,Leave_Status = ?
+			where LeaveID = ?
+		]]>
+		</query>
+		
+		<!-- Delete Leave -->
+		<query id="remove_leave">
+		<![CDATA[
+			delete from e_leave where LeaveID = ?
+		]]>
+		</query>
+		
+		<!-- Get Leave IDs  -->
+		<query id="get_leaveids">
+		<![CDATA[
+			select LeaveID from e_leave
+		]]>
+		</query>
+		
+		
+		<!-- Get  Employee ID by Leave ID  -->
+		<query id="get_employeeId_in_lev">
+		<![CDATA[
+			select EmpID from e_leave where LeaveID = ?
+		]]>
+		</query>
+		
+		<!-- Get Employee Name by Leave ID  -->
+		<query id="get_employeename_in_lev">
+		<![CDATA[
+			select Emp_Name from e_leave where LeaveID = ?
+		]]>
+		</query>
+		
+		<!-- Get  Employee ID by Leave ID  -->
+		<query id="get_leaveid_in_by_name">
+		<![CDATA[
+			select LeaveID from e_leave where Emp_Name = ?
+		]]>
+		</query>
+		
+		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+		
+		
+		
+</Querys>

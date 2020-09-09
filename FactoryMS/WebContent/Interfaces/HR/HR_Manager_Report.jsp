@@ -32,11 +32,11 @@
 					  <li><a class="menu" href="#">Production</a></li>
 					  <li><a class="menu" href="#">Inventory</a></li>
 					  <li><a class="menu" href="#">Sales</a></li>
-					  <li><a class="menu" href="#">Exspesne</a></li>
+					  <li><a class="menu" href="#">Exspense</a></li>
 					  <li><a class="menu" href="#">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="#">HR Management</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR Management</a></li>
 				  <li><a class="menu" href="#">Report</a></li>
 		</ul>
 
@@ -46,9 +46,9 @@
 		<!-- Body Part -->
 		
 		<table class="reptable">
-		<tr><td><a href="#"><button class="reportbutton">Employee Performance Tracking Report</button></a></td></tr>
-		<tr><td><a href="#"><button class="reportbutton">Employee Leave Report</button></a></td></tr>
-		<tr><td><a href="#"><button class="reportbutton">Employee Details Report</button></a></td></tr>
+		<tr><td><a href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_Report_EPT_View.jsp"><button class="reportbutton">Employee Performance Tracking Report</button></a></td></tr>
+		<tr><td><a href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_Report_ELev_View.jsp"><button class="reportbutton">Employee Leave Report</button></a></td></tr>
+		<tr><td><a href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_Report_Emp_View.jsp"><button class="reportbutton">Employee Details Report</button></a></td></tr>
 		</table>
 		
 		

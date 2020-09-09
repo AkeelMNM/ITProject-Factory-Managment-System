@@ -18,7 +18,7 @@ public interface EmployeeService {
 		public void addEmployee(Employee Employee);
 		
 		//Get particular Employee from Employee table
-		public ArrayList<Employee> getEmployeeByID(String EmployeeID);
+		public Employee getEmployeeByID(String EmployeeID);
 
 		//Get All Employee from Employee table
 		public ArrayList<Employee> getEmployee();
@@ -31,6 +31,9 @@ public interface EmployeeService {
 		
 		// Get Employee Name in Employee table
 		public String getEmployeeName(String EmployeeID);
+		
+		// Get All Employee Name in Employee table
+		public ArrayList<String> getAllEmployeeName();
 		
 		//Get Employee ID in Employee Table
 		public String getEmployeeID(String EmployeeName);

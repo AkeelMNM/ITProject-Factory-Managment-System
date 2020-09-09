@@ -1,3 +1,9 @@
+<%@page import="com.fms.model.Employee"%>
+<%@page import="fms.HR.service.EmployeeServiceImpt"%>
+<%@page import="fms.HR.service.EmployeeService"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fms.HR.service.JobServiceImpt"%>
+<%@page import="fms.HR.service.JobService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -67,32 +73,36 @@
 					AttendanceService attendanceService = new AttendanceServiceImpt();
 					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
 					
+				String EmployeeID = request.getParameter("EID");
+				EmployeeService ES = new EmployeeServiceImpt();
+				Employee emp = ES.getEmployeeByID(EmployeeID);
+					
 		%>
 		<div class ="left">
 		<br>
 		<label id="insertTit">Employee Details Update Form</label>
 		
-		<form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
+		<form method="POST" action="${pageContext.request.contextPath}/UpdateEmployeeServlet">
 		<table class="form">
 				<tr>
 					<td>Employee Name : </td>
-					<td><input type="text" name="name"  size="55" required></td>
+					<td><input type="text" name="name"  size="55" value="<%=emp.getName()%>" required></td>
 					<td for="dep">Job Title : </td>
 					<td>
-						<select name="job"  style="width: 250px;" required> 
-								<option> --Select Job-- </option> 
-								<%/*
-									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
-									ArrayList<Department> DepartmentList = iHRviewDepartment.getDepartments();
+						<select name="job"  style="width: 250px;"  required> 
+								<option value="<%=emp.getJobTitle()%>"><%=emp.getJobTitle()%></option> 
+								<%
+									JobService jobservice = new JobServiceImpt();
+									ArrayList<String> jobnameList = jobservice.getJobName();
 									
-									for(Department dep : DepartmentList)
-									{*/
+									for(String name : jobnameList)
+									{
 								%>
 							
-								<option value="<%//=dep.getName() %>">  <%//=dep.getName() %>  </option> 			
+									<option value="<%=name%>">  <%=name%>  </option> 			
 									
 								<%
-									//}
+									}
 								%>
 							</select>
 					</td>
@@ -100,17 +110,17 @@
 				</tr>
 				<tr>
 					<td>Date of birth : </td>
-					<td><input type="Date" name="DOB" required></td>
+					<td><input type="Date" name="DOB" value="<%=emp.getDOB()%>" required></td>
 					
 					<td >Joint Date : </td>
-					<td><input type="date" name="Joint_date" required></td>
+					<td><input type="date" name="Joint_date" value="<%=emp.getJointDate()%>" required></td>
 					
 				</tr>
 				<tr>
 					<td>NIC : </td>
-					<td><input type="text" name="NIC" size="55" required pattern="[0-9]{9}[v|V]|[0-9]{12}" ></td>
+					<td><input type="text" name="NIC" size="55" required pattern="[0-9]{9}[v|V]|[0-9]{12}" value="<%=emp.getNIC()%>"></td>
 					<td>Qualification : </td>
-					<td><textarea rows="4" cols="55" name="qualification" required></textarea></td>
+					<td><textarea rows="4" cols="55" name="qualification" required><%=emp.getQualification()%></textarea></td>
 					
 				</tr>
 				<tr>
@@ -127,27 +137,33 @@
 				</tr>
 				<tr>
 					<td>Contact Number : </td>
-					<td><input type="text" name="PhoneNo" size="55" required pattern="[0-9]{10}" ></td>
+					<td><input type="text" name="PhoneNo" size="55" required pattern="[0-9]{10}" value="<%=emp.getContactNo()%>"></td>
 					
 				</tr>
 				<tr>
 					<td>Email : </td>
-					<td><input type="text" name="NIC" size="55" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A_Za-z]{2,3}" ></td>
+					<td><input type="text" name="email" size="55" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A_Za-z]{2,3}" value="<%=emp.getEmail()%>" ></td>
 					
 				</tr>
 				<tr>
 					<td>Address : </td>
-					<td><textarea rows="4" cols="55" name="Address" required></textarea></td>
+					<td><textarea rows="4" cols="55" name="Address" required><%=emp.getAddress()%></textarea></td>
 				</tr>
 			</table>
 
 					<hr id="hrid">
-
+					<input type="hidden" name="EmployeeID" value="<%=emp.getEmpID()%>">
+					<input type="hidden" name="jobID" value="<%=emp.getJobID()%>">
 					<input type="submit" value="Update Employee" class="submitbutton">
 
-					<input type="submit" value="Delete Employee" class="deletebutton">
-
 			</form>
+				
+			<form method="POST" action="${pageContext.request.contextPath}/DeleteEmployeeServlet">
+					<input type="hidden" name="EmployeeID" value="<%=emp.getEmpID()%>">
+					<input type="submit" value="Delete Employee" class="deletebutton" onclick="return confirm('If you Wish to Remove This Data It Might Remove Other Datas that Referencing this Data \nAre you sure you want to delete?')">
+			</form>
+					
+
 		</div>
 
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

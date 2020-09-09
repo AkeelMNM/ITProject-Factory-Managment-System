@@ -1,11 +1,18 @@
 package fms.HR.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fms.model.Account;
+
+import fms.HR.service.AccountService;
+import fms.HR.service.AccountServiceImpt;
 
 /**
  * Servlet implementation class AddAccountServlet
@@ -35,6 +42,20 @@ public class AddAccountServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		Account account = new Account();
+		
+		account.setAccType(request.getParameter("acctype"));
+		account.setEmpName(request.getParameter("name"));
+		account.setUserName(request.getParameter("email"));
+		account.setPassword(request.getParameter("password"));
+		account.setStatus(request.getParameter("status"));
+		
+		AccountService accountservice = new AccountServiceImpt();
+		accountservice.addAccount(account);
+		
+		request.setAttribute("account", account);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Accounts.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

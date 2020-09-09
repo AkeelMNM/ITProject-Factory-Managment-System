@@ -1,11 +1,21 @@
 package fms.HR.servlet;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.fms.model.E_Leave;
+
+import fms.HR.service.E_LeaveService;
+import fms.HR.service.E_LeaveServiceImpt;
+import fms.HR.service.EmployeeService;
+import fms.HR.service.EmployeeServiceImpt;
 
 /**
  * Servlet implementation class UpdateLeaveServlet
@@ -35,6 +45,32 @@ public class UpdateLeaveServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		String date = request.getParameter("date");
+		String month = request.getParameter("month");
+		String[] name= request.getParameterValues("name[]");
+		String[] absent = request.getParameterValues("absent[]");
+		
+		E_Leave leave = new E_Leave();
+		
+		E_LeaveService leaveservice = new E_LeaveServiceImpt();
+
+		for (int i = 0; i < name.length ; i++) { 
+			  
+			if(name[i] != null) {
+				
+				leave.setLeaveID(leaveservice.getLeaveIDByName(name[i]));
+				leave.setDate(date);
+				leave.setEmpName(name[i]);
+				leave.setMonth(month);
+				leave.setLeave_Status(absent[i]);
+				
+				leaveservice.updateLeave(leaveservice.getLeaveIDByName(name[i]), leave);;
+			}
+			
+        }
+		
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Leave.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

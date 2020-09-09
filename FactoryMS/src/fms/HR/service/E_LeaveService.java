@@ -21,8 +21,14 @@ public interface E_LeaveService {
 		//Get Leave ID in E_Leave table
 		public String getLeaveID(String EmployeeID);
 		
-		//Get particular Leave from E_Leave table
-		public ArrayList<E_Leave> getLeaveByID(String LeaveID);
+		//Get particular Employee Leaves from E_Leave table
+		public ArrayList<E_Leave> getLeaveByID(String EmployeeID);
+		
+		//Get particular Employee LeaveID by Name from E_Leave table
+		public String getLeaveIDByName(String EmployeeName);
+		
+		//Get Leaves by date from E_Leave table
+		public ArrayList<E_Leave> getLeaveByDate(String date);
 
 		//Get All Leave from E_Leave table
 		public ArrayList<E_Leave> getLeave();

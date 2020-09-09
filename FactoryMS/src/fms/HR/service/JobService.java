@@ -19,7 +19,7 @@ public interface JobService {
 			public void addJob(Job Job);
 			
 			//Get particular Job from Job table
-			public ArrayList<Job> getJobByID(String JobID);
+			public Job getJobByID(String JobID);
 
 			//Get All Job from Job table
 			public ArrayList<Job> getJob();
@@ -29,4 +29,8 @@ public interface JobService {
 			
 			//Remove an Job from Job table
 			public void removeJob(String JobID);
+			
+			//Get Job Names from Job table
+			public ArrayList<String> getJobName();
+			
 }

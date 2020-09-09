@@ -1,3 +1,10 @@
+<%@page import="fms.HR.service.SearchServieImpt"%>
+<%@page import="fms.HR.service.EmployeeServiceImpt"%>
+<%@page import="fms.HR.service.EmployeeService"%>
+<%@page import="com.fms.model.E_Leave"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fms.HR.service.E_LeaveServiceImpt"%>
+<%@page import="fms.HR.service.E_LeaveService"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -40,10 +47,10 @@
 					  <li><a class="menu" href="#">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="#">Manage Employee</a></li>
-				  <li><a class="menu" href="#">Manage Jobs</a></li>
-				  <li><a class="menu" href="#">Employee Performance Tracking</a></li>
-				  <li><a class="menu" href="#">Manage Account</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Employee.jsp">Manage Employee</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Jobs.jsp">Manage Jobs</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Performance_Tracking.jsp">Employee Performance Tracking</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Accounts.jsp">Manage Account</a></li>
 				  <li><a class="menu" href="#">Manage Employee Leaves</a></li>
 		</ul>
 
@@ -72,7 +79,7 @@
 		<br>
 		<label id="insertTit">INSERT FORM</label>
 		
-		<form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet" style="margin-top:50px;">
+		<form method="POST" action="${pageContext.request.contextPath}/AddLeaveServlet" style="margin-top:50px;">
 		<table class="form">
 				
 				<tr>
@@ -82,7 +89,7 @@
 				<tr>
 					<td style="text-align: center;">Month : </td>
 					<td>
-						<select id="dep"  name="month" style="width: 200px;" required> 
+						<select name="month" style="width: 200px;" required> 
 								<option> --Select Month-- </option>
 								<option value="January">January</option>
 								<option value="February"> February </option>
@@ -107,20 +114,20 @@
 				%>
 				<tr>
 					<td style="text-align: center">
-						<select id="dep"  name="name[]"  style="width: 150px;" required> 
+						<select  name="name[]"  style="width: 150px;" > 
 								<option> --Select Name-- </option> 
-								<%/*
-									HRDepartmentAndManagerServiceInterface iHRviewDepartment = new HRDepartmentAndManagerServiceImpt();
-									ArrayList<Department> DepartmentList = iHRviewDepartment.getDepartments();
+								<%
+									EmployeeService empservice= new EmployeeServiceImpt();
+									ArrayList<String> nameList =empservice.getAllEmployeeName();
 									
-									for(Department dep : DepartmentList)
-									{*/
+									for(String name : nameList)
+									{
 								%>
 							
-								<option value="<%//=dep.getName() %>">  <%//=dep.getName() %>  </option> 			
+									<option value="<%=name%>">  <%=name%>  </option> 			
 									
 								<%
-									//}
+									}
 								%>
 							</select>
 					</td>
@@ -139,7 +146,9 @@
 		
 <div class="vl"></div>
 		<div class="search">
-			<input type="text" name="JobTitle" id="se" required>
+			<form action="" method="post">
+				<input type="text" name="search" id="se" placeholder="search here.......">
+			</form>
 		</div>
 		
 		<div class ="table">
@@ -150,95 +159,41 @@
 						<th >Date</th>
 						<th >Month</th>
 						<th >Status</th>
-						<th >Edit</th>
+						<th >Action</th>
 				</tr>
-				<tr class="viewTr">
-						<td class ="tData" >Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">Male</td>
-						<td class ="tData">7/65 Pereadeniya,Kandy</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">Male</td>
-						<td class ="tData">7/65 Pereadeniya,Kandy</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="tData">Mohamed Akeel</td>
-						<td class ="tData">Male</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">2 year in Tea Production</td>
-						<td class ="tData"><input type="submit" value="Edit" class="editbutton"></td>
-				</tr>
-		
 				
-		
-					<!--  <tr>
-						<td><%//=attendance.getEmployee()%></td>
-						<td><%//=attendance.getDepartment()%></td>
-						<td><%//=attendance.getToday_Date()%></td>
-						<td><%//=attendance.getStart_Time()%></td>
-						<td><%//=attendance.getEnd_Time()%></td>
-						<td></td>
-						<td><form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
-								<input type="hidden" name ="AttID" value="<%//=attendance.getAttendanceID()%>">
-								<input type="hidden" name ="EID" value="<%//=EmployeeID%>">
-								<input type="submit" value="Remove Attendance" class="editbutton">
+				<%
+				E_LeaveService leaveservice = new E_LeaveServiceImpt();
+				ArrayList<E_Leave> leaveList = new ArrayList<E_Leave>();
+				
+				String data = request.getParameter("search");
+				if(data != null){
+					SearchServieImpt se =new SearchServieImpt();
+					leaveList = se.searchLeave(data);
+				}
+				else{
+					leaveList = leaveservice.getLeave();
+				}
+				
+				for(E_Leave leave : leaveList)
+				{
+				%>
+				
+				<tr class="viewTr">
+						<td class ="tData" ><%=leave.getEmpName()%></td>
+						<td class ="tData"><%=leave.getDate()%></td>
+						<td class ="tData"><%=leave.getMonth()%></td>
+						<td class ="tData"><%=leave.getLeave_Status()%></td>
+						<td><form method="POST" action="${pageContext.request.contextPath}/Interfaces/HR/HR_Update_Leave.jsp">
+								<input type="hidden" name ="Date" value="<%=leave.getDate()%>">
+								<input type="hidden" name ="umonth" value="<%=leave.getMonth()%>">
+								<input type="submit" value="Edit" class="editbutton" style ="margin-left:28px;">
 						</form></td>
-					</tr>-->
+					</tr>
 						
+				<%
+				}
+				%>
 				</table>
 		</div>
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

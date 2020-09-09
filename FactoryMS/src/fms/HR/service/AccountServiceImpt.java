@@ -45,7 +45,7 @@ public class AccountServiceImpt implements AccountService {
 	@Override
 	public void addAccount(Account Account) {
 		
-		String AccountID=HRCommonUtil.generateEIDs(getAccountIDs());
+		String AccountID=HRCommonUtil.generateAIDs(getAccountIDs());
 		
 		try
 		{
@@ -56,7 +56,7 @@ public class AccountServiceImpt implements AccountService {
 				connection.setAutoCommit(false);
 				
 				//Generate Account IDs
-				Account.setEmpID(AccountID);
+				Account.setAccID(AccountID);
 				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Account.getAccID());
 				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,Account.getEmpID());
 				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,Account.getEmpName());
@@ -158,27 +158,28 @@ public class AccountServiceImpt implements AccountService {
 
 	/**--------------      Get  Account by ID from Account table       --------------------**/
 	@Override
-	public ArrayList<Account> getAccountByID(String AccountID) {
+	public Account getAccountByID(String AccountID) {
 		
-		ArrayList<Account> accountList = new ArrayList<Account>();
-		
+		Account account = new Account();
 		if(AccountID != null && !AccountID.isEmpty())
 		{
+			
 			
 			try
 			{
 					connection = DBConnection.getDBConnection();
 					
-					//Get Employee by ID Query will be Retrieve from HRQuery.xml
+					//Get Account by ID Query will be Retrieve from HRQuery.xml
 					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_ACCOUNT));
 					
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, AccountID);
 					
 					ResultSet result = preparedStatement.executeQuery();
 					
+					
 						while(result.next())
 						{
-								Account account = new Account();
+								
 								
 								account.setAccID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
 								account.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
@@ -189,7 +190,7 @@ public class AccountServiceImpt implements AccountService {
 								account.setAccType(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
 								account.setProfileImage(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
 					
-								accountList.add(account);
+							
 						}
 					
 			} 
@@ -219,7 +220,7 @@ public class AccountServiceImpt implements AccountService {
 					
 			}
 		}
-		return accountList;
+		return account;
 	}
 
 	/**--------------      Get All  Account from Account table       --------------------**/
@@ -296,18 +297,18 @@ public class AccountServiceImpt implements AccountService {
 			{
 					connection = DBConnection.getDBConnection();
 					
-					//Update Employee Query will be Retrieve from HRQuery.xml
+					//Update Account Query will be Retrieve from HRQuery.xml
 					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_UPDATE_ACCOUNT));
 					
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Account.getAccID());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,Account.getEmpID());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,Account.getEmpName());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,Account.getUserName());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE, Account.getPassword());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,Account.getStatus());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,Account.getAccType());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,Account.getProfileImage());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,AccountID);
+					
+					
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Account.getEmpName());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,Account.getUserName());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE, Account.getPassword());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,Account.getStatus());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE,Account.getAccType());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,Account.getProfileImage());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,AccountID);
 					preparedStatement.executeUpdate();
 			}
 			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
@@ -409,7 +410,7 @@ public class AccountServiceImpt implements AccountService {
 			{
 					connection = DBConnection.getDBConnection();
 					
-					//Delete An Employee Query will be Retrieve from HRQuery.xml
+					//Delete An Account Query will be Retrieve from HRQuery.xml
 					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_REMOVE_ACCOUNT));
 					
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, AccountID);
