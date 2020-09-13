@@ -50,27 +50,47 @@ public class UpdateLeaveServlet extends HttpServlet {
 		String[] name= request.getParameterValues("name[]");
 		String[] absent = request.getParameterValues("absent[]");
 		
+		
+		String btnR = request.getParameter("rb");
+		String btnS = request.getParameter("sb");
+		
 		E_Leave leave = new E_Leave();
 		
 		E_LeaveService leaveservice = new E_LeaveServiceImpt();
 
-		for (int i = 0; i < name.length ; i++) { 
-			  
-			if(name[i] != null) {
-				
-				leave.setLeaveID(leaveservice.getLeaveIDByName(name[i]));
-				leave.setDate(date);
-				leave.setEmpName(name[i]);
-				leave.setMonth(month);
-				leave.setLeave_Status(absent[i]);
-				
-				leaveservice.updateLeave(leaveservice.getLeaveIDByName(name[i]), leave);;
-			}
+		if(btnR.equals("Remove")) {
+			String delid= request.getParameter("did");
 			
-        }
+			leaveservice.removeLeave(delid);
+			
+			request.setAttribute("rmonth", month);
+			request.setAttribute("ldate", date);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Update_Leave.jsp");
+			dispatcher.forward(request, response);
+			
+		}
+		else if(btnS.equals("Update Leave Details")) {
+			
+			for (int i = 0; i < name.length ; i++) { 
+					  
+					if(name[i] != null) {
+						
+						leave.setLeaveID(leaveservice.getLeaveIDByName(name[i]));
+						leave.setDate(date);
+						leave.setEmpName(name[i]);
+						leave.setMonth(month);
+						leave.setLeave_Status(absent[i]);
+						
+						leaveservice.updateLeave(leaveservice.getLeaveIDByName(name[i]), leave);;
+					}
+					
+	        	}
+			
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Leave.jsp");
+				dispatcher.forward(request, response);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Leave.jsp");
-		dispatcher.forward(request, response);
+		}
+		
 	}
 
 }

@@ -27,7 +27,6 @@ import com.fms.QueryUtil.HRQueryUtil;
 import com.fms.commonConstant.HRCommonConstants;
 import com.fms.commonUtil.HRCommonUtil;
 import com.fms.model.Account;
-import com.fms.model.Employee;
 
 public class AccountServiceImpt implements AccountService {
 

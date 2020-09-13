@@ -43,15 +43,3 @@ function calc() { // Calculating EPF and ETF for the job
         document.getElementById('fepf').value = epf;
 
 }
-
-function delet(){
-	
-	document.form1.ACTION = "/${pageContext.request.contextPath}/DeleteJobServlet";
-    form1.submit();
-}
-
-function update(){
-	
-	document.form1.ACTION = "/${pageContext.request.contextPath}/UpdateJobServlet";
-    form1.submit();
-}

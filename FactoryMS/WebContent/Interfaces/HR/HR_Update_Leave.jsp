@@ -72,18 +72,20 @@
 					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
 					
 					String date = null;
+					String month = null;
 					
 					if(request.getParameter("Date") != null){
 						
 						date = request.getParameter("Date");
+						month = request.getParameter("umonth");
 					}
 					
-					if(request.getParameter("ldate") != null){
+					if((String)request.getAttribute("ldate") != null){
 						
-						date = request.getParameter("ldate");
+						date = (String)request.getAttribute("ldate");
+						month = (String)request.getAttribute("rmonth");
 					}
 					
-					String month = request.getParameter("umonth");
 					E_LeaveService leaveservice = new E_LeaveServiceImpt();
 					ArrayList<E_Leave> leavelist = leaveservice.getLeaveByDate(date);
 		%>
@@ -91,7 +93,7 @@
 		<br>
 		<label id="insertTit" style="margin-right:80%;">Job Details Update Form</label>
 		
-		<form method="POST" id="yourForm">
+		<form method="POST" action="${pageContext.request.contextPath}/UpdateLeaveServlet">
 		<table class="form" style="margin-top:2%;">
 				<tr>
 					<td style="text-align: center;">Date:</td>
@@ -132,25 +134,18 @@
 					</td>
 					<td style="text-align: center"><input type="checkbox" id="restch"  name="absent[]" value="Absent" checked></td>
 					<td>
-					<input type="hidden" id="did" value="<%=leavelist.get(i).getLeaveID()%>">
-					<input type="hidden" id="ddate" value="<%=leavelist.get(i).getDate()%>">
-					<input type="submit" value="Remove" class="removebutton" onclick="document.searchPagosForm.action ='${pageContext.request.contextPath}/DeleteLeaveServlet';document.yourForm.submit()">
+					<input type="hidden" name="did" value="<%=leavelist.get(i).getLeaveID()%>">
+					<input type="submit" class="removebutton" value="Remove" name="rb">
 					</td>
 				</tr>
 				<%
 						}
 				%>
 			</table>
-
-					<hr id="hrid" style="margin-top:7px;">
-
-					<input type="submit" value="Update Leave Details" class="submitbutton" onclick="document.searchPagosForm.action ='${pageContext.request.contextPath}/UpdateLeaveServlet';document.yourForm.submit()">
-					<a href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Leave.jsp"><button class="deletebutton" >Cancel</button></a>
+				<hr id="hrid" style="margin-top:7px;">
+				<input type="submit" value="Update Leave Details" name="sb" class="submitbutton">
 			</form>
-			<form method="POST" id ="removeform" action="${pageContext.request.contextPath}/DeleteLeaveServlet">
-				<input type="hidden" name="lid" >
-				<input type="hidden" name="ldate" id="a">
-			</form>
+				<a href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Leave.jsp"><button class="deletebutton" style="margin-left:76.6%;" >Cancel</button></a>
 		</div>
 
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

@@ -222,7 +222,22 @@
 						<td class ="tData"><%=pt.getLunchOut()%></td>
 						<td class ="tData"><%=pt.getTimeOut()%></td>
 						<td class ="tData"><%=pt.getOvetTime()%></td>
-						<td class ="tData"><%=pt.getPerformace()%></td>
+						<td class ="tData">
+						<%int starfull =Integer. parseInt(pt.getPerformace());
+							int starempty = 5 - starfull;
+							
+							for(int i = 0;i < starfull;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/FullStar.png" alt="FullStar" id="FullStar">
+						<%
+							}
+							for(int i = 0;i < starempty;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/EmptyStar.png" alt="EmptyStar" id="EmptyStar">
+						<%
+							}
+						%>
+						</td>
 						<td class ="tData"><%=pt.getDescription()%></td>
 						
 						<td class ="tData"><form method="POST" action="${pageContext.request.contextPath}/Interfaces/HR/HR_Update_Performance_Tracking.jsp">

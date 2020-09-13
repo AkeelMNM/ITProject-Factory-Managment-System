@@ -182,7 +182,7 @@
 				<tr class="viewTr">
 						<td class ="tData" ><%=ac.getEmpName()%></td>
 						<td class ="tData" ><%=ac.getUserName()%></td>
-						<td class ="tData" ><%=ac.getPassword()%></td>
+						<td class ="tData" >**********</td>
 						<td class ="tData" ><%=ac.getAccType()%></td>
 						<td class ="tData" ><%=ac.getStatus()%></td>
 						<td class ="tData"><form method="POST" action="${pageContext.request.contextPath}/Interfaces/HR/HR_Update_Accounts.jsp">

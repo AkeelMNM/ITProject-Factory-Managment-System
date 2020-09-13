@@ -31,14 +31,14 @@
 		<!-- Select Employee ID by Employee Name  -->
 		<query id="get_employeeId">
 		<![CDATA[
-			select EmpID from employee where Employee_Name = ?
+			select EmpID from employee where Employee_Name = ? 
 		]]>
 		</query>
 		
 		<!-- Select All Employee  -->
 		<query id="get_all_employee">
 		<![CDATA[
-			select * from employee
+			select * from employee order by EmpID DESC
 		]]>
 		</query>
 		
@@ -111,7 +111,7 @@
 		<!-- Select All Employee  -->
 		<query id="get_all_job">
 		<![CDATA[
-			select * from jobs
+			select * from jobs order by JobsID DESC
 		]]>
 		</query>
 		
@@ -177,7 +177,7 @@
 		<!-- Select All Employee  -->
 		<query id="get_all_perfromance_tracking">
 		<![CDATA[
-			select * from perfomance_tracking
+			select * from perfomance_tracking order by EPTID DESC
 		]]>
 		</query>
 		
@@ -250,7 +250,7 @@
 		<!-- Select All Account  -->
 		<query id="get_all_account">
 		<![CDATA[
-			select * from account
+			select * from account order by AccID DESC
 		]]>
 		</query>
 		
@@ -329,7 +329,7 @@
 		<!-- Select All Leave  -->
 		<query id="get_all_leave">
 		<![CDATA[
-			select * from e_leave
+			select * from e_leave order by LeaveID DESC
 		]]>
 		</query>
 		
@@ -380,6 +380,15 @@
 		
 		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		
+		<!-- ********* Login SQL Queries ************ -->
 		
+		<!-- Get Login details -->
+		<query id="get_login">
+		<![CDATA[
+			select UserName,Password,Employee_Name,AccountType from Account where UserName = ? and Password = ?
+		]]>
+		</query>
+		
+		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		
 </Querys>
