@@ -7,6 +7,8 @@ public class PerformanceTracking {
 	private String EmpID;
 	private String JobTitle;
 	private String EmpName;
+	private String Month;
+	private String Date;
 	private String TimeIn;
 	private String LunchIn;
 	private String LunchOut;
@@ -108,12 +110,32 @@ public class PerformanceTracking {
 		Description = description;
 	}
 
+	
+	public String getMonth() {
+		return Month;
+	}
+
+	public void setMonth(String month) {
+		Month = month;
+	}
+
+	public String getDate() {
+		return Date;
+	}
+
+	public void setDate(String date) {
+		Date = date;
+	}
+
 	@Override
 	public String toString() {
-		return "PerformacneTracking [EPTID=" + EPTID + ", JobTitle=" + JobTitle + ", EmpName=" + EmpName + ", TimeIn="
-				+ TimeIn + ", LunchIn=" + LunchIn + ", LunchOut=" + LunchOut + ", TimeOut=" + TimeOut + ", OvetTime="
-				+ OvetTime + ", Performace=" + Performace + ", Description=" + Description + "]";
+		return "PerformanceTracking [EPTID=" + EPTID + ", EmpID=" + EmpID + ", JobTitle=" + JobTitle + ", EmpName="
+				+ EmpName + ", Month=" + Month + ", Date=" + Date + ", TimeIn=" + TimeIn + ", LunchIn=" + LunchIn
+				+ ", LunchOut=" + LunchOut + ", TimeOut=" + TimeOut + ", OvetTime=" + OvetTime + ", Performace="
+				+ Performace + ", Description=" + Description + "]";
 	}
+
+	
 	
 	
 	

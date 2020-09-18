@@ -105,8 +105,7 @@
 								%>
 							</select>
 					</td>
-					<td></td><td></td>
-					<td colspan="2" ><label style="font-weight:bold;">Performance Details</label><hr></td>
+					
 				</tr>
 				<tr>
 					<td for="dep">Employee Name : </td>
@@ -128,26 +127,37 @@
 								%>
 							</select>
 					</td>
-					<td></td><td></td>
-					<td>Performance : </td>
-					<td>
-						<select id="dep"  name="performance" tabindex="3" style="width: 250px;" required> 
-								<option value="<%=pt.getPerformace()%>"> <%=pt.getPerformace()%> </option> 
-								<option value="1">Poor</option>
-								<option value="2">Fair </option>
-								<option value="3">Average</option>
-								<option value="4">Good</option>
-								<option value="5">Excellent </option> 
-							</select>
-					</td>
+					
 				</tr>
-
+				<tr>
+						<td>Month :</td>
+						<td>
+							<select name="month" style="width: 200px;" required> 
+									<option value="<%=pt.getMonth()%>"> <%=pt.getMonth()%></option>
+									<option value="January">January</option>
+									<option value="February"> February </option>
+									<option value="March"> March </option>
+									<option value="April"> April </option>
+									<option value="May"> May </option>
+									<option value="June"> June </option>
+									<option value="July"> July </option>
+									<option value="August"> August </option>
+									<option value="September"> September </option>
+									<option value="October"> October </option>
+									<option value="November"> November </option>
+									<option value="December"> December </option>
+																
+							</select>
+						</td>
+				</tr>
+				<tr>
+					<td>Date:</td>
+					<td><input type="date" name="date" value="<%=pt.getDate()%>"  required></td>
+				</tr>
 				<tr>
 					<td>Time in: </td>
 					<td><input type="time" name="timein" tabindex="4" value="<%=pt.getTimeIn()%>" required></td>
-					<td></td><td></td>
-					<td>Description : </td>
-					<td><textarea rows="5" cols="55" name="description" tabindex="5" required><%=pt.getDescription()%></textarea></td>
+					
 				</tr>
 				<tr>
 					<td>Lunch in : </td>
@@ -167,7 +177,28 @@
 				</tr>
 
 			</table>
-
+			<table style="margin-left:450px;margin-top:-320px;">
+				<tr>
+					<td colspan="2" ><label style="font-weight:bold;">Performance Details</label><hr></td>
+				</tr>
+				<tr>
+					<td>Performance : </td>
+					<td>
+						<select id="dep"  name="performance" tabindex="3" style="width: 250px;" required> 
+								<option value="<%=pt.getPerformace()%>"> <%=pt.getPerformace()%> </option> 
+								<option value="1">Poor</option>
+								<option value="2">Fair </option>
+								<option value="3">Average</option>
+								<option value="4">Good</option>
+								<option value="5">Excellent </option> 
+							</select>
+					</td>
+				</tr>
+				<tr>
+					<td>Description : </td>
+					<td><textarea rows="5" cols="55" name="description" tabindex="5" required><%=pt.getDescription()%></textarea></td>
+				</tr>
+			</table><%for(int j=0;j<8;j++){ %><br><%} %>
 					<hr id="hrid" style="margin-top:7px;">
 					<input type="hidden" name="PTID" value="<%=pt.getEPTID()%>">
 					<input type="hidden" name="empID" value="<%=pt.getEmpID()%>">

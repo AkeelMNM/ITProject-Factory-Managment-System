@@ -125,15 +125,10 @@ input[type="submit"]{ padding: 10px 10px; line-height:15px; }
 					<label id="address">Hapugahayatatenna,Handessa</label>
 				</div>
 				<div id="manage">
-					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn">User Name</button>
-									  <div id="myDropdown" class="dropdown-content">
-											<a href="#home">View Profile</a>
-											<a href="#about">Logout</a>
-									  </div>
+					<button></button>
 					</div>
 				</div>
-						<img src="${pageContext.request.contextPath}/Images_UserProfile/AB.jpg" alt="UserLogo" id="Userlogo">								
+													
 
 </div>
 <div style="float:left; width:100%; margin-top:-4px"><hr></div>

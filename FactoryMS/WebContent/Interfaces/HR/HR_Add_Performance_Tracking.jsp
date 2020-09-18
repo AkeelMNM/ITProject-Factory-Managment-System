@@ -125,7 +125,25 @@
 							</select>
 					</td>
 				</tr>
-
+				<tr>
+					<td>Month :</td>
+					<td><select name="month" style="width: 200px;" required> 
+								<option> --Select Month-- </option>
+								<option value="January">January</option>
+								<option value="February"> February </option>
+								<option value="March"> March </option>
+								<option value="April"> April </option>
+								<option value="May"> May </option>
+								<option value="June"> June </option>
+								<option value="July"> July </option>
+								<option value="August"> August </option>
+								<option value="September"> September </option>
+								<option value="October"> October </option>
+								<option value="November"> November </option>
+								<option value="December"> December </option>
+												
+						</select>&emsp;Date:&emsp;<input type="date" name="date"   required></td>
+				</tr>
 				<tr>
 					<td>Time in: </td>
 					<td><input type="time" name="timein" tabindex="3"  required></td>
@@ -165,7 +183,7 @@
 				</tr>
 				<tr>
 					<td>Description : </td>
-					<td><textarea rows="5" cols="55" name="description" tabindex="9" required></textarea></td>
+					<td><textarea rows="4" cols="55" name="description" tabindex="9" required></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="reset" value="Reset" class="resetbutton">
@@ -188,6 +206,8 @@
 				<tr class="viewTr" id ="myHeader">
 						<th >Employee Name</th>
 						<th >Job Title</th>
+						<th >Month</th>
+						<th >Date</th>
 						<th >Time In</th>
 						<th >Lunch In</th>
 						<th >Lunch Out</th>
@@ -217,6 +237,8 @@
 				 <tr class="viewTr">
 						<td class ="tData"><%=pt.getEmpName()%></td>
 						<td class ="tData"><%=pt.getJobTitle()%></td>
+						<td class ="tData"><%=pt.getMonth()%></td>
+						<td class ="tData"><%=pt.getDate()%></td>
 						<td class ="tData"><%=pt.getTimeIn()%></td>
 						<td class ="tData"><%=pt.getLunchIn()%></td>
 						<td class ="tData"><%=pt.getLunchOut()%></td>

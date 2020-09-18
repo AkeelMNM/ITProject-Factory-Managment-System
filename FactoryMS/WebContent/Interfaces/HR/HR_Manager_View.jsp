@@ -150,6 +150,8 @@
 					<tr class="viewTr" id ="myHeader">
 							<th >Employee Name</th>
 							<th >Job Title</th>
+							<th >Month</th>
+							<th >Date</th>
 							<th >Time In</th>
 							<th >Lunch In</th>
 							<th >Lunch Out</th>
@@ -166,6 +168,8 @@
 				 	<tr class="viewTr">
 						<td class ="tData"><%=pt.getEmpName()%></td>
 						<td class ="tData"><%=pt.getJobTitle()%></td>
+						<td class ="tData"><%=pt.getMonth()%></td>
+						<td class ="tData"><%=pt.getDate()%></td>
 						<td class ="tData"><%=pt.getTimeIn()%></td>
 						<td class ="tData"><%=pt.getLunchIn()%></td>
 						<td class ="tData"><%=pt.getLunchOut()%></td>

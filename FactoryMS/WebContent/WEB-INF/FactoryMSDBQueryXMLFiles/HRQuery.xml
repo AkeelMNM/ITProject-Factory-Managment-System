@@ -154,8 +154,8 @@
 		<!-- Insert performance Tracking  -->
 		<query id="insert_perfromance_tracking">
 		<![CDATA[
-			insert into perfomance_tracking(EPTID,EmpID,Emp_Job_Title,Emp_Name,Time_In,Lunch_In,Lunch_Out,Time_Out,Over_Time,Performace,Description)
-			values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+			insert into perfomance_tracking(EPTID,EmpID,Emp_Job_Title,Emp_Name,Month,Date,Time_In,Lunch_In,Lunch_Out,Time_Out,Over_Time,Performace,Description)
+			values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
 		]]>
 		</query>
 		
@@ -185,7 +185,7 @@
 		<query id="update_perfromance_tracking">
 		<![CDATA[
 			update perfomance_tracking
-			set Emp_Job_Title = ?,Emp_Name = ?,Time_In = ?,Lunch_In = ?,
+			set Emp_Job_Title = ?,Emp_Name = ?,Month = ?,Date = ?,Time_In = ?,Lunch_In = ?,
 			Lunch_Out = ?,Time_Out = ?,Over_Time = ?,Performace = ?,Description = ?
 			where EPTID = ?
 		]]>

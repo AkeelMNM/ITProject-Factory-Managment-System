@@ -61,13 +61,15 @@ public class PerformanceTrackingServiceImpt implements PerformanceTrackingServic
 				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,performanceTracking.getEmpID());
 				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,performanceTracking.getJobTitle());
 				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,performanceTracking.getEmpName());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE,performanceTracking.getTimeIn());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,performanceTracking.getLunchIn());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,performanceTracking.getLunchOut());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,performanceTracking.getTimeOut());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,performanceTracking.getOvetTime());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TEN,performanceTracking.getPerformace());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ELEVEN,performanceTracking.getDescription());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE,performanceTracking.getMonth());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,performanceTracking.getDate());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,performanceTracking.getTimeIn());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,performanceTracking.getLunchIn());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,performanceTracking.getLunchOut());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TEN,performanceTracking.getTimeOut());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ELEVEN,performanceTracking.getOvetTime());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWELVE,performanceTracking.getPerformace());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THIRTEEN,performanceTracking.getDescription());
 
 				
 				//Add Performance Tracking
@@ -189,13 +191,15 @@ public class PerformanceTrackingServiceImpt implements PerformanceTrackingServic
 								performanceTracking.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
 								performanceTracking.setJobTitle( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
 								performanceTracking.setEmpName(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
-								performanceTracking.setTimeIn(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
-								performanceTracking.setLunchIn(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
-								performanceTracking.setLunchOut(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
-								performanceTracking.setTimeOut(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
-								performanceTracking.setOvetTime(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
-								performanceTracking.setPerformace(result.getString(HRCommonConstants.COLUMN_INDEX_TEN));
-								performanceTracking.setDescription(result.getString(HRCommonConstants.COLUMN_INDEX_ELEVEN));
+								performanceTracking.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								performanceTracking.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								performanceTracking.setTimeIn(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
+								performanceTracking.setLunchIn(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
+								performanceTracking.setLunchOut(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
+								performanceTracking.setTimeOut(result.getString(HRCommonConstants.COLUMN_INDEX_TEN));
+								performanceTracking.setOvetTime(result.getString(HRCommonConstants.COLUMN_INDEX_ELEVEN));
+								performanceTracking.setPerformace(result.getString(HRCommonConstants.COLUMN_INDEX_TWELVE));
+								performanceTracking.setDescription(result.getString(HRCommonConstants.COLUMN_INDEX_THIRTEEN));
 								
 								
 						}
@@ -255,13 +259,15 @@ public class PerformanceTrackingServiceImpt implements PerformanceTrackingServic
 								performanceTracking.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
 								performanceTracking.setJobTitle( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
 								performanceTracking.setEmpName(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
-								performanceTracking.setTimeIn(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
-								performanceTracking.setLunchIn(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
-								performanceTracking.setLunchOut(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
-								performanceTracking.setTimeOut(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
-								performanceTracking.setOvetTime(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
-								performanceTracking.setPerformace(result.getString(HRCommonConstants.COLUMN_INDEX_TEN));
-								performanceTracking.setDescription(result.getString(HRCommonConstants.COLUMN_INDEX_ELEVEN));
+								performanceTracking.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								performanceTracking.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								performanceTracking.setTimeIn(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
+								performanceTracking.setLunchIn(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
+								performanceTracking.setLunchOut(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
+								performanceTracking.setTimeOut(result.getString(HRCommonConstants.COLUMN_INDEX_TEN));
+								performanceTracking.setOvetTime(result.getString(HRCommonConstants.COLUMN_INDEX_ELEVEN));
+								performanceTracking.setPerformace(result.getString(HRCommonConstants.COLUMN_INDEX_TWELVE));
+								performanceTracking.setDescription(result.getString(HRCommonConstants.COLUMN_INDEX_THIRTEEN));
 								
 								PerformanceTrackingList.add(performanceTracking);
 						}
@@ -314,14 +320,16 @@ public class PerformanceTrackingServiceImpt implements PerformanceTrackingServic
 					
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,performanceTracking.getJobTitle());
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,performanceTracking.getEmpName());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,performanceTracking.getTimeIn());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,performanceTracking.getLunchIn());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE,performanceTracking.getLunchOut());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,performanceTracking.getTimeOut());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,performanceTracking.getOvetTime());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,performanceTracking.getPerformace());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,performanceTracking.getDescription());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TEN,performanceTrackingID);
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,performanceTracking.getMonth());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,performanceTracking.getDate());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE,performanceTracking.getTimeIn());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,performanceTracking.getLunchIn());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,performanceTracking.getLunchOut());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_EIGHT,performanceTracking.getTimeOut());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_NINE,performanceTracking.getOvetTime());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TEN,performanceTracking.getPerformace());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ELEVEN,performanceTracking.getDescription());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWELVE,performanceTrackingID);
 					preparedStatement.executeUpdate();
 			}
 			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)

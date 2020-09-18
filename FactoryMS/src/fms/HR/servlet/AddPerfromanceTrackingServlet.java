@@ -55,6 +55,8 @@ public class AddPerfromanceTrackingServlet extends HttpServlet {
 		pr.setEmpID(id);
 		pr.setJobTitle(request.getParameter("job"));
 		pr.setEmpName(name);
+		pr.setMonth(request.getParameter("month"));
+		pr.setDate(request.getParameter("date"));
 		pr.setTimeIn(request.getParameter("timein"));
 		pr.setLunchIn(request.getParameter("lunchin"));
 		pr.setLunchOut(request.getParameter("lunchout"));
