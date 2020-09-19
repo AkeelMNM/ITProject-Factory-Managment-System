@@ -141,4 +141,45 @@ public ArrayList<String> checkLogin(String Username,String Password)
 			return loginList;
 }
 
+public void uploadImage(String imgDir,String AccID) {
+	
+	try
+	{
+			connection = DBConnection.getDBConnection();
+			
+			//Image Saving  Query will be Retrieve from HRDBQuery.xml
+			preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(Common.Query_ID_GET_PROFILE_IMAGE_SAVE));
+			
+			preparedStatement.setString(Common.COLUMN_INDEX_ONE, imgDir);
+			preparedStatement.setString(Common.COLUMN_INDEX_TWO, AccID);
+			
+			preparedStatement.executeUpdate();
+	}
+	catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e) {
+			
+			log.log(Level.SEVERE,e.getMessage());
+	}
+	finally
+	{
+			//Closing DB Connection and Prepared statement
+			try 
+			{	
+				if(preparedStatement != null)
+				{
+					preparedStatement.close();
+				}
+				if(connection != null)
+				{
+					connection.close();
+				}
+				
+			}
+			catch (SQLException e)
+			{
+				log.log(Level.SEVERE,e.getMessage());
+			}
+			
+	}
+}
+
 }

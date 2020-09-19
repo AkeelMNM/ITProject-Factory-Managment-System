@@ -1,3 +1,6 @@
+<%@page import="com.fms.model.Account"%>
+<%@page import="fms.HR.service.AccountServiceImpt"%>
+<%@page import="fms.HR.service.AccountService"%>
 <%@page import="com.fms.model.Employee"%>
 <%@page import="fms.HR.service.EmployeeServiceImpt"%>
 <%@page import="fms.HR.service.EmployeeService"%>
@@ -86,10 +89,20 @@
 				}
 			}*/
 			
+			AccountService acservice = new AccountServiceImpt();
+			String ACCID = acservice.getAccountID(EmployeeID);
+			Account ac = acservice.getAccountByID(ACCID);
+			
+			
 		%>
-		
-		<div>
-			<img src="${pageContext.request.contextPath}/Images_UserProfile/AB.jpg" alt="UserLogo" id="Userlogo2">
+	<div>
+			<img src="<%=ac.getProfileImage()%>" alt="UserLogo" id="Userlogo2">
+			<form action="${pageContext.request.contextPath}/UploadUserImageServlet" method="post" enctype="multipart/form-data" >
+ 					Select<input type="file" name="file" /><br>
+ 					<input type="hidden" name="Accid" value="<%=ACCID%>">
+ 					<input type="hidden" name="empid" value="<%=EmployeeID%>">
+ 					<input type="submit" value="upload" />
+			</form>
 		</div>
 		  
 		<%

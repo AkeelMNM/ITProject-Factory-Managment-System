@@ -13,6 +13,8 @@ import com.fms.model.Account;
 
 import fms.HR.service.AccountService;
 import fms.HR.service.AccountServiceImpt;
+import fms.HR.service.EmployeeService;
+import fms.HR.service.EmployeeServiceImpt;
 
 /**
  * Servlet implementation class AddAccountServlet
@@ -42,9 +44,14 @@ public class AddAccountServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		EmployeeService empservice = new EmployeeServiceImpt();
+		String empid = empservice.getEmployeeID(request.getParameter("name"));
+		
+		
 		Account account = new Account();
 		
 		account.setAccType(request.getParameter("acctype"));
+		account.setEmpID(empid);
 		account.setEmpName(request.getParameter("name"));
 		account.setUserName(request.getParameter("email"));
 		account.setPassword(request.getParameter("password"));

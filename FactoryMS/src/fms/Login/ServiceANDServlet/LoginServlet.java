@@ -63,19 +63,19 @@ public class LoginServlet extends HttpServlet {
 				if(role.equals("Manager"))
 				{
 					request.setAttribute("employeeid", empid);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Home/Manager_Home.jsp");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Home/Manager_Home.jsp");
 					dispatcher.forward(request, response);
 				}
 				else if(role.equals("Administrator"))
 				{
 					request.setAttribute("employeeid", empid);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Home/Admin_Home.jspp");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Home/Admin_Home.jsp");
 					dispatcher.forward(request, response);
 				}
 				else if(role.equals("Accountant"))
 				{
 					request.setAttribute("employeeid", empid);
-					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Home/Accountant_Home.jsp");
+					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Home/Accountant_Home.jsp");
 					dispatcher.forward(request, response);
 				}
 			}

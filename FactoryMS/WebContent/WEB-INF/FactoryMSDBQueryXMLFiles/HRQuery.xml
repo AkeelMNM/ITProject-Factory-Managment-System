@@ -389,6 +389,15 @@
 		]]>
 		</query>
 		
+		<!-- Get Login details -->
+		<query id="set_profile">
+		<![CDATA[
+			update account
+			set Profile_Image = ?
+			where AccID = ?
+		]]>
+		</query>
+		
 		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		
 </Querys>

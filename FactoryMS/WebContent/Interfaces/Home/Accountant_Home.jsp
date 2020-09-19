@@ -64,13 +64,13 @@
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Profile.png" alt="ProfileFlLogo" class="functionlogo">
 							<label>User Profile</label>
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Home/Tech_Support.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Tech Support.png" alt="TechSlLogo" class="functionlogo">
 							<label>Technical Support</label>
 						</a>

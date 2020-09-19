@@ -125,7 +125,8 @@ input[type="submit"]{ padding: 10px 10px; line-height:15px; }
 					<label id="address">Hapugahayatatenna,Handessa</label>
 				</div>
 				<div id="manage">
-					<button></button>
+					<a href="#"><button>Sign in</button></a>
+					<a href="${pageContext.request.contextPath}/Interfaces/Home/Tech_Support.jsp"><button>Contact Us</button></a>
 					</div>
 				</div>
 													
