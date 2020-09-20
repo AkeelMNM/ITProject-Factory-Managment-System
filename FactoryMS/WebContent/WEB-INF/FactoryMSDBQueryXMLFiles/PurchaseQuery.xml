@@ -1,1 +1,65 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+<Querys >
+
+<!-- insert  Leave Query -->
+	<query id="insert_tealeaf">
+        <![CDATA[
+          Insert into  tealeaves(TLID,PaymentID,SupID,Supplier_Name,Quantity,Unit_Price,Paid,PDate)
+          	values (?, ?, ?, ?, ?, ?, ?,?)
+        ]]>
+	</query>
+
+<!-- Select a particular Leaf by id Query -->
+	<query id="leaf_by_id">
+         <![CDATA[        
+            select * from tealeaves where TLID = ?
+        ]]>
+	</query>
+
+
+
+<!-- insert  supplier Query -->
+	<query id="insert_supplier">
+        <![CDATA[
+          Insert into  tealeaf_supplier(SupID,Name,Nic,Contact_No,Address,License_No,Estate)
+          	values (?, ?, ?, ?, ?, ?, ?)
+        ]]>
+	</query>
+
+<!-- Select a particular Supplier by id Query -->
+	<query id="supplier_by_id">
+         <![CDATA[        
+            select * from tealeaf_supplier where SupID = ?
+        ]]>
+	</query>
+
+
+<!-- insert  supplierpayment Query -->
+	<query id="insert_supplierpayment">
+        <![CDATA[
+          Insert into  tealeaf_supplier(SupID,Name,Nic,Contact_No,Address,License_No,Estate)
+          	values (?, ?, ?, ?, ?, ?, ?)
+        ]]>
+	</query>
+
+<!-- Select a particular Supplierpayment by id Query -->
+	<query id="supplierpayment_by_id">
+         <![CDATA[        
+            select * from tealeaf_supplier where SupID = ?
+        ]]>
+	</query>
+
+
+
+
+
+
+
+
+
+
+
+
+</Querys>
