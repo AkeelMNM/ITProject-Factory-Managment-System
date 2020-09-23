@@ -89,8 +89,8 @@
 					<td><input type="date" name="r_date" id="reviewdate"></td>
 				</tr>
 				</table>
-				<input type="submit" value="View" id="viewbutton">
-				<input type="submit" value="Generate" id="genbutton">
+				<input type="submit" value="View" name="viewbutton">
+				<input type="submit" value="Generate" name="genbutton">
 			</form>
 		</div>
 		

@@ -4,8 +4,10 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 
+import com.fms.model.PerformanceTracking;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -24,7 +26,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class ReportGeneratingService {
 	
 	
-	public void generatePTRepot() throws DocumentException, IOException {
+	public void generatePTReportMonth(ArrayList<PerformanceTracking> ptList,String month) throws DocumentException, IOException {
 		
 		String fileName = "F:\\P\\EPT_Report.pdf";
 		Document document = new Document();
@@ -50,7 +52,7 @@ public class ReportGeneratingService {
 	        PdfPCell cell = new PdfPCell();
 	        cell.setBorder(Rectangle.NO_BORDER);
 	        //Add Image
-	        Image image1 = Image.getInstance("F:\\Pro files\\A.jpg");
+	        Image image1 = Image.getInstance("${pageContext.request.contextPath}/Images/MainLogo.jpeg");
 	        //Fixed Positioning
 	        //image1.setAbsolutePosition(100f, 550f);
 	        //Scale to new height and new width of image
@@ -62,8 +64,8 @@ public class ReportGeneratingService {
 	        cell = new PdfPCell();
 	        cell.addElement(new Phrase(20f,"Dehiwatta Tea Factory",FontFactory.getFont(FontFactory.TIMES_ROMAN, fntSize,Font.BOLD)));
 	        cell.addElement(new Phrase(15f,"\nAddress : Hapugahayatatenna,Handessa"));
-	        cell.addElement(new Phrase(10f,"\nTel : Hapugahayatatenna,Handessa"));
-	        cell.addElement(new Phrase(10f,"\nEmail : Hapugahayatatenna,Handessa"));
+	        cell.addElement(new Phrase(10f,"\nTel : 0815630035"));
+	        cell.addElement(new Phrase(10f,"\nEmail : nmmbrosdtf@gmail.com"));
 	        cell.setPaddingLeft(10);
 	        cell.setColspan(5);
 	        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -89,7 +91,7 @@ public class ReportGeneratingService {
 	        cell.setBorder(Rectangle.NO_BORDER);
 	        tableT.addCell(cell);
 	        
-	        cell = new PdfPCell(new Paragraph("Month :"));
+	        cell = new PdfPCell(new Paragraph("Month :"+month));
 	        cell.setColspan(6);
 	        cell.setPaddingLeft(10);
 	        cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -258,5 +260,7 @@ public class ReportGeneratingService {
 
 	}
 	
-	
+	public void generatePTReportDay(ArrayList<PerformanceTracking> ptList,String date) {
+		
+	}
 }
