@@ -234,6 +234,152 @@ public class PerformanceTrackingServiceImpt implements PerformanceTrackingServic
 		return performanceTracking;
 	}
 	
+	/** -------------    Get Performance Tracking by Name and Month from Performance Tracking table        ------------------------**/
+	
+	@Override
+	public ArrayList<PerformanceTracking> getPerformacneTrackingByEmpNameAndMonth(String EmpName,String Month) {
+		
+		ArrayList<PerformanceTracking> performanceTrackingList = new ArrayList<PerformanceTracking>();
+		
+		if(EmpName != null && !EmpName.isEmpty())
+		{
+			
+			try
+			{
+					connection = DBConnection.getDBConnection();
+					
+					//Get PerformanceTracking by ID Query will be Retrieve from HRQuery.xml
+					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_PERFROMANCE_TRACKING_BY_EMP_NAME_MONTH));
+					
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, EmpName);
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO, Month);
+					
+					ResultSet result = preparedStatement.executeQuery();
+					
+						while(result.next())
+						{
+							PerformanceTracking performanceTracking = new PerformanceTracking();
+								
+								performanceTracking.setEPTID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
+								performanceTracking.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
+								performanceTracking.setJobTitle( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
+								performanceTracking.setEmpName(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+								performanceTracking.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								performanceTracking.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								performanceTracking.setTimeIn(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
+								performanceTracking.setLunchIn(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
+								performanceTracking.setLunchOut(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
+								performanceTracking.setTimeOut(result.getString(HRCommonConstants.COLUMN_INDEX_TEN));
+								performanceTracking.setOvetTime(result.getString(HRCommonConstants.COLUMN_INDEX_ELEVEN));
+								performanceTracking.setPerformace(result.getString(HRCommonConstants.COLUMN_INDEX_TWELVE));
+								performanceTracking.setDescription(result.getString(HRCommonConstants.COLUMN_INDEX_THIRTEEN));
+								
+								
+						}
+					
+			} 
+			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e) {
+					
+					log.log(Level.SEVERE,e.getMessage());
+			}
+			finally
+			{
+					//Closing DB Connection and Prepared statement
+					try 
+					{	
+						if(preparedStatement != null)
+						{
+							preparedStatement.close();
+						}
+						if(connection != null)
+						{
+							connection.close();
+						}
+						
+					}
+					catch (SQLException e)
+					{
+						log.log(Level.SEVERE,e.getMessage());
+					}
+					
+			}
+		}
+		return performanceTrackingList;
+	}
+	
+	/** -------------    Get Performance Tracking by Name and Month from Performance Tracking table        ------------------------**/
+	
+	@Override
+	public ArrayList<PerformanceTracking> getPerformacneTrackingByEmpNameAndDay(String EmpName,String Day) {
+		
+		ArrayList<PerformanceTracking> performanceTrackingList = new ArrayList<PerformanceTracking>();
+		
+		if(EmpName != null && !EmpName.isEmpty())
+		{
+			
+			try
+			{
+					connection = DBConnection.getDBConnection();
+					
+					//Get PerformanceTracking by ID Query will be Retrieve from HRQuery.xml
+					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_PERFROMANCE_TRACKING_BY_EMP_NAME_DAY));
+					
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, EmpName);
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO, Day);
+					
+					ResultSet result = preparedStatement.executeQuery();
+					
+						while(result.next())
+						{
+							PerformanceTracking performanceTracking = new PerformanceTracking();
+								
+								performanceTracking.setEPTID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
+								performanceTracking.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
+								performanceTracking.setJobTitle( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
+								performanceTracking.setEmpName(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+								performanceTracking.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								performanceTracking.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								performanceTracking.setTimeIn(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
+								performanceTracking.setLunchIn(result.getString(HRCommonConstants.COLUMN_INDEX_EIGHT));
+								performanceTracking.setLunchOut(result.getString(HRCommonConstants.COLUMN_INDEX_NINE));
+								performanceTracking.setTimeOut(result.getString(HRCommonConstants.COLUMN_INDEX_TEN));
+								performanceTracking.setOvetTime(result.getString(HRCommonConstants.COLUMN_INDEX_ELEVEN));
+								performanceTracking.setPerformace(result.getString(HRCommonConstants.COLUMN_INDEX_TWELVE));
+								performanceTracking.setDescription(result.getString(HRCommonConstants.COLUMN_INDEX_THIRTEEN));
+								
+								
+						}
+					
+			} 
+			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e) {
+					
+					log.log(Level.SEVERE,e.getMessage());
+			}
+			finally
+			{
+					//Closing DB Connection and Prepared statement
+					try 
+					{	
+						if(preparedStatement != null)
+						{
+							preparedStatement.close();
+						}
+						if(connection != null)
+						{
+							connection.close();
+						}
+						
+					}
+					catch (SQLException e)
+					{
+						log.log(Level.SEVERE,e.getMessage());
+					}
+					
+			}
+		}
+		return performanceTrackingList;
+	}
+	
 	/** -------------    Get All Performance Tracking from Performance Tracking table        ------------------------**/
 
 	@Override

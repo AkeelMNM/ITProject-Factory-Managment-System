@@ -35,6 +35,9 @@ public interface EmployeeService {
 		// Get All Employee Name in Employee table
 		public ArrayList<String> getAllEmployeeName();
 		
+		// Get All Employee Name By Job Name in Employee table
+		public ArrayList<String> getAllEmployeeNameByJobTitle(String JobName);
+		
 		//Get Employee ID in Employee Table
 		public String getEmployeeID(String EmployeeName);
 		

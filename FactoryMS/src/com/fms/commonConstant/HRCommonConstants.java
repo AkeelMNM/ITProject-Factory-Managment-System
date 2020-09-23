@@ -44,6 +44,9 @@ public class HRCommonConstants {
 	//Constant for query id for get All Employee IDs in HRQuery.xml 
 	public static final String Query_ID_ALL_EMPLOYEE_IDS ="get_employeeids";
 	
+	//Constant for query id for get All Employee IDs in HRQuery.xml 
+	public static final String Query_ID_EMPLOYEE_NAME_BY_JOB_NAME ="get_employee_name_by_job_name";
+	
 	//Constant for Employee ID prefix 
 	public static final String EMPLOYEE_ID_PREFIX ="E00";
 	
@@ -106,6 +109,12 @@ public class HRCommonConstants {
 	
 	//Constant for query id for get All Performance Tracking IDs in HRQuery.xml 
 	public static final String Query_ID_ALL_PERFROMANCE_TRACKING_IDS ="get_perfromance_trackingids";
+	
+	//Constant for query id for get Performance Tracking by name and month in HRQuery.xml 
+	public static final String Query_ID_GET_PERFROMANCE_TRACKING_BY_EMP_NAME_MONTH ="get_perfromance_tracking_by_name_month";
+	
+	//Constant for query id for get Performance Tracking by name and day in HRQuery.xml 
+	public static final String Query_ID_GET_PERFROMANCE_TRACKING_BY_EMP_NAME_DAY ="get_perfromance_tracking_by_name_day";
 	
 	//Constant for query id for get EmployeeID in HRQuery.xml
 	public static final String Query_ID_GET_EMPLOYEE_ID_IN_PT ="get_employeeId_in_pt";

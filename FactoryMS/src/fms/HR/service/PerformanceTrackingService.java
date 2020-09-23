@@ -36,4 +36,12 @@ public interface PerformanceTrackingService {
 			
 	//Get Employee ID in Performance Tracking Table
 	public String getEmployeeID(String performanceTrackingID);
+
+	//Get Performance Tracking by Employee Name and Month from Performance Tracking table
+	ArrayList<PerformanceTracking> getPerformacneTrackingByEmpNameAndMonth(String EmpName, String Month);
+
+	//Get Performance Tracking by Name and Day from Performance Tracking table
+	ArrayList<PerformanceTracking> getPerformacneTrackingByEmpNameAndDay(String EmpName, String Day);
+	
+
 }

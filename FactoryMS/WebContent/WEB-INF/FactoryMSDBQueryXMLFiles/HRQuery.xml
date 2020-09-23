@@ -80,6 +80,13 @@
 		]]>
 		</query>
 		
+		<!-- Get Employee Name by Job Name  -->
+		<query id="get_employee_name_by_job_name">
+		<![CDATA[
+			select Employee_Name from employee where Job_Title = ?
+		]]>
+		</query>
+		
 		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		
 		
@@ -216,6 +223,20 @@
 		<query id="get_employeename_in_pt">
 		<![CDATA[
 			select Emp_Name from perfomance_tracking where EPTID = ?
+		]]>
+		</query>
+		
+		<!-- Get performance Tracking by Name and Month  -->
+		<query id="get_perfromance_tracking_by_name_month">
+		<![CDATA[
+			select * from perfomance_tracking where Emp_Name = ? and Month = ?
+		]]>
+		</query>
+		
+		<!-- Get performance Tracking by Name and Month  -->
+		<query id="get_perfromance_tracking_by_name_day">
+		<![CDATA[
+			select * from perfomance_tracking where Emp_Name = ? and Date = ?
 		]]>
 		</query>
 		

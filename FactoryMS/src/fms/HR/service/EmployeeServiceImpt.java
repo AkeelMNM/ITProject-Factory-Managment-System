@@ -517,6 +517,65 @@ public class EmployeeServiceImpt implements EmployeeService {
 		return JobID;
 	}
 	
+	/**--------------------------- Get Employee Names by Job Title from Employee table ---------------------------**/
+	
+	@Override
+	public ArrayList<String> getAllEmployeeNameByJobTitle(String JobName) {
+		
+		ArrayList<String> empNameList = new ArrayList<String>();
+		
+		if(JobName != null && !JobName.isEmpty())
+		{
+			try 
+			{
+				connection = DBConnection.getDBConnection();
+				
+				// Get Employee ID Query will be Retrieve from HRQuery.xml
+				preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_EMPLOYEE_NAME_BY_JOB_NAME));
+				
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, JobName);
+				
+				
+				ResultSet result = preparedStatement.executeQuery();
+				
+				while(result.next())
+				{
+					empNameList.add(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
+				}
+			}
+			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
+			{
+				
+				log.log(Level.SEVERE,e.getMessage());
+			}
+			finally
+			{
+				//Closing DB Connection and Prepared statement
+				try 
+				{	
+					if(preparedStatement != null)
+					{
+						preparedStatement.close();
+					}
+					if(connection != null)
+					{
+						connection.close();
+					}
+					
+				}
+				catch (SQLException e)
+				{
+					log.log(Level.SEVERE,e.getMessage());
+				}
+				
+			}
+		}
+		
+		return empNameList;
+	}
+	
+	/**--------------------------- Get All Employee Names from Employee table ---------------------------**/
+	
 	@Override
 	public ArrayList<String> getAllEmployeeName() {
 
@@ -611,6 +670,8 @@ public class EmployeeServiceImpt implements EmployeeService {
 			}
 				return arraylist;
 	}
+
+
 
 
 

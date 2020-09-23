@@ -49,10 +49,10 @@
 				
 				<div class="vl"></div>
 		<div class="viewlist">
-			<form>
+			<form method="POST" action="${pageContext.request.contextPath}/ReportGenerateServlet">
 			<table class="repviewtable">
 			<tr>
-					<td class="reptoolbartxt">Select Employee:</td><td><select name="db_tables" tabindex="10" class="reviewdr" required>
+					<td class="reptoolbartxt">Select Employee:</td><td><select name="emp_name" tabindex="10" class="reviewdr" required>
 									<option> --Select Name-- </option> 
 									<%
 									EmployeeService empservice= new EmployeeServiceImpt();
