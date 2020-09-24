@@ -274,7 +274,7 @@ public class PerformanceTrackingServiceImpt implements PerformanceTrackingServic
 								performanceTracking.setPerformace(result.getString(HRCommonConstants.COLUMN_INDEX_TWELVE));
 								performanceTracking.setDescription(result.getString(HRCommonConstants.COLUMN_INDEX_THIRTEEN));
 								
-								
+								performanceTrackingList.add(performanceTracking);
 						}
 					
 			} 
@@ -347,7 +347,7 @@ public class PerformanceTrackingServiceImpt implements PerformanceTrackingServic
 								performanceTracking.setPerformace(result.getString(HRCommonConstants.COLUMN_INDEX_TWELVE));
 								performanceTracking.setDescription(result.getString(HRCommonConstants.COLUMN_INDEX_THIRTEEN));
 								
-								
+								performanceTrackingList.add(performanceTracking);
 						}
 					
 			} 
