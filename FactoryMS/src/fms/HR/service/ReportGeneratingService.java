@@ -92,7 +92,7 @@ public class ReportGeneratingService {
 	        PdfPTable tableST = new PdfPTable(9); // 9 columns.
 	        tableST.setWidthPercentage(100); //Width 100%
 	        tableST.setSpacingBefore(10f); //Space before table
-	        tableT.setSpacingAfter(10f); //Space after table
+	        tableST.setSpacingAfter(10f); //Space after table
 	        
 	        //Set Column widths
 	        float[] columnWidthsST = {1.5f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f};
@@ -110,6 +110,7 @@ public class ReportGeneratingService {
 	        cellS = new PdfPCell(new Paragraph("Month :"+month));
 	        cellS.setColspan(6);
 	        cellS.setPaddingBottom(20);
+	        cellS.setPaddingLeft(20);
 	        cellS.setVerticalAlignment(Element.ALIGN_MIDDLE);
 	        cellS.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        cellS.setBorder(Rectangle.NO_BORDER);
@@ -255,44 +256,44 @@ public class ReportGeneratingService {
 			        for(PerformanceTracking pt : ptList) {
 			        
 			        	cell1 = new PdfPCell(new Paragraph(pt.getDate()));
-				        cell1.setFixedHeight(25f);
+				        cell1.setFixedHeight(28f);
 				        cell1.setPaddingLeft(10);
 				        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        	table.addCell(cell1);
 			        	
 			        	cell1 = new PdfPCell(new Paragraph(pt.getTimeIn()));
-				        cell1.setFixedHeight(25f);
+				        cell1.setFixedHeight(28f);
 				        cell1.setPaddingLeft(10);
 				        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        	table.addCell(cell1);
 			        	
 			        	cell1 = new PdfPCell(new Paragraph(pt.getLunchIn()));
-				        cell1.setFixedHeight(25f);
+				        cell1.setFixedHeight(28f);
 				        cell1.setPaddingLeft(10);
 				        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        	table.addCell(cell1);
 			        	
 			        	cell1 = new PdfPCell(new Paragraph(pt.getLunchOut()));
-				        cell1.setFixedHeight(25f);
+				        cell1.setFixedHeight(28f);
 				        cell1.setPaddingLeft(10);
 				        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        	table.addCell(cell1);
 			        	
 			        	cell1 = new PdfPCell(new Paragraph(pt.getTimeOut()));
-				        cell1.setFixedHeight(25f);
+				        cell1.setFixedHeight(28f);
 				        cell1.setPaddingLeft(10);
 				        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        	table.addCell(cell1);
 			        	
 			        	cell1 = new PdfPCell(new Paragraph(pt.getOvetTime()));
-				        cell1.setFixedHeight(25f);
+				        cell1.setFixedHeight(28f);
 				        cell1.setPaddingLeft(10);
-				        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+				        cell1.setHorizontalAlignment(Element.ALIGN_RIGHT);
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        	table.addCell(cell1);
 
@@ -306,8 +307,8 @@ public class ReportGeneratingService {
 								paraS.add(new Chunk(imageS2, 0, 0, true));
 						}
 						
-						cell1 = new PdfPCell(new Paragraph(pt.getOvetTime()));
-				        cell1.setFixedHeight(25f);
+						cell1 = new PdfPCell(new Paragraph());
+				        cell1.setFixedHeight(28f);
 				        cell1.setPaddingLeft(10);
 				        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -315,7 +316,7 @@ public class ReportGeneratingService {
 				        table.addCell(cell1);
 				        
 				        cell1 = new PdfPCell(new Paragraph(pt.getDescription()));
-				        cell1.setFixedHeight(25f);
+				        cell1.setFixedHeight(28f);
 				        cell1.setPaddingLeft(10);
 				        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -343,17 +344,187 @@ public class ReportGeneratingService {
 			        cell1.setBackgroundColor(BaseColor.CYAN);
 			        cell1.setFixedHeight(25f);
 			        cell1.setColspan(5);
-			        cell1.setPaddingLeft(60);
+			        cell1.setPaddingLeft(110);
 			        cell1.setHorizontalAlignment(Element.ALIGN_LEFT);
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        table.addCell(cell1);
 			        
+			        document.add(table);
+			        
+			        document.add(new Chunk(ls));
+			        
 			        /** ----------------------------------------------------------- **/
 			        
 			/** ####################################################################################### **/
-	        
-	        document.add(table);
-	        
+			        
+			        Image imageR1 = Image.getInstance("F:\\Pro files\\FullStar.png");
+			        Image imageR2 = Image.getInstance("F:\\Pro files\\EmptyStar.png");
+			        //Scale to new height and new width of image
+			        imageR1.scaleAbsolute(15, 15);
+			        imageR2.scaleAbsolute(15, 15);
+			        
+			        PdfPTable tableR = new PdfPTable(11); // 11 columns.
+			        tableR.setWidthPercentage(100); //Width 100%
+			        tableR.setSpacingBefore(10f); //Space before table
+			        tableR.setSpacingAfter(10f); //Space after table
+			        
+			        //Set Column widths
+			        float[] columnWidthsR = {1.5f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f, 1f ,1f};
+			        tableR.setWidths(columnWidthsR);
+			        
+			        PdfPCell cellR = new PdfPCell();
+			        cellR = new PdfPCell(new Paragraph(new Phrase(0f,"Performance Range:")));
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setHorizontalAlignment(Element.ALIGN_LEFT);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+			        tableR.addCell(cellR);
+			        
+			        
+			        cellR = new PdfPCell(new Paragraph(new Phrase(0f,"Excellent :")));
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+			        tableR.addCell(cellR);
+			        
+			        Paragraph paraR = new Paragraph();
+			        
+					for(int i = 0;i < 5;i++){
+							paraR.add(new Chunk(imageR1, 0, 0, true));
+							
+					}
+					cellR = new PdfPCell(new Paragraph());
+					cellR.setFixedHeight(25f);
+			        cellR.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+					cellR.addElement(paraR);
+					tableR.addCell(cellR);
+					
+					cellR = new PdfPCell(new Paragraph(new Phrase(0f,"Good :")));
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+			        tableR.addCell(cellR);
+			        
+			        Paragraph paraR1 = new Paragraph();
+			        
+			        for(int i = 0;i < 4;i++){
+						paraR1.add(new Chunk(imageR1, 0, 0, true));
+						
+			        }
+			        for(int i = 0;i < 1;i++){
+						paraR1.add(new Chunk(imageR2, 0, 0, true));
+			        }
+			        
+			        cellR = new PdfPCell(new Paragraph());
+					cellR.setFixedHeight(25f);
+			        cellR.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+					cellR.addElement(paraR1);
+					tableR.addCell(cellR);
+					
+					cellR = new PdfPCell(new Paragraph(new Phrase(0f,"Average :")));
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+			        tableR.addCell(cellR);
+					
+			        Paragraph paraR2 = new Paragraph();
+			        
+					for(int i = 0;i < 3;i++){
+						paraR2.add(new Chunk(imageR1, 0, 0, true));
+						
+			        }
+			        for(int i = 0;i < 2;i++){
+						paraR2.add(new Chunk(imageR2, 0, 0, true));
+			        }
+			        
+			        cellR = new PdfPCell(new Paragraph());
+					cellR.setFixedHeight(25f);
+			        cellR.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+					cellR.addElement(paraR2);
+					tableR.addCell(cellR);
+					
+					cellR = new PdfPCell(new Paragraph(new Phrase(0f,"Fair :")));
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+			        tableR.addCell(cellR);
+			        
+			        Paragraph paraR3 = new Paragraph();
+			        
+					for(int i = 0;i < 2;i++){
+						paraR3.add(new Chunk(imageR1, 0, 0, true));
+						
+			        }
+			        for(int i = 0;i < 3;i++){
+						paraR3.add(new Chunk(imageR2, 0, 0, true));
+			        }
+			        
+			        cellR = new PdfPCell(new Paragraph());
+					cellR.setFixedHeight(25f);
+					
+			        cellR.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+					cellR.addElement(paraR3);
+					tableR.addCell(cellR);
+					
+					cellR = new PdfPCell(new Paragraph(new Phrase(0f,"Poor :")));
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setHorizontalAlignment(Element.ALIGN_RIGHT);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+			        tableR.addCell(cellR);
+			        
+			        Paragraph paraR4 = new Paragraph();
+			        
+					for(int i = 0;i < 1;i++){
+						paraR4.add(new Chunk(imageR1, 0, 0, true));
+						
+			        }
+			        for(int i = 0;i < 4;i++){
+						paraR4.add(new Chunk(imageR2, 0, 0, true));
+			        }
+			        
+			        cellR = new PdfPCell(new Paragraph());
+					cellR.setFixedHeight(25f);
+					
+			        cellR.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        cellR.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellR.setBorder(Rectangle.NO_BORDER);
+					cellR.addElement(paraR4);
+					tableR.addCell(cellR);
+			        
+			        document.add(tableR);
+	 
+			        /** ----------------------------------------------------------- **/
+			        
+		/** ####################################################################################### **/
+			        document.add(new Chunk(ls));
+			        
+			        PdfPTable tableC = new PdfPTable(1); // 1 columns.
+			        tableC.setWidthPercentage(100); //Width 100%
+			        tableC.setSpacingBefore(10f); //Space before table
+			        tableC.setSpacingAfter(10f); //Space after table
+			        
+			        //Set Column widths
+			        float[] columnWidthsC = {1f};
+			        
+			        PdfPCell cellC = new PdfPCell();
+			        
+			        tableC.setWidths(columnWidthsC);
+			        cellC = new PdfPCell(new Paragraph(new Phrase(0f,"Copyright @ 2020 Dehiwatta Tea Factory. All Rights Reserved")));
+			        cellC.setPaddingLeft(390f);
+			        cellC.setPaddingTop(-5f);
+			        cellC.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cellC.setHorizontalAlignment(Element.ALIGN_MIDDLE);
+			        cellC.setBorder(Rectangle.NO_BORDER);
+			        tableC.addCell(cellC);
+			        
+			        document.add(tableC);
 		    
 			document.close();
 			System.out.println("Finished");
