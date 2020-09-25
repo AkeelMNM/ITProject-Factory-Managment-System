@@ -71,12 +71,12 @@ public class ReportGenerateServlet extends HttpServlet {
 			
 			ReportGeneratingService rgs = new ReportGeneratingService();
 			
-			if(month.equals(null)) {
+			if(date != ("")) {
 				
 				ptList =ptservice.getPerformacneTrackingByEmpNameAndDay(Name, date);
 				rgs.generatePTReportDay(ptList, date);
 			}
-			if(month != null) {
+			if(date.equals("")) {
 				ptList = ptservice.getPerformacneTrackingByEmpNameAndMonth(Name, month);
 				try {
 					rgs.generatePTReportMonth(ptList, month);
