@@ -213,9 +213,11 @@ div.bigDiv
 #bodyDiv
 {
 	background-color:#F5F5F5;
-	width:100%;
+	width:99.5%;
 	float:left;
 	border: 1px solid #ccc;
+	overflow:visible;
+	
 }
 
 /* -------------------------------------------------------------------------------------------------------------- */
@@ -225,14 +227,15 @@ div.bigDiv
 div.table /* table div */
 {
 	border-collapse: collapse;
-	width: 98%;
-	height:52%;
+	width: 96%;
+	/*height:52%;*/
 	float:left;
-	overflow:hidden;
-    overflow-y: scroll;
-    overflow-x: scroll;
-    margin-left:15px;
+	overflow:scroll;
+    /*overflow-y: scroll;
+    overflow-x: scroll;*/
+    margin-left:20px;
     margin-top:20px;
+    border: 2px solid;
     
 }
 .table::-webkit-scrollbar {
@@ -335,16 +338,39 @@ tr.viewTr{background-color: #f2f2f2;}  /* view record table row class*/
 td.tData  /* view record table data class */
 {
 	text-align: center;
-	padding:6px;
+	padding:5px;
 	width:150px;
 	font-size: 14px;
 }
 
+td.tDataS  /* view record table data class */
+{
+	
+	padding:5px;
+	width:150px;
+	font-size: 14px;
+}
+
+img.FullStar
+{
+		
+		width:20px;
+		height:20px;
+}
+
+img.EmptyStar
+{
+		
+		width:20px;
+		height:20px;
+		
+}
+
 th  /* view record table header */
 {	
-	background-color: #b34426;
-	color: white;
-	top: 0;
+	/*background-color: #b34426;
+	color: white;*/
+	/*top: 0;
     z-index: 0;
     position: sticky;
     position: -webkit-sticky;
@@ -352,7 +378,7 @@ th  /* view record table header */
 	padding:6px;
 	width:150px;
 	height:35px;
-	font-size: 15px;
+	font-size: 15px;*/
 	
 }
 

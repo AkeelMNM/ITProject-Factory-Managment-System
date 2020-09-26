@@ -1,3 +1,6 @@
+<%@page import="com.fms.model.PerformanceTracking"%>
+<%@page import="fms.HR.service.PerformanceTrackingServiceImpt"%>
+<%@page import="fms.HR.service.PerformanceTrackingService"%>
 <%@page import="fms.HR.service.EmployeeServiceImpt"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="fms.HR.service.EmployeeService"%>
@@ -49,7 +52,7 @@
 				
 				<div class="vl"></div>
 		<div class="viewlist">
-			<form method="POST" action="${pageContext.request.contextPath}/ReportGenerateServlet">
+			<form method="POST" action="${pageContext.request.contextPath}/EPTReportGenerateServlet">
 			<table class="repviewtable">
 			<tr>
 					<td class="reptoolbartxt">Select Employee:</td><td><select name="emp_name" tabindex="10" class="reviewdr" required>
@@ -94,12 +97,111 @@
 			</form>
 		</div>
 		
+		<%
+			String SDate = null;
+			String SMonth = null;
+			
+			ArrayList<PerformanceTracking> ptList = new ArrayList<PerformanceTracking>();
+			ptList=(ArrayList<PerformanceTracking>) request.getAttribute("PerTList");
+			
+			SDate =(String) request.getAttribute("EPDate");
+			SMonth =(String) request.getAttribute("EPMonth");
+		%>
+		
 		<div class ="table">
+		
+		<%if(SDate == null && SMonth == null){ %>
+		<table style="height: 49%;" width="100%">
+			<tbody>
+			<tr>
+			<td style="width: 12.5043%; text-align:center;">&nbsp;The Report Preview will be Displayed here</td>
+			</tr>
+			</tbody>
+		</table>
 
-			<table class="view">
-				<tr class="viewTr">
-						<th >Employee Name</th>
-						<th >Job Title</th>
+		<%
+		}
+		
+		if(SMonth != null){ %>
+		<table style="height: 137px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr style="height: 31px;">
+			<td style="width: 12%; height: 85px;" rowspan="4"><img id="logo" src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" /></td>
+			<td style="width: 316px; height: 31px;">
+			<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
+			</td>
+			<td style="width: 101px; height: 85px;" rowspan="4">Date:</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Tel : 0815630035</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Email : nmmbrosdtf@gmail.com</td>
+			</tr>
+			</tbody>
+		</table>
+		
+		
+		<hr style="width:90%; float:left; margin-left:50px;">
+		<table style="height: 112px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr>
+			<td style="width: 400px;">
+			<h4 style="margin-top:20px;">EMPLOYEE PERFORMANCE TRACKING &amp; TIME CARD REPORT</h4>
+			</td>
+			<td style="width: 80.8px;" rowspan="2">Month:<%=ptList.get(0).getMonth()%></td>
+			</tr>
+			
+
+			<tr>
+			<td style="width: 400px;"><span style="text-decoration: underline;">MONTH REPROT</span></td>
+			</tr>
+			</tbody>
+		</table>
+		<hr style="width:90%; float:left; margin-left:50px;">
+
+			<table border="1" cellspacing="0" style="margin-left:50px;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			
+			<tr>
+				<td colspan="2" class ="tDataS">Employee Name</td>
+				<td colspan="7" class ="tDataS" ><%=ptList.get(0).getEmpName() %></td>
+			</tr>
+			<tr>
+				<td colspan="2" class ="tDataS" >Job Title</td>
+				<td colspan="7" class ="tDataS"><%=ptList.get(0).getJobTitle() %></td>
+			</tr>
+			<tr>
+				<td colspan="2" class ="tDataS">Overall Performance</td>
+				<%
+					int ovP = 0; 
+					for(int i=0;i<ptList.size();i++){
+						
+						ovP = ovP +Integer. parseInt(ptList.get(i).getPerformace());
+					}
+					int ovPSum = ovP/ptList.size();
+				%>
+				<td colspan="7" class ="tDataS">
+				<%
+							int staremptyOP = 5 - ovPSum;
+							
+							for(int i = 0;i < ovPSum;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/FullStar.png" alt="FullStar" class="FullStar">
+						<%
+							}
+							for(int i = 0;i < staremptyOP;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/EmptyStar.png" alt="EmptyStar" class="EmptyStar">
+						<%
+							}
+						%>
+				</td>
+			</tr>
+				<tr>
+						<th colspan="2" >Date</th>
 						<th >Time In</th>
 						<th >Lunch In</th>
 						<th >Lunch Out</th>
@@ -110,44 +212,181 @@
 						
 				</tr>
 				<%
-					for(int i= 0 ; i<10;i++){
+					for(PerformanceTracking pt : ptList){
 				%>
-				<tr class="viewTr">
-						<td class ="tData" >Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">199842626411</td>
-						<td class ="tData">Male</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">123@gmail.com</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">7/65 Pereadeniya,Kandy</td>
-						<td class ="tData">Tea Producer</td>
+				<tr >
+						
+						<td colspan="2" class ="tData"><%=pt.getDate() %></td>
+						<td class ="tData"><%=pt.getTimeIn() %></td>
+						<td class ="tData"><%=pt.getLunchIn() %></td>
+						<td class ="tData"><%=pt.getLunchOut() %></td>
+						<td class ="tData"><%=pt.getTimeOut()%></td>
+						<td class ="tData"><%=pt.getOvetTime() %></td>
+						<td class ="tData">
+						<%int starfull =Integer. parseInt(pt.getPerformace());
+							int starempty = 5 - starfull;
+							
+							for(int i = 0;i < starfull;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/FullStar.png" alt="FullStar" class="FullStar">
+						<%
+							}
+							for(int i = 0;i < starempty;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/EmptyStar.png" alt="EmptyStar" class="EmptyStar">
+						<%
+							}
+						%>
+						</td>
+						<td class ="tData"><%=pt.getDescription() %></td>
 						
 				</tr>
+				</table>
 				<%
 					}
-				%>
+			}
+			
+			if(SDate != null){ %>
+			<table style="height: 137px; width: 88.5%; margin-left:50px;">
+				<tbody>
+				<tr style="height: 31px;">
+				<td style="width: 12%; height: 85px;" rowspan="4"><img id="logo" src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" /></td>
+				<td style="width: 316px; height: 31px;">
+				<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
+				</td>
+				<td style="width: 101px; height: 85px;" rowspan="4">Date:</td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Tel : 0815630035</td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Email : nmmbrosdtf@gmail.com</td>
+				</tr>
+				</tbody>
+		</table>
 
-					<!--  <tr>
-						<td><%//=attendance.getEmployee()%></td>
-						<td><%//=attendance.getDepartment()%></td>
-						<td><%//=attendance.getToday_Date()%></td>
-						<td><%//=attendance.getStart_Time()%></td>
-						<td><%//=attendance.getEnd_Time()%></td>
-						<td></td>
-						<td><form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
-								<input type="hidden" name ="AttID" value="<%//=attendance.getAttendanceID()%>">
-								<input type="hidden" name ="EID" value="<%//=EmployeeID%>">
-								<input type="submit" value="Remove Attendance" class="editbutton">
-						</form></td>
-					</tr>-->
+		<hr style="width:90%; float:left; margin-left:50px;">
+		<table style="height: 112px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr>
+			<td style="width: 400px;">
+			<h4 style="margin-top:20px;">EMPLOYEE PERFORMANCE TRACKING &amp; TIME CARD REPORT</h4>
+			</td>
+			<td style="width: 80.8px;" rowspan="2">Month:<%=ptList.get(0).getMonth()%></td>
+			</tr>
+			
+
+			<tr>
+			<td style="width: 400px;"><span style="text-decoration: underline;">MONTH REPROT</span></td>
+			</tr>
+			</tbody>
+		</table>
+		<hr style="width:90%; float:left; margin-left:50px;">
+
+			<table border="1" cellspacing="0" style="margin-left:50px;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			
+			<tr>
+				<td colspan="2" class ="tDataS">Employee Name</td>
+				<td colspan="7" class ="tDataS" ><%=ptList.get(0).getEmpName() %></td>
+			</tr>
+			<tr>
+				<td colspan="2" class ="tDataS" >Job Title</td>
+				<td colspan="7" class ="tDataS"><%=ptList.get(0).getJobTitle() %></td>
+			</tr>
+			<tr>
+				<td colspan="2" class ="tDataS">Overall Performance</td>
+				<%
+					int ovP = 0; 
+					for(int i=0;i<ptList.size();i++){
 						
+						ovP = ovP +Integer. parseInt(ptList.get(i).getPerformace());
+					}
+					int ovPSum = ovP/ptList.size();
+				%>
+				<td colspan="7" class ="tDataS">
+				<%
+							int staremptyOP = 5 - ovPSum;
+							
+							for(int i = 0;i < ovPSum;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/FullStar.png" alt="FullStar" class="FullStar">
+						<%
+							}
+							for(int i = 0;i < staremptyOP;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/EmptyStar.png" alt="EmptyStar" class="EmptyStar">
+						<%
+							}
+						%>
+				</td>
+			</tr>
+				<tr>
+						<td colspan="2" >Date</td>
+						<td colspan="2" class ="tData"><%=ptList.get(0).getDate() %></td>
+						
+				</tr>
+				<tr>
+						<td >Time In</th>
+						<td class ="tData"><%=ptList.get(0).getTimeIn() %></td>
+						
+				</tr>
+				<tr>
+						<td >Lunch In</td>
+						<td class ="tData"><%=ptList.get(0).getLunchIn() %></td>
+						
+				</tr>
+				<tr>
+						<td >Lunch Out</td>
+						<td class ="tData"><%=ptList.get(0).getLunchOut() %></td>
+				
+				</tr>
+				<tr>
+						<td >Time Out</td>
+						<td class ="tData"><%=ptList.get(0).getTimeOut()%></td>
+						
+				</tr>
+				<tr>
+						<td >Over Time</td>
+						<td class ="tData"><%=ptList.get(0).getOvetTime() %></td>
+				</tr>
+				<tr>
+						<td >Performance</td>
+						<td class ="tData">
+						<%int starfull =Integer. parseInt(ptList.get(0).getPerformace());
+							int starempty = 5 - starfull;
+							
+							for(int i = 0;i < starfull;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/FullStar.png" alt="FullStar" class="FullStar">
+						<%
+							}
+							for(int i = 0;i < starempty;i++){
+						%>
+							<img src="${pageContext.request.contextPath}/Images/EmptyStar.png" alt="EmptyStar" class="EmptyStar">
+						<%
+							}
+						%>
+						</td>
+				</tr>
+				<tr>
+						<td >Description</td>
+						<td class ="tData"><%=ptList.get(0).getDescription() %></td>
+						
+				</tr>
 				</table>
+				<%
+					}
+				%>		
+				<br>
 		</div>
 				
 				
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 </div>
+
 
 	<!-- Footer Part -->
 	<div style="float:left; width:100%; margin-top:-4px;"><hr></div>

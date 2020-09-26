@@ -169,17 +169,43 @@ public class ReportGeneratingService {
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        table.addCell(cell1);
 			        
+			        
 			        cell1 = new PdfPCell(new Paragraph("Overall Performance"));
 			        cell1.setFixedHeight(25f);
 			        cell1.setPaddingLeft(10);
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        table.addCell(cell1);
 			        
-			        cell1 = new PdfPCell(new Paragraph(""));
+			        Image imageOP1 = Image.getInstance("F:\\Pro files\\FullStar.png");
+			        Image imageOP2 = Image.getInstance("F:\\Pro files\\EmptyStar.png");
+			        //Scale to new height and new width of image
+			        imageOP1.scaleAbsolute(20, 20);
+			        imageOP2.scaleAbsolute(20, 20);
+			        
+			        int ovP = 0; 
+			        for(int i=0;i<ptList.size();i++){
+			        	
+			        	ovP = ovP +Integer. parseInt(ptList.get(i).getPerformace());
+			        }
+			        int ovPSum = ovP/ptList.size();
+			        
+			        Paragraph paraOP = new Paragraph();
+			        
+			        int staremptyOP = 5 - ovPSum;
+					for(int i = 0;i < ovPSum;i++){
+							paraOP.add(new Chunk(imageOP1, 0, 0, true));
+							
+					}
+					for(int i = 0;i < staremptyOP;i++){
+							paraOP.add(new Chunk(imageOP2, 0, 0, true));
+					}
+			        
+			        cell1 = new PdfPCell(new Paragraph());
 			        cell1.setFixedHeight(25f);
 			        cell1.setColspan(8);
 			        cell1.setPaddingLeft(10);
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        cell1.addElement(paraOP);
 			        table.addCell(cell1);
 				    
 			        /** ----------------------------------------------------------- **/

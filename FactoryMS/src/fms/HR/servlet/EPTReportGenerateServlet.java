@@ -20,14 +20,14 @@ import fms.HR.service.ReportGeneratingService;
 /**
  * Servlet implementation class ReportGenerateServlet
  */
-@WebServlet("/ReportGenerateServlet")
-public class ReportGenerateServlet extends HttpServlet {
+@WebServlet("/EPTReportGenerateServlet")
+public class EPTReportGenerateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReportGenerateServlet() {
+    public EPTReportGenerateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -57,9 +57,11 @@ public class ReportGenerateServlet extends HttpServlet {
 			if(month.equals(null)) {
 				
 				ptList =ptservice.getPerformacneTrackingByEmpNameAndDay(Name, date);
+				request.setAttribute("EPDate", date);
 			}
 			if(month != null) {
 				ptList = ptservice.getPerformacneTrackingByEmpNameAndMonth(Name, month);
+				request.setAttribute("EPMonth", month);
 			}
 			
 			request.setAttribute("PerTList", ptList);
