@@ -51,15 +51,20 @@ public class EPTReportGenerateServlet extends HttpServlet {
 		
 		ArrayList<PerformanceTracking> ptList = new ArrayList<PerformanceTracking>();
 		PerformanceTrackingService ptservice = new PerformanceTrackingServiceImpt();
+
+		if(date == "") {
+			date = null;
+		}
 		
 		if("View".equals(request.getParameter("viewbutton"))) {
 			
-			if(month.equals(null)) {
+			if(date != null) {
 				
 				ptList =ptservice.getPerformacneTrackingByEmpNameAndDay(Name, date);
 				request.setAttribute("EPDate", date);
+				request.setAttribute("Key", request.getParameter("key"));
 			}
-			if(month != null) {
+			if(month != null && date == null) {
 				ptList = ptservice.getPerformacneTrackingByEmpNameAndMonth(Name, month);
 				request.setAttribute("EPMonth", month);
 			}

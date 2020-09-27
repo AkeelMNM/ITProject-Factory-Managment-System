@@ -90,6 +90,7 @@
 						</select></td>
 					<td class="reptoolbartxt">Date:</td>
 					<td><input type="date" name="r_date" id="reviewdate"></td>
+					<input type="hidden" name="key" value ="CkhDate">
 				</tr>
 				</table>
 				<input type="submit" value="View" id="viewbutton" name="viewbutton">
@@ -98,14 +99,20 @@
 		</div>
 		
 		<%
-			String SDate = null;
+			String SDate =null;
 			String SMonth = null;
+			String SKey = null;
 			
 			ArrayList<PerformanceTracking> ptList = new ArrayList<PerformanceTracking>();
 			ptList=(ArrayList<PerformanceTracking>) request.getAttribute("PerTList");
 			
 			SDate =(String) request.getAttribute("EPDate");
 			SMonth =(String) request.getAttribute("EPMonth");
+			SKey=(String) request.getAttribute("Key");
+			
+			if(SDate == ""){
+				SDate = null;
+			}
 		%>
 		
 		<div class ="table">
@@ -122,7 +129,7 @@
 		<%
 		}
 		
-		if(SMonth != null){ %>
+		if(SMonth != null && SDate == null){ %>
 		<table style="height: 137px; width: 88.5%; margin-left:50px;">
 			<tbody>
 			<tr style="height: 31px;">
@@ -246,7 +253,7 @@
 					}
 			}
 			
-			if(SDate != null){ %>
+			if(SDate != null && SKey != null){ %>
 			<table style="height: 137px; width: 88.5%; margin-left:50px;">
 				<tbody>
 				<tr style="height: 31px;">
@@ -280,81 +287,54 @@
 			
 
 			<tr>
-			<td style="width: 400px;"><span style="text-decoration: underline;">MONTH REPROT</span></td>
+			<td style="width: 400px;"><span style="text-decoration: underline;">DAY REPROT</span></td>
 			</tr>
 			</tbody>
 		</table>
 		<hr style="width:90%; float:left; margin-left:50px;">
 
-			<table border="1" cellspacing="0" style="margin-left:50px;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			<table border="1" cellspacing="0" style="margin-left:50px; width:88.5%;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
 			
 			<tr>
-				<td colspan="2" class ="tDataS">Employee Name</td>
-				<td colspan="7" class ="tDataS" ><%=ptList.get(0).getEmpName() %></td>
+				<td  class ="tDataS">Employee Name</td>
+				<td class ="tDataS" ><%=ptList.get(0).getEmpName() %></td>
 			</tr>
 			<tr>
-				<td colspan="2" class ="tDataS" >Job Title</td>
-				<td colspan="7" class ="tDataS"><%=ptList.get(0).getJobTitle() %></td>
-			</tr>
-			<tr>
-				<td colspan="2" class ="tDataS">Overall Performance</td>
-				<%
-					int ovP = 0; 
-					for(int i=0;i<ptList.size();i++){
-						
-						ovP = ovP +Integer. parseInt(ptList.get(i).getPerformace());
-					}
-					int ovPSum = ovP/ptList.size();
-				%>
-				<td colspan="7" class ="tDataS">
-				<%
-							int staremptyOP = 5 - ovPSum;
-							
-							for(int i = 0;i < ovPSum;i++){
-						%>
-							<img src="${pageContext.request.contextPath}/Images/FullStar.png" alt="FullStar" class="FullStar">
-						<%
-							}
-							for(int i = 0;i < staremptyOP;i++){
-						%>
-							<img src="${pageContext.request.contextPath}/Images/EmptyStar.png" alt="EmptyStar" class="EmptyStar">
-						<%
-							}
-						%>
-				</td>
+				<td class ="tDataS" >Job Title</td>
+				<td  class ="tDataS"><%=ptList.get(0).getJobTitle() %></td>
 			</tr>
 				<tr>
-						<td colspan="2" >Date</td>
-						<td colspan="2" class ="tData"><%=ptList.get(0).getDate() %></td>
+						<td class ="tDataS">Date</td>
+						<td class ="tDataS"><%=ptList.get(0).getDate() %></td>
 						
 				</tr>
 				<tr>
-						<td >Time In</th>
-						<td class ="tData"><%=ptList.get(0).getTimeIn() %></td>
+						<td class ="tDataS">Time In</th>
+						<td class ="tDataS"><%=ptList.get(0).getTimeIn() %></td>
 						
 				</tr>
 				<tr>
-						<td >Lunch In</td>
-						<td class ="tData"><%=ptList.get(0).getLunchIn() %></td>
+						<td class ="tDataS" >Lunch In</td>
+						<td class ="tDataS"><%=ptList.get(0).getLunchIn() %></td>
 						
 				</tr>
 				<tr>
-						<td >Lunch Out</td>
-						<td class ="tData"><%=ptList.get(0).getLunchOut() %></td>
+						<td class ="tDataS">Lunch Out</td>
+						<td class ="tDataS"><%=ptList.get(0).getLunchOut() %></td>
 				
 				</tr>
 				<tr>
-						<td >Time Out</td>
-						<td class ="tData"><%=ptList.get(0).getTimeOut()%></td>
+						<td class ="tDataS">Time Out</td>
+						<td class ="tDataS"><%=ptList.get(0).getTimeOut()%></td>
 						
 				</tr>
 				<tr>
-						<td >Over Time</td>
-						<td class ="tData"><%=ptList.get(0).getOvetTime() %></td>
+						<td class ="tDataS">Over Time</td>
+						<td class ="tDataS"><%=ptList.get(0).getOvetTime() %></td>
 				</tr>
 				<tr>
-						<td >Performance</td>
-						<td class ="tData">
+						<td class ="tDataS" >Performance</td>
+						<td class ="tDataS" >
 						<%int starfull =Integer. parseInt(ptList.get(0).getPerformace());
 							int starempty = 5 - starfull;
 							
@@ -372,8 +352,8 @@
 						</td>
 				</tr>
 				<tr>
-						<td >Description</td>
-						<td class ="tData"><%=ptList.get(0).getDescription() %></td>
+						<td class ="tDataS">Description</td>
+						<td class ="tDataS"><%=ptList.get(0).getDescription() %></td>
 						
 				</tr>
 				</table>
