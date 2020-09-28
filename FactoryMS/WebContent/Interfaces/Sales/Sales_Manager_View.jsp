@@ -68,7 +68,8 @@
 		<div class="search">
    			<form action="" method="post">
      			<input type="text" name="ManagerSearch" id="ser" placeholder="Search.." >
-     			<select name="DataTbl" id="Search_Tbl" required> 
+     			<select name="DataTbl" id="Search_Tbl" required>
+     				<option> Select... </option>
 					<option value="FactorySales"> Factory Sales </option>
 					<option value="Revenue"> Sales Revenue </option>
 					<option value="Return"> Sales Return </option>
@@ -94,10 +95,18 @@
 		  		{
 		  			ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
 		  			
-		  			FactorySalesService FactorySalesView = new FactorySalesServiceImpt();
-		  			SalesList = FactorySalesView.getAllFactorySales();
+		  			if(Value == ""){
+			  			FactorySalesService FactorySalesView = new FactorySalesServiceImpt();
+			  			SalesList = FactorySalesView.getAllFactorySales();
+		  			}
+		  			else {
+		  				SalesList = search.SearchFactorySales(Value);
+		  			}
 	  			
 	  		%>
+	  		
+	  			<h3 id="Table_H"> Factory Sales Details  </h3>
+	  		
 				<tr class="viewTr">
 			    	<th>Sales Type</th>
 			    	<th>Date</th>
@@ -121,10 +130,18 @@
 		  		{
 					ArrayList<Sales_Revenue> RevenueList = new ArrayList<Sales_Revenue>();
 					
-					Sales_RevenueService RevenueView = new Sales_RevenueServiceImpt();
-					RevenueList = RevenueView.getAllSalesRevenue();
-				
+					if(Value == ""){
+						Sales_RevenueService RevenueView = new Sales_RevenueServiceImpt();
+						RevenueList = RevenueView.getAllSalesRevenue();
+					}
+					else{
+						RevenueList = search.SearchSalesRevenue(Value);
+					}
+					
 			%>
+			
+				<h3 id="Table_H"> Sales Revenue Details  </h3>
+	
 				<tr class="viewTr">
 			    	<th>Sales Type</th>
 			    	<th>Date</th>
@@ -150,10 +167,18 @@
 	  			{
 					ArrayList<Sales_Return> ReturnList = new ArrayList<Sales_Return>();
 					
-					Sales_ReturnService ReturnView = new Sales_ReturnServiceImpt();
-					ReturnList = ReturnView.getSalesReturn();
-				
+					if(Value == ""){
+						Sales_ReturnService ReturnView = new Sales_ReturnServiceImpt();
+						ReturnList = ReturnView.getSalesReturn();
+					}
+					else{
+						ReturnList = search.SearchSalesReturn(Value);
+					}
+					
 			%>
+	
+				<h3 id="Table_H"> Sales Return Details  </h3>
+	
 				<tr class="viewTr">
 			    	<th>Tea Garde</th>
 			    	<th>Date</th>
@@ -175,10 +200,18 @@
 	  			{
 					ArrayList<Tea_Grade_Price> TGPList = new ArrayList<Tea_Grade_Price>();
 					
-					Tea_Grade_PriceService TGPView = new Tea_Grade_PriceServiceImpt();
-					TGPList = TGPView.getTeaGradePrices();
+					if(Value == ""){
+						Tea_Grade_PriceService TGPView = new Tea_Grade_PriceServiceImpt();
+						TGPList = TGPView.getTeaGradePrices();
+					}
+					else{
+						TGPList = search.SearchTeaGradePrice(Value);
+					}
 			
 			%>
+			
+				<h3 id="Table_H"> Tea Grade Price Details   </h3>
+			
 				<tr class="viewTr">
 			    	<th>Tea Garde</th>
 			    	<th>Price (per kg) </th>
@@ -195,8 +228,43 @@
 				</tr>
 			<%		}
 				}
-			%>
-			
+				
+	  			else
+			  		{
+			  			ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
+			  			
+			  			if(Value == ""){
+				  			FactorySalesService FactorySalesView = new FactorySalesServiceImpt();
+				  			SalesList = FactorySalesView.getAllFactorySales();
+			  			}
+			  			else {
+			  				SalesList = search.SearchFactorySales(Value);
+			  			}
+		  			
+		  		%>
+		  		
+		  			<h3 id="Table_H"> Factory Sales Details  </h3>
+		  		
+					<tr class="viewTr">
+				    	<th>Sales Type</th>
+				    	<th>Date</th>
+				    	<th>Tea Garde</th>
+				    	<th>Selling Quantity</th>
+					</tr>
+				<%
+						for(FactorySales FS : SalesList)
+						{
+				%>
+					<tr class="viewTr">
+							<td class ="TblData"> <%=FS.getSales_Type() %> </td>
+							<td class ="TblData" > <%=FS.getDate() %></td>
+							<td class ="TblData"> <%=FS.getTea_Grade() %> </td>
+							<td class ="TblData"> <%=FS.getSelling_Quantity() %></td>
+					</tr>
+				<%		}
+					}
+				%>
+				
 	 		</table>
   		
   		</div>		
