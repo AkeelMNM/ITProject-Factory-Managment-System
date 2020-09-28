@@ -44,4 +44,10 @@ public interface E_LeaveService {
 		
 		//Get Employee ID in E_Leave Table
 		public String getEmployeeID(String LeaveID);
+		
+		//Get particular Employee Month Leaves from E_Leave table
+		public ArrayList<E_Leave> getEmpLeaveByMonth(String EmployeeName,String Month);
+		
+		//Get Leaves on particular Month Leaves from E_Leave table
+		public ArrayList<E_Leave> getAllLeaveByMonth(String Month);
 }

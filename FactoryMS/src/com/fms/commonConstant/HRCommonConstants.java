@@ -48,7 +48,7 @@ public class HRCommonConstants {
 	public static final String Query_ID_EMPLOYEE_NAME_BY_JOB_NAME ="get_employee_name_by_job_name";
 	
 	//Constant for Employee ID prefix 
-	public static final String EMPLOYEE_ID_PREFIX ="E00";
+	public static final String EMPLOYEE_ID_PREFIX ="E";
 	
 	//-----------------------------------------------------------------------------//
 	
@@ -81,7 +81,7 @@ public class HRCommonConstants {
 	public static final String Query_ID_ALL_JOB_NAMES ="get_jobnames";
 	
 	//Constant for Job ID prefix 
-	public static final String JOB_ID_PREFIX ="J00";
+	public static final String JOB_ID_PREFIX ="J";
 	
 	//-----------------------------------------------------------------------------//
 	
@@ -123,7 +123,7 @@ public class HRCommonConstants {
 	public static final String Query_ID_GET_EMPLOYEE_NAME_IN_PT ="get_employeename_in_pt";
 	
 	//Constant for Performance Tracking ID prefix 
-	public static final String PERFROMANCE_TRACKING_ID_PREFIX ="PT00";
+	public static final String PERFROMANCE_TRACKING_ID_PREFIX ="PT";
 	
 	//-----------------------------------------------------------------------------//
 	
@@ -159,7 +159,7 @@ public class HRCommonConstants {
 	public static final String Query_ID_GET_EMPLOYEE_NAME_IN_AC ="get_employeename_in_ac";
 	
 	//Constant for Account ID prefix 
-	public static final String ACCOUNT_ID_PREFIX ="A00";
+	public static final String ACCOUNT_ID_PREFIX ="A";
 	
 	//-----------------------------------------------------------------------------//
 	
@@ -200,8 +200,14 @@ public class HRCommonConstants {
 	//Constant for query id for get Employee Name in HRQuery.xml
 	public static final String Query_ID_GET_LEAVE_ID_BY_NAME ="get_leaveid_in_by_name";
 	
+	//Constant for query id for get Employee Name in HRQuery.xml
+	public static final String Query_ID_GET_AN_EMPLOYEE_LEAVES_ON_MONTH ="get_leaves_of_emp_in_by_month";
+	
+	//Constant for query id for get Employee Name in HRQuery.xml
+	public static final String Query_ID_GET_MONTH_LEAVES ="get_month_leaves";
+	
 	//Constant for Leave ID prefix 
-	public static final String LEAVE_ID_PREFIX ="L00";
+	public static final String LEAVE_ID_PREFIX ="L";
 	
 	//-----------------------------------------------------------------------------//
 	

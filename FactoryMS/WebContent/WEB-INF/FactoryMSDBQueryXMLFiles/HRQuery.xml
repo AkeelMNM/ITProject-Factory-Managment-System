@@ -399,6 +399,20 @@
 		]]>
 		</query>
 		
+		<!-- Get  Employee ID by Leave ID  -->
+		<query id="get_leaves_of_emp_in_by_month">
+		<![CDATA[
+			select * from e_leave where Emp_Name = ? and Month = ?
+		]]>
+		</query>
+		
+		<!-- Get  Employee ID by Leave ID  -->
+		<query id="get_month_leaves">
+		<![CDATA[
+			select * from e_leave where Month = ?
+		]]>
+		</query>
+		
 		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		
 		<!-- ********* Login SQL Queries ************ -->

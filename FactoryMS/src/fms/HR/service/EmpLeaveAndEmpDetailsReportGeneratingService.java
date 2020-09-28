@@ -331,7 +331,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 	        tableST.setWidths(columnWidthsST);
 	        
 	        PdfPCell cellS = new PdfPCell();
-	        cellS = new PdfPCell(new Paragraph(new Phrase(0f,"EMPLOYEE LEAVE REPORT")));
+	        cellS = new PdfPCell(new Paragraph(new Phrase(0f,"EMPLOYEES LEAVE REPORT")));
 	        cellS.setColspan(5);
 	        cellS.setPaddingBottom(8);
 	        cellS.setVerticalAlignment(Element.ALIGN_MIDDLE);

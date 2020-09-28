@@ -566,33 +566,54 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 		return EmpName;
 	}
 	
-	private ArrayList<String> getLeaveIDs()
-	{
-			ArrayList<String> arraylist = new ArrayList<String>();
-				
-			try {
-					
+	
+	
+	/** -------------    Get Employee all Leave in a Month from E_leave table        ------------------------**/
+	
+	@Override
+	public ArrayList<E_Leave> getEmpLeaveByMonth(String EmployeeName, String Month) {
+		ArrayList<E_Leave> leavelist = new ArrayList<E_Leave>();
+		
+		if(EmployeeName != null && !EmployeeName.isEmpty())
+		{
+			
+			try
+			{
 					connection = DBConnection.getDBConnection();
 					
-					//Get All Leave ID will be Retrieve from HRQuery.xml
-					preparedStatement = connection.prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_ALL_LEAVE_IDS));
+					//Get Leave by ID Query will be Retrieve from HRQuery.xml
+					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_AN_EMPLOYEE_LEAVES_ON_MONTH));
+					
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, EmployeeName);
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO, Month);
 					
 					ResultSet result = preparedStatement.executeQuery();
-					while(result.next())
-					{
-						arraylist.add(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
-					}	
+					
+						while(result.next())
+						{
+								E_Leave leave = new E_Leave();
+								
+								leave.setLeaveID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
+								leave.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
+								leave.setEmpName( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
+								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								
+								leavelist.add(leave);
+								
+						}
+					
 			} 
-			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
-			{	
+			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e) {
+					
 					log.log(Level.SEVERE,e.getMessage());
 			}
 			finally
 			{
 					//Closing DB Connection and Prepared statement
 					try 
-					{
-						
+					{	
 						if(preparedStatement != null)
 						{
 							preparedStatement.close();
@@ -602,16 +623,84 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 							connection.close();
 						}
 						
-					} 
-					catch (SQLException e) 
+					}
+					catch (SQLException e)
 					{
 						log.log(Level.SEVERE,e.getMessage());
 					}
 					
 			}
-				return arraylist;
+		}
+		return leavelist;
+	}
+	
+	/** -------------    Get All Leaves in a Month from E_leave table        ------------------------**/
+	
+	@Override
+	public ArrayList<E_Leave> getAllLeaveByMonth(String Month) {
+		ArrayList<E_Leave> leavelist = new ArrayList<E_Leave>();
+		
+		if(Month != null && !Month.isEmpty())
+		{
+			
+			try
+			{
+					connection = DBConnection.getDBConnection();
+					
+					//Get Leave by ID Query will be Retrieve from HRQuery.xml
+					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_MONTH_LEAVES));
+					
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, Month);
+					
+					ResultSet result = preparedStatement.executeQuery();
+					
+						while(result.next())
+						{
+								E_Leave leave = new E_Leave();
+								
+								leave.setLeaveID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
+								leave.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
+								leave.setEmpName( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
+								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								
+								leavelist.add(leave);
+								
+						}
+					
+			} 
+			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e) {
+					
+					log.log(Level.SEVERE,e.getMessage());
+			}
+			finally
+			{
+					//Closing DB Connection and Prepared statement
+					try 
+					{	
+						if(preparedStatement != null)
+						{
+							preparedStatement.close();
+						}
+						if(connection != null)
+						{
+							connection.close();
+						}
+						
+					}
+					catch (SQLException e)
+					{
+						log.log(Level.SEVERE,e.getMessage());
+					}
+					
+			}
+		}
+		return leavelist;
 	}
 
+	/** -------------    Get Employee Leave by Name from E_leave table        ------------------------**/
+	
 	@Override
 	public String getLeaveIDByName(String EmployeeName) {
 		String LeaveID = null;
@@ -666,10 +755,52 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 		return LeaveID;
 	}
 
+	/** -------------    Get All Leave IDs from E_leave table        ------------------------**/
+	private ArrayList<String> getLeaveIDs()
+	{
+			ArrayList<String> arraylist = new ArrayList<String>();
+				
+			try {
+					
+					connection = DBConnection.getDBConnection();
+					
+					//Get All Leave ID will be Retrieve from HRQuery.xml
+					preparedStatement = connection.prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_ALL_LEAVE_IDS));
+					
+					ResultSet result = preparedStatement.executeQuery();
+					while(result.next())
+					{
+						arraylist.add(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
+					}	
+			} 
+			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
+			{	
+					log.log(Level.SEVERE,e.getMessage());
+			}
+			finally
+			{
+					//Closing DB Connection and Prepared statement
+					try 
+					{
+						
+						if(preparedStatement != null)
+						{
+							preparedStatement.close();
+						}
+						if(connection != null)
+						{
+							connection.close();
+						}
+						
+					} 
+					catch (SQLException e) 
+					{
+						log.log(Level.SEVERE,e.getMessage());
+					}
+					
+			}
+				return arraylist;
+	}
 
-
-
-	
-	
 
 }
