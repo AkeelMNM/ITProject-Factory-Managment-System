@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.fms.model.PerformanceTracking"%>
 <%@page import="fms.HR.service.PerformanceTrackingServiceImpt"%>
 <%@page import="fms.HR.service.PerformanceTrackingService"%>
@@ -94,7 +96,7 @@
 				</tr>
 				</table>
 				<input type="submit" value="View" id="viewbutton" name="viewbutton">
-				<input type="submit" value="Generate" id="genbutton" name="genbutton">
+				<input type="submit" value="Generate" id="genbutton" name="genbutton" onclick="return alert('Report Generated Successfully')">
 			</form>
 		</div>
 		
@@ -102,6 +104,7 @@
 			String SDate =null;
 			String SMonth = null;
 			String SKey = null;
+			String RepSucc = null;
 			
 			ArrayList<PerformanceTracking> ptList = new ArrayList<PerformanceTracking>();
 			ptList=(ArrayList<PerformanceTracking>) request.getAttribute("PerTList");
@@ -109,6 +112,7 @@
 			SDate =(String) request.getAttribute("EPDate");
 			SMonth =(String) request.getAttribute("EPMonth");
 			SKey=(String) request.getAttribute("Key");
+			RepSucc=(String) request.getAttribute("message");
 			
 			if(SDate == ""){
 				SDate = null;
@@ -137,7 +141,11 @@
 			<td style="width: 316px; height: 31px;">
 			<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
 			</td>
-			<td style="width: 101px; height: 85px;" rowspan="4">Date:</td>
+			
+			<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+	         	Date date = new Date();
+	        %>
+			<td style="width: 101px; height: 85px;" rowspan="4">Date:<%=formatter.format(date)%></td>
 			</tr>
 			<tr style="height: 18px;">
 			<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
@@ -261,7 +269,10 @@
 				<td style="width: 316px; height: 31px;">
 				<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
 				</td>
-				<td style="width: 101px; height: 85px;" rowspan="4">Date:</td>
+				<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+	         	Date date = new Date();
+	        %>
+				<td style="width: 101px; height: 85px;" rowspan="4">Date:<%=formatter.format(date)%></td>
 				</tr>
 				<tr style="height: 18px;">
 				<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>

@@ -1,3 +1,6 @@
+<%@page import="com.fms.model.Employee"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="fms.HR.service.EmployeeServiceImpt"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="fms.HR.service.EmployeeService"%>
@@ -49,10 +52,12 @@
 				
 				<div class="vl"></div>
 		<div class="viewlist">
-			<form>
-			<table class="repviewtable">
+			<form  method="POST" action="${pageContext.request.contextPath}/EmpDetailsReportGenerateServlet">
+			<table style="width:50%;margin-left:25%;">
 			<tr>
-					<td class="reptoolbartxt">Select Employee:</td><td><select name="db_tables"  class="reviewdr" required>
+					<td class="reptoolbartxt">Select Employee:</td>
+
+					<td style="width:35%;"><select name="empName"  class="reviewdr" required>
 									<option> --Select Name-- </option> 
 									<%
 									EmployeeService empservice= new EmployeeServiceImpt();
@@ -69,84 +74,134 @@
 								%>  
 									
 					</select></td>
-					<td class="reptoolbartxt">Month:</td><td><select name="month" class="reviewdr" required> 
-								<option> --Select Month-- </option>
-								<option value="January">January</option>
-								<option value="February"> February </option>
-								<option value="March"> March </option>
-								<option value="April"> April </option>
-								<option value="May"> May </option>
-								<option value="June"> June </option>
-								<option value="July"> July </option>
-								<option value="August"> August </option>
-								<option value="September"> September </option>
-								<option value="October"> October </option>
-								<option value="November"> November </option>
-								<option value="December"> December </option>
-												
-						</select></td>
-					<td class="reptoolbartxt">Date:</td>
-					<td><input type="date" name="r_date" id="reviewdate"></td>
+					<td><input type="submit" value="View" id="viewbutton" name="viewbutton" style="margin-left:60px;">
+					<input type="submit" value="Generate" id="genbutton" name="genbutton" onclick="return alert('Report Generated Successfully')"></td>
 				</tr>
 				</table>
-				<input type="submit" value="View" id="viewbutton">
-				<input type="submit" value="Generate" id="genbutton">
+				
 			</form>
 		</div>
 		
-		<div class ="table">
+		<%
+			String Check =null;
+			
+			Employee emp=(Employee) request.getAttribute("employee");
+			
+			Check =(String) request.getAttribute("Key");
 
-			<table class="view">
-				<tr class="viewTr">
-						<th >Employee Name</th>
-						<th >DOB</th>
-						<th >NIC</th>
-						<th >Gender</th>
-						<th >Marital Status</th>
-						<th >Email</th>
-						<th >Contact No</th>
-						<th >Address</th>
-						<th >Job Title</th>
-						<th >Date Joined</th>
-						<th >Qualification</th>
-						
+		%>
+		
+		<div class ="table">
+		
+		<%if(Check == null){ %>
+		<table style="height: 49%;" width="100%">
+			<tbody>
+			<tr>
+			<td style="width: 12.5043%; text-align:center;">&nbsp;The Report Preview will be Displayed here</td>
+			</tr>
+			</tbody>
+		</table>
+
+		<%
+		}
+		 if(Check != null){ %>
+			<table style="height: 137px; width: 88.5%; margin-left:50px;">
+				<tbody>
+				<tr style="height: 31px;">
+				<td style="width: 12%; height: 85px;" rowspan="4"><img id="logo" src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" /></td>
+				<td style="width: 316px; height: 31px;">
+				<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
+				</td>
+				<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+	         	Date date = new Date();
+	        %>
+				<td style="width: 101px; height: 85px;" rowspan="4">Date:<%=formatter.format(date)%></td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Tel : 0815630035</td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Email : nmmbrosdtf@gmail.com</td>
+				</tr>
+				</tbody>
+		</table>
+
+		<hr style="width:90%; float:left; margin-left:50px;">
+		<table style="height: 112px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr>
+			<td style="width: 400px;">
+			<h4 style="margin-top:20px;">EMPLOYEE DETAILS REPORT</h4>
+			</td>
+			
+			</tr>
+			</tbody>
+		</table>
+		<hr style="width:90%; float:left; margin-left:50px;">
+
+			<table border="1" cellspacing="0" style="margin-left:50px; width:88.5%;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			
+			<tr>
+				<td  class ="tDataS">Employee Name</td>
+				<td class ="tDataS" ><%=emp.getName()%></td>
+			</tr>
+			<tr>
+				<td class ="tDataS" >Job Title</td>
+				<td  class ="tDataS"><%=emp.getJobTitle()%></td>
+			</tr>
+				<tr>
+						<td class ="tDataS">Joined Date</td>
+						<td class ="tDataS"><%=emp.getJointDate() %></td>
 						
 				</tr>
-				<%
-					for(int i= 0 ; i<10;i++){
-				%>
-				<tr class="viewTr">
-						<td class ="tData" >Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">199842626411</td>
-						<td class ="tData">Male</td>
-						<td class ="tData">Married</td>
-						<td class ="tData">123@gmail.com</td>
-						<td class ="tData">07774561820</td>
-						<td class ="tData">7/65 Pereadeniya,Kandy</td>
-						<td class ="tData">Tea Producer</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">2 year in Tea Production</td>
+				<tr>
+						<td class ="tDataS">Date of Birth</th>
+						<td class ="tDataS"><%=emp.getDOB() %></td>
+						
 				</tr>
+				<tr>
+						<td class ="tDataS" >NIC</td>
+						<td class ="tDataS"><%=emp.getNIC() %></td>
+						
+				</tr>
+				<tr>
+						<td class ="tDataS">Gender</td>
+						<td class ="tDataS"><%=emp.getGender()%></td>
+				
+				</tr>
+				<tr>
+						<td class ="tDataS">Marital Status</td>
+						<td class ="tDataS"><%=emp.getMaritalStatus()%></td>
+						
+				</tr>
+				<tr>
+						<td class ="tDataS">Contact No</td>
+						<td class ="tDataS"><%=emp.getContactNo()%></td>
+				</tr>
+				<tr>
+						<td class ="tDataS">Email</td>
+						<td class ="tDataS"><%=emp.getEmail()%></td>
+						
+				</tr>
+				<tr>
+						<td class ="tDataS">Address</td>
+						<td class ="tDataS"><%=emp.getAddress() %></td>
+						
+				</tr>
+				<tr>
+						<td class ="tDataS">Qualification</td>
+						<td class ="tDataS"><%=emp.getQualification()%></td>
+						
+				</tr>
+				</table>
 				<%
 					}
-				%>
-
-					<!--  <tr>
-						<td><%//=attendance.getEmployee()%></td>
-						<td><%//=attendance.getDepartment()%></td>
-						<td><%//=attendance.getToday_Date()%></td>
-						<td><%//=attendance.getStart_Time()%></td>
-						<td><%//=attendance.getEnd_Time()%></td>
-						<td></td>
-						<td><form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
-								<input type="hidden" name ="AttID" value="<%//=attendance.getAttendanceID()%>">
-								<input type="hidden" name ="EID" value="<%//=EmployeeID%>">
-								<input type="submit" value="Remove Attendance" class="editbutton">
-						</form></td>
-					</tr>-->
-						
-				</table>
+			
+				%>		
+				<br>
 		</div>
 				
 				
