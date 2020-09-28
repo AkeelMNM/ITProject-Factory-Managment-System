@@ -13,9 +13,10 @@ import javax.servlet.http.HttpServletResponse;
 import com.fms.model.PerformanceTracking;
 import com.itextpdf.text.DocumentException;
 
+import fms.HR.service.EPTReportGeneratingService;
 import fms.HR.service.PerformanceTrackingService;
 import fms.HR.service.PerformanceTrackingServiceImpt;
-import fms.HR.service.ReportGeneratingService;
+
 
 /**
  * Servlet implementation class ReportGenerateServlet
@@ -56,7 +57,7 @@ public class EPTReportGenerateServlet extends HttpServlet {
 			date = null;
 		}
 		
-		if("View".equals(request.getParameter("viewbutton"))) {
+		if("View".equals(request.getParameter("viewbutton"))) { 
 			
 			if(date != null) {
 				
@@ -76,17 +77,17 @@ public class EPTReportGenerateServlet extends HttpServlet {
 		}
 		if("Generate".equals(request.getParameter("genbutton"))) {
 			
-			ReportGeneratingService rgs = new ReportGeneratingService();
+			EPTReportGeneratingService rgs = new EPTReportGeneratingService();
 			
-			if(date != ("")) {
+			if(date != null) {
 				
 				ptList =ptservice.getPerformacneTrackingByEmpNameAndDay(Name, date);
 				rgs.generatePTReportDay(ptList, date);
 			}
-			if(date.equals("")) {
+			if(date == null) {
 				ptList = ptservice.getPerformacneTrackingByEmpNameAndMonth(Name, month);
 				try {
-					rgs.generatePTReportMonth(ptList, month);
+				rgs.generatePTReportMonth(ptList, month);
 				} catch (DocumentException | IOException e) {
 					e.printStackTrace();
 				}
