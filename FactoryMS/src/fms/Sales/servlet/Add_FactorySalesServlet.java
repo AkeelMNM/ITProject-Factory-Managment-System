@@ -56,7 +56,7 @@ public class Add_FactorySalesServlet extends HttpServlet {
 		
 		FactorySales FactorySales = new FactorySales();
 		
-		String data = request.getParameter("fs-Date");
+		String date = request.getParameter("fs-Date");
 		String SalesType = request.getParameter("salesType");
 		String[] Selling_Qty = request.getParameterValues("Selling_Qty[]");
 		String[] TeaGardePriceID = request.getParameterValues("TeaGradeID[]");
@@ -78,7 +78,7 @@ public class Add_FactorySalesServlet extends HttpServlet {
 		for(int i = 0 ; i < TeaGardePriceID.length ; i++)
 		{
 			if(TeaGrade[i] != null) {
-				FactorySales.setDate(data);
+				FactorySales.setDate(date);
 				FactorySales.setSales_Type(SalesType);
 				FactorySales.setTea_Grade_PriceID(TeaGardePriceID[i]);
 				FactorySales.setTea_Grade(TeaGrade[i]);

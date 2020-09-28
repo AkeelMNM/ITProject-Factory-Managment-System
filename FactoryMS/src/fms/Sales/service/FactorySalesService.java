@@ -28,5 +28,8 @@ public interface FactorySalesService {
 	//View Factory Sales by id (one details)
 	public FactorySales getFactorySalesByID(String FactorySalesID) ;		
 	
+	//Get Tea Garde only Factory Sales table
+	public String getTeaGrade(String FactorySalesID);
+	
 
 }

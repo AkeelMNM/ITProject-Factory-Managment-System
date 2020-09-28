@@ -1,3 +1,6 @@
+<%@page import="com.fms.model.Tea_Grades"%>
+<%@page import="fms.Sales.service.Tea_Grades_ServiceImpt"%>
+<%@page import="fms.Sales.service.Tea_Grades_Service"%>
 <%@page import="fms.Sales.service.Sales_SearchServiceImpt"%>
 <%@page import="fms.Sales.service.Sales_SearchService"%>
 <%@page import="fms.Sales.service.Tea_Grade_PriceServiceImpt"%>
@@ -70,15 +73,32 @@
 		
 			<tr>
 				<td>Date :</td>
-				<td ><input type="date" name="T-Date" size="55" required></td>
+				<td ><input type="date" name="TDate" size="55" required></td>
 			</tr>
 			<tr>
 				<td>Tea Grade :</td>
-				<td ><input type="text" name="Tea_Grade" size="55" required></td>
+				<td>
+					<select name="TeaGradeID" required> 
+						<option> --Select Grade-- </option>
+						<%
+							Tea_Grades_Service AllTeaGrades = new Tea_Grades_ServiceImpt();
+							ArrayList<Tea_Grades> TeaGradesList = AllTeaGrades.getAllTeaGrades();
+							
+							for(Tea_Grades TeaGrade : TeaGradesList)
+							{
+						%>
+					
+						<option value="<%=TeaGrade.getTeaGrade_ID() %>">  <%=TeaGrade.getTea_Grade_Name() %>  </option> 
+						
+						<%
+							}
+						%>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td>Price (per kg) :</td>
-				<td ><input type="text" name="price" size="55" required></td>
+				<td ><input type="text" name="price" size="55" pattern="\d+" required></td>
 			</tr>
 			
 			<tr ><td colspan="2" ></td></tr>
@@ -106,7 +126,7 @@
   		</div>
   		
   		<div class="table">
-  			<h3 id="Table_H"> Tea Grade & Price Details   </h3>
+  			<h3 id="Table_H"> Tea Grade Price Details   </h3>
   			
 	  		<table id="ShowTable" >
 				<tr class="viewTr">

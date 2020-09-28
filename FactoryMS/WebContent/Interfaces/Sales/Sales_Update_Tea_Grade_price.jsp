@@ -82,7 +82,7 @@
 			<tr>
 				<td>Tea Garde :</td>
 				<td>
-					<input type="text" name="TeaGarde" size="55" value="<%=TGP.getTea_Grade() %> " >
+					<input type="text" name="TeaGarde" size="55" value="<%=TGP.getTea_Grade() %>">
 				</td>
 			</tr>
 			<tr>

@@ -3,7 +3,28 @@
 <!-- SQL Queries -->
 <Querys>
 
-<!-- Tea Garde and Price  --> 
+
+<!-- Tea Grades -->
+
+		<!-- Get All Tea Grades from TGP select button   -->
+		<query id="get_All_Tea_Grades">
+		<![CDATA[
+			select * from Tea_Grades
+		]]>
+		</query>
+		
+		<!-- get Tea_Grade_Name by TeaGrade ID -->
+		<query id="GET_TeaGradeName">
+		<![CDATA[
+			select Tea_Grade_Name
+			from Tea_Grades
+        	where TeaGrade_ID = ?
+		]]>
+		</query>
+		
+<!-- ********************************************************************************************************************* --> 
+		
+<!-- Tea Grade Price  --> 
 
 		<!-- Get Tea_Grade_Price IDs  -->
 		<query id="get_TeaGradePriceIDs">
@@ -50,8 +71,8 @@
 		]]>
 		</query>
 		
-		<!-- get Tea_Grade onely by ID -->
-		<query id="GET_TeaGrade">
+		<!-- get Tea_Grade only by TGP ID -->
+		<query id="GET_TeaGrade_IN_TGP">
 		<![CDATA[
 			select Tea_Grade
 			from Tea_Grade_Price
@@ -109,6 +130,14 @@
 		]]>
 		</query>
 		
+		<!-- get Tea_Grade only by FactorySales ID -->
+		<query id="GET_TeaGrade_IN_Sales">
+		<![CDATA[
+			select Tea_Grade
+			from Factory_Sales
+        	where Factory_Sales_ID = ?
+		]]>
+		</query>
 		
 <!-- ********************************************************************************************************************* --> 
 
@@ -150,7 +179,7 @@
 		]]>
 		</query>
 		
-		<!-- Update Sales Returnby ID -->
+		<!-- Update Sales Return by ID -->
 		<query id="update_SalesReturn">
 		<![CDATA[
 			update Sales_Return 
@@ -174,8 +203,8 @@
 		<!-- Insert Sales Revenue  -->
 		<query id="insert_SalesRevenue">
 		<![CDATA[
-			insert into Sales_Revenue(Sales_RevenueID,Factory_SalesID,Date,Tea_Grade,Sold_Quantity,Sales_Type)
-			values(?, ?, ?, ?, ?, ?)
+			insert into Sales_Revenue(Sales_RevenueID,Factory_SalesID,Date,Tea_Grade,Sold_Quantity,Sales_Type,Amount)
+			values(?, ?, ?, ?, ?, ?, ?)
 		]]>
 		</query>
 		
@@ -204,10 +233,11 @@
 		<query id="update_SalesRevenue">
 		<![CDATA[
 			update Sales_Revenue 
-			set Factory_SalesID = ? , Date = ?,Tea_Grade = ?, Sold_Quantity = ?, Sales_Type = ?
+			set Factory_SalesID = ? , Date = ?,Tea_Grade = ?, Sold_Quantity = ?, Sales_Type = ?, Amount = ?
 			where Sales_RevenueID = ?   
 		]]>
 		</query> 		
+		
 		
 		
 <!-- ********************************************************************************************************************* --> 

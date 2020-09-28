@@ -77,9 +77,9 @@
 			</tr>
 			
 			<tr>
-				<td for="dep">Sales Type : </td>
+				<td>Sales Type : </td>
 				<td colspan="2">
-					<select id="dep"  name="Sales_Type"  required> 
+					<select name="SalesType"  required> 
 						<option> --Select Type-- </option>
 						<option value="Auction">Auction</option>
 						<option value="Local Sales"> Local Sales </option>
@@ -95,7 +95,7 @@
 			
 			<tr>
 				<td>
-					<select name="Tea_Grade"   required> 
+					<select name="FactorySalesID[]"   required> 
 						<option> --Select Grade-- </option>
 						<%
 							FactorySalesService FactorySales = new FactorySalesServiceImpt();
@@ -112,57 +112,51 @@
 						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Sold_Qty"   required> </td>
-				<td> <input type="text" name="Total_Amount" required> </td>
+				<td> <input type="text" name="Sold_Qty[]" pattern="\d+" required> </td>
+				<td> <input type="text" name="total_Amount[]" id="num1" required> </td>
 			</tr>
 			<tr>
 				<td>
-					<select name="Tea_Grade2"  required> 
+					<select name="FactorySalesID[]" > 
 						<option> --Select Grade-- </option>
 						<%
-							FactorySalesService FactorySales2 = new FactorySalesServiceImpt();
-							ArrayList<FactorySales> SalesList2 = FactorySales2.getAllFactorySales();
-							
-							for(FactorySales sales : SalesList2)
+							for(FactorySales sales2 : SalesList)
 							{
 						%>
 
-						<option value="<%=sales.getFactory_Sales_ID() %>"> <%=sales.getTea_Grade() %> </option>
+						<option value="<%=sales2.getFactory_Sales_ID() %>"> <%=sales2.getTea_Grade() %> </option>
 
 						<%
 							}
 						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Sold_Quantity2"  required> </td>
-				<td> <input type="text" name="Total_Amount2"  required> </td>
+				<td> <input type="text" name="Sold_Qty[]"  > </td>
+				<td> <input type="text" name="total_Amount[]" id="num2" > </td>
 			</tr>
 			<tr>
 				<td>
-					<select name="Tea_Grade2"   required> 
+					<select name="FactorySalesID[]" > 
 						<option> --Select Grade-- </option>
 						<%
-							FactorySalesService FactorySales3 = new FactorySalesServiceImpt();
-							ArrayList<FactorySales> SalesList3 = FactorySales3.getAllFactorySales();
-							
-							for(FactorySales sales : SalesList3)
+							for(FactorySales sales3 : SalesList)
 							{
 						%>
 
-						<option value="<%=sales.getFactory_Sales_ID() %>"> <%=sales.getTea_Grade() %> </option>
+						<option value="<%=sales3.getFactory_Sales_ID() %>"> <%=sales3.getTea_Grade() %> </option>
 
 						<%
 							}
 						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Sold_Quantity2"  required> </td>
-				<td> <input type="text" name="Total_Amount2"  required> </td>
+				<td> <input type="text" name="Sold_Qty[]"  > </td>
+				<td> <input type="text" name="total_Amount[]" id="num3" > </td>
 			</tr>
 			
 			<tr>
 				<td>Total Revenue :</td>
-				<td colspan="2"><input type="text" name="Total_Revenue" size="55" required></td>
+				<td colspan="2"><input type="text" name="Total_Revenue" size="55" id="TotalRevenue" onkeyup="Calculate()" ></td>
 			</tr>
 			
 			<tr ><td colspan="3" ></td></tr>
@@ -225,7 +219,7 @@
 						<td class ="TblData" > <%=Revenue.getDate() %> </td>
 						<td class ="TblData"> <%=Revenue.getTea_Grade() %> </td>
 						<td class ="TblData"> <%=Revenue.getSold_Quantity() %> </td>
-						<td class ="TblData"> Add DB to Total Amount </td>
+						<td class ="TblData"> <%=Revenue.getAmount() %> </td>
 						<td class ="TblData">
 							<form method="POST" action="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Update_Sales Revenue.jsp">
 								<input type="hidden" name="SalesID"value="<%=Revenue.getSales_RevenueID() %>" />

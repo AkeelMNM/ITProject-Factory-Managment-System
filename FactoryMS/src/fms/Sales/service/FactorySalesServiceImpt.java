@@ -184,6 +184,7 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 		return actionOnFactorySales(FactorySalesID).get(0);
 	}
 	
+/**-------------   ************** actionOnTeaGradePrices ***************  --------------**/		
 	public ArrayList<FactorySales> actionOnFactorySales(String FactorySalesID)
 	{
 		ArrayList<FactorySales> FactorySalesList = new ArrayList<FactorySales>();
@@ -239,6 +240,54 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 	}
 	
 	
+/**-------------   get Tea Grade only Factory sales Table by FactorySales ID  --------------**/		
+	@Override
+	public String getTeaGrade(String FactorySalesID) 
+	{
+		String TeaGrade = null ;
+		
+		if(FactorySalesID != null && !FactorySalesID.isEmpty())
+		{
+			try {		
+				connection = DBConnection.getDBConnection();
+				
+				preparedStatement = connection.prepareStatement(SalesQueryUtil.queryByID(SalesCommonConstants.Query_ID_GET_TeaGrade_IN_FACTORY_SALES));
+				
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_ONE, FactorySalesID);
+				
+				ResultSet result = preparedStatement.executeQuery();
+				
+				if(result.next())
+				{
+					TeaGrade = result.getString(1);
+				}
+				
+			} catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException ex ) {
+				
+				log.log(Level.SEVERE,ex.getMessage());
+			} finally {
+				
+				//Closing DB Connection and Prepared statement
+				try {	
+					if(preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if(connection != null) {
+						connection.close();
+					}	
+				}
+				catch (SQLException ex) {
+					log.log(Level.SEVERE,ex.getMessage());
+				}
+			}
+		}
+		return TeaGrade;
+	}
+	
+	
+/**-------------   ******************************************************  --------------**/
+	
+
 /**---------------------    Array of Factory Sales id list will be return    ---------------**/
 	
 	private ArrayList<String> getFactorySalesIDs()

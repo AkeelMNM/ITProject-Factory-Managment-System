@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fms.model.Sales_Revenue;
 
+import fms.Sales.service.FactorySalesService;
+import fms.Sales.service.FactorySalesServiceImpt;
 import fms.Sales.service.Sales_RevenueService;
 import fms.Sales.service.Sales_RevenueServiceImpt;
 
@@ -52,15 +54,39 @@ public class Add_SalesRevenueServlet extends HttpServlet {
 		
 		Sales_Revenue Revenue = new Sales_Revenue();
 		
-		Revenue.setDate("RevDate");
-		Revenue.setSales_Type("Sales_Type");
-		Revenue.setTea_Grade("Tea_Grade");
-		Revenue.setSold_Quantity("Sold_Qty");
+		String date = request.getParameter("RevDate");
+		String SalesType = request.getParameter("SalesType");
+		String[] Sold_Qty = request.getParameterValues("Sold_Qty[]");
+		String[] Amount = request.getParameterValues("total_Amount[]");
+		String[] FactorySalesID = request.getParameterValues("FactorySalesID[]");
+		String[] TeaGrade = new String [FactorySalesID.length];
 		
-		//call back-end
+		//call back end
 		Sales_RevenueService AddRevenue = new Sales_RevenueServiceImpt();
-		AddRevenue.AddSalesRevenue(Revenue);
+		FactorySalesService GetTeaGradeInFactorySales = new FactorySalesServiceImpt();
 		
+		//Get tea grade
+		for(int i = 0 ; i < FactorySalesID.length ; i++)
+		{
+			String n = null;
+			n = GetTeaGradeInFactorySales.getTeaGrade(FactorySalesID[i]);
+			TeaGrade[i] = n ;
+		}
+		
+		//Insert Sales Revenue
+		for(int i = 0 ; i <FactorySalesID.length ; i++)
+		{
+			if(TeaGrade[i] != null) {
+				Revenue.setDate(date);
+				Revenue.setSales_Type(SalesType);
+				Revenue.setTea_Grade(TeaGrade[i]);
+				Revenue.setSold_Quantity(Sold_Qty[i]);
+				Revenue.setAmount(Amount[i]);
+
+				AddRevenue.AddSalesRevenue(Revenue);
+			}
+		}
+	
 		request.setAttribute("Sales_Revenue", Revenue);
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Sales/Sales_Add_Sales Revenue.jsp");

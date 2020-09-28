@@ -8,8 +8,9 @@ public class Sales_Revenue {
 	private String Tea_Grade;
 	private String Sold_Quantity;
 	private String Sales_Type;
+	private String Amount;
 	
-	
+
 	public Sales_Revenue() {
 		super();
 	}
@@ -60,13 +61,22 @@ public class Sales_Revenue {
 	
 	public void setSales_Type(String sales_Type) {
 		Sales_Type = sales_Type;
+	}	
+	
+	public String getAmount() {
+		return Amount;
+	}
+
+	public void setAmount(String amount) {
+		Amount = amount;
 	}
 
 	@Override
 	public String toString() {
 		return "Sales_Revenue [Sales_RevenueID=" + Sales_RevenueID + ", Factory_SalesID=" + Factory_SalesID + ", Date="
 				+ Date + ", Tea_Grade=" + Tea_Grade + ", Sold_Quantity=" + Sold_Quantity + ", Sales_Type=" + Sales_Type
-				+ "]";
+				+ ", Amount=" + Amount + "]";
 	}
+
 	
 }

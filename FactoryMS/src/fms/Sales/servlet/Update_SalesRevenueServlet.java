@@ -59,6 +59,7 @@ public class Update_SalesRevenueServlet extends HttpServlet {
 		Revenue.setTea_Grade(request.getParameter("Tea_Garde"));
 		Revenue.setSold_Quantity(request.getParameter("Sold_Qty"));
 		Revenue.setSales_Type(request.getParameter("Sales_Type"));
+		Revenue.setAmount(request.getParameter("total_Amount"));
 		Revenue.setSales_RevenueID(RevenueID);
 		
 		//Call back end

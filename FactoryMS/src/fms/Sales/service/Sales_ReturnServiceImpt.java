@@ -59,7 +59,7 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_THREE, Sales_Return.getDate());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FOUR, Sales_Return.getTea_Grade());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FIVE, Sales_Return.getReturn_Quantity());
-			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FIVE, Sales_Return.getSales_Type());
+			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SIX, Sales_Return.getSales_Type());
 			
 			//Add Sales_Return
 			preparedStatement.execute();

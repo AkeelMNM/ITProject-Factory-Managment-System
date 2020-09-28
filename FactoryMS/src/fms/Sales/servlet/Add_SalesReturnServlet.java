@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fms.model.Sales_Return;
 
+import fms.Sales.service.FactorySalesService;
+import fms.Sales.service.FactorySalesServiceImpt;
 import fms.Sales.service.Sales_ReturnService;
 import fms.Sales.service.Sales_ReturnServiceImpt;
 
@@ -52,14 +54,37 @@ public class Add_SalesReturnServlet extends HttpServlet {
 		
 		Sales_Return Return = new Sales_Return();
 		
-		Return.setDate("RtnDate");
-		Return.setTea_Grade("Tea_Grade");
-		Return.setReturn_Quantity("Return_Qty");
+		String Date = request.getParameter("RtnDate");
+		String SalesType = request.getParameter("SalesType");
+		String[] Return_Qty = request.getParameterValues("Rtn_Qty[]");
+		String[] FactorySalesID = request.getParameterValues("FactorySalesID[]");
+		String[] TeaGrade = new String [FactorySalesID.length];
 		
 		//call back-end
 		Sales_ReturnService AddReturn = new Sales_ReturnServiceImpt();
-		AddReturn.AddSalesReturn(Return);
+		FactorySalesService GetTeaGradeInFactorySales = new FactorySalesServiceImpt();
 		
+		//Get tea grade
+		for(int i = 0 ; i < FactorySalesID.length ; i++)
+		{
+			String n = null;
+			n = GetTeaGradeInFactorySales.getTeaGrade(FactorySalesID[i]);
+			TeaGrade[i] = n ;
+		}
+		
+		//Insert Sales Revenue
+		for(int i = 0 ; i <FactorySalesID.length ; i++)
+		{
+			if(TeaGrade[i] != null) {
+				Return.setDate(Date);
+				Return.setSales_Type(SalesType);
+				Return.setTea_Grade(TeaGrade[i]);
+				Return.setReturn_Quantity(Return_Qty[i]);
+				
+				AddReturn.AddSalesReturn(Return);
+			}
+		}
+
 		request.setAttribute("Sales_Return", Return);
 		
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Sales/Sales_Update_Sales_Return.jsp");

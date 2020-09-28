@@ -92,7 +92,7 @@
 			</tr>
 			<tr>
 				<td>Total Amount :</td>
-				<td><input type="text" name="total_Amount" size="55" value="<%//=Revenue.getDate() %>" ></td>
+				<td><input type="text" name="total_Amount" size="55" value="<%=Revenue.getAmount() %>" ></td>
 			</tr>
 			
 			<tr > <input type="hidden" name="FactorySalesID" value="<%=Revenue.getFactory_SalesID()%>" /> 

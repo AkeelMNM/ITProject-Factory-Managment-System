@@ -240,8 +240,8 @@ public class Tea_Grade_PriceServiceImpt implements Tea_Grade_PriceService {
 	
 
 	
-/**-------------   get Get All For Tea_Grade_Price Table and get by id  --------------**/		
-	
+/**-------------   get Tea Grade only Tea_Grade_Price Table by TeaGradePrice ID  --------------**/		
+	@Override
 	public String getTeaGrade(String TeaGradePriceID) 
 	{
 		String TeaGrade = null ;
@@ -251,7 +251,7 @@ public class Tea_Grade_PriceServiceImpt implements Tea_Grade_PriceService {
 			try {		
 				connection = DBConnection.getDBConnection();
 				
-				preparedStatement = connection.prepareStatement(SalesQueryUtil.queryByID(SalesCommonConstants.Query_ID_GET_TeaGrade));
+				preparedStatement = connection.prepareStatement(SalesQueryUtil.queryByID(SalesCommonConstants.Query_ID_GET_TeaGrade_IN_TGP));
 				
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_ONE, TeaGradePriceID);
 				

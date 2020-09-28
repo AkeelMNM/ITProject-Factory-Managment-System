@@ -1,3 +1,6 @@
+<%@page import="com.fms.model.FactorySales"%>
+<%@page import="fms.Sales.service.FactorySalesServiceImpt"%>
+<%@page import="fms.Sales.service.FactorySalesService"%>
 <%@page import="fms.Sales.service.Sales_SearchServiceImpt"%>
 <%@page import="fms.Sales.service.Sales_SearchService"%>
 <%@page import="com.fms.model.Sales_Return"%>
@@ -74,42 +77,77 @@
 			</tr>
 			
 			<tr>
+				<td>Sales Type : </td>
+				<td colspan="2">
+					<select name="SalesType"  required> 
+						<option> --Select Type-- </option>
+						<option value="Auction">Auction</option>
+						<option value="Local Sales"> Local Sales </option>
+					</select>
+				</td>
+			</tr>
+			
+			<tr>
 				<td>Tea Garde : </td>
 				<td>Return Quantity :</td>
 			</tr>
 			
 			<tr>
 				<td>
-					<select id="dep"  name="Tea_Grade" required> 
+					<select name="FactorySalesID[]" required> 
 						<option> --Select Grade-- </option>
-						<option value="Tea_Grade 01"> Tea_Grade 01 </option>
-						<option value="Tea_Grade 01"> Tea_Grade 01 </option>
-						<option value="Tea_Grade 01"> Tea_Grade 01 </option>
+						<%
+							FactorySalesService FactorySales = new FactorySalesServiceImpt();
+							ArrayList<FactorySales> SalesList = FactorySales.getAllFactorySales();
+							
+							for(FactorySales sales : SalesList)
+							{
+						%>
+
+						<option value="<%=sales.getFactory_Sales_ID() %>"> <%=sales.getTea_Grade() %> </option>
+
+						<%
+							}
+						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Return_Qty" required> </td>
+				<td> <input type="text" name="Rtn_Qty[]" required> </td>
 			</tr>
 			<tr>
 				<td>
-					<select id="dep"  name="Tea_Grade2"  required> 
+					<select name="FactorySalesID[]"  required> 
 						<option> --Select Grade-- </option>
-						<option value="Tea_Grade 01"> Tea_Grade 01 </option>
-						<option value="Tea_Grade 01"> Tea_Grade 01 </option>
-						<option value="Tea_Grade 01"> Tea_Grade 01 </option>
+						<%
+							for(FactorySales sales2 : SalesList)
+							{
+						%>
+
+						<option value="<%=sales2.getFactory_Sales_ID() %>"> <%=sales2.getTea_Grade() %> </option>
+
+						<%
+							}
+						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Return_Quantity2" required> </td>
+				<td> <input type="text" name="Rtn_Qty[]" required> </td>
 			</tr>
 			<tr>
 				<td>
-					<select id="dep"  name="Tea_Grade3" required> 
+					<select name="FactorySalesID[]" required> 
 						<option> --Select Grade-- </option>
-						<option value="Tea_Grade 01"> Tea_Grade 01 </option>
-						<option value="Tea_Grade 01"> Tea_Grade 01 </option>
-						<option value="Tea_Grade 01"> Tea_Grade 01 </option>
+						<%
+							for(FactorySales sales3 : SalesList)
+							{
+						%>
+
+						<option value="<%=sales3.getFactory_Sales_ID() %>"> <%=sales3.getTea_Grade() %> </option>
+
+						<%
+							}
+						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Return_Quantity3" required> </td>
+				<td> <input type="text" name="Rtn_Qty[]" required> </td>
 			</tr>
 			
 			<tr>
@@ -146,8 +184,9 @@
   			
 	  		<table id="ShowTable" >
 				<tr class="viewTr">
-			    	<th>Tea Garde</th>
+					<th>Sales Type</th>
 			    	<th>Date</th>
+			    	<th>Tea Garde</th>
 			    	<th>Return Quantity (kg)</th>
 			    	
 			    	<th> Edit </th>
@@ -172,8 +211,9 @@
 			%>
 			
 				<tr class="viewTr">
-						<td class ="TblData"> <%=Rtn.getTea_Grade() %> </td>
+						<td class ="TblData"> <%=Rtn.getSales_Type() %> </td>
 						<td class ="TblData" > <%=Rtn.getDate() %> </td>
+						<td class ="TblData"> <%=Rtn.getTea_Grade() %> </td>
 						<td class ="TblData"> <%=Rtn.getReturn_Quantity() %> </td>
 						<td class ="TblData">
 							<form method="POST" action="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Update_Sales_Return.jsp">

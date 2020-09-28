@@ -13,6 +13,8 @@ import com.fms.model.Tea_Grade_Price;
 
 import fms.Sales.service.Tea_Grade_PriceService;
 import fms.Sales.service.Tea_Grade_PriceServiceImpt;
+import fms.Sales.service.Tea_Grades_Service;
+import fms.Sales.service.Tea_Grades_ServiceImpt;
 
 /**
  * Servlet implementation class Add_TeaGradePriceServlet
@@ -52,11 +54,14 @@ public class Add_TeaGradePriceServlet extends HttpServlet {
 		
 		Tea_Grade_Price TGP = new Tea_Grade_Price();
 		
-		String TGid = "TG004";
+		Tea_Grades_Service TG_Service = new Tea_Grades_ServiceImpt();
 		
-		TGP.setTeaGrade_ID(TGid);
-		TGP.setDate(request.getParameter("T-Date"));
-		TGP.setTea_Grade(request.getParameter("Tea_Grade"));
+		String TeaGradeID = request.getParameter("TeaGradeID");
+		String TeaGrade = TG_Service.getTeaGradeName(TeaGradeID);
+		
+		TGP.setDate(request.getParameter("TDate"));
+		TGP.setTeaGrade_ID(TeaGradeID);
+		TGP.setTea_Grade(TeaGrade);
 		TGP.setPrice(request.getParameter("price"));
 		
 		//call back-end

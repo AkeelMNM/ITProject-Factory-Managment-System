@@ -83,7 +83,7 @@
 						<option> --Select Type-- </option>
 						<option value="Auction">Auction</option>
 						<option value="Local Sales"> Local Sales </option>
-						<option value="Local Sales"> Factory </option>
+						<option value="Factory"> Factory </option>
 					</select>
 				</td>
 			</tr>
@@ -121,7 +121,6 @@
 					<select id="dep"  name="TeaGradeID[]" > 
 						<option> --Select Grade-- </option>
 						<%
-							Tea_Grade_PriceService AllTeaGradePrice2 = new Tea_Grade_PriceServiceImpt();
 							ArrayList<Tea_Grade_Price> TeaGradePriceList1 = AllTeaGradePrice.getTeaGradePrices();
 							
 							for(Tea_Grade_Price TGP : TeaGradePriceList1)
@@ -143,7 +142,6 @@
 					<select id="dep"  name="TeaGradeID[]" > 
 						<option> --Select Grade-- </option>
 						<%
-							Tea_Grade_PriceService AllTeaGradePrice3 = new Tea_Grade_PriceServiceImpt();
 							ArrayList<Tea_Grade_Price> TeaGradePriceList3 = AllTeaGradePrice.getTeaGradePrices();
 							
 							for(Tea_Grade_Price TGP : TeaGradePriceList3)

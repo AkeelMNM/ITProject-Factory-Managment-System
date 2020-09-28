@@ -8,8 +8,17 @@ package com.fms.commonConstant;
  */
 
 public class SalesCommonConstants {
-
-/**+++++++++++++++++++++++++++++++ Tea Garde and Price ++++++++++++++++++++++++++++++++++++++++ **/
+	
+/**++++++++++++++++++++++++++++++++ Tea_Grades ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/	
+	
+	//Constant for query id for get All Tea Grades in SalesQuery.xml 
+	public static final String Query_ID_GET_ALL_TEA_GRADES ="get_All_Tea_Grades";
+	
+	//Constant for query id for get Tea Grade Name in SalesQuery.xml
+	public static final String Query_ID_GET_TEA_GRADE_NAME ="GET_TeaGradeName";
+	
+	
+/**+++++++++++++++++++++++++++++++ Tea Grade Price ++++++++++++++++++++++++++++++++++++++++ **/
 	
 	//Constant for Tea_Grade_Price id prefix 
 	public static final String Tea_Grade_Price_ID_PREFIX = "TGP0";
@@ -33,7 +42,7 @@ public class SalesCommonConstants {
 	public static final String Query_ID_UPDATE_TeaGradePrice ="update_TeaGradePrice";
 	
 	//Constant for query id for get Tea Grade in SalesQuery.xml
-	public static final String Query_ID_GET_TeaGrade ="GET_TeaGrade";
+	public static final String Query_ID_GET_TeaGrade_IN_TGP ="GET_TeaGrade_IN_TGP";
 		
 	
 	
@@ -60,6 +69,9 @@ public class SalesCommonConstants {
 	//Constant for query id for Update Tea Grade Price in SalesQuery.xml
 	public static final String Query_ID_UPDATE_FactorySales ="update_FactorySales";
 
+	//Constant for query id for get Tea Grade in SalesQuery.xml
+	public static final String Query_ID_GET_TeaGrade_IN_FACTORY_SALES ="GET_TeaGrade_IN_Sales";
+	
 	
 /**+++++++++++++++++++++++++++++ Sales Return ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/	
 	
@@ -107,7 +119,8 @@ public class SalesCommonConstants {
 	
 	//Constant for query id for Update Tea Grade Price in SalesQuery.xml
 	public static final String Query_ID_UPDATE_SalesRevenue ="update_SalesRevenue";
-
+	
+	
 /**+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/
 	
 	

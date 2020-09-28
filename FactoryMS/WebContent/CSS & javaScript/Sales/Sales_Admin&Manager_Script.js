@@ -18,3 +18,16 @@ window.onclick = function(event) {
     }
   }
 }
+
+
+function Calculate()
+{
+	var n1 = parseFloat(document.getElementById("num1").value);
+	var n2 = parseFloat(document.getElementById("num2").value);
+	var n3 = parseFloat(document.getElementById("num3").value);
+	
+	var result =n1+n2+n3 ;
+
+	document.getElementById("TotalRevenue").innerHTML = result;
+		
+}
