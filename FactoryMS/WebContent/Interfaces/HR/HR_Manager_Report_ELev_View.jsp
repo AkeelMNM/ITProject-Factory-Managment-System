@@ -1,3 +1,5 @@
+<%@page import="fms.HR.service.JobServiceImpt"%>
+<%@page import="fms.HR.service.JobService"%>
 <%@page import="fms.HR.service.EmployeeServiceImpt"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="fms.HR.service.EmployeeService"%>
@@ -49,10 +51,26 @@
 				
 				<div class="vl"></div>
 		<div class="viewlist">
-			<form>
+			<form method="post" action="${pageContext.request.contextPath}/LeaveDetailsReportGenerateServlet">
 			<table class="repviewtable">
 			<tr>
-					<td class="reptoolbartxt">Select Employee:</td><td><select name="db_tables"  class="reviewdr" required>
+			<td class="reptoolbartxt">Select Job:</td><td><select name="jobList"  class="reviewdr" required>
+									<option> --Select Title-- </option> 
+									<%
+									JobService jobservice = new JobServiceImpt();
+									ArrayList<String> jobList =jobservice.getJobName();
+									
+									for(String name : jobList)
+									{
+								%>
+							
+										<option value="<%=name%>">  <%=name%>  </option> 			
+									
+								<%
+									}
+								%>
+					</select></td>			
+					<td class="reptoolbartxt">Select Employee:</td><td><select name="nameList"  class="reviewdr" required>
 									<option> --Select Name-- </option> 
 									<%
 									EmployeeService empservice= new EmployeeServiceImpt();
@@ -85,12 +103,10 @@
 								<option value="December"> December </option>
 												
 						</select></td>
-					<td class="reptoolbartxt">Date:</td>
-					<td><input type="date" name="r_date" id="reviewdate"></td>
 				</tr>
 				</table>
-				<input type="submit" value="View" id="viewbutton">
-				<input type="submit" value="Generate" id="genbutton">
+				<input type="submit" value="View" id="viewbutton" name="viewbutton">
+				<input type="submit" value="Generate" id="genbutton" name="genbutton">
 			</form>
 		</div>
 		

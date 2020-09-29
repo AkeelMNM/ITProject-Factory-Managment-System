@@ -24,6 +24,9 @@ public interface E_LeaveService {
 		//Get particular Employee Leaves from E_Leave table
 		public ArrayList<E_Leave> getLeaveByID(String EmployeeID);
 		
+		//Get particular Employee Leave from E_Leave table
+		public E_Leave getSingleLeaveByID(String LeaveID,String Month);
+		
 		//Get particular Employee LeaveID by Name from E_Leave table
 		public String getLeaveIDByName(String EmployeeName);
 		

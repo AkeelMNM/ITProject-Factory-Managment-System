@@ -120,6 +120,14 @@
 						</select>
 					</td>
 				</tr>
+				<tr>
+					<td style="text-align: center;">Job Name : </td>
+					<td class="select">
+						<select   style="width: 200px;" Disabled> 
+								<option value="<%=leavelist.get(0).getJobTitle()%>"><%=leavelist.get(0).getJobTitle()%></option>				
+						</select>
+					</td>
+				</tr>
 					<tr><td style="text-align: center; text-decoration: underline;">Employee Name</td>
 					<td  style="text-align: center; text-decoration: underline;">Absent</td></tr>
 				<%
@@ -130,7 +138,7 @@
 					<td style="text-align: center">
 						<select id="rest"  name="name[]" style="width: 150px;" > 
 								<option value="<%=leavelist.get(i).getEmpName()%>">  <%=leavelist.get(i).getEmpName()%>  </option> 			
-							</select>
+						</select>
 					</td>
 					<td style="text-align: center"><input type="checkbox" id="restch"  name="absent[]" value="Absent" checked></td>
 					<td>

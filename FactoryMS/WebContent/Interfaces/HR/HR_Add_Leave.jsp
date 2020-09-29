@@ -1,3 +1,5 @@
+<%@page import="fms.HR.service.JobServiceImpt"%>
+<%@page import="fms.HR.service.JobService"%>
 <%@page import="fms.HR.service.SearchServieImpt"%>
 <%@page import="fms.HR.service.EmployeeServiceImpt"%>
 <%@page import="fms.HR.service.EmployeeService"%>
@@ -107,10 +109,28 @@
 						</select>
 					</td>
 				</tr>
+				<tr>
+					<td style="text-align: center;">Select Job:</td><td><select name="jobList"  class="reviewdr" required>
+									<option> --Select Title-- </option> 
+									<%
+									JobService jobservice = new JobServiceImpt();
+									ArrayList<String> jobList =jobservice.getJobName();
+									
+									for(String name : jobList)
+									{
+								%>
+							
+										<option value="<%=name%>">  <%=name%>  </option> 			
+									
+								<%
+									}
+								%>
+					</select></td>		
+				</tr>
 					<tr><td style="text-align: center; text-decoration: underline;">Employee Name</td>
 					<td  style="text-align: center; text-decoration: underline;">Absent</td></tr>
 				<%
-					for(int i=0;i<8;i++){
+					for(int i=0;i<7;i++){
 				%>
 				<tr>
 					<td style="text-align: center">
@@ -156,6 +176,7 @@
 			<table class="view">
 				<tr class="viewTr" id ="myHeader">
 						<th >Employee Name</th>
+						<th >Job Title</th>
 						<th >Date</th>
 						<th >Month</th>
 						<th >Status</th>
@@ -181,6 +202,7 @@
 				
 				<tr class="viewTr">
 						<td class ="tData" ><%=leave.getEmpName()%></td>
+						<td class ="tData" ><%=leave.getJobTitle()%></td>
 						<td class ="tData"><%=leave.getDate()%></td>
 						<td class ="tData"><%=leave.getMonth()%></td>
 						<td class ="tData"><%=leave.getLeave_Status()%></td>

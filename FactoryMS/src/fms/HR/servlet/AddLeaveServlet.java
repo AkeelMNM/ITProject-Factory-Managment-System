@@ -46,6 +46,7 @@ public class AddLeaveServlet extends HttpServlet {
 		
 		String date = request.getParameter("date");
 		String month = request.getParameter("month");
+		String job = request.getParameter("jobList");
 		String[] name= request.getParameterValues("name[]");
 		String[] absent = request.getParameterValues("absent[]");
 		String[] empID = new String[name.length];
@@ -70,6 +71,7 @@ public class AddLeaveServlet extends HttpServlet {
 				leave.setDate(date);
 				leave.setEmpID(empID[i]);
 				leave.setEmpName(name[i]);
+				leave.setJobTitle(job);
 				leave.setMonth(month);
 				leave.setLeave_Status(absent[i]);
 				

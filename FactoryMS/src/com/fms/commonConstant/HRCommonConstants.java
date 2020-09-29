@@ -206,6 +206,10 @@ public class HRCommonConstants {
 	//Constant for query id for get Employee Name in HRQuery.xml
 	public static final String Query_ID_GET_MONTH_LEAVES ="get_month_leaves";
 	
+	//Constant for query id for get Employee Name in HRQuery.xml
+	public static final String Query_ID_GET_AN_EMPLOYEE_LEAVE_BY_LID ="get_leave_by_levid";
+	
+	
 	//Constant for Leave ID prefix 
 	public static final String LEAVE_ID_PREFIX ="L";
 	

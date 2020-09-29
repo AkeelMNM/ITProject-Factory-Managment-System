@@ -60,9 +60,10 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Leave.getLeaveID());
 				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,Leave.getEmpID());
 				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,Leave.getEmpName());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,Leave.getDate());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE, Leave.getMonth());
-				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,Leave.getLeave_Status());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,Leave.getJobTitle());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE,Leave.getDate());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX, Leave.getMonth());
+				preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,Leave.getLeave_Status());
 				
 				//Add Leave
 				preparedStatement.execute();
@@ -184,9 +185,10 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 								leave.setLeaveID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
 								leave.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
 								leave.setEmpName( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
-								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
-								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
-								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setJobTitle(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
 								
 								leavelist.add(leave);
 								
@@ -220,6 +222,68 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 			}
 		}
 		return leavelist;
+	}
+	
+	@Override
+	public E_Leave getSingleLeaveByID(String LeaveID,String Month) {
+		E_Leave leave = new E_Leave();
+		
+		if(LeaveID != null && !LeaveID.isEmpty())
+		{
+			
+			try
+			{
+					connection = DBConnection.getDBConnection();
+					
+					//Get Leave by ID Query will be Retrieve from HRQuery.xml
+					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_AN_EMPLOYEE_LEAVE_BY_LID));
+					
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, LeaveID);
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO, Month);
+					
+					ResultSet result = preparedStatement.executeQuery();
+					
+						while(result.next())
+						{
+
+							leave.setLeaveID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
+							leave.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
+							leave.setEmpName( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
+							leave.setJobTitle(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+							leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+							leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+							leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
+								
+						}
+					
+			} 
+			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e) {
+					
+					log.log(Level.SEVERE,e.getMessage());
+			}
+			finally
+			{
+					//Closing DB Connection and Prepared statement
+					try 
+					{	
+						if(preparedStatement != null)
+						{
+							preparedStatement.close();
+						}
+						if(connection != null)
+						{
+							connection.close();
+						}
+						
+					}
+					catch (SQLException e)
+					{
+						log.log(Level.SEVERE,e.getMessage());
+					}
+					
+			}
+		}
+		return leave;
 	}
 	
 	/** -------------    Get Leaves by date from E_leave table        ------------------------**/
@@ -249,9 +313,10 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 								leave.setLeaveID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
 								leave.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
 								leave.setEmpName( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
-								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
-								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
-								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setJobTitle(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
 								
 								leavelist.add(leave);
 								
@@ -286,6 +351,7 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 		}
 		return leavelist;
 	}
+	
 
 	/** -------------    Get All Leave from E_leave table        ------------------------**/
 	
@@ -311,9 +377,10 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 								leave.setLeaveID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
 								leave.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
 								leave.setEmpName( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
-								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
-								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
-								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setJobTitle(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
 								leaveList.add(leave);
 						}
 					
@@ -801,6 +868,7 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 			}
 				return arraylist;
 	}
+
 
 
 }

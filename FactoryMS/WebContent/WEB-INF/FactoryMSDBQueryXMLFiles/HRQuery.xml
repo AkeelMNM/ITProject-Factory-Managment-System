@@ -320,8 +320,8 @@
 		<!-- Insert Leave  -->
 		<query id="insert_leave">
 		<![CDATA[
-			insert into e_leave(LeaveID,EmpID,Emp_Name,Date,Month,Leave_Status)
-			values(?, ?, ?, ?, ?, ?)
+			insert into e_leave(LeaveID,EmpID,Emp_Name,JobTitle,Date,Month,Leave_Status)
+			values(?, ?, ?, ?, ?, ?, ?)
 		]]>
 		</query>
 		
@@ -410,6 +410,13 @@
 		<query id="get_month_leaves">
 		<![CDATA[
 			select * from e_leave where Month = ?
+		]]>
+		</query>
+		
+		<!-- Get  Employee ID by Leave ID  -->
+		<query id="get_leave_by_levid">
+		<![CDATA[
+			select * from e_leave where LeaveID = ? Month = ?
 		]]>
 		</query>
 		
