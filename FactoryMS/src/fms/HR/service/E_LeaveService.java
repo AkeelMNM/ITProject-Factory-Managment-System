@@ -52,5 +52,5 @@ public interface E_LeaveService {
 		public ArrayList<E_Leave> getEmpLeaveByMonth(String EmployeeName,String Month);
 		
 		//Get Leaves on particular Month Leaves from E_Leave table
-		public ArrayList<E_Leave> getAllLeaveByMonth(String Month);
+		public ArrayList<E_Leave> getAllLeaveByMonth(String Month,String Job);
 }

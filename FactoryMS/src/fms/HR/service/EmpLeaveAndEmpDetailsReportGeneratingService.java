@@ -32,7 +32,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 		
 		String fileName = "F:\\P\\EmpLeave_Report.pdf"; //PDF file saving location
 		Document document = new Document();
-		document.setPageSize(PageSize.A2);  //PDF file size
+		document.setPageSize(PageSize.A3);  //PDF file size
 		
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(fileName));  //PDF file Creating
@@ -141,7 +141,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 			        table.setSpacingAfter(10f); //Space after table
 			 
 			        //Set Column widths
-			        float[] columnWidths = {1f, 1f,};
+			        float[] columnWidths = {1f, 1f};
 			        table.setWidths(columnWidths);
 			        
 			        /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/
@@ -237,7 +237,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 			        
 			        tableC.setWidths(columnWidthsC);
 			        cellC = new PdfPCell(new Paragraph(new Phrase(0f,"Copyright @ 2020 Dehiwatta Tea Factory. All Rights Reserved")));
-			        cellC.setPaddingLeft(390f);
+			        cellC.setPaddingLeft(220f);
 			        cellC.setPaddingTop(-5f);
 			        cellC.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        cellC.setHorizontalAlignment(Element.ALIGN_MIDDLE);
@@ -264,7 +264,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 		
 		String fileName = "F:\\P\\MonthEmpLeave_Report.pdf"; //PDF file saving location
 		Document document = new Document();
-		document.setPageSize(PageSize.A2);  //PDF file size
+		document.setPageSize(PageSize.A3);  //PDF file size
 		
 		try {
 			PdfWriter.getInstance(document, new FileOutputStream(fileName));  //PDF file Creating
@@ -373,31 +373,31 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 			        table.setSpacingAfter(10f); //Space after table
 			 
 			        //Set Column widths
-			        float[] columnWidths = {1f, 1f,};
+			        float[] columnWidths = {1f, 1f, 1f};
 			        table.setWidths(columnWidths);
 			        
 			        /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/
 			        
-			        PdfPCell cell1 = new PdfPCell(new Paragraph("Employee Name"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(EList.get(0).getEmpName()));
-			        cell1.setFixedHeight(25f);
-			        cell1.setColspan(2);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph("Job Title"));
+			        PdfPCell cell1 = new PdfPCell(new Paragraph("Job Title"));
 			        cell1.setFixedHeight(25f);
 			        cell1.setPaddingLeft(10);
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        table.addCell(cell1);
 			        
 			        cell1 = new PdfPCell(new Paragraph(JTitle));
+			        cell1.setFixedHeight(25f);
+			        cell1.setColspan(2);
+			        cell1.setPaddingLeft(10);
+			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        table.addCell(cell1);
+			        
+			        cell1 = new PdfPCell(new Paragraph("Month"));
+			        cell1.setFixedHeight(25f);
+			        cell1.setPaddingLeft(10);
+			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			        table.addCell(cell1);
+			        
+			        cell1 = new PdfPCell(new Paragraph(month));
 			        cell1.setFixedHeight(25f);
 			        cell1.setColspan(2);
 			        cell1.setPaddingLeft(10);
@@ -486,7 +486,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 			        
 			        tableC.setWidths(columnWidthsC);
 			        cellC = new PdfPCell(new Paragraph(new Phrase(0f,"Copyright @ 2020 Dehiwatta Tea Factory. All Rights Reserved")));
-			        cellC.setPaddingLeft(390f);
+			        cellC.setPaddingLeft(220f);
 			        cellC.setPaddingTop(-5f);
 			        cellC.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        cellC.setHorizontalAlignment(Element.ALIGN_MIDDLE);

@@ -663,9 +663,10 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 								leave.setLeaveID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
 								leave.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
 								leave.setEmpName( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
-								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
-								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
-								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setJobTitle(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
 								
 								leavelist.add(leave);
 								
@@ -704,7 +705,7 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 	/** -------------    Get All Leaves in a Month from E_leave table        ------------------------**/
 	
 	@Override
-	public ArrayList<E_Leave> getAllLeaveByMonth(String Month) {
+	public ArrayList<E_Leave> getAllLeaveByMonth(String Month,String Job) {
 		ArrayList<E_Leave> leavelist = new ArrayList<E_Leave>();
 		
 		if(Month != null && !Month.isEmpty())
@@ -718,6 +719,7 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_MONTH_LEAVES));
 					
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, Month);
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO, Job);
 					
 					ResultSet result = preparedStatement.executeQuery();
 					
@@ -728,9 +730,10 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 								leave.setLeaveID(result.getString(HRCommonConstants.COLUMN_INDEX_ONE));
 								leave.setEmpID(result.getString(HRCommonConstants.COLUMN_INDEX_TWO));
 								leave.setEmpName( result.getString(HRCommonConstants.COLUMN_INDEX_THREE));
-								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
-								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
-								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setJobTitle(result.getString(HRCommonConstants.COLUMN_INDEX_FOUR));
+								leave.setDate(result.getString(HRCommonConstants.COLUMN_INDEX_FIVE));
+								leave.setMonth(result.getString(HRCommonConstants.COLUMN_INDEX_SIX));
+								leave.setLeave_Status(result.getString(HRCommonConstants.COLUMN_INDEX_SEVEN));
 								
 								leavelist.add(leave);
 								

@@ -51,10 +51,12 @@
 				
 				<div class="vl"></div>
 		<div class="viewlist">
-			<form method="post" action="${pageContext.request.contextPath}/LeaveDetailsReportGenerateServlet">
+			<form method="POST" action="${pageContext.request.contextPath}/LeaveDetailsReportGenerateServlet">
 			<table class="repviewtable">
 			<tr>
-			<td class="reptoolbartxt">Select Job:</td><td><select name="jobList"  class="reviewdr" required>
+
+			<td class="reptoolbartxt">Select Job:</td><td>
+			<select name="jobList"  class="reviewdr" required>
 									<option> --Select Title-- </option> 
 									<%
 									JobService jobservice = new JobServiceImpt();
@@ -69,8 +71,9 @@
 								<%
 									}
 								%>
+		
 					</select></td>			
-					<td class="reptoolbartxt">Select Employee:</td><td><select name="nameList"  class="reviewdr" required>
+					<td class="reptoolbartxt">Select Employee:</td><td><select name="nameList"  class="reviewdr" >
 									<option> --Select Name-- </option> 
 									<%
 									EmployeeService empservice= new EmployeeServiceImpt();

@@ -43,3 +43,4 @@ function calc() { // Calculating EPF and ETF for the job
         document.getElementById('fepf').value = epf;
 
 }
+

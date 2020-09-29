@@ -409,7 +409,7 @@
 		<!-- Get  Employee ID by Leave ID  -->
 		<query id="get_month_leaves">
 		<![CDATA[
-			select * from e_leave where Month = ?
+			select * from e_leave where Month = ? and JobTitle = ?
 		]]>
 		</query>
 		
