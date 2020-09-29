@@ -30,7 +30,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 	
 	public void generateEmpLeaveDetailsInMonth(ArrayList<E_Leave> EList,String month,String JTitle) throws DocumentException, IOException {
 		
-		String fileName = "F:\\P\\EmpLeave_Report.pdf"; //PDF file saving location
+		String fileName = "F:\\P\\Employee_Month_Leave_Report.pdf"; //PDF file saving location
 		Document document = new Document();
 		document.setPageSize(PageSize.A3);  //PDF file size
 		
@@ -262,7 +262,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 	public void generateMonthLeaveOfEmployees(ArrayList<E_Leave> EList,String month,String JTitle) throws DocumentException, IOException {
 
 		
-		String fileName = "F:\\P\\MonthEmpLeave_Report.pdf"; //PDF file saving location
+		String fileName = "F:\\P\\Employee_Leave_In_Job_Report.pdf"; //PDF file saving location
 		Document document = new Document();
 		document.setPageSize(PageSize.A3);  //PDF file size
 		
@@ -331,7 +331,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 	        tableST.setWidths(columnWidthsST);
 	        
 	        PdfPCell cellS = new PdfPCell();
-	        cellS = new PdfPCell(new Paragraph(new Phrase(0f,"EMPLOYEES LEAVE REPORT")));
+	        cellS = new PdfPCell(new Paragraph(new Phrase(0f,"EMPLOYEES LEAVE IN A JOB REPORT")));
 	        cellS.setColspan(5);
 	        cellS.setPaddingBottom(8);
 	        cellS.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -511,7 +511,7 @@ public class EmpLeaveAndEmpDetailsReportGeneratingService {
 	
 	public void generatePTReportDay(Employee Emp) {
 		
-		String fileName = "F:\\P\\Employee Details.pdf";
+		String fileName = "F:\\P\\Employee_Details_Report.pdf";
 		Document document = new Document();
 		document.setPageSize(PageSize.A3);
 		

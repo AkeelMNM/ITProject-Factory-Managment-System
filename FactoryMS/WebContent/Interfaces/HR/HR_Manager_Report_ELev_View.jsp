@@ -1,3 +1,6 @@
+<%@page import="com.fms.model.E_Leave"%>
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="fms.HR.service.JobServiceImpt"%>
 <%@page import="fms.HR.service.JobService"%>
 <%@page import="fms.HR.service.EmployeeServiceImpt"%>
@@ -108,51 +111,187 @@
 						</select></td>
 				</tr>
 				</table>
-				<input type="submit" value="View" id="viewbutton" name="viewbutton">
+				<input type="hidden" value="key" name="key">
+				<input type="submit" value="View" id="viewbutton" name="viewbutton" style="margin-left:10px;">
 				<input type="submit" value="Generate" id="genbutton" name="genbutton">
 			</form>
 		</div>
 		
 		<div class ="table">
 
-			<table class="view">
-				<tr class="viewTr">
-						<th >Employee Name</th>
-						<th >Date</th>
-						<th >Month</th>
-						<th >Status</th>
+			<%
+			String Ename =null;
+			String SMonth = null;
+			String SKey = null;
+			String jName = null;
+			
+			ArrayList<E_Leave> ELeaveList = new ArrayList<E_Leave>();
+			ELeaveList=(ArrayList<E_Leave>) request.getAttribute("ElList");
+			
+			Ename =(String) request.getAttribute("EmpName");
+			SMonth =(String) request.getAttribute("EPMonth");
+			SKey=(String) request.getAttribute("Key");
+			jName=(String) request.getAttribute("job");
+			
+			if(Ename == ""){
+				Ename = null;
+			}
+		%>
+		<%if(Ename == null && SMonth == null){ %>
+		<table style="height: 49%;" width="100%">
+			<tbody>
+			<tr>
+			<td style="width: 12.5043%; text-align:center;">&nbsp;The Report Preview will be Displayed here</td>
+			</tr>
+			</tbody>
+		</table>
+
+		<%
+		}
+		if(Ename == null && SKey != null){ %>
+			<table style="height: 137px; width: 88.5%; margin-left:50px;">
+				<tbody>
+				<tr style="height: 31px;">
+				<td style="width: 12%; height: 85px;" rowspan="4"><img id="logo" src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" /></td>
+				<td style="width: 316px; height: 31px;">
+				<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
+				</td>
+				<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+	         	Date date = new Date();
+	        %>
+				<td style="width: 101px; height: 85px;" rowspan="4">Date:<%=formatter.format(date)%></td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Tel : 0815630035</td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Email : nmmbrosdtf@gmail.com</td>
+				</tr>
+				</tbody>
+		</table>
+	
+		<hr style="width:90%; float:left; margin-left:50px;">
+		<table style="height: 112px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr>
+			<td style="width: 400px;">
+			<h4 style="margin-top:20px;">EMPLOYEES LEAVE IN A JOB REPORT</h4>
+			</td>
+			<td style="width: 80.8px;" rowspan="2">Month:<%=ELeaveList.get(0).getMonth()%></td>
+			</tr>
+			
+	
+			<tr>
+			<td style="width: 400px;"><span style="text-decoration: underline;">MONTH REPROT</span></td>
+			</tr>
+			</tbody>
+		</table>
+		<hr style="width:90%; float:left; margin-left:50px;">
+	
+			<table border="1" cellspacing="0" style="margin-left:50px; width:88.5%;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			
+			<tr>
+				<td class ="tDataS" >Job Title</td>
+				<td  class ="tDataS" colspan="2"><%=ELeaveList.get(0).getJobTitle() %></td>
+			</tr>
+			<tr>
+				<td  class ="tDataS">Month</td>
+				<td class ="tDataS" colspan="2" ><%=ELeaveList.get(0).getMonth() %></td>
+			</tr>
+			<tr>
+				<td  class ="tData">Employee Name</td>
+				<td class ="tData">Date</td>
+				<td class ="tData">Status</td>
+			</tr>
+				<tr>
+					<%
+						for(E_Leave lev: ELeaveList ){
+					%>
+						<td class ="tData"><%=lev.getEmpName() %></td>
+						<td class ="tData"><%=lev.getDate() %></td>
+						<td class ="tData"><%=lev.getLeave_Status() %></td>
 						
 				</tr>
-				<%
-					for(int i= 0 ; i<10;i++){
-				%>
-				<tr class="viewTr">
-						<td class ="tData" >Mohamed Akeel</td>
-						<td class ="tData">2020/02/01</td>
-						<td class ="tData">199842626411</td>
-						<td class ="tData">Male</td>
-
-						
-				</tr>
-				<%
-					}
-				%>
-
-					<!--  <tr>
-						<td><%//=attendance.getEmployee()%></td>
-						<td><%//=attendance.getDepartment()%></td>
-						<td><%//=attendance.getToday_Date()%></td>
-						<td><%//=attendance.getStart_Time()%></td>
-						<td><%//=attendance.getEnd_Time()%></td>
-						<td></td>
-						<td><form method="POST" action="${pageContext.request.contextPath}/DeleteAttendanceServlet">
-								<input type="hidden" name ="AttID" value="<%//=attendance.getAttendanceID()%>">
-								<input type="hidden" name ="EID" value="<%//=EmployeeID%>">
-								<input type="submit" value="Remove Attendance" class="editbutton">
-						</form></td>
-					</tr>-->
-						
+				<%} %>
 				</table>
+			<%
+				}
+		
+		if(Ename != null){ %>
+			<table style="height: 137px; width: 88.5%; margin-left:50px;">
+				<tbody>
+				<tr style="height: 31px;">
+				<td style="width: 12%; height: 85px;" rowspan="4"><img id="logo" src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" /></td>
+				<td style="width: 316px; height: 31px;">
+				<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
+				</td>
+				<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+	         	Date date = new Date();
+	        %>
+				<td style="width: 101px; height: 85px;" rowspan="4">Date:<%=formatter.format(date)%></td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Tel : 0815630035</td>
+				</tr>
+				<tr style="height: 18px;">
+				<td style="width: 316px; height: 18px;">Email : nmmbrosdtf@gmail.com</td>
+				</tr>
+				</tbody>
+		</table>
+
+		<hr style="width:90%; float:left; margin-left:50px;">
+		<table style="height: 112px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr>
+			<td style="width: 400px;">
+			<h4 style="margin-top:20px;">EMPLOYEE LEAVE REPORT</h4>
+			</td>
+			<td style="width: 80.8px;" rowspan="2">Month:<%=ELeaveList.get(0).getMonth()%></td>
+			</tr>
+			
+
+			<tr>
+			<td style="width: 400px;"><span style="text-decoration: underline;">MONTH REPROT</span></td>
+			</tr>
+			</tbody>
+		</table>
+		<hr style="width:90%; float:left; margin-left:50px;">
+
+			<table border="1" cellspacing="0" style="margin-left:50px; width:88.5%;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			
+			<tr>
+				<td  class ="tDataS">Employee Name</td>
+				<td class ="tDataS" ><%=ELeaveList.get(0).getEmpName() %></td>
+			</tr>
+			<tr>
+				<td class ="tDataS" >Job Title</td>
+				<td  class ="tDataS"><%=ELeaveList.get(0).getJobTitle() %></td>
+			</tr>
+			<tr>
+				<td class ="tData">Date</td>
+				<td class ="tData">Status</td>
+			</tr>
+				<tr>
+					<%
+						for(E_Leave lev: ELeaveList ){
+					%>
+						<td class ="tData"><%=lev.getDate() %></td>
+						<td class ="tData"><%=lev.getLeave_Status() %></td>
+						
+				</tr>
+				</table>
+				<%
+						}
+					}
+				%>		
+				<br>
+			
 		</div>
 				
 				

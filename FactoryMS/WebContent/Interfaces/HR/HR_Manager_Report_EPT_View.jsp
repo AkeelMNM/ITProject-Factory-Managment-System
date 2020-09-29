@@ -320,7 +320,7 @@
 						
 				</tr>
 				<tr>
-						<td class ="tDataS">Time In</th>
+						<td class ="tDataS">Time In</td>
 						<td class ="tDataS"><%=ptList.get(0).getTimeIn() %></td>
 						
 				</tr>

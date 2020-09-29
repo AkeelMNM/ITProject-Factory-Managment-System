@@ -33,7 +33,7 @@ public class EPTReportGeneratingService {
 	
 	public void generatePTReportMonth(ArrayList<PerformanceTracking> ptList,String month) throws DocumentException, IOException {
 		
-		String fileName = "F:\\P\\EPT_Report2.pdf"; //PDF file saving location
+		String fileName = "F:\\P\\EPT_Month_Report.pdf"; //PDF file saving location
 		Document document = new Document();
 		document.setPageSize(PageSize.A2);  //PDF file size
 		
@@ -582,7 +582,7 @@ public class EPTReportGeneratingService {
 	
 	public void generatePTReportDay(ArrayList<PerformanceTracking> ptList,String date) {
 		
-		String fileName = "F:\\P\\EPT_Report3.pdf";
+		String fileName = "F:\\P\\EPT_Date_Report.pdf";
 		Document document = new Document();
 		document.setPageSize(PageSize.A3);
 		
