@@ -21,7 +21,7 @@ public class SalesCommonConstants {
 /**+++++++++++++++++++++++++++++++ Tea Grade Price ++++++++++++++++++++++++++++++++++++++++ **/
 	
 	//Constant for Tea_Grade_Price id prefix 
-	public static final String Tea_Grade_Price_ID_PREFIX = "TGP0";
+	public static final String Tea_Grade_Price_ID_PREFIX = "TGP";
 	
 	//Constant for query id for get Tea Grade Price ID in SalesQuery.xml 
 	public static final String Query_ID_ALL_TeaGradePrice_IDS ="get_TeaGradePriceIDs";
@@ -49,7 +49,7 @@ public class SalesCommonConstants {
 /**+++++++++++++++++++++++++++++ Factory Sales ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/	
 	
 	//Constant for Factory Sales id prefix 
-	public static final String Factory_Sales_ID_PREFIX = "FS0";
+	public static final String Factory_Sales_ID_PREFIX = "FS";
 	
 	//Constant for query id for get Factory Sales ID in SalesQuery.xml 
 	public static final String Query_ID_ALL_FactorySales_IDS ="get_FactorySalesIDs";
@@ -72,11 +72,14 @@ public class SalesCommonConstants {
 	//Constant for query id for get Tea Grade in SalesQuery.xml
 	public static final String Query_ID_GET_TeaGrade_IN_FACTORY_SALES ="GET_TeaGrade_IN_Sales";
 	
+	//Constant for query id for get all by teaGrade and month in SalesQuery.xml
+	public static final String Query_ID_GET_FACTORY_SALES_BY_SALES_TYPE_MONTH = "get_Factory_Sales_by_SalesType_month";
+	
 	
 /**+++++++++++++++++++++++++++++ Sales Return ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/	
 	
 	//Constant for Factory Sales id prefix 
-	public static final String SalesReturn_ID_PREFIX = "RTN0";
+	public static final String SalesReturn_ID_PREFIX = "RTN";
 	
 	//Constant for query id for get Factory Sales ID in SalesQuery.xml 
 	public static final String Query_ID_ALL_SalesReturn_IDS ="get_SalesReturnIDs";
@@ -100,7 +103,7 @@ public class SalesCommonConstants {
 /**++++++++++++++++++++++++++++++++ Sales Revenue ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/	
 
 	//Constant for Factory Sales id prefix 
-	public static final String SalesRevenue_ID_PREFIX = "SR0";
+	public static final String SalesRevenue_ID_PREFIX = "SR";
 	
 	//Constant for query id for get Factory Sales ID in SalesQuery.xml 
 	public static final String Query_ID_ALL_SalesRevenue_IDS ="get_SalesRevenueIDs";

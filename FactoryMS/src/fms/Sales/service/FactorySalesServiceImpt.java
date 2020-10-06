@@ -62,6 +62,7 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FOUR, FactorySales.getTea_Grade());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FIVE, FactorySales.getSelling_Quantity());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SIX, FactorySales.getSales_Type());
+			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SEVEN, FactorySales.getMonth());
 			
 			//Add FactorySales
 			preparedStatement.execute();
@@ -141,10 +142,11 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_THREE, FactorySales.getTea_Grade());
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FOUR, FactorySales.getSelling_Quantity());
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FIVE, FactorySales.getSales_Type());
-				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SIX, FactorySales.getFactory_Sales_ID());
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SIX, FactorySales.getMonth());
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SEVEN, FactorySales.getFactory_Sales_ID());
 				
-			
 				preparedStatement.executeUpdate();
+				
 			} catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException ex ) {
 				
 				log.log(Level.SEVERE,ex.getMessage());
@@ -214,6 +216,7 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 				Fsales.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
 				Fsales.setSelling_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
 				Fsales.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+				Fsales.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
 				
 				FactorySalesList.add(Fsales);
 			}
@@ -283,6 +286,120 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 		}
 		return TeaGrade;
 	}
+	
+/** -------------    Get FactorySales by TeaGrade and Month from FactorySales table        ------------------------**/
+	@Override
+	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndMonth(String SalesType,String Month)
+	{
+		ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
+		
+		if(SalesType != null && !SalesType.isEmpty())
+		{
+			try
+			{
+				connection = DBConnection.getDBConnection();
+				
+				preparedStatement = connection.prepareStatement(SalesQueryUtil.queryByID(SalesCommonConstants.Query_ID_GET_FACTORY_SALES_BY_SALES_TYPE_MONTH));
+				
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_ONE, SalesType);
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_TWO, Month);
+				
+				ResultSet result = preparedStatement.executeQuery();
+				
+				while(result.next())
+				{
+					FactorySales Fsales = new FactorySales();
+					
+					Fsales.setFactory_Sales_ID(result.getString(SalesCommonConstants.COLUMN_INDEX_ONE));
+					Fsales.setTea_Grade_PriceID(result.getString(SalesCommonConstants.COLUMN_INDEX_TWO));
+					Fsales.setDate(result.getString(SalesCommonConstants.COLUMN_INDEX_THREE));
+					Fsales.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
+					Fsales.setSelling_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
+					Fsales.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+					Fsales.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+					
+					SalesList.add(Fsales);
+				}
+				
+			} catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException ex ) {
+				
+				log.log(Level.SEVERE,ex.getMessage());
+			} finally {
+				
+				//Closing DB Connection and Prepared statement
+				try {	
+					if(preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if(connection != null) {
+						connection.close();
+					}	
+				}
+				catch (SQLException ex) {
+					log.log(Level.SEVERE,ex.getMessage());
+				}
+			}
+		}
+		
+		return SalesList;
+	}	
+	
+/** -------------    Get FactorySales by TeaGrade and Year from FactorySales table        ------------------------**/
+	@Override
+	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndYear(String SalesType,String year)
+	{
+		ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
+		
+		if(SalesType != null && !SalesType.isEmpty())
+		{
+			try
+			{
+				connection = DBConnection.getDBConnection();
+				
+				String Query = "SELECT * From Factory_Sales Where Sales_Type = "+SalesType+" and Date like "+year+"%' ";
+				preparedStatement = connection.prepareStatement(Query);
+				
+				ResultSet result = preparedStatement.executeQuery();
+				
+				while(result.next());
+				{
+					FactorySales sales = new FactorySales();
+						
+						sales.setFactory_Sales_ID(result.getString(SalesCommonConstants.COLUMN_INDEX_ONE));
+						sales.setTea_Grade_PriceID(result.getString(SalesCommonConstants.COLUMN_INDEX_TWO));
+						sales.setDate(result.getString(SalesCommonConstants.COLUMN_INDEX_THREE));
+						sales.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
+						sales.setSelling_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
+						sales.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+						sales.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+						
+						SalesList.add(sales);
+				}
+				
+			} catch (ClassNotFoundException | SQLException ex ) {
+				
+				log.log(Level.SEVERE,ex.getMessage());
+			} finally {
+				
+				//Closing DB Connection and Prepared statement
+				try {	
+					if(preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if(connection != null) {
+						connection.close();
+					}	
+				}
+				catch (SQLException ex) {
+					log.log(Level.SEVERE,ex.getMessage());
+				}
+			}
+		}
+		
+		return SalesList;
+	}
+
+	
 	
 	
 /**-------------   ******************************************************  --------------**/

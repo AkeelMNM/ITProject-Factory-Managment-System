@@ -54,6 +54,9 @@ public class Add_FactorySalesServlet extends HttpServlet {
 		
 		response.setContentType("text/html");
 		
+		String Month = null;
+		String monthNum = null;
+		
 		FactorySales FactorySales = new FactorySales();
 		
 		String date = request.getParameter("fs-Date");
@@ -61,6 +64,43 @@ public class Add_FactorySalesServlet extends HttpServlet {
 		String[] Selling_Qty = request.getParameterValues("Selling_Qty[]");
 		String[] TeaGardePriceID = request.getParameterValues("TeaGradeID[]");
 		String[] TeaGrade = new String [TeaGardePriceID.length];
+		
+		//Splitting Date
+		if(date != null && !date.isEmpty())
+		{
+			String[] x = date.split("-");
+				
+			monthNum = x[1];
+			
+			if(monthNum != null)
+			{
+				if(monthNum.equals("01")) {
+					Month = "January";
+				}else if(monthNum.equals("02")) {
+					Month = "February";
+				}else if(monthNum.equals("03")) {
+					Month = "March";
+				}else if(monthNum.equals("04")) {
+					Month = "April";
+				}else if(monthNum.equals("05")) {
+					Month = "May";
+				}else if(monthNum.equals("06")) {
+					Month = "June";
+				}else if(monthNum.equals("07")) {
+					Month = "July";
+				}else if(monthNum.equals("08")) {
+					Month = "August";
+				}else if(monthNum.equals("09")) {
+					Month = "September";
+				}else if(monthNum.equals("10")) {
+					Month = "October";
+				}else if(monthNum.equals("11")) {
+					Month = "November";
+				}else if(monthNum.equals("12")) {
+					Month = "December";
+				}
+			}
+		}
 		
 		//back end
 		FactorySalesService AddFactorySales = new FactorySalesServiceImpt();
@@ -79,6 +119,7 @@ public class Add_FactorySalesServlet extends HttpServlet {
 		{
 			if(TeaGrade[i] != null) {
 				FactorySales.setDate(date);
+				FactorySales.setMonth(Month);
 				FactorySales.setSales_Type(SalesType);
 				FactorySales.setTea_Grade_PriceID(TeaGardePriceID[i]);
 				FactorySales.setTea_Grade(TeaGrade[i]);

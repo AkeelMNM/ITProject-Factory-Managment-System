@@ -61,6 +61,7 @@ public class Sales_RevenueServiceImpt implements Sales_RevenueService {
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FIVE, Sales_Revenue.getSold_Quantity());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SIX, Sales_Revenue.getSales_Type());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SEVEN, Sales_Revenue.getAmount());
+			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_EIGHT,Sales_Revenue.getMonth());
 			
 			//Add Sales Revenue
 			preparedStatement.execute();
@@ -144,7 +145,8 @@ public class Sales_RevenueServiceImpt implements Sales_RevenueService {
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FOUR, Sales_Revenue.getSold_Quantity());
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FIVE, Sales_Revenue.getSales_Type());
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SIX, Sales_Revenue.getAmount());
-				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SEVEN, Sales_Revenue.getSales_RevenueID());
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SEVEN, Sales_Revenue.getMonth());
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_EIGHT, Sales_Revenue.getSales_RevenueID());
 			
 				preparedStatement.executeUpdate();
 			} catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException ex ) {
@@ -219,6 +221,7 @@ public class Sales_RevenueServiceImpt implements Sales_RevenueService {
 				revenue.setSold_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
 				revenue.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
 				revenue.setAmount(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+				revenue.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_EIGHT));
 				
 				SalesRevenueList.add(revenue);
 			}

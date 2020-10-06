@@ -95,8 +95,8 @@
 		<!-- Insert Factory Sales  -->
 		<query id="insert_FactorySales">
 		<![CDATA[
-			insert into Factory_Sales(Factory_Sales_ID,Tea_Grade_PriceID,Date,Tea_Grade,Selling_Quantity,Sales_Type)
-			values(?, ?, ?, ?, ?, ?)
+			insert into Factory_Sales(Factory_Sales_ID,Tea_Grade_PriceID,Date,Tea_Grade,Selling_Quantity,Sales_Type,Month)
+			values(?, ?, ?, ?, ?, ?, ?)
 		]]>
 		</query>
 		
@@ -125,7 +125,7 @@
 		<query id="update_FactorySales">
 		<![CDATA[
 			update Factory_Sales 
-			set Tea_Grade_PriceID = ? , Date = ?,Tea_Grade = ?, Selling_Quantity = ?, Sales_Type = ?
+			set Tea_Grade_PriceID = ? , Date = ?,Tea_Grade = ?, Selling_Quantity = ?, Sales_Type = ?, Month = ?
 			where Factory_Sales_ID = ? 
 		]]>
 		</query>
@@ -138,6 +138,16 @@
         	where Factory_Sales_ID = ?
 		]]>
 		</query>
+		
+		<!-- Get Factory Sales by SalesType and Month  -->
+		<query id="get_Factory_Sales_by_SalesType_month">
+		<![CDATA[
+			select * from Factory_Sales where Sales_Type = ? and Month = ?
+			
+		]]>
+		</query>
+		
+		
 		
 <!-- ********************************************************************************************************************* --> 
 
@@ -153,8 +163,8 @@
 		<!-- Insert Sales Return  -->
 		<query id="insert_SalesReturn">
 		<![CDATA[
-			insert into Sales_Return(Sales_ReturnID,Factory_SalesID,Date,Tea_Grade,Return_Quantity,Sales_Type)
-			values(?, ?, ?, ?, ?, ?)
+			insert into Sales_Return(Sales_ReturnID,Factory_SalesID,Date,Tea_Grade,Return_Quantity,Sales_Type,Month)
+			values(?, ?, ?, ?, ?, ?, ?)
 		]]>
 		</query>
 		
@@ -183,7 +193,7 @@
 		<query id="update_SalesReturn">
 		<![CDATA[
 			update Sales_Return 
-			set Factory_SalesID = ? , Date = ?,Tea_Grade = ?, Return_Quantity = ?, Sales_Type = ?
+			set Factory_SalesID = ? , Date = ?,Tea_Grade = ?, Return_Quantity = ?, Sales_Type = ?, Month = ?
 			where Sales_ReturnID = ?   
 		]]>
 		</query>
@@ -203,8 +213,8 @@
 		<!-- Insert Sales Revenue  -->
 		<query id="insert_SalesRevenue">
 		<![CDATA[
-			insert into Sales_Revenue(Sales_RevenueID,Factory_SalesID,Date,Tea_Grade,Sold_Quantity,Sales_Type,Amount)
-			values(?, ?, ?, ?, ?, ?, ?)
+			insert into Sales_Revenue(Sales_RevenueID,Factory_SalesID,Date,Tea_Grade,Sold_Quantity,Sales_Type,Amount,Month)
+			values(?, ?, ?, ?, ?, ?, ?, ?)
 		]]>
 		</query>
 		
@@ -233,7 +243,7 @@
 		<query id="update_SalesRevenue">
 		<![CDATA[
 			update Sales_Revenue 
-			set Factory_SalesID = ? , Date = ?,Tea_Grade = ?, Sold_Quantity = ?, Sales_Type = ?, Amount = ?
+			set Factory_SalesID = ? , Date = ?,Tea_Grade = ?, Sold_Quantity = ?, Sales_Type = ?, Amount = ?, Month = ?
 			where Sales_RevenueID = ?   
 		]]>
 		</query> 		

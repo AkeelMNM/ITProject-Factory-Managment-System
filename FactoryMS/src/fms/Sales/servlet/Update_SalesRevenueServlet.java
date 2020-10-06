@@ -53,9 +53,20 @@ public class Update_SalesRevenueServlet extends HttpServlet {
 		Sales_Revenue Revenue = new Sales_Revenue();
 		
 		String RevenueID = request.getParameter("RevID");
+		String date = request.getParameter("RevDate");
+		String Month = null;
+		
+		//Splitting Date
+		if(date != null && !date.isEmpty())
+		{
+			String[] x = date.split("-");
+				
+			Month = x[1];
+		}
 		
 		Revenue.setFactory_SalesID(request.getParameter("FactorySalesID"));
-		Revenue.setDate(request.getParameter("RevDate"));
+		Revenue.setDate(date);
+		Revenue.setMonth(Month);
 		Revenue.setTea_Grade(request.getParameter("Tea_Garde"));
 		Revenue.setSold_Quantity(request.getParameter("Sold_Qty"));
 		Revenue.setSales_Type(request.getParameter("Sales_Type"));

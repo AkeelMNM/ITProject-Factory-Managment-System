@@ -214,6 +214,26 @@ div.bigDiv
 	border: 1px solid #ccc;
 }
 
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+/* -------------------------- Search style ------------------------------------- */
+
+
+.reptoolbartxt
+{
+	font-size:16px;
+	text-align:right;
+}
+
+.reviewdr{
+
+	width: 100%;
+	height:80%;
+	float:left;
+	background: #f1f1f1;
+}
+
 /* -------------------------------------------------------------------------------------------------------------- */
 
 /* -------------------------- Report style ------------------------------------- */
@@ -234,10 +254,10 @@ div.ViewRepDiv{
 
 .BarTable {
 	border-collapse: collapse;
-	width: 29%;
+	width: 55%;
 	height:35px;
 	float:left;
-	margin-left: 40%;
+	margin-left: 15%;
 }
 
 .txtLabal {
@@ -328,13 +348,6 @@ tr.viewTr{
 background-color:#e0dddc;
 }
 
-td.TblData { /* view record table data class */
-	text-align: center;
-	padding:6px;
-	width:150px;
-	font-size: 14px;
-}
-
 th  /* view record table header */
 {	
 	background-color: #767b8c;
@@ -348,6 +361,22 @@ th  /* view record table header */
 	width:150px;
 	height:35px;
 	font-size: 15px;
+}
+
+td.tData  /* view record table data class */
+{
+	text-align: center;
+	padding:5px;
+	width:150px;
+	font-size: 14px;
+}
+
+td.tDataS  /* view record table data class */
+{
+	
+	padding:5px;
+	width:150px;
+	font-size: 14px;
 }
 
 /* -------------------------------------------------------------------------------------------------------------- */

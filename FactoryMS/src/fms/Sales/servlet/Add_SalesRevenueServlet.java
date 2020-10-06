@@ -52,6 +52,8 @@ public class Add_SalesRevenueServlet extends HttpServlet {
 
 		response.setContentType("text/HTML");
 		
+		String Month = null;
+		
 		Sales_Revenue Revenue = new Sales_Revenue();
 		
 		String date = request.getParameter("RevDate");
@@ -60,6 +62,14 @@ public class Add_SalesRevenueServlet extends HttpServlet {
 		String[] Amount = request.getParameterValues("total_Amount[]");
 		String[] FactorySalesID = request.getParameterValues("FactorySalesID[]");
 		String[] TeaGrade = new String [FactorySalesID.length];
+		
+		//Splitting Date
+		if(date != null && !date.isEmpty())
+		{
+			String[] x = date.split("-");
+				
+			Month = x[1];
+		}
 		
 		//call back end
 		Sales_RevenueService AddRevenue = new Sales_RevenueServiceImpt();
@@ -78,6 +88,7 @@ public class Add_SalesRevenueServlet extends HttpServlet {
 		{
 			if(TeaGrade[i] != null) {
 				Revenue.setDate(date);
+				Revenue.setMonth(Month);
 				Revenue.setSales_Type(SalesType);
 				Revenue.setTea_Grade(TeaGrade[i]);
 				Revenue.setSold_Quantity(Sold_Qty[i]);

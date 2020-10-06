@@ -1,3 +1,5 @@
+<%@page import="com.fms.model.FactorySales"%>
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -50,12 +52,22 @@
 		<!-- Body Part -->
 		
 		<div class="ViewRepDiv">
-			<form action="/action_page.php">
+			<form method="POST" action="${pageContext.request.contextPath}/FactorySales_ReportGenerateServlet">
 			<table class="BarTable">
 				<tr>
-					<td class="txtLabal">Month:</td>
+					<td class="reptoolbartxt">Select Sales Type : </td>
 					<td>
-						<select name="month" class="Sele" required> 
+						<select name="SalesType" class="reviewdr" required>
+							<option>--Select Type--</option>
+							<option value="Auction">Auction</option>
+							<option value="Local Sales"> Local Sales </option>
+							<option value="Factory"> Factory </option>
+						</select>
+					</td>
+				
+					<td class="reptoolbartxt">Month:</td>
+					<td>
+						<select name="month" class="Sele" class="reviewdr" required> 
 							<option> --Select Month-- </option>
 							<option value="January">January</option>
 							<option value="February"> February </option>
@@ -71,78 +83,114 @@
 							<option value="December"> December </option>
 						</select>
 					</td>
-					<td class="txtLabal">Date:</td>
-					<td><input type="date" name="RepDate" class="Sele"></td>
+					<td class="reptoolbartxt">Year :</td>
+					<td><input type="number" name="year" id="reviewdate"></td>
+					<input type="hidden" name="key" value ="CkhDate">
 				</tr>
 			</table>
-      			<input type="submit" id="view_btn" value="View" >
-      			<input type="submit" id="Generate_btn" value="Generate" >
+      			<input type="submit" value="View" id="view_btn" name="viewbutton" >
+      			<input type="submit" value="Generate" id="Generate_btn" name="genbutton" >
     		</form>
   		</div>
   		
+  		<%
+	  		String SYear =null;
+			String SMonth = null;
+			String SKey = null;
+			
+			ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
+			SalesList = (ArrayList<FactorySales>) request.getAttribute("FactorySalesList");
+			
+			SYear = (String) request.getAttribute("EPyear");
+			SMonth =(String) request.getAttribute("EPMonth");
+			SKey=(String) request.getAttribute("Key");
+			
+			if(SYear == "") {
+				SYear = null;
+			}
+  		
+  		%>
+  		
   		<div class="table">
   		
-	  		<h3 id="Report_H"> Factory Sales Report </h3>
-  		
-	  		<table id="ShowTable" >
-				<tr class="viewTr">
-			    	<th>Sales Type</th>
-			    	<th>Date</th>
-			    	<th>Tea Garde</th>
-			    	<th>Selling Quantity</th>
-				</tr>
+  		<% if(SYear == null && SMonth == null){  %>
+		<table style="height: 49%;" width="100%">
+			<tbody>
+			<tr>
+			<td style="width: 12.5043%; text-align:center;">&nbsp;The Report Preview will be Displayed here</td>
+			</tr>
+			</tbody>
+		</table>
+		
+		<%	}
+	
+  		if(SMonth != null && SYear == null){ %>
+		<table style="height: 137px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr style="height: 31px;">
+			<td style="width: 12%; height: 85px;" rowspan="4"><img id="logo" src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" /></td>
+			<td style="width: 316px; height: 31px;">
+			<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
+			</td>
+			<td style="width: 101px; height: 85px;" rowspan="4">Date:</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Tel : 0815630035</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Email : nmmbrosdtf@gmail.com</td>
+			</tr>
+			</tbody>
+		</table>
+		
+		
+		<hr style="width:90%; float:left; margin-left:50px;">
+		<table style="height: 112px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr>
+			<td style="width: 400px;">
+			<h4 style="margin-top:20px;">FACTORY SALES REPORT</h4>
+			</td>
+			<td style="width: 80.8px;" rowspan="2">Month: Feb </td>
+			</tr>
 			
-				<tr class="viewTr">
-						<td class ="TblData">Cash</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">Gold</td>
-						<td class ="TblData">150k</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Cash</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">Gold</td>
-						<td class ="TblData">150k</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Cash</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">Gold</td>
-						<td class ="TblData">150k</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Cash</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">Gold</td>
-						<td class ="TblData">150k</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Cash</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">Gold</td>
-						<td class ="TblData">850k</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Cash</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">Gold</td>
-						<td class ="TblData">150k</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Cash</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">Gold</td>
-						<td class ="TblData">150k</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Cash</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">Gold</td>
-						<td class ="TblData">150k</td>
-				</tr>
-				
-	 		</table>
-  		
+
+			<tr>
+			<td style="width: 400px;"><span style="text-decoration: underline;">MONTH REPROT</span></td>
+			</tr>
+			</tbody>
+		</table>
+		<hr style="width:90%; float:left; margin-left:50px;">
+
+			<table border="1" cellspacing="0" style="margin-left:50px;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			<tr>
+				<th colspan="3" class ="tDataS"> Date of Sale</th>
+				<th colspan="3" class ="tDataS"> Tea Grade</th>
+				<th colspan="3" class ="tDataS"> Selling Quantity(kg)</th>
+			</tr>
+			
+			<%
+				for(FactorySales fs : SalesList)
+				{	
+			%>
+			<tr>
+				<td colspan="3" class ="tData"><%=fs.getDate() %> </td>
+				<td colspan="3" class ="tData" ><%=fs.getTea_Grade() %> </td>
+				<td colspan="3" class ="tData" ><%=fs.getSelling_Quantity() %> </td>
+			</tr>
+			<%
+  				}
+			%>
+				</table>
+		
+		<%
+  			}
+		
+		%>
+		
   		</div>		
 				
 				

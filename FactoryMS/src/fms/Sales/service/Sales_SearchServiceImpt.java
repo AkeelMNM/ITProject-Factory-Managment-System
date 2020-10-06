@@ -64,6 +64,7 @@ public class Sales_SearchServiceImpt implements Sales_SearchService {
 					Sales.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
 					Sales.setSelling_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
 					Sales.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+					Sales.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
 					
 					FactorySalesList.add(Sales);
 				}
@@ -118,6 +119,8 @@ public class Sales_SearchServiceImpt implements Sales_SearchService {
 					Revenue.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
 					Revenue.setSold_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
 					Revenue.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+					Revenue.setAmount(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+					Revenue.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_EIGHT));
 					
 					SalesRevenueList.add(Revenue);
 				}
@@ -225,6 +228,7 @@ public class Sales_SearchServiceImpt implements Sales_SearchService {
 					Return.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
 					Return.setReturn_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
 					Return.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+					Return.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
 					
 					SalesReturnList.add(Return);
 				}

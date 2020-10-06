@@ -60,6 +60,7 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FOUR, Sales_Return.getTea_Grade());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FIVE, Sales_Return.getReturn_Quantity());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SIX, Sales_Return.getSales_Type());
+			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SEVEN, Sales_Return.getMonth());
 			
 			//Add Sales_Return
 			preparedStatement.execute();
@@ -143,7 +144,8 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_THREE, Sales_Return.getTea_Grade());
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FOUR, Sales_Return.getReturn_Quantity());
 				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_FIVE, Sales_Return.getSales_Type());
-				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SIX, Sales_Return.getSales_ReturnID());
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SIX, Sales_Return.getMonth());
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_SEVEN, Sales_Return.getSales_ReturnID());
 			
 				preparedStatement.executeUpdate();
 			} catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException ex ) {
@@ -216,6 +218,7 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 				rtn.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
 				rtn.setReturn_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
 				rtn.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+				rtn.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
 				
 				FactorySalesList.add(rtn);
 			}

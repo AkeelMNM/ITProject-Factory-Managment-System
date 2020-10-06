@@ -53,9 +53,20 @@ public class Update_SalesReturnServlet extends HttpServlet {
 		Sales_Return Return = new Sales_Return();
 		
 		String ReturnID = request.getParameter("RtnID");
+		String date = request.getParameter("RtnDate");
+		String Month = null;
+		
+		//Splitting Date
+		if(date != null && !date.isEmpty())
+		{
+			String[] x = date.split("-");
+				
+			Month = x[1];
+		}
 		
 		Return.setFactory_SalesID(request.getParameter("SalesID"));
-		Return.setDate(request.getParameter("RtnDate"));
+		Return.setDate(date);
+		Return.setMonth(Month);
 		Return.setTea_Grade(request.getParameter("TeaGarde"));
 		Return.setReturn_Quantity(request.getParameter("RtnQty"));
 		Return.setSales_Type(request.getParameter("SalesID"));

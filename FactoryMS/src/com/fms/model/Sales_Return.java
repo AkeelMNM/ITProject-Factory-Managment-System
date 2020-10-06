@@ -8,6 +8,7 @@ public class Sales_Return {
 	private String Tea_Grade;
 	private String Return_Quantity;
 	private String Sales_Type;
+	private String Month;
 	
 	
 	public Sales_Return() {
@@ -62,11 +63,19 @@ public class Sales_Return {
 		Sales_Type = sales_Type;
 	}
 
+	public String getMonth() {
+		return Month;
+	}
+
+	public void setMonth(String month) {
+		Month = month;
+	}
+
 	@Override
 	public String toString() {
 		return "Sales_Return [Sales_ReturnID=" + Sales_ReturnID + ", Factory_SalesID=" + Factory_SalesID + ", Date="
 				+ Date + ", Tea_Grade=" + Tea_Grade + ", Return_Quantity=" + Return_Quantity + ", Sales_Type="
-				+ Sales_Type + "]";
+				+ Sales_Type + ", Month=" + Month + "]";
 	}
 	
 }

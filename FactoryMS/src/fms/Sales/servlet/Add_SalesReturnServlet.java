@@ -52,6 +52,8 @@ public class Add_SalesReturnServlet extends HttpServlet {
 
 		response.setContentType("text/HTML");
 		
+		String Month = null;
+		
 		Sales_Return Return = new Sales_Return();
 		
 		String Date = request.getParameter("RtnDate");
@@ -59,6 +61,14 @@ public class Add_SalesReturnServlet extends HttpServlet {
 		String[] Return_Qty = request.getParameterValues("Rtn_Qty[]");
 		String[] FactorySalesID = request.getParameterValues("FactorySalesID[]");
 		String[] TeaGrade = new String [FactorySalesID.length];
+		
+		//Splitting Date
+		if(Date != null && !Date.isEmpty())
+		{
+			String[] x = Date.split("-");
+				
+			Month = x[1];
+		}
 		
 		//call back-end
 		Sales_ReturnService AddReturn = new Sales_ReturnServiceImpt();
@@ -77,6 +87,7 @@ public class Add_SalesReturnServlet extends HttpServlet {
 		{
 			if(TeaGrade[i] != null) {
 				Return.setDate(Date);
+				Return.setMonth(Month);
 				Return.setSales_Type(SalesType);
 				Return.setTea_Grade(TeaGrade[i]);
 				Return.setReturn_Quantity(Return_Qty[i]);

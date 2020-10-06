@@ -53,9 +53,51 @@ public class Update_FactorySalesServlet extends HttpServlet {
 		FactorySales Sales = new FactorySales();
 		
 		String SalesID = request.getParameter("SalesID");
+		String date = request.getParameter("SalDate");
+		
+		String Month = null;
+		String monthNum = null;
+		
+		//Splitting Date
+		if(date != null && !date.isEmpty())
+		{
+			String[] x = date.split("-");
+				
+			monthNum = x[1];
+			
+			if(monthNum != null)
+			{
+				if(monthNum.equals("01")) {
+					Month = "January";
+				}else if(monthNum.equals("02")) {
+					Month = "February";
+				}else if(monthNum.equals("03")) {
+					Month = "March";
+				}else if(monthNum.equals("04")) {
+					Month = "April";
+				}else if(monthNum.equals("05")) {
+					Month = "May";
+				}else if(monthNum.equals("06")) {
+					Month = "June";
+				}else if(monthNum.equals("07")) {
+					Month = "July";
+				}else if(monthNum.equals("08")) {
+					Month = "August";
+				}else if(monthNum.equals("09")) {
+					Month = "September";
+				}else if(monthNum.equals("10")) {
+					Month = "October";
+				}else if(monthNum.equals("11")) {
+					Month = "November";
+				}else if(monthNum.equals("12")) {
+					Month = "December";
+				}
+			}
+		}
 		
 		Sales.setTea_Grade_PriceID(request.getParameter("TeaGradePriceID"));
-		Sales.setDate(request.getParameter("SalDate"));
+		Sales.setDate(date);
+		Sales.setMonth(Month);
 		Sales.setTea_Grade(request.getParameter("Tea_Garde"));
 		Sales.setSelling_Quantity(request.getParameter("Selling_Qty"));
 		Sales.setSales_Type(request.getParameter("Sales_Type"));
