@@ -1,3 +1,4 @@
+<%@page import="com.fms.model.Employee"%>
 <%@page import="fms.HR.service.SearchServieImpt"%>
 <%@page import="fms.HR.service.EmployeeServiceImpt"%>
 <%@page import="fms.HR.service.EmployeeService"%>
@@ -14,6 +15,7 @@
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Admin_Insert_Styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Admin&Manager_Script.js"></script>
+
 </head>
 <body>
 <!-- +++++++++++++++++++++++++++++++++ Header Part +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
@@ -85,22 +87,34 @@
 				<tr>
 					<td >Account Type : </td>
 					<td>
-						<select id="dep"  name="acctype" style="width: 250px;" required> 
-								<option> --Select Type-- </option>
+						<select id="AccName"  name="acctype" style="width: 250px;" > 
+						<%String key =null;
+							key = (String) request.getAttribute("jName");
+						if(key !=null){ %>
+								<option value="<%=key%>"><%=key%></option>
+						<%}else{ %>
+						<option> --Select Type-- </option>
+						<%} %>
 								<option value="Manager"> Manager </option>
-								<option value="Administrator"> Administrator </option>
+								<option value="Admin"> Administrator </option>
 								<option value="Accountant"> Accountant </option>
 						</select>
+						<input type="submit" value="Get Employees" name="getJob" class="datagenbutton"> <!-- onclick="getEmpNameByJob();" -->
 					</td>
 				</tr>
 				<tr>
 					<td>Employee Name : </td>
 					<td>
-						<select  name="name" style="width: 250px;" required> 
-								<option> --Select Name-- </option> 
-								<%
+						<select  name="name" style="width: 250px;" id="emName" >
+						<%String ename =null;
+							ename =(String)request.getAttribute("ename");
+						if(ename !=null){ %> 
+								<option value="<%=ename%>"><%=ename%></option>
+						<%}else{ %>
+								<option> --Select Name-- </option>
+								<%}
 									EmployeeService empservice= new EmployeeServiceImpt();
-									ArrayList<String> nameList =empservice.getAllEmployeeName();
+									ArrayList<String> nameList =empservice.getAllEmployeeNameByJobTitle(key);
 									
 									for(String name : nameList)
 									{
@@ -116,15 +130,21 @@
 				</tr>
 				<tr>
 					<td>Employee Email:</td>
-					<td><input type="text" name="email" size="55" required></td>
+					<%if(ename !=null){
+						Employee e = empservice.getEmployeeByID(empservice.getEmployeeID(ename));
+						%>
+						<td><input type="text" name="email" size="40" Value ="<%=e.getEmail()%>"> <input type="submit" value="Get Email" name="getemail" class="datagenbutton"></td>
+					<%}else{ %>
+						<td><input type="text" name="email" size="40" > <input type="submit" value="Get Email" name="getemail"  class="datagenbutton"></td>
+					<%} %>
 				</tr>
 				<tr>
 					<td>Enter Password:</td>
-					<td><input type="password" name="password" id="pwd" size="55" required></td>
+					<td><input type="password" name="password" id="pwd" size="55" ></td>
 				</tr>
 				<tr>
 					<td>Re-enter Password : </td>
-					<td><input type="password" name="repassword" id="confirm_pwd" size="55" onkeyup="check()" required ><br>
+					<td><input type="password" name="repassword" id="confirm_pwd" size="55" onkeyup="check()"><br>
 					<span id='Pwd_msg'></td>
 				</tr>
 				<tr>
@@ -138,7 +158,7 @@
 				<tr ><td colspan="2" ></td></tr>
 				<tr >
 					<td colspan="2" ><input type="reset" value="Reset" class="resetbutton">
-					<input type="submit" value="Create" class="submitbutton"></td>
+					<input type="submit" value="Create" name="CAccount" class="submitbutton"></td>
 				</tr>
 			</table>
 			</form>

@@ -48,21 +48,37 @@ public class AddAccountServlet extends HttpServlet {
 		String empid = empservice.getEmployeeID(request.getParameter("name"));
 		
 		
-		Account account = new Account();
-		
-		account.setAccType(request.getParameter("acctype"));
-		account.setEmpID(empid);
-		account.setEmpName(request.getParameter("name"));
-		account.setUserName(request.getParameter("email"));
-		account.setPassword(request.getParameter("password"));
-		account.setStatus(request.getParameter("status"));
-		
-		AccountService accountservice = new AccountServiceImpt();
-		accountservice.addAccount(account);
-		
-		request.setAttribute("account", account);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Accounts.jsp");
-		dispatcher.forward(request, response);
+		if("Get Employees".equals(request.getParameter("getJob"))) {
+			
+			request.setAttribute("jName", request.getParameter("acctype"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Accounts.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if("Get Email".equals(request.getParameter("getemail"))) {
+			
+			request.setAttribute("jName", request.getParameter("acctype"));
+			request.setAttribute("ename", request.getParameter("name"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Accounts.jsp");
+			dispatcher.forward(request, response);
+			
+		}
+		else if("Create".equals(request.getParameter("CAccount"))) {
+			Account account = new Account();
+			
+			account.setAccType(request.getParameter("acctype"));
+			account.setEmpID(empid);
+			account.setEmpName(request.getParameter("name"));
+			account.setUserName(request.getParameter("email"));
+			account.setPassword(request.getParameter("password"));
+			account.setStatus(request.getParameter("status"));
+			
+			AccountService accountservice = new AccountServiceImpt();
+			accountservice.addAccount(account);
+			
+			request.setAttribute("account", account);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Accounts.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 }

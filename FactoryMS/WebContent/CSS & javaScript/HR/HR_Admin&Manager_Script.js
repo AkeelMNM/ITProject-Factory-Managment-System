@@ -44,3 +44,27 @@ function calc() { // Calculating EPF and ETF for the job
 
 }
 
+
+/*document.getElementById("AN").onclick = function() {getEmpNameByJob()}
+
+function getEmpNameByJob(){
+	var e = document.getElementById("AccName");
+	var result = e.options[e.selectedIndex].value;
+
+	window.location.reload("/FactoryMS/Interfaces/HR/HR_Add_Accounts.jsp?key="+result);
+	document.getElementById('AccName').value = result;
+	//document.getElementById("result").innerHTML = result;
+}
+
+function getEmpEmailByName(){
+	var e = document.getElementById("AccName");
+	var result = e.options[e.selectedIndex].value;
+	
+	var e1 = document.getElementById("emName");
+	var eName = e1.options[e1.selectedIndex].value;
+
+	window.location.reload("/FactoryMS/Interfaces/HR/HR_Add_Accounts.jsp?key="+result+"&ename="+eName);
+	//document.getElementById('AccName').value = result;
+	//document.getElementById("result").innerHTML = result;
+}*/
+

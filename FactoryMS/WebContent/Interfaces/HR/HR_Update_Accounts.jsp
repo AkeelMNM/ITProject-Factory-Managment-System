@@ -87,32 +87,16 @@
 				<tr>
 					<td for="dep">Account Type : </td>
 					<td>
-						<select id="dep"  name="acctype" style="width: 250px;" required> 
+						<select id="dep"  name="acctype" style="width: 250px;" Disabled required> 
 								<option value="<%=acc.getAccType()%>"> <%=acc.getAccType()%> </option>
-								<option value="Manager"> Manager </option>
-								<option value="Administrator"> Administrator </option>
-								<option value="Accountant"> Accountant </option>
 						</select>
 					</td>
 				</tr>
 				<tr>
 					<td for="dep">Employee Name : </td>
 					<td>
-						<select id="dep"  name="name" style="width: 250px;" required>  
+						<select id="dep"  name="name" style="width: 250px;" Disabled required>  
 								<option value="<%=acc.getEmpName()%>"><%=acc.getEmpName()%> </option> 
-								<%
-									EmployeeService empservice= new EmployeeServiceImpt();
-									ArrayList<String> nameList =empservice.getAllEmployeeName();
-									
-									for(String name : nameList)
-									{
-								%>
-							
-								<option value="<%=name%>">  <%=name%>  </option> 			
-									
-								<%
-									}
-								%>
 							</select>
 							
 					</td>

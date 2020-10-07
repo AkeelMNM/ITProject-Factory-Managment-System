@@ -51,14 +51,13 @@ public class UpdateLeaveServlet extends HttpServlet {
 		String[] absent = request.getParameterValues("absent[]");
 		
 		
-		String btnR = request.getParameter("rb");
 		String btnS = request.getParameter("sb");
 		
 		E_Leave leave = new E_Leave();
 		
 		E_LeaveService leaveservice = new E_LeaveServiceImpt();
 
-		if(btnR.equals("Remove")) {
+		if("Remove".equals(request.getParameter("rb"))) {
 			String delid= request.getParameter("did");
 			
 			leaveservice.removeLeave(delid);

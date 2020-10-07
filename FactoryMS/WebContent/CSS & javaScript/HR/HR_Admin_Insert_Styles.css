@@ -6,8 +6,9 @@ body
 	background-size: cover;
 	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
 	text-align: center;
- 
+
 }
+
 /*--------------------------------------------------*/
 
 /* *************************************************** Header Part *************************************************** */
@@ -258,7 +259,6 @@ table.view  /* view record table */
 	border-collapse: collapse;
 	width: 100%;
 	table-layout: fixed;
-	
 }
 
 tr.viewTr{background-color: #f2f2f2;}  /* view record table row class*/
@@ -270,6 +270,7 @@ td.tData  /* view record table data class */
 	padding:6px;
 	width:150px;
 	font-size: 14px;
+	
 }
 
 th  /* view record table header */
@@ -395,6 +396,26 @@ td /* table data class */
  
   
 }
+
+.datagenbutton{  /* insert form data generating buttons */
+
+  background-color:	#434343;
+  border: none;
+  color: white;
+  padding: 5px ;
+  text-align: center;
+  text-decoration: none;
+  font-size: 11px;
+  transition: 0.3s;
+  cursor:pointer;
+  border-radius:3px;
+  width:100px;
+  align:center;
+ 
+ 
+  
+}
+
 /* Change background color of submit button on hover */
 .submitbutton:hover {
   background-color: #434343;
@@ -403,6 +424,11 @@ td /* table data class */
 /* Change background color of reset button on hover */
 .resetbutton:hover {
   background-color: #434343;
+}
+
+/* Change background color of reset button on hover */
+.datagenbutton:hover {
+  background-color:#ed3330;
 }
 
 .vl  /* vertical line class */
