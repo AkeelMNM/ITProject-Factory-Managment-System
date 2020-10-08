@@ -71,6 +71,7 @@ public class LoginServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("uname", empName);
 			session.setAttribute("uid", empid);
+			session.setAttribute("type", role);
 			session.setAttribute("img", a.getProfileImage());
 		
 			if(empid != null && role != null)

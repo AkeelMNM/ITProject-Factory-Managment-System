@@ -36,6 +36,11 @@
 	  background-color:#2c2c2c;
 	  color: white;
 	}
+	
+.th1{
+	  background-color:#2c2c2c;
+	  color: white;
+	}
 
 #Userlogo2
 {
@@ -48,6 +53,27 @@
 		margin-top:30px;
 }
 
+.homebutton {  /* Home button */
+
+  background-color:	#ed3330;
+  border: none;
+  color: white;
+  padding: 7px ;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s;
+  cursor:pointer;
+  width:300px;
+  margin-left:-1215px;
+  margin-top:3px;
+
+}
+
+/* Change background color of Home button on hover */
+.homebutton:hover {
+  background-color: #434343;
+}
 
 </style>
 
@@ -74,11 +100,35 @@
 </div>
 <div style="float:left; width:100%; margin-top:-4px"><hr></div>
 <div id="bodyDiv">
+<%if("Administrator".equals((String)session.getAttribute("type"))){ %>
+<a href = "${pageContext.request.contextPath}/Interfaces/Home/Admin_Home.jsp"><button class ="homebutton">Home</button></a>
+<%}else if("Accountant".equals((String)session.getAttribute("type"))){ %>
+<a href = "${pageContext.request.contextPath}/Interfaces/Home/Accountant_Home.jsp"><button class ="homebutton">Home</button></a>
+<%}else if("Manager".equals((String)session.getAttribute("type"))){ %>
+<a href = "${pageContext.request.contextPath}/Interfaces/Home/Manager_Home.jsp"><button class ="homebutton">Home</button></a>
+<%} %>
 <h2>Technical Support  </h2>
+<h2>Contact Us  </h2>
 		<!-- Content Part -->
 		
 		<div>
 		
+		<table style="height: 228px; width:554px; margin-left:485px; border: 1px solid black;">
+		<tbody>
+		<tr>
+		<td style="width: 269.6px;" class="th1">Contect No</td>
+		<td style="width: 269.6px;">123456789</td>
+		</tr>
+		<tr>
+		<td style="width: 269.6px;" >Contact Email</td>
+		<td style="width: 269.6px;" class="th1">123@gmail.com</td>
+		</tr>
+		<tr>
+		<td style="width: 269.6px;" class="th1">System Design By</td>
+		<td style="width: 269.6px;">SLIIT 2nd year 2nd Semester Students</td>
+		</tr>
+		</tbody>
+		</table>
 		
 		</div>
 		

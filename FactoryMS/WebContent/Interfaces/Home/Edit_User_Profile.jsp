@@ -118,7 +118,13 @@
 </div>
 <div style="float:left; width:100%; margin-top:-4px"><hr></div>
 <div id="bodyDiv">
+<%if("Administrator".equals((String)session.getAttribute("type"))){ %>
 <a href = "${pageContext.request.contextPath}/Interfaces/Home/Admin_Home.jsp"><button class ="homebutton">Home</button></a>
+<%}else if("Accountant".equals((String)session.getAttribute("type"))){ %>
+<a href = "${pageContext.request.contextPath}/Interfaces/Home/Accountant_Home.jsp"><button class ="homebutton">Home</button></a>
+<%}else if("Manager".equals((String)session.getAttribute("type"))){ %>
+<a href = "${pageContext.request.contextPath}/Interfaces/Home/Manager_Home.jsp"><button class ="homebutton">Home</button></a>
+<%} %>
 <h2 style="margin-top:5px">Edit User Profile  </h2>
 		<!-- Content Part -->
 		
