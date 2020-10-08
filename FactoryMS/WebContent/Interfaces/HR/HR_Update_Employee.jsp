@@ -24,10 +24,10 @@
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn">User Name</button>
+							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
 									  <div id="myDropdown" class="dropdown-content">
-											<a href="#home">View Profile</a>
-											<a href="#about">Logout</a>
+											<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
+											<a href="${pageContext.request.contextPath}/Interfaces/Home/LogoutServlet">Logout</a>
 									  </div>
 					</div>
 				</div>
@@ -36,7 +36,7 @@
 </div>
 <hr>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-		<ul><li><a class="menu" href="#">Home
+		<ul><li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Home/Admin_Home.jsp">Home
 				<ul>
 					  <li><a class="menu" href="#">Purchase</a></li>
 					  <li><a class="menu" href="#">Production</a></li>

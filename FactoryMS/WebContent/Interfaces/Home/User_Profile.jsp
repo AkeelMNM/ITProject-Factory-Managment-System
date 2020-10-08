@@ -11,14 +11,14 @@
 <head>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/Home & Login/Home_Styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="${pageContext.request.contextPath}/CSS & javaScript/EmployeeScript.js"></script>
+		<script src="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Admin&Manager_Script.js"></script>
 
 <style type="text/css">
 
 	table {
 	  border-collapse: collapse;
-	  width: 96%;
-	  float:left;
+	  width: 90%;
+	  margin-left:50px;
 	}
 	
 	td {
@@ -36,18 +36,65 @@
 	  background-color:#2c2c2c;
 	  color: white;
 	}
-
+	
+.t1{
+	border-collapse: collapse;
+	 width: 12%;
+	 margin-left:670px;
+}
 #Userlogo2
 {
 		display:block;
 		width:80px;
 		height:80px;
 		border-radius: 50%;
-		float:left;
-		margin-left:725px;
-		margin-top:30px;
+		margin-left:40px;
+		
 }
 
+.homebutton {  /* Home button */
+
+  background-color:	#ed3330;
+  border: none;
+  color: white;
+  padding: 7px ;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s;
+  cursor:pointer;
+  width:300px;
+  margin-left:-1215px;
+  margin-top:3px;
+
+}
+
+/* Change background color of Home button on hover */
+.homebutton:hover {
+  background-color: #434343;
+}
+
+.changebutton {  /* Update form table Update button */
+
+  background-color:	#2B7A78;
+  border: none;
+  color: white;
+  padding: 7px ;
+  text-align: center;
+  text-decoration: none;
+  font-size: 13px;
+  transition: 0.3s;
+  cursor:pointer;
+  width:150px;
+  align:center;
+  float:left;
+
+}
+
+/* Change background color of submit button on hover */
+.changebutton:hover {
+  background-color: #434343;
+}
 
 </style>
 
@@ -62,10 +109,10 @@
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn">User Name</button>
+							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
 									  <div id="myDropdown" class="dropdown-content">
-											<a href="#home">View Profile</a>
-											<a href="#about">Logout</a>
+											<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
+											<a href="${pageContext.request.contextPath}/Interfaces/Home/LogoutServlet">Logout</a>
 									  </div>
 					</div>
 				</div>
@@ -74,36 +121,26 @@
 </div>
 <div style="float:left; width:100%; margin-top:-4px"><hr></div>
 <div id="bodyDiv">
-<h2>User Profile  </h2>
+<a href = "${pageContext.request.contextPath}/Interfaces/Home/Admin_Home.jsp"><button class ="homebutton">Home</button></a>
+<h2 style="margin-top:5px">User Profile  </h2>
 		<!-- Content Part -->
 		
 		<%
-			String EmployeeID = "E001";
-			
-			//Accsessing the Cookie
-			/*Cookie[] cookies = request.getCookies();
-			for(Cookie aCookie : cookies){
-				if(aCookie.getName().equals("employeeid"))
-				{
-					EmployeeID = aCookie.getValue();
-				}
-			}*/
-			
+			String EmployeeID = (String)session.getAttribute("uid") ;
 			AccountService acservice = new AccountServiceImpt();
 			String ACCID = acservice.getAccountID(EmployeeID);
 			Account ac = acservice.getAccountByID(ACCID);
 			
 			
 		%>
-	<div>
-			<img src="<%=ac.getProfileImage()%>" alt="UserLogo" id="Userlogo2">
-			<form action="${pageContext.request.contextPath}/UploadUserImageServlet" method="post" enctype="multipart/form-data" >
- 					Select<input type="file" name="file" /><br>
- 					<input type="hidden" name="Accid" value="<%=ACCID%>">
- 					<input type="hidden" name="empid" value="<%=EmployeeID%>">
- 					<input type="submit" value="upload" />
-			</form>
-		</div>
+	<table class="t1">
+		<tr>
+			<td><img src="<%=ac.getProfileImage()%>" alt="UserLogo" id="Userlogo2"></td>
+		</tr>
+		<tr>
+ 			<td><a href = "${pageContext.request.contextPath}/Interfaces/Home/Edit_User_Profile.jsp"><button class="changebutton">Edit Profile</button></a></td>
+		</tr>
+	</table>
 		  
 		<%
 			//get the employee details
@@ -135,6 +172,8 @@
 					<tr>
 						<td>Gender</td>
 						<td> <%=emp.getGender() %> </td>
+						<td>Email</td>
+						<td> <%=emp.getEmail() %> </td>
 					</tr>
 					<tr>
 						<td>Date of birth</td>

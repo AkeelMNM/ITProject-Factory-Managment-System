@@ -44,44 +44,56 @@ public class AddLeaveServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String date = request.getParameter("date");
-		String month = request.getParameter("month");
-		String job = request.getParameter("jobList");
-		String[] name= request.getParameterValues("name[]");
-		String[] absent = request.getParameterValues("absent[]");
-		String[] empID = new String[name.length];
+
 		
-		E_Leave leave = new E_Leave();
 		
-		E_LeaveService leaveservice = new E_LeaveServiceImpt();
-		EmployeeService employeeservice = new EmployeeServiceImpt();
-		
-		for (int i = 0; i < name.length ; i++) { 
-			  
-			String n = null;
-			n = employeeservice.getEmployeeID(name[i]);
-			empID[i] =n;
+		if("Get Employees".equals(request.getParameter("getJob"))) {
 			
-        } 
-		
-		
-		for (int i = 0; i < name.length ; i++) { 
-			  
-			if(empID[i] != null) {
-				leave.setDate(date);
-				leave.setEmpID(empID[i]);
-				leave.setEmpName(name[i]);
-				leave.setJobTitle(job);
-				leave.setMonth(month);
-				leave.setLeave_Status(absent[i]);
+			request.setAttribute("jName", request.getParameter("jobList"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Leave.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if("Submit".equals(request.getParameter("CL"))) {
+			
+			String date = request.getParameter("date");
+			String month = request.getParameter("month");
+			String job = request.getParameter("jobList");
+			String[] name= request.getParameterValues("name[]");
+			String[] absent = request.getParameterValues("absent[]");
+			String[] empID = new String[name.length];
+			
+			E_Leave leave = new E_Leave();
+			
+			E_LeaveService leaveservice = new E_LeaveServiceImpt();
+			EmployeeService employeeservice = new EmployeeServiceImpt();
+			
+			for (int i = 0; i < name.length ; i++) { 
 				
-				leaveservice.addLeave(leave);
+				String n = null;
+				n = employeeservice.getEmployeeID(name[i]);
+				empID[i] =n;
+				
+			} 
+			
+			
+			for (int i = 0; i < name.length ; i++) { 
+				
+				if(empID[i] != null) {
+					leave.setDate(date);
+					leave.setEmpID(empID[i]);
+					leave.setEmpName(name[i]);
+					leave.setJobTitle(job);
+					leave.setMonth(month);
+					leave.setLeave_Status(absent[i]);
+					
+					leaveservice.addLeave(leave);
+				}
+				
 			}
 			
-        }
-		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Leave.jsp");
-		dispatcher.forward(request, response);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Leave.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 	}
 

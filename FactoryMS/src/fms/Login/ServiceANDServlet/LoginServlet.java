@@ -9,6 +9,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.fms.model.Account;
+
+import fms.HR.service.AccountService;
+import fms.HR.service.AccountServiceImpt;
 
 /**
    @author Akeel M.N.M
@@ -55,8 +61,17 @@ public class LoginServlet extends HttpServlet {
 		{
 			ArrayList<String> arrayList = loginservie.checkLogin(request.getParameter("username"), request.getParameter("password"));
 		
-			String empid = arrayList.get(2);
+			String empName = arrayList.get(2);
 			String role = arrayList.get(3);
+			String empid = arrayList.get(4);
+			
+			AccountService ac = new AccountServiceImpt();
+			Account a = ac.getAccountByID(ac.getAccountID(empid));
+			
+			HttpSession session = request.getSession();
+			session.setAttribute("uname", empName);
+			session.setAttribute("uid", empid);
+			session.setAttribute("img", a.getProfileImage());
 		
 			if(empid != null && role != null)
 			{

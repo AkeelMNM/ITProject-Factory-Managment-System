@@ -14,6 +14,13 @@ public class Common {
 	//Constant for query id for save image in HRQuery.xml 
 	public static final String Query_ID_GET_PROFILE_IMAGE_SAVE ="set_profile";
 	
+	//Constant for query id for save image in HRQuery.xml 
+	public static final String Query_ID_GET_PASSWORD_CHANGE ="change_pass";
+	
+	//Constant for query id for save image in HRQuery.xml 
+	public static final String Query_ID_GET_EMIAL_CHANGE ="change_email";
+		
+	
 	//Constant for column index one 
 	public static final int COLUMN_INDEX_ONE = 1;
 		
@@ -25,6 +32,9 @@ public class Common {
 	
 	//Constant for column index four 
 	public static final int COLUMN_INDEX_FOUR = 4;
+	
+	//Constant for column index five 
+	public static final int COLUMN_INDEX_FIVE = 5;
 	
 	
 	

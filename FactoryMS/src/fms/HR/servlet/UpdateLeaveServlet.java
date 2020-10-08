@@ -64,6 +64,7 @@ public class UpdateLeaveServlet extends HttpServlet {
 			
 			request.setAttribute("rmonth", month);
 			request.setAttribute("ldate", date);
+			request.setAttribute("jT", request.getParameter("jName"));
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Update_Leave.jsp");
 			dispatcher.forward(request, response);
 			

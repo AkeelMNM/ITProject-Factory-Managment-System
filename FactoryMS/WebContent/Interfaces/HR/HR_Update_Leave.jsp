@@ -22,10 +22,10 @@
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn">User Name</button>
+							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
 									  <div id="myDropdown" class="dropdown-content">
-											<a href="#home">View Profile</a>
-											<a href="#about">Logout</a>
+											<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
+											<a href="${pageContext.request.contextPath}/Interfaces/Home/LogoutServlet">Logout</a>
 									  </div>
 					</div>
 				</div>
@@ -34,7 +34,7 @@
 </div>
 <hr>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-		<ul><li><a class="menu" href="#">Home
+		<ul><li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Home/Admin_Home.jsp">Home
 				<ul>
 					  <li><a class="menu" href="#">Purchase</a></li>
 					  <li><a class="menu" href="#">Production</a></li>
@@ -73,6 +73,7 @@
 					
 					String date = null;
 					String month = null;
+					String JTitle = null;
 					
 					if(request.getParameter("Date") != null){
 						
@@ -84,10 +85,18 @@
 						
 						date = (String)request.getAttribute("ldate");
 						month = (String)request.getAttribute("rmonth");
+						
 					}
 					
 					E_LeaveService leaveservice = new E_LeaveServiceImpt();
 					ArrayList<E_Leave> leavelist = leaveservice.getLeaveByDate(date);
+					
+					if(request.getParameter("Date") != null){
+						JTitle = leavelist.get(0).getJobTitle();
+					}
+					if((String)request.getAttribute("ldate") != null){
+						JTitle = (String)request.getAttribute("jT");
+					}
 		%>
 		<div class ="left">
 		<br>
@@ -124,8 +133,9 @@
 					<td style="text-align: center;">Job Name : </td>
 					<td class="select">
 						<select   style="width: 200px;" Disabled> 
-								<option value="<%=leavelist.get(0).getJobTitle()%>"><%=leavelist.get(0).getJobTitle()%></option>				
+								<option value="<%=JTitle%>"><%=JTitle%></option>				
 						</select>
+						<input type="hidden" name="jName" value="<%=JTitle%>">
 					</td>
 				</tr>
 					<tr><td style="text-align: center; text-decoration: underline;">Employee Name</td>

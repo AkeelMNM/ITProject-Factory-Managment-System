@@ -427,15 +427,33 @@
 		<!-- Get Login details -->
 		<query id="get_login">
 		<![CDATA[
-			select UserName,Password,Employee_Name,AccountType from Account where UserName = ? and Password = ?
+			select UserName,Password,Employee_Name,AccountType,EmpID from Account where UserName = ? and Password = ?
 		]]>
 		</query>
 		
-		<!-- Get Login details -->
+		<!-- set Profile picture -->
 		<query id="set_profile">
 		<![CDATA[
 			update account
 			set Profile_Image = ?
+			where AccID = ?
+		]]>
+		</query>
+		
+		<!-- Get Login details -->
+		<query id="change_pass">
+		<![CDATA[
+			update account
+			set Password = ?
+			where AccID = ?
+		]]>
+		</query>
+		
+		<!-- Get Login details -->
+		<query id="change_email">
+		<![CDATA[
+			update account
+			set UserName = ?
 			where AccID = ?
 		]]>
 		</query>

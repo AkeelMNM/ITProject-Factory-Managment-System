@@ -18,14 +18,14 @@
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn">User Name</button>
+							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
 									  <div id="myDropdown" class="dropdown-content">
 											<a href="#home">View Profile</a>
 											<a href="#about">Logout</a>
 									  </div>
 					</div>
 				</div>
-						<img src="${pageContext.request.contextPath}/Images_UserProfile/AB.jpg" alt="UserLogo" id="Userlogo">								
+						<img src="<%=(String)session.getAttribute("img")%>" alt="UserLogo" id="Userlogo">								
 
 </div>
 <div style="float:left; width:100%; margin-top:-4px"><hr></div>
@@ -93,7 +93,7 @@
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Employee.jsp">
 							<img src="${pageContext.request.contextPath}/Images/HR.png" alt="hrLogo" class="functionlogo">
 							<label>Human Resource Management</label>
 						</a>

@@ -27,10 +27,10 @@
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn">User Name</button>
+							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
 									  <div id="myDropdown" class="dropdown-content">
-											<a href="#home">View Profile</a>
-											<a href="#about">Logout</a>
+											<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
+											<a href="${pageContext.request.contextPath}/Interfaces/Home/LogoutServlet">Logout</a>
 									  </div>
 					</div>
 				</div>
@@ -39,7 +39,7 @@
 </div>
 <hr>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-		<ul><li><a class="menu" href="#">Home
+		<ul><li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Home/Admin_Home.jsp">Home
 				<ul>
 					  <li><a class="menu" href="#">Purchase</a></li>
 					  <li><a class="menu" href="#">Production</a></li>
@@ -86,7 +86,7 @@
 				
 				<tr>
 					<td style="text-align: center;">Date:</td>
-					<td><input type="date" name="date" required></td>
+					<td><input type="date" name="date"></td>
 				</tr>
 				<tr>
 					<td style="text-align: center;">Month : </td>
@@ -111,8 +111,13 @@
 				</tr>
 				<tr>
 					<td style="text-align: center;">Select Job:</td><td><select name="jobList"  class="reviewdr" required>
+					<%String key =null;
+						key = (String) request.getAttribute("jName");
+						if(key !=null){ %>
+								<option value="<%=key%>"><%=key%></option>
+						<%}else{ %> 
 									<option> --Select Title-- </option> 
-									<%
+									<%}
 									JobService jobservice = new JobServiceImpt();
 									ArrayList<String> jobList =jobservice.getJobName();
 									
@@ -125,7 +130,9 @@
 								<%
 									}
 								%>
-					</select></td>		
+					</select>
+					<input type="submit" value="Get Employees" name="getJob" class="datagenbutton">
+					</td>		
 				</tr>
 					<tr><td style="text-align: center; text-decoration: underline;">Employee Name</td>
 					<td  style="text-align: center; text-decoration: underline;">Absent</td></tr>
@@ -134,11 +141,11 @@
 				%>
 				<tr>
 					<td style="text-align: center">
-						<select  name="name[]"  style="width: 150px;" > 
+					<select  name="name[]" style="width: 150px;">
 								<option> --Select Name-- </option> 
 								<%
 									EmployeeService empservice= new EmployeeServiceImpt();
-									ArrayList<String> nameList =empservice.getAllEmployeeName();
+									ArrayList<String> nameList =empservice.getAllEmployeeNameByJobTitle(key);
 									
 									for(String name : nameList)
 									{
@@ -158,7 +165,7 @@
 				%>
 				<tr>
 					<td colspan="2" ><input type="reset" value="Reset" class="resetbutton" style="margin-top:12px;">
-					<input type="submit" value="Submit" class="submitbutton" style="margin-top:12px;"></td>
+					<input type="submit" value="Submit" name="CL" class="submitbutton" style="margin-top:12px;"></td>
 				</tr>
 			</table>
 			</form>

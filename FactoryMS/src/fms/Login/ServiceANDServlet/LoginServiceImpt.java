@@ -17,6 +17,7 @@ import org.xml.sax.SAXException;
 import com.fms.DBconnection.DBConnection;
 import com.fms.QueryUtil.HRQueryUtil;
 import com.fms.commonConstant.Common;
+import com.fms.model.Account;
 
 /**
  * 
@@ -110,6 +111,7 @@ public ArrayList<String> checkLogin(String Username,String Password)
 								loginList.add(result.getString(Common.COLUMN_INDEX_TWO));
 								loginList.add(result.getString(Common.COLUMN_INDEX_THREE));
 								loginList.add(result.getString(Common.COLUMN_INDEX_FOUR));
+								loginList.add(result.getString(Common.COLUMN_INDEX_FIVE));
 						}
 					
 			} 
@@ -151,6 +153,88 @@ public void uploadImage(String imgDir,String AccID) {
 			preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(Common.Query_ID_GET_PROFILE_IMAGE_SAVE));
 			
 			preparedStatement.setString(Common.COLUMN_INDEX_ONE, imgDir);
+			preparedStatement.setString(Common.COLUMN_INDEX_TWO, AccID);
+			
+			preparedStatement.executeUpdate();
+	}
+	catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e) {
+			
+			log.log(Level.SEVERE,e.getMessage());
+	}
+	finally
+	{
+			//Closing DB Connection and Prepared statement
+			try 
+			{	
+				if(preparedStatement != null)
+				{
+					preparedStatement.close();
+				}
+				if(connection != null)
+				{
+					connection.close();
+				}
+				
+			}
+			catch (SQLException e)
+			{
+				log.log(Level.SEVERE,e.getMessage());
+			}
+			
+	}
+}
+
+public void changePassword(String pass,String AccID) {
+	
+	try
+	{
+			connection = DBConnection.getDBConnection();
+			
+			//Image Saving  Query will be Retrieve from HRDBQuery.xml
+			preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(Common.Query_ID_GET_PASSWORD_CHANGE));
+			
+			preparedStatement.setString(Common.COLUMN_INDEX_ONE, pass);
+			preparedStatement.setString(Common.COLUMN_INDEX_TWO, AccID);
+			
+			preparedStatement.executeUpdate();
+	}
+	catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e) {
+			
+			log.log(Level.SEVERE,e.getMessage());
+	}
+	finally
+	{
+			//Closing DB Connection and Prepared statement
+			try 
+			{	
+				if(preparedStatement != null)
+				{
+					preparedStatement.close();
+				}
+				if(connection != null)
+				{
+					connection.close();
+				}
+				
+			}
+			catch (SQLException e)
+			{
+				log.log(Level.SEVERE,e.getMessage());
+			}
+			
+	}
+}
+
+public void changeEmail(String email,String AccID) {
+	
+	try
+	{
+			connection = DBConnection.getDBConnection();
+			
+			//Image Saving  Query will be Retrieve from HRDBQuery.xml
+			preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(Common.Query_ID_GET_EMIAL_CHANGE));
+			
+			preparedStatement.setString(Common.COLUMN_INDEX_ONE, email);
 			preparedStatement.setString(Common.COLUMN_INDEX_TWO, AccID);
 			
 			preparedStatement.executeUpdate();
