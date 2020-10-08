@@ -45,9 +45,7 @@ public class UpdatePerfromanceTrackingServlet extends HttpServlet {
 		String id = request.getParameter("PTID");
 		PerformanceTracking pr = new PerformanceTracking();
 		
-		pr.setEmpID(request.getParameter("empID"));
-		pr.setJobTitle(request.getParameter("job"));
-		pr.setEmpName(request.getParameter("name"));
+		
 		pr.setMonth(request.getParameter("month"));
 		pr.setDate(request.getParameter("date"));
 		pr.setTimeIn(request.getParameter("timein"));

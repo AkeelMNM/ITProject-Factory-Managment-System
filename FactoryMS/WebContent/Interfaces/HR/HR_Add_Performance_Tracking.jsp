@@ -86,9 +86,14 @@
 				<tr>
 					<td >Job Title : </td>
 					<td>
-						<select name="job" tabindex="1" style="width: 250px;" required> 
-								<option> --Select Job-- </option> 
-								<%
+						<select name="job" tabindex="1" style="width: 250px;" required>
+						<%String key =null;
+							key = (String) request.getAttribute("jName");
+						if(key !=null){ %>
+								<option value="<%=key%>"><%=key%></option>
+						<%}else{ %>
+							<option> --Select Job-- </option>  
+								<%}
 									JobService jobservice = new JobServiceImpt();
 									ArrayList<String> jobnameList = jobservice.getJobName();
 									
@@ -111,7 +116,7 @@
 								<option> --Select Name-- </option> 
 								<%
 									EmployeeService empservice= new EmployeeServiceImpt();
-									ArrayList<String> nameList =empservice.getAllEmployeeName();
+									ArrayList<String> nameList =empservice.getAllEmployeeNameByJobTitle(key);
 									
 									for(String name : nameList)
 									{
@@ -123,6 +128,7 @@
 									}
 								%>
 							</select>
+							<input type="submit" value="Get Employees" name="getJob" class="datagenbutton"> <!-- onclick="getEmpNameByJob();" -->
 					</td>
 				</tr>
 				<tr>
@@ -142,27 +148,27 @@
 								<option value="November"> November </option>
 								<option value="December"> December </option>
 												
-						</select>&emsp;Date:&emsp;<input type="date" name="date"   required></td>
+						</select>&emsp;Date:&emsp;<input type="date" name="date" ></td>
 				</tr>
 				<tr>
 					<td>Time in: </td>
-					<td><input type="time" name="timein" tabindex="3"  required></td>
+					<td><input type="time" name="timein" tabindex="3" ></td>
 				</tr>
 				<tr>
 					<td>Lunch in : </td>
-					<td><input type="time" name="lunchin" tabindex="4" size="55" required  ></td>
+					<td><input type="time" name="lunchin" tabindex="4" size="55"  ></td>
 				</tr>
 				<tr>
 					<td>Lunch out : </td>
-					<td><input type="time" name="lunchout" tabindex="5" size="55" required ></td>
+					<td><input type="time" name="lunchout" tabindex="5" size="55" ></td>
 				</tr>
 				<tr>
 					<td>Time out : </td>
-					<td><input type="time" name="timeout" tabindex="6" size="55" required ></td>
+					<td><input type="time" name="timeout" tabindex="6" size="55" ></td>
 				</tr>
 				<tr>
 					<td >Over Time (hr) : </td>
-					<td><input type="number" name="overtime" tabindex="7"  min="0" max="24" step=".1" required></td>
+					<td><input type="number" name="overtime" tabindex="7"  min="0" max="24" step=".1"></td>
 				</tr>
 				<tr>
 					<td colspan="2" ><label style="font-weight:bold;">Performance Details</label><hr></td>
@@ -183,11 +189,11 @@
 				</tr>
 				<tr>
 					<td>Description : </td>
-					<td><textarea rows="4" cols="55" name="description" tabindex="9" required></textarea></td>
+					<td><textarea rows="4" cols="55" name="description" tabindex="9"></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="reset" value="Reset" class="resetbutton">
-					<input type="submit" value="Submit" class="submitbutton"></td>
+					<input type="submit" value="Submit" name="add" class="submitbutton"></td>
 				</tr>
 			</table>
 			</form>

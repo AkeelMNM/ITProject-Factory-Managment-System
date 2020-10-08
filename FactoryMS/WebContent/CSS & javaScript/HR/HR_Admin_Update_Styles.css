@@ -300,7 +300,24 @@ td /* table data class */
   float:left;
   margin-left:80%;
   margin-top:7px;
-  
+
+}
+
+.datagenbutton{  /* insert form data generating buttons */
+
+  background-color:	#434343;
+  border: none;
+  color: white;
+  padding: 5px ;
+  text-align: center;
+  text-decoration: none;
+  font-size: 11px;
+  transition: 0.3s;
+  cursor:pointer;
+  border-radius:3px;
+  width:100px;
+  align:center;
+ 
  
   
 }
@@ -312,6 +329,11 @@ td /* table data class */
 /* Change background color of reset button on hover */
 .resetbutton:hover {
   background-color: #434343;
+}
+
+/* Change background color of data generating button on hover */
+.datagenbutton:hover {
+  background-color:#ed3330;
 }
 
 #hrid{ /* Insert form head title*/

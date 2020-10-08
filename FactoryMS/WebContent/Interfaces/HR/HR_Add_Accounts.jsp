@@ -96,10 +96,9 @@
 						<option> --Select Type-- </option>
 						<%} %>
 								<option value="Manager"> Manager </option>
-								<option value="Admin"> Administrator </option>
+								<option value="Administrator"> Administrator </option>
 								<option value="Accountant"> Accountant </option>
 						</select>
-						<input type="submit" value="Get Employees" name="getJob" class="datagenbutton"> <!-- onclick="getEmpNameByJob();" -->
 					</td>
 				</tr>
 				<tr>
@@ -126,6 +125,7 @@
 									}
 								%>
 							</select>
+							<input type="submit" value="Get Employees" name="getJob" class="datagenbutton"> <!-- onclick="getEmpNameByJob();" -->
 					</td>
 				</tr>
 				<tr>

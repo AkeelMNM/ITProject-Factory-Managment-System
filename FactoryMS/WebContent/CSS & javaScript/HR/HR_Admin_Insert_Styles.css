@@ -426,7 +426,7 @@ td /* table data class */
   background-color: #434343;
 }
 
-/* Change background color of reset button on hover */
+/* Change background color of data generating button on hover */
 .datagenbutton:hover {
   background-color:#ed3330;
 }

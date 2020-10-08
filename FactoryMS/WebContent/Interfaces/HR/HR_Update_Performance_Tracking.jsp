@@ -88,21 +88,8 @@
 				<tr>
 					<td for="dep">Job Title : </td>
 					<td>
-						<select id="dep"  name="job" tabindex="1" style="width: 250px;" required> 
+						<select id="dep"  name="job" tabindex="1" style="width: 250px;" Disabled required> 
 								<option value="<%=pt.getJobTitle()%>"><%=pt.getJobTitle()%></option> 
-								<%
-									JobService jobservice = new JobServiceImpt();
-									ArrayList<String> jobnameList = jobservice.getJobName();
-									
-									for(String name : jobnameList)
-									{
-								%>
-							
-									<option value="<%=name%>">  <%=name%>  </option> 			
-									
-								<%
-									}
-								%>
 							</select>
 					</td>
 					
@@ -110,21 +97,8 @@
 				<tr>
 					<td for="dep">Employee Name : </td>
 					<td>
-						<select id="dep"  name="name" tabindex="2" style="width: 250px;" required> 
+						<select id="dep"  name="name" tabindex="2" style="width: 250px;" Disabled required> 
 								<option value="<%=pt.getEmpName()%>"> <%=pt.getEmpName()%> </option> 
-								<%
-									EmployeeService empservice= new EmployeeServiceImpt();
-									ArrayList<String> nameList =empservice.getAllEmployeeName();
-									
-									for(String name : nameList)
-									{
-								%>
-							
-								<option value="<%=name%>">  <%=name%>  </option> 			
-									
-								<%
-									}
-								%>
 							</select>
 					</td>
 					
@@ -184,14 +158,19 @@
 				<tr>
 					<td>Performance : </td>
 					<td>
-						<select id="dep"  name="performance" tabindex="3" style="width: 250px;" required> 
-								<option value="<%=pt.getPerformace()%>"> <%=pt.getPerformace()%> </option> 
-								<option value="1">Poor</option>
-								<option value="2">Fair </option>
-								<option value="3">Average</option>
-								<option value="4">Good</option>
-								<option value="5">Excellent </option> 
-							</select>
+						<select id="dep"  name="performance" tabindex="3" style="width: 250px;" required>
+						<%if(pt.getPerformace().equals("1")){ %>  
+								<option value="1" selected>Poor</option> <option value="2">Fair </option><option value="3">Average</option> <option value="4">Good</option> <option value="5">Excellent </option> 
+						<%}else if(pt.getPerformace().equals("2")){ %>	
+								<option value="1" >Poor</option> <option value="2" selected>Fair </option><option value="3">Average</option> <option value="4">Good</option> <option value="5">Excellent </option>
+						<%}else if(pt.getPerformace().equals("3")){ %>	
+								<option value="1" >Poor</option> <option value="2">Fair </option><option value="3" selected>Average</option> <option value="4">Good</option> <option value="5">Excellent </option>
+						<%}else if(pt.getPerformace().equals("4")){ %>	
+								<option value="1" >Poor</option> <option value="2">Fair </option><option value="3">Average</option> <option value="4" selected>Good</option> <option value="5">Excellent </option>
+						<%}else if(pt.getPerformace().equals("5")){ %>	
+								<option value="1" >Poor</option> <option value="2">Fair </option><option value="3">Average</option> <option value="4">Good</option> <option value="5" selected>Excellent </option>
+						<%} %>
+						</select>
 					</td>
 				</tr>
 				<tr>

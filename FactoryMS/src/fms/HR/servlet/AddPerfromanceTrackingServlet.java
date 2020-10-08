@@ -45,32 +45,42 @@ public class AddPerfromanceTrackingServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		
-		String name = request.getParameter("name");
+		if("Get Employees".equals(request.getParameter("getJob"))) {
+			
+			request.setAttribute("jName", request.getParameter("job"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Performance_Tracking.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if("Submit".equals(request.getParameter("add"))) {
+			
+			String name = request.getParameter("name");
+			
+			EmployeeService emp = new EmployeeServiceImpt();
+			String id = emp.getEmployeeID(name);
+			
+			PerformanceTracking pr = new PerformanceTracking();
+			
+			pr.setEmpID(id);
+			pr.setJobTitle(request.getParameter("job"));
+			pr.setEmpName(name);
+			pr.setMonth(request.getParameter("month"));
+			pr.setDate(request.getParameter("date"));
+			pr.setTimeIn(request.getParameter("timein"));
+			pr.setLunchIn(request.getParameter("lunchin"));
+			pr.setLunchOut(request.getParameter("lunchout"));
+			pr.setTimeOut(request.getParameter("timeout"));
+			pr.setOvetTime(request.getParameter("overtime"));
+			pr.setPerformace(request.getParameter("performance"));
+			pr.setDescription(request.getParameter("description"));
+			
+			PerformanceTrackingService ptservice = new PerformanceTrackingServiceImpt();
+			ptservice.addPerformanceTracking(pr);
+			
+			request.setAttribute("pr", pr);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Performance_Tracking.jsp");
+			dispatcher.forward(request, response);
+		}
 		
-		EmployeeService emp = new EmployeeServiceImpt();
-		String id = emp.getEmployeeID(name);
-		
-		PerformanceTracking pr = new PerformanceTracking();
-		
-		pr.setEmpID(id);
-		pr.setJobTitle(request.getParameter("job"));
-		pr.setEmpName(name);
-		pr.setMonth(request.getParameter("month"));
-		pr.setDate(request.getParameter("date"));
-		pr.setTimeIn(request.getParameter("timein"));
-		pr.setLunchIn(request.getParameter("lunchin"));
-		pr.setLunchOut(request.getParameter("lunchout"));
-		pr.setTimeOut(request.getParameter("timeout"));
-		pr.setOvetTime(request.getParameter("overtime"));
-		pr.setPerformace(request.getParameter("performance"));
-		pr.setDescription(request.getParameter("description"));
-		
-		PerformanceTrackingService ptservice = new PerformanceTrackingServiceImpt();
-		ptservice.addPerformanceTracking(pr);
-		
-		request.setAttribute("pr", pr);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Performance_Tracking.jsp");
-		dispatcher.forward(request, response);
 		
 	}
 
