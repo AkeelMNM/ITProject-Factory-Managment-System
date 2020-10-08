@@ -301,13 +301,11 @@ public class AccountServiceImpt implements AccountService {
 					
 					
 					
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Account.getEmpName());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO,Account.getUserName());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE, Account.getPassword());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,Account.getStatus());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FIVE,Account.getAccType());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SIX,Account.getProfileImage());
-					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_SEVEN,AccountID);
+				
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE,Account.getUserName());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO, Account.getPassword());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_THREE,Account.getStatus());
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_FOUR,AccountID);
 					preparedStatement.executeUpdate();
 			}
 			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)

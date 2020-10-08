@@ -279,7 +279,7 @@
 		<query id="update_account">
 		<![CDATA[
 			update account
-			set Employee_Name = ? ,UserName = ?,Password = ?,Status = ?,AccountType = ?,Profile_Image = ?
+			set UserName = ?,Password = ?,Status = ?
 			where AccID = ?
 		]]>
 		</query>

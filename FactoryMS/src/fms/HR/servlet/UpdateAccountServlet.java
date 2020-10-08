@@ -43,21 +43,29 @@ public class UpdateAccountServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		String id = request.getParameter("AccID");
-		Account account = new Account();
 		
-		account.setEmpID(request.getParameter("empID"));
-		account.setAccType(request.getParameter("acctype"));
-		account.setEmpName(request.getParameter("name"));
-		account.setUserName(request.getParameter("email"));
-		account.setPassword(request.getParameter("password"));
-		account.setStatus(request.getParameter("status"));
+		if("Get Email".equals(request.getParameter("getemail"))) {
+			
+			request.setAttribute("ename", request.getParameter("empName"));
+			request.setAttribute("id", id);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Update_Accounts.jsp");
+			dispatcher.forward(request, response);
+		}
+		else if ("Update Account".equals(request.getParameter("Update"))) {
 		
-		AccountService accountservice = new AccountServiceImpt();
-		accountservice.updateAccount(id, account);
-		
-		request.setAttribute("account", account);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Accounts.jsp");
-		dispatcher.forward(request, response);
+			Account account = new Account();
+			account.setEmpID(request.getParameter("empID"));
+			account.setUserName(request.getParameter("email"));
+			account.setPassword(request.getParameter("password"));
+			account.setStatus(request.getParameter("status"));
+			
+			AccountService accountservice = new AccountServiceImpt();
+			accountservice.updateAccount(id, account);
+			
+			request.setAttribute("account", account);
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Accounts.jsp");
+			dispatcher.forward(request, response);
+		}
 	}
 
 }

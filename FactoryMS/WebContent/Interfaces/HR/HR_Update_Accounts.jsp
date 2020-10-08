@@ -1,3 +1,4 @@
+<%@page import="com.fms.model.Employee"%>
 <%@page import="com.fms.model.Account"%>
 <%@page import="fms.HR.service.AccountServiceImpt"%>
 <%@page import="fms.HR.service.AccountService"%>
@@ -73,7 +74,13 @@
 					AttendanceService attendanceService = new AttendanceServiceImpt();
 					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
 					
-					String AccID = request.getParameter("AID");
+					String AccID = null;
+					if(request.getParameter("AID") != null){
+						AccID = request.getParameter("AID");
+					}
+					else if (request.getAttribute("id") != null){
+						AccID = (String)request.getAttribute("id");
+					}
 					AccountService AS = new AccountServiceImpt();
 					Account acc = AS.getAccountByID(AccID);
 					
@@ -103,7 +110,16 @@
 				</tr>
 				<tr>
 					<td>Employee Email:</td>
-					<td><input type="text" name="email" size="55"value="<%=acc.getUserName()%>" required></td>
+					<%String ename = null;
+						ename=(String)request.getAttribute("ename");
+					if(ename !=null){
+						EmployeeService empservice = new EmployeeServiceImpt();
+						Employee e = empservice.getEmployeeByID(empservice.getEmployeeID(ename));
+						%>
+						<td><input type="text" name="email" size="40" Value ="<%=e.getEmail()%>"> <input type="submit" value="Get Email" name="getemail" class="datagenbutton"></td>
+					<%}else{ %>
+						<td><input type="text" name="email" Value ="<%=acc.getUserName()%>" size="40" > <input type="submit" value="Get Email" name="getemail"  class="datagenbutton"></td>
+					<%} %>
 				</tr>
 				<tr>
 					<td>Enter Password:</td>
@@ -116,15 +132,23 @@
 				</tr>
 				<tr>
 					<td>Status : </td>
-					<td><input type="radio" name="status" value="active"  checked="checked"> Active
-					<input type="radio" name="status" value="inactive" > Inactive</td>
+					<% String type = null;
+						type =acc.getStatus();
+					if(type.equals("active")){%>
+						<td><input type="radio" name="status" value="active" checked="checked" > Active
+						<input type="radio" name="status" value="inactive" > Inactive</td>
+					<%}else if (type.equals("inactive")){ %>
+						<td><input type="radio" name="status" value="active" > Active
+						<input type="radio" name="status" value="inactive" checked="checked" > Inactive</td>
+					<%} %>
 				</tr>
 			</table>
 
 					<hr id="hrid" style="margin-top:7px;">
 					<input type="hidden" name="AccID" value="<%=acc.getAccID()%>">
 					<input type="hidden" name="empID" value="<%=acc.getEmpID()%>">
-					<input type="submit" value="Update Account" class="submitbutton">
+					<input type="hidden" name="empName" value="<%=acc.getEmpName()%>"> <!-- To get the send the Name to servlet -->
+					<input type="submit" value="Update Account" name ="Update" class="submitbutton">
 
 
 			</form>

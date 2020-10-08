@@ -125,14 +125,27 @@
 				</tr>
 				<tr>
 					<td>Gender : </td>
-					<td><input type="radio" name="gender" value="Male" checked="checked"> Male
-					<input type="radio" name="gender" value="Female" > Female</td>
-					
+					<% String gen = null;
+						gen =emp.getGender();
+					if(gen.equals("Male")){%>
+						<td><input type="radio" name="gender" value="Male" checked="checked"> Male
+						<input type="radio" name="gender" value="Female" > Female</td>
+					<%}else if (gen.equals("Female")){ %>
+						<td><input type="radio" name="gender" value="Male"> Male
+						<input type="radio" name="gender" value="Female" checked="checked" > Female</td>
+					<%} %>
 				</tr>
 				<tr>
 					<td>Marital Status : </td>
-					<td><input type="radio" name="MaritalStatus" value="Single" checked="checked"> Single	
-					<input type="radio" name="MaritalStatus" value="Married" > Married</td>
+					<% String mar = null;
+						mar =emp.getMaritalStatus();
+					if(mar.equals("Single")){%>
+						<td><input type="radio" name="MaritalStatus" value="Single" checked="checked"> Single	
+						<input type="radio" name="MaritalStatus" value="Married" > Married</td>
+					<%}else if (mar.equals("Married")){ %>
+						<td><input type="radio" name="MaritalStatus" value="Single" > Single	
+						<input type="radio" name="MaritalStatus" value="Married" checked="checked"> Married</td>
+					<%} %>
 					
 				</tr>
 				<tr>
