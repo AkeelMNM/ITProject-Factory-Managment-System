@@ -94,25 +94,25 @@ public class UpdateUserProfileServlet extends HttpServlet {
 	    	dispatcher.forward(request, response);
 	    	
 	    }
-	    else if("Uplaod".equals(request.getParameter("img"))) {
+	    else if("Upload".equals(request.getParameter("img"))) {
 	    	
 	    	Part filePart = request.getPart("file"); // Retrieves <input type="file" name="file">
 	    	String fileName = Paths.get(filePart.getSubmittedFileName()).getFileName().toString(); // MSIE fix.
 	    	InputStream fileContent = filePart.getInputStream();
 	    	
-	    	File uploads = new File("F:\\SLIIT\\2nd Year\\2nd Semester\\IT Project\\Project File\\Local Repository\\ITProject\\FactoryMS\\WebContent\\Images_UserProfile");
+	    	File uploads = new File("F:\\SLIIT\\2nd Year\\2nd Semester\\IT Project\\Project File\\UserProfiles");
 	    	File file = new File(uploads, fileName);
 	    	
-	    	try (InputStream input = filePart.getInputStream()) {
+	    	/*try (InputStream input = filePart.getInputStream()) {
 	    		Files.copy(input, file.toPath());
-	    	}
+	    	}*/
 	    	
 	    	String saveDb = uploads+"\\"+fileName;
-	    	logservice.uploadImage(saveDb, accid);
+	    	logservice.uploadImage(fileContent, accid);
 	    	
 	    	
 	    	request.setAttribute("upmsg", "IM");
-	    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Home/User_Profile.jsp");
+	    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Home/Edit_User_Profile.jsp");
 	    	dispatcher.forward(request, response);
 	    }
 		

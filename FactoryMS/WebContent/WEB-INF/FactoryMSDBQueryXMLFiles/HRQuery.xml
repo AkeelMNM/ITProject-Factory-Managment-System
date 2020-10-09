@@ -457,6 +457,13 @@
 			where AccID = ?
 		]]>
 		</query>
+
+		<!-- Get Login details -->
+		<query id="get_image">
+		<![CDATA[
+			select Profile_Image from Account where EmpID = ?
+		]]>
+		</query>
 		
 		<!-- +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		

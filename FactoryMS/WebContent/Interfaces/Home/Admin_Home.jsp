@@ -25,7 +25,7 @@
 									  </div>
 					</div>
 				</div>
-						<img src="<%=(String)session.getAttribute("img")%>" alt="UserLogo" id="Userlogo">								
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>" alt="UserLogo" id="Userlogo">								
 
 </div>
 <div style="float:left; width:100%; margin-top:-4px"><hr></div>
@@ -35,24 +35,6 @@
 <div id="bodyDiv">
 		
 		<!-- Body Part -->
-
-		<%
-				
-				//Accsessing the Cookie
-				/*Cookie[] cookies = request.getCookies();;
-				String EmployeeID = null;
-				String AttendanceID;
-				for (Cookie aCookie : cookies) {
-					if (aCookie.getName().equals("employeeid"))
-					{
-						EmployeeID = aCookie.getValue();
-					}
-				}
-				
-					AttendanceService attendanceService = new AttendanceServiceImpt();
-					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
-					
-		%>
 
 		<h2>Welcome to Administrator Home Page  </h2>
 		

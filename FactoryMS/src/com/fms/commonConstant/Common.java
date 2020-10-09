@@ -19,8 +19,10 @@ public class Common {
 	
 	//Constant for query id for save image in HRQuery.xml 
 	public static final String Query_ID_GET_EMIAL_CHANGE ="change_email";
-		
 	
+	//Constant for query id for save image in HRQuery.xml 
+	public static final String Query_ID_GET_IMAGE ="get_image";
+		
 	//Constant for column index one 
 	public static final int COLUMN_INDEX_ONE = 1;
 		

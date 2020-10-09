@@ -1,6 +1,7 @@
 package fms.Login.ServiceANDServlet;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -143,7 +144,7 @@ public ArrayList<String> checkLogin(String Username,String Password)
 			return loginList;
 }
 
-public void uploadImage(String imgDir,String AccID) {
+public void uploadImage(InputStream file,String AccID) {
 	
 	try
 	{
@@ -152,7 +153,7 @@ public void uploadImage(String imgDir,String AccID) {
 			//Image Saving  Query will be Retrieve from HRDBQuery.xml
 			preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(Common.Query_ID_GET_PROFILE_IMAGE_SAVE));
 			
-			preparedStatement.setString(Common.COLUMN_INDEX_ONE, imgDir);
+			preparedStatement.setBlob(Common.COLUMN_INDEX_ONE, file);
 			preparedStatement.setString(Common.COLUMN_INDEX_TWO, AccID);
 			
 			preparedStatement.executeUpdate();

@@ -113,7 +113,7 @@
 									  </div>
 					</div>
 				</div>
-						<img src="${pageContext.request.contextPath}/Images_UserProfile/AB.jpg" alt="UserLogo" id="Userlogo">								
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>" alt="UserLogo" id="Userlogo">								
 
 </div>
 <div style="float:left; width:100%; margin-top:-4px"><hr></div>
