@@ -76,13 +76,22 @@
 				
 				<tr>
 					<td style="text-align: center;">Date:</td>
-					<td><input type="date" name="date"></td>
+					<%if((String) request.getAttribute("Date") != null){ %>
+							<td><input type="date" name="date" value="<%=(String) request.getAttribute("Date")%>"></td>
+					<%}else{ %>
+							
+							<td><input type="date" name="date"></td>
+					<%} %>
 				</tr>
 				<tr>
 					<td style="text-align: center;">Month : </td>
 					<td>
 						<select name="month" style="width: 200px;" required> 
-								<option> --Select Month-- </option>
+								<%if((String) request.getAttribute("Month") != null){ %>
+											<option value="<%=(String) request.getAttribute("Month")%>"><%=(String) request.getAttribute("Month")%></option>
+								<%}else{ %>
+									<option> --Select Month-- </option>
+								<%} %>
 								<option value="January">January</option>
 								<option value="February"> February </option>
 								<option value="March"> March </option>
@@ -206,6 +215,7 @@
 						<td><form method="POST" action="${pageContext.request.contextPath}/Interfaces/HR/HR_Update_Leave.jsp">
 								<input type="hidden" name ="Date" value="<%=leave.getDate()%>">
 								<input type="hidden" name ="umonth" value="<%=leave.getMonth()%>">
+								<input type="hidden" name ="empJ" value="<%=leave.getJobTitle()%>">
 								<input type="submit" value="Edit" class="editbutton" style ="margin-left:28px;">
 						</form></td>
 					</tr>

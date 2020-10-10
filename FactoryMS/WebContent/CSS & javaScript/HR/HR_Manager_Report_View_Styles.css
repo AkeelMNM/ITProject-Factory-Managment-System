@@ -157,7 +157,7 @@ ul li {
   -ms-transition: all 0.2s;
   -o-transition: all 0.2s;
   transition: all 0.2s;
-  z-index: 999;
+  /*z-index: 999;*/
  
 }
 ul li:hover {

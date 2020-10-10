@@ -31,7 +31,7 @@ public interface E_LeaveService {
 		public String getLeaveIDByName(String EmployeeName);
 		
 		//Get Leaves by date from E_Leave table
-		public ArrayList<E_Leave> getLeaveByDate(String date);
+		public ArrayList<E_Leave> getLeaveByDate(String date,String JName);
 
 		//Get All Leave from E_Leave table
 		public ArrayList<E_Leave> getLeave();

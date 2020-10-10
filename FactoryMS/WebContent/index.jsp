@@ -193,6 +193,13 @@ input[type="submit"]{ padding: 10px 10px; line-height:15px; }
 						</tr>
 						<%
 							}
+							if(request.getAttribute("accSup") == "Suspend"){
+						%>
+						<tr>
+						<td>This Account is Suspended</td>
+						</tr>
+						<%
+							}
 						%>
 				</table>
 				</form>

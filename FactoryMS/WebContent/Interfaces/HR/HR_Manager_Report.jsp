@@ -2,7 +2,7 @@
 <head>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Manager_Styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="${pageContext.request.contextPath}/CSS & javaScript/Admin&Manager_Script.js"></script>
+		<script src="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Admin&Manager_Script.js"></script>
 </head>
 <body>
 <!-- Header Part -->

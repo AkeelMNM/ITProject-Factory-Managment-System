@@ -49,6 +49,8 @@ public class AddLeaveServlet extends HttpServlet {
 		
 		if("Get Employees".equals(request.getParameter("getJob"))) {
 			
+			request.setAttribute("Date", request.getParameter("date"));
+			request.setAttribute("Month", request.getParameter("month"));
 			request.setAttribute("jName", request.getParameter("jobList"));
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Add_Leave.jsp");
 			dispatcher.forward(request, response);

@@ -67,6 +67,7 @@ public class LoginServlet extends HttpServlet {
 			
 			AccountService ac = new AccountServiceImpt();
 			Account a = ac.getAccountByID(ac.getAccountID(empid));
+			String st = a.getStatus();
 			
 			HttpSession session = request.getSession();
 			session.setAttribute("uname", empName);
@@ -74,7 +75,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("type", role);
 			session.setAttribute("img", a.getProfileImage());
 		
-			if(empid != null && role != null)
+			if(empid != null && role != null && st.equals("active"))
 			{
 				if(role.equals("Manager"))
 				{
@@ -94,6 +95,12 @@ public class LoginServlet extends HttpServlet {
 					RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Home/Accountant_Home.jsp");
 					dispatcher.forward(request, response);
 				}
+			}
+			else
+			{
+				request.setAttribute("accSup", "Suspend");
+				RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/index.jsp");
+				dispatcher.forward(request, response);
 			}
 		}
 		else

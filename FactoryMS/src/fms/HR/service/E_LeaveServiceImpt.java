@@ -288,7 +288,7 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 	
 	/** -------------    Get Leaves by date from E_leave table        ------------------------**/
 	@Override
-	public ArrayList<E_Leave> getLeaveByDate(String date) {
+	public ArrayList<E_Leave> getLeaveByDate(String date,String JName) {
 		
 		ArrayList<E_Leave> leavelist = new ArrayList<E_Leave>();
 		
@@ -303,6 +303,7 @@ public class E_LeaveServiceImpt implements E_LeaveService{
 					preparedStatement = connection .prepareStatement(HRQueryUtil.queryByID(HRCommonConstants.Query_ID_GET_LEAVES_BY_DATE));
 					
 					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_ONE, date);
+					preparedStatement.setString(HRCommonConstants.COLUMN_INDEX_TWO, JName);
 					
 					ResultSet result = preparedStatement.executeQuery();
 					

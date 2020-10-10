@@ -66,9 +66,11 @@
 					String date = null;
 					String month = null;
 					String JTitle = null;
+					String empJob = null;
 					
 					if(request.getParameter("Date") != null){
 						
+						empJob=request.getParameter("empJ");
 						date = request.getParameter("Date");
 						month = request.getParameter("umonth");
 					}
@@ -81,7 +83,7 @@
 					}
 					
 					E_LeaveService leaveservice = new E_LeaveServiceImpt();
-					ArrayList<E_Leave> leavelist = leaveservice.getLeaveByDate(date);
+					ArrayList<E_Leave> leavelist = leaveservice.getLeaveByDate(date,empJob);
 					
 					if(request.getParameter("Date") != null){
 						JTitle = leavelist.get(0).getJobTitle();

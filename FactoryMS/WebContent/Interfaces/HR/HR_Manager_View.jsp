@@ -20,7 +20,7 @@
 <head>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Manager_Styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<script src="${pageContext.request.contextPath}/CSS & javaScript/Admin&Manager_Script.js"></script>
+		<script src="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Admin&Manager_Script.js"></script>
 </head>
 <body>
 <!-- Header Part -->
@@ -292,51 +292,23 @@
 						<td class ="tData"><%=leave.getLeave_Status()%></td>
 
 				</tr>
+				</table>
 		<% }
 		}
 		else{
-			EmployeeService empservice = new EmployeeServiceImpt();
-			ArrayList<Employee> empList = empservice.getEmployee();
-			
 			%>
-			<tr class="viewTr">
-
-			<th >Employee Name</th>
-			<th >DOB</th>
-			<th >NIC</th>
-			<th >Gender</th>
-			<th >Marital Status</th>
-			<th >Email</th>
-			<th >Contact No</th>
-			<th >Address</th>
-			<th >Job Title</th>
-			<th >Date Joined</th>
-			<th >Qualification</th>
-			
-	</tr>
-		<% 
-			for(Employee employee : empList){
-		%>
-			 <tr class="viewTr">
-					<td class ="tData"><%=employee.getName()%></td>
-					<td class ="tData"><%=employee.getDOB()%></td>
-					<td class ="tData"><%=employee.getNIC()%></td>
-					<td class ="tData"><%=employee.getGender()%></td>
-					<td class ="tData"><%=employee.getMaritalStatus()%></td>
-					<td class ="tData"><%=employee.getEmail()%></td>
-					<td class ="tData"><%=employee.getContactNo()%></td>
-					<td class ="tData"><%=employee.getAddress()%></td>
-					<td class ="tData"><%=employee.getJobTitle()%></td>
-					<td class ="tData"><%=employee.getJointDate()%></td>
-					<td class ="tData"><%=employee.getQualification()%></td>
-				</tr>
-	
+			<table style="height: 49%;" width="100%">
+			<tbody>
+			<tr>
+			<td style="width: 12.5043%; text-align:center;">&nbsp;The Search Preview will be Displayed here</td>
+			</tr>
+			</tbody>
+		</table>
+		
 		<%
-			}
 		}
 		%>
 		
-				</table>
 		</div>
 				
 				
