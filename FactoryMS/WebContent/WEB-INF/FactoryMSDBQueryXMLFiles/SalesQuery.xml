@@ -198,6 +198,15 @@
 		]]>
 		</query>
 		
+		<!-- Get Sales Return by SalesType and Month  -->
+		<query id="get_Sales_Return_by_SalesType_month">
+		<![CDATA[
+			select * from Sales_Return where Sales_Type = ? and Month = ?
+			
+		]]>
+		</query>
+		
+		
 		
 <!-- ********************************************************************************************************************* --> 
 
@@ -247,6 +256,15 @@
 			where Sales_RevenueID = ?   
 		]]>
 		</query> 		
+		
+		<!-- Get Sales Revenue by SalesType and Month  -->
+		<query id="get_Sales_Revenue_by_SalesType_month">
+		<![CDATA[
+			select * from Sales_Revenue where Sales_Type = ? and Month = ?
+			
+		]]>
+		</query>
+		
 		
 		
 		

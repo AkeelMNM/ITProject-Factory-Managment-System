@@ -28,7 +28,14 @@ import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import com.sun.prism.shader.Solid_LinearGradient_PAD_AlphaTest_Loader;
 
-public class FactorySales_ReportGeneratingServiceImpt implements FactorySales_ReportGeneratingService {
+/**
+ * @author Zumry A.M
+ *IT NO:IT19175126
+ *
+ */
+
+
+public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_Report_GeneratingService {
 	
 	@Override
 	public void generateFactorySaleReportMonth(ArrayList<FactorySales> salesList,String month) throws DocumentException, IOException {
@@ -246,7 +253,7 @@ public class FactorySales_ReportGeneratingServiceImpt implements FactorySales_Re
 
 
 	@Override
-	public void generateFactorySaleReportDay(ArrayList<FactorySales> ptList,String date) {
+	public void generateFactorySaleReportYearly(ArrayList<FactorySales> salesList,String Year) {
 		
 		String fileName = "F:\\P\\EPT_Report3.pdf";
 		Document document = new Document();
@@ -326,7 +333,7 @@ public class FactorySales_ReportGeneratingServiceImpt implements FactorySales_Re
 	        cellS.setBorder(Rectangle.NO_BORDER);
 	        tableST.addCell(cellS);
 	        
-	        cellS = new PdfPCell(new Paragraph("Month :" + ptList.get(0).getMonth()));
+	        cellS = new PdfPCell(new Paragraph("Month :" + salesList.get(0).getMonth()));
 	        cellS.setColspan(6);
 	        cellS.setPaddingLeft(90);
 	        cellS.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -351,167 +358,66 @@ public class FactorySales_ReportGeneratingServiceImpt implements FactorySales_Re
 		    
 /**----------------------------------------------- Content Table -----------------------------------------------------------      **/
 	        
-				    PdfPTable table = new PdfPTable(2); // 2 columns.
-			        table.setWidthPercentage(100); //Width 100%
-			        table.setSpacingBefore(10f); //Space before table
-			        table.setSpacingAfter(10f); //Space after table
-			 
-			        //Set Column widths
-			        float[] columnWidths = {1f, 1f};
-			        table.setWidths(columnWidths);
-			        
-			        /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/
-			        
-			        PdfPCell cell1 = new PdfPCell(new Paragraph("Employee Name"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(ptList.get(0).getEmpName()));
-			        cell1.setFixedHeight(25f);
-			        cell1.setColspan(8);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph("Job Title"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(ptList.get(0).getJobTitle()));
-			        cell1.setFixedHeight(25f);
-			        cell1.setColspan(8);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-				    
-			        /** ----------------------------------------------------------- **/
-			        
-			        /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/
-				    cell1 = new PdfPCell(new Paragraph("Date"));
-				    cell1.setFixedHeight(25f);
-			        cell1.setBackgroundColor(BaseColor.CYAN);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(ptList.get(0).getDate()));
-				    cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        
-			        cell1 = new PdfPCell(new Paragraph("Time In"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(ptList.get(0).getTimeIn()));
-				    cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph("Lunch In"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(ptList.get(0).getLunchIn()));
-				    cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph("Lunch Out"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(ptList.get(0).getLunchOut()));
-				    cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph("Time Out"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(ptList.get(0).getTimeOut()));
-				    cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph("Over Time (hr)"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(ptList.get(0).getOvetTime()));
-				    cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph("Performance"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        Image imageS1 = Image.getInstance("F:\\Pro files\\FullStar.png");
-			        Image imageS2 = Image.getInstance("F:\\Pro files\\EmptyStar.png");
-			        //Scale to new height and new width of image
-			        imageS1.scaleAbsolute(20, 20);
-			        imageS2.scaleAbsolute(20, 20);
-			        
-			        Paragraph paraS = new Paragraph();
-			        cell1 = new PdfPCell();
+		    PdfPTable table = new PdfPTable(3); // 3 columns.
+	        table.setWidthPercentage(100); //Width 100%
+	        table.setSpacingBefore(10f); //Space before table
+	        table.setSpacingAfter(10f); //Space after table
+	 
+	        //Set Column widths
+	        float[] columnWidths = {1f, 1f, 1f};
+	        table.setWidths(columnWidths);
+	        
+	        /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/
+	        
+	        PdfPCell cell1 = new PdfPCell(new Paragraph("Date of sale"));
+	        cell1.setFixedHeight(25f);
+	        cell1.setPaddingLeft(10);
+	        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	        table.addCell(cell1);
+	        
+	        cell1 = new PdfPCell(new Paragraph("Tea Grade"));
+	        cell1.setFixedHeight(25f);
+	        cell1.setPaddingLeft(10);
+	        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	        table.addCell(cell1);
+	        
+	        cell1 = new PdfPCell(new Paragraph("Selling Quantity(kg)"));
+	        cell1.setFixedHeight(25f);
+	        cell1.setPaddingLeft(10);
+	        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	        table.addCell(cell1);
 
-				        int starfull =Integer. parseInt(ptList.get(0).getPerformace());
-						int starempty = 5 - starfull;
-						for(int i = 0;i < starfull;i++){
-								paraS.add(new Chunk(imageS1, 0, 0, true));
-								
-						}
-						for(int i = 0;i < starempty;i++){
-								paraS.add(new Chunk(imageS2, 0, 0, true));
-						}
-						
-					cell1 = new PdfPCell(new Paragraph());
-				    cell1.setFixedHeight(28f);
-				    cell1.setPaddingLeft(10);
-				    cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-					cell1.addElement(paraS);
-				    table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph("Description"));
-			        cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        cell1 = new PdfPCell(new Paragraph(ptList.get(0).getDescription()));
-				    cell1.setFixedHeight(25f);
-			        cell1.setPaddingLeft(10);
-			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
-			        table.addCell(cell1);
-			        
-			        document.add(table);
-			        document.add(new Chunk(ls));
+	        
+	        for(FactorySales fs : salesList) {
+	        
+	        	cell1 = new PdfPCell(new Paragraph(fs.getDate()));
+		        cell1.setFixedHeight(28f);
+		        cell1.setPaddingLeft(10);
+		        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	        	table.addCell(cell1);
+	        	
+	        	cell1 = new PdfPCell(new Paragraph(fs.getTea_Grade()));
+		        cell1.setFixedHeight(28f);
+		        cell1.setPaddingLeft(10);
+		        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	        	table.addCell(cell1);
+	        	
+	        	cell1 = new PdfPCell(new Paragraph(fs.getSelling_Quantity()));
+		        cell1.setFixedHeight(28f);
+		        cell1.setPaddingLeft(10);
+		        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+		        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+	        	table.addCell(cell1);
+	        }
+	        
+	        document.add(table);
+	        
+	        document.add(new Chunk(ls));
+	        
+	        /** ----------------------------------------------------------- **/
+	        
 			        
 /** ######################################################################################################################################### **/
 
@@ -685,6 +591,7 @@ public class FactorySales_ReportGeneratingServiceImpt implements FactorySales_Re
 			        document.add(tableC);
 		    
 			document.close();
+			
 /** ######################################################################################################################################### **/
 
 		    

@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,8 +31,6 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 	public static final Logger log = Logger.getLogger(Tea_Grade_PriceServiceImpt.class.getName());
 	
 	private static Connection connection;
-	
-	private static Statement statement;
 	
 	private PreparedStatement preparedStatement;
 	
@@ -243,6 +240,178 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 		
 		return FactorySalesList;
 	}
+	
+
+	
+/** -------------  ***************************  Get Sales return  by TeaGrade and Month from SalesReturn table    ***************************   ------------------------**/
+	@Override
+	public ArrayList<Sales_Return> getSalesReturnBySalesTypeAndMonth(String SalesType,String Month,String Year)
+	{
+		ArrayList<Sales_Return> RtnList = new ArrayList<Sales_Return>();
+		
+		if(SalesType != null && !SalesType.isEmpty())
+		{
+			try
+			{
+				connection = DBConnection.getDBConnection();
+				
+				preparedStatement = connection.prepareStatement(SalesQueryUtil.queryByID(SalesCommonConstants.Query_ID_GET_SALES_RETURN_BY_SALES_TYPE_MONTH));
+				
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_ONE, SalesType);
+				preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_TWO, Month);
+				
+				ResultSet result = preparedStatement.executeQuery();
+				
+				while(result.next())
+				{
+					
+					String date = result.getString("Date");
+					String yr;
+					
+					if(date != null) 
+					{
+						String[] x = date.split("-");
+						
+						yr = x[0];
+						
+						if(yr.equals(Year)) 
+						{
+							Sales_Return Rtn = new Sales_Return();
+							
+							Rtn.setSales_ReturnID(result.getString(SalesCommonConstants.COLUMN_INDEX_ONE));
+							Rtn.setFactory_SalesID(result.getString(SalesCommonConstants.COLUMN_INDEX_TWO));
+							Rtn.setDate(result.getString(SalesCommonConstants.COLUMN_INDEX_THREE));
+							Rtn.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
+							Rtn.setReturn_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
+							Rtn.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+							Rtn.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+							Rtn.setYear(yr);
+							
+							RtnList.add(Rtn);
+							
+						}
+					}
+					
+					
+					
+				}
+				
+			} catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException ex ) {
+				
+				log.log(Level.SEVERE,ex.getMessage());
+			} finally {
+				
+				//Closing DB Connection and Prepared statement
+				try {	
+					if(preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if(connection != null) {
+						connection.close();
+					}	
+				}
+				catch (SQLException ex) {
+					log.log(Level.SEVERE,ex.getMessage());
+				}
+			}
+		}
+		
+		return RtnList;
+	}	
+
+	
+/** -------------  ***************************  Get Sales Return by TeaGrade and Year from SalesReturn table  ***************************   ------------------------**/
+	@Override
+	public ArrayList<Sales_Return> getSsalesReturnBySalesTypeAndYear(String SalesType,String Year)
+	{
+		ArrayList<Sales_Return> ReturnList = new ArrayList<Sales_Return>();
+		ArrayList<String> MonthList = new ArrayList<String>();
+		ArrayList<String> TeaGradeList = new ArrayList<String>();
+		
+		MonthList.add("January");MonthList.add("February");MonthList.add("March");MonthList.add("April");MonthList.add("May");MonthList.add("June");
+		MonthList.add("July");MonthList.add("August");MonthList.add("September");MonthList.add("October");MonthList.add("November");MonthList.add("December");
+		
+		TeaGradeList.add("DUST");TeaGradeList.add("FANNINGS");TeaGradeList.add("BOP1A/B.M");TeaGradeList.add("FANNINGS");TeaGradeList.add("FINE");
+		
+		if(SalesType != null && !SalesType.isEmpty())
+		{
+			try
+			{
+				connection = DBConnection.getDBConnection();
+				
+				for(int i=0 ; i<MonthList.size(); i++)
+				{
+					for(int j=0 ; j<TeaGradeList.size(); j++)
+					{
+						double Total = 0;
+						int Count = 0;
+						String date = null;
+						String yr;
+						
+						String Query = "SELECT * From Sales_Return Where Sales_Type = '"+SalesType+"' and Date like '"+Year+"%' and Month = '"+MonthList.get(i)+"' and Tea_Grade = '"+TeaGradeList.get(j)+"' " ;
+						preparedStatement = connection.prepareStatement(Query);
+						
+						ResultSet result = preparedStatement.executeQuery();
+						
+						Sales_Return Rtn = new Sales_Return();
+						
+						while(result.next())
+						{
+							
+							Total = Total + Double.parseDouble(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
+							date = result.getString(SalesCommonConstants.COLUMN_INDEX_THREE);
+							
+							Rtn.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
+							Rtn.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+							Rtn.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+
+							Count = Count + 1;
+						}
+						
+						if(date != null) 
+						{
+							String[] x = date.split("-");
+							
+							yr = x[0];
+						
+							Rtn.setYear(yr);
+							Rtn.setReturn_Quantity(String.valueOf(Total));
+							Rtn.setFactory_SalesID(String.valueOf(Count)); // number of Return 
+							
+							if(Total != 0.0) 
+							{
+								ReturnList.add(Rtn);	
+							}
+						}
+					}
+				}
+				
+			} catch (ClassNotFoundException | SQLException ex ) {
+				
+				log.log(Level.SEVERE,ex.getMessage());
+			} finally {
+				
+				//Closing DB Connection and Prepared statement
+				try {	
+					if(preparedStatement != null) {
+						preparedStatement.close();
+					}
+					if(connection != null) {
+						connection.close();
+					}	
+				}
+				catch (SQLException ex) {
+					log.log(Level.SEVERE,ex.getMessage());
+				}
+			}
+		}
+		
+		return ReturnList;
+	}
+
+	
+	
+/**-------------   ******************************************************  --------------**/
 	
 	
 /**---------------------    Array of Sales return id list will be return    ---------------**/

@@ -10,6 +10,7 @@ public class Sales_Revenue {
 	private String Sales_Type;
 	private String Amount;
 	private String Month;
+	private String Year;
 
 	public Sales_Revenue() {
 		super();
@@ -77,6 +78,14 @@ public class Sales_Revenue {
 
 	public void setMonth(String month) {
 		Month = month;
+	}
+	
+	public String getYear() {
+		return Year;
+	}
+
+	public void setYear(String year) {
+		Year = year;
 	}
 
 	@Override

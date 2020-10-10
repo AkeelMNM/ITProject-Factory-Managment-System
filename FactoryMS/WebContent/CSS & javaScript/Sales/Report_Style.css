@@ -234,6 +234,53 @@ div.bigDiv
 	background: #f1f1f1;
 }
 
+.month{
+	float: left;
+	margin-top: -10px;
+    margin-left: 10px;
+}
+
+.year{
+	float: left;
+	margin-top: -7px;
+    margin-left: 10px;
+}
+
+div.table /* table div */
+{
+	border-collapse: collapse;
+	width: 96%;
+	float:left;
+	overflow:scroll;
+    margin-left:20px;
+    margin-top:20px;
+    border: 2px solid;
+    height: 49%;
+   	margin-bottom: 12px;
+}
+.table::-webkit-scrollbar {
+    display: none;
+}
+
+div.viewlist{  /* Toolbar div */
+	
+	float:left;
+	width: 95%;
+	margin-top:30px;
+	padding-left:35px;
+}
+
+.repviewtable /* table Report Toolbar */
+{
+	border-collapse: collapse;
+	width: 80%;
+	height:35px;
+	float:left;
+    
+}
+
+
+
 /* -------------------------------------------------------------------------------------------------------------- */
 
 /* -------------------------- Report style ------------------------------------- */
@@ -343,10 +390,9 @@ div.table { /* table div */
 tr.viewTr{
 	background-color: #f2f2f2;
 }
-	
-.viewTr:hover {
-background-color:#e0dddc;
-}
+
+tr.viewTr{background-color: #f2f2f2;}  /* view record table row class*/	
+.viewTr:hover { background-color:#def2f1;}/* view record table row hover class*/
 
 th  /* view record table header */
 {	
@@ -373,11 +419,34 @@ td.tData  /* view record table data class */
 
 td.tDataS  /* view record table data class */
 {
-	
 	padding:5px;
 	width:150px;
 	font-size: 14px;
 }
+
+img.FullStar
+{
+		
+		width:20px;
+		height:20px;
+}
+
+img.EmptyStar
+{
+		
+		width:20px;
+		height:20px;
+		
+}
+
+
+table.contentTable
+{
+	margin-left:50px; 
+	width: 90%;
+}
+
+
 
 /* -------------------------------------------------------------------------------------------------------------- */
 

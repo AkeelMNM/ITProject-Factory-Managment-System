@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -19,7 +18,6 @@ import com.fms.QueryUtil.SalesQueryUtil;
 import com.fms.commonConstant.SalesCommonConstants;
 import com.fms.commonUtil.SalesCommonUtil;
 import com.fms.model.FactorySales;
-import com.fms.model.Tea_Grade_Price;
 
 /**
  * @author Zumry
@@ -33,8 +31,6 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 	public static final Logger log = Logger.getLogger(Tea_Grade_PriceServiceImpt.class.getName());
 	
 	private static Connection connection;
-	
-	private static Statement statement;
 	
 	private PreparedStatement preparedStatement;
 	
@@ -287,9 +283,9 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 		return TeaGrade;
 	}
 	
-/** -------------    Get FactorySales by TeaGrade and Month from FactorySales table        ------------------------**/
+/** -------------  ***************************  Get FactorySales by TeaGrade and Month from FactorySales table   ***************************   ------------------------**/
 	@Override
-	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndMonth(String SalesType,String Month)
+	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndMonth(String SalesType,String Month,String Year)
 	{
 		ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
 		
@@ -308,17 +304,34 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 				
 				while(result.next())
 				{
-					FactorySales Fsales = new FactorySales();
 					
-					Fsales.setFactory_Sales_ID(result.getString(SalesCommonConstants.COLUMN_INDEX_ONE));
-					Fsales.setTea_Grade_PriceID(result.getString(SalesCommonConstants.COLUMN_INDEX_TWO));
-					Fsales.setDate(result.getString(SalesCommonConstants.COLUMN_INDEX_THREE));
-					Fsales.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
-					Fsales.setSelling_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
-					Fsales.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
-					Fsales.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+					String date = result.getString("Date");
+					String yr;
 					
-					SalesList.add(Fsales);
+					if(date != null) 
+					{
+						String[] x = date.split("-");
+						
+						yr = x[0];
+						
+						if(yr.equals(Year)) 
+						{
+							FactorySales Fsales = new FactorySales();
+							
+							Fsales.setFactory_Sales_ID(result.getString(SalesCommonConstants.COLUMN_INDEX_ONE));
+							Fsales.setTea_Grade_PriceID(result.getString(SalesCommonConstants.COLUMN_INDEX_TWO));
+							Fsales.setDate(result.getString(SalesCommonConstants.COLUMN_INDEX_THREE));
+							Fsales.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
+							Fsales.setSelling_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
+							Fsales.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+							Fsales.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+							Fsales.setYear(yr);
+							
+							SalesList.add(Fsales);
+							
+						}
+					}
+					
 				}
 				
 			} catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException ex ) {
@@ -344,11 +357,18 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 		return SalesList;
 	}	
 	
-/** -------------    Get FactorySales by TeaGrade and Year from FactorySales table        ------------------------**/
+/** -------------  ***************************  Get FactorySales by TeaGrade and Year from FactorySales table  ***************************   ------------------------**/
 	@Override
 	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndYear(String SalesType,String year)
 	{
 		ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
+		ArrayList<String> MonthList = new ArrayList<String>();
+		ArrayList<String> TeaGradeList = new ArrayList<String>();
+		
+		MonthList.add("January");MonthList.add("February");MonthList.add("March");MonthList.add("April");MonthList.add("May");MonthList.add("June");
+		MonthList.add("July");MonthList.add("August");MonthList.add("September");MonthList.add("October");MonthList.add("November");MonthList.add("December");
+		
+		TeaGradeList.add("DUST");TeaGradeList.add("FANNINGS");TeaGradeList.add("BOP1A/B.M");TeaGradeList.add("FANNINGS");TeaGradeList.add("FINE");
 		
 		if(SalesType != null && !SalesType.isEmpty())
 		{
@@ -356,24 +376,51 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 			{
 				connection = DBConnection.getDBConnection();
 				
-				String Query = "SELECT * From Factory_Sales Where Sales_Type = "+SalesType+" and Date like "+year+"%' ";
-				preparedStatement = connection.prepareStatement(Query);
-				
-				ResultSet result = preparedStatement.executeQuery();
-				
-				while(result.next());
+				for(int i=0 ; i<MonthList.size(); i++)
 				{
-					FactorySales sales = new FactorySales();
+					for(int j=0 ; j<TeaGradeList.size(); j++)
+					{
+						double Total = 0;
+						int Count = 0;
+						String date = null;
+						String yr;
 						
-						sales.setFactory_Sales_ID(result.getString(SalesCommonConstants.COLUMN_INDEX_ONE));
-						sales.setTea_Grade_PriceID(result.getString(SalesCommonConstants.COLUMN_INDEX_TWO));
-						sales.setDate(result.getString(SalesCommonConstants.COLUMN_INDEX_THREE));
-						sales.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
-						sales.setSelling_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
-						sales.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
-						sales.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+						String Query = "SELECT * From Factory_Sales Where Sales_Type = '"+SalesType+"' and Date like '"+year+"%' and Month = '"+MonthList.get(i)+"' and Tea_Grade = '"+TeaGradeList.get(j)+"' " ;
+						preparedStatement = connection.prepareStatement(Query);
 						
-						SalesList.add(sales);
+						ResultSet result = preparedStatement.executeQuery();
+						
+						FactorySales sales = new FactorySales();
+						
+						while(result.next())
+						{
+							
+							Total = Total + Double.parseDouble(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
+							date = result.getString(SalesCommonConstants.COLUMN_INDEX_THREE);
+							
+							sales.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
+							sales.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+							sales.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+
+							Count = Count + 1;
+						}
+						
+						if(date != null) 
+						{
+							String[] x = date.split("-");
+							
+							yr = x[0];
+						
+							sales.setYear(yr);
+							sales.setSelling_Quantity(String.valueOf(Total));
+							sales.setTea_Grade_PriceID(String.valueOf(Count)); // number of Sales 
+							
+							if(Total != 0.0) 
+							{
+								SalesList.add(sales);	
+							}
+						}
+					}
 				}
 				
 			} catch (ClassNotFoundException | SQLException ex ) {
@@ -399,8 +446,7 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 		return SalesList;
 	}
 
-	
-	
+
 	
 /**-------------   ******************************************************  --------------**/
 	

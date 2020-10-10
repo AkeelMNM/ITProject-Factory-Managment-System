@@ -9,6 +9,7 @@ public class FactorySales {
 	private String Selling_Quantity;
 	private String Sales_Type;
 	private String Month;
+	private String Year;
 	
 	
 	public FactorySales() {
@@ -69,6 +70,14 @@ public class FactorySales {
 
 	public void setMonth(String month) {
 		Month = month;
+	}
+
+	public String getYear() {
+		return Year;
+	}
+
+	public void setYear(String year) {
+		Year = year;
 	}
 
 	@Override

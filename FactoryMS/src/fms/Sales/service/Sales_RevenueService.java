@@ -27,5 +27,10 @@ public interface Sales_RevenueService {
 	//View Sales_Revenue by id (one details)
 	public Sales_Revenue getSalesRevenueByID(String SalesRevenueID) ;
 	
+	//Get Sales Revenue by SalesType and Month and year  //Month Report
+	public ArrayList<Sales_Revenue> getSalesRevenueBySalesTypeAndMonth(String SalesType,String Month,String Year);
+		
+	//Get SalesRevenue by SalesType and year		//Year Report
+	public ArrayList<Sales_Revenue> getSsalesRevenueBySalesTypeAndYear(String SalesType,String Year);
 	
 }

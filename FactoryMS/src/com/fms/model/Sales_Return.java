@@ -9,6 +9,7 @@ public class Sales_Return {
 	private String Return_Quantity;
 	private String Sales_Type;
 	private String Month;
+	private String Year;
 	
 	
 	public Sales_Return() {
@@ -69,6 +70,14 @@ public class Sales_Return {
 
 	public void setMonth(String month) {
 		Month = month;
+	}
+	
+	public String getYear() {
+		return Year;
+	}
+
+	public void setYear(String year) {
+		Year = year;
 	}
 
 	@Override

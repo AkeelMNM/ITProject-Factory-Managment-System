@@ -15,26 +15,27 @@ import com.itextpdf.text.DocumentException;
 
 import fms.Sales.service.FactorySalesService;
 import fms.Sales.service.FactorySalesServiceImpt;
-import fms.Sales.service.FactorySales_ReportGeneratingService;
-import fms.Sales.service.FactorySales_ReportGeneratingServiceImpt;
+import fms.Sales.service.FactorySales_Report_GeneratingService;
+import fms.Sales.service.FactorySales_Report_GeneratingServiceImpt;
 
 /**
  * Servlet implementation class FactorySales_ReportGenerateServlet
  */
+
 /**
  * @author Zumry A.M 
  *IT NO:IT19175126
  *
  */
 
-@WebServlet("/FactorySales_ReportGenerateServlet")
-public class FactorySales_ReportGenerateServlet extends HttpServlet {
+@WebServlet("/Manager_Factory_Sales_Report_GenerateServlet")
+public class Manager_Factory_Sales_Report_GenerateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public FactorySales_ReportGenerateServlet() {
+    public Manager_Factory_Sales_Report_GenerateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -54,27 +55,23 @@ public class FactorySales_ReportGenerateServlet extends HttpServlet {
 		
 		String SalesType = request.getParameter("SalesType");
 		String month = request.getParameter("month");
+		String Option = request.getParameter("Option");
 		String Year = request.getParameter("year");
 		
 		ArrayList<FactorySales> FactorySalesList = new ArrayList<FactorySales>();
 		FactorySalesService SalesService = new FactorySalesServiceImpt();
 		
-		if(Year == "") {
-			Year = null;
-		}
-		
 		if("View".equals(request.getParameter("viewbutton"))) 
 		{
-			if(Year != null) 
+			if("Year".equals(Option)) 
 			{
 				FactorySalesList = SalesService.getFactorySalesBySalesTypeAndYear(SalesType, Year);
-				request.setAttribute("EPyear", Year);
-				request.setAttribute("Key", request.getParameter("key"));
+				request.setAttribute("FSyear", Year);
 			}
-			if(month != null && Year == null) 
+			if(month != null && "Month".equals(Option)) 
 			{
-				FactorySalesList = SalesService.getFactorySalesBySalesTypeAndMonth(SalesType, month);
-				request.setAttribute("EPMonth", month);
+				FactorySalesList = SalesService.getFactorySalesBySalesTypeAndMonth(SalesType, month,Year);
+				request.setAttribute("FSMonth", month);
 			}
 			
 			request.setAttribute("FactorySalesList", FactorySalesList);
@@ -84,21 +81,21 @@ public class FactorySales_ReportGenerateServlet extends HttpServlet {
 		}
 		if("Generate".equals(request.getParameter("genbutton"))) 
 		{	
-			FactorySales_ReportGeneratingService rgs = new FactorySales_ReportGeneratingServiceImpt();
+			FactorySales_Report_GeneratingService rgs = new FactorySales_Report_GeneratingServiceImpt();
 				
-			if(Year == null ) 
+			if("Month".equals(Option)) 
 			{	
-				FactorySalesList =SalesService.getFactorySalesBySalesTypeAndMonth(SalesType, month);
+				FactorySalesList =SalesService.getFactorySalesBySalesTypeAndMonth(SalesType, month,Year);
 				try {
 					rgs.generateFactorySaleReportMonth(FactorySalesList, month);
 				} catch (DocumentException | IOException e) {
 					e.printStackTrace();
 				}
 			}
-			if(Year != null) 
+			if("Year".equals(Option)) 
 			{
 				FactorySalesList = SalesService.getFactorySalesBySalesTypeAndYear(SalesType, Year);
-				rgs.generateFactorySaleReportDay(FactorySalesList, Year);		
+				rgs.generateFactorySaleReportYearly(FactorySalesList, Year);
 			}
 			
 			request.setAttribute("message", "Success");

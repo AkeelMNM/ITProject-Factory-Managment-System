@@ -98,7 +98,11 @@ public class SalesCommonConstants {
 	
 	//Constant for query id for Update Tea Grade Price in SalesQuery.xml
 	public static final String Query_ID_UPDATE_SalesReturn ="update_SalesReturn";
-
+	
+	//Constant for query id for get all by teaGrade and month in SalesQuery.xml
+	public static final String Query_ID_GET_SALES_RETURN_BY_SALES_TYPE_MONTH = "get_Sales_Return_by_SalesType_month";
+	
+	
 	
 /**++++++++++++++++++++++++++++++++ Sales Revenue ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/	
 
@@ -122,6 +126,10 @@ public class SalesCommonConstants {
 	
 	//Constant for query id for Update Tea Grade Price in SalesQuery.xml
 	public static final String Query_ID_UPDATE_SalesRevenue ="update_SalesRevenue";
+	
+	//Constant for query id for get all by teaGrade and month in SalesQuery.xml
+	public static final String Query_ID_GET_SALES_REVENUE_BY_SALES_TYPE_MONTH = "get_Sales_Revenue_by_SalesType_month";
+		
 	
 	
 /**+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/

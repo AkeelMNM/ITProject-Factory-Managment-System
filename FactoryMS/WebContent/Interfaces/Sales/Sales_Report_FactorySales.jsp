@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.fms.model.FactorySales"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -52,7 +54,7 @@
 		<!-- Body Part -->
 		
 		<div class="ViewRepDiv">
-			<form method="POST" action="${pageContext.request.contextPath}/FactorySales_ReportGenerateServlet">
+			<form method="POST" action="${pageContext.request.contextPath}/Manager_Factory_Sales_Report_GenerateServlet">
 			<table class="BarTable">
 				<tr>
 					<td class="reptoolbartxt">Select Sales Type : </td>
@@ -84,8 +86,16 @@
 						</select>
 					</td>
 					<td class="reptoolbartxt">Year :</td>
-					<td><input type="number" name="year" id="reviewdate"></td>
-					<input type="hidden" name="key" value ="CkhDate">
+					<td><input type="number" name="year" id="reviewdate" required></td>
+					<td class="month">
+						<input type="radio" name="Option" value="Month" checked> Month Report
+					</td>
+				</tr>
+				<tr>
+					<td colspan="6"></td>
+					<td class="year" >
+						<input type="radio" name="Option" value="Year" > Year Report
+					</td>
 				</tr>
 			</table>
       			<input type="submit" value="View" id="view_btn" name="viewbutton" >
@@ -96,14 +106,12 @@
   		<%
 	  		String SYear =null;
 			String SMonth = null;
-			String SKey = null;
 			
 			ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
 			SalesList = (ArrayList<FactorySales>) request.getAttribute("FactorySalesList");
 			
-			SYear = (String) request.getAttribute("EPyear");
-			SMonth =(String) request.getAttribute("EPMonth");
-			SKey=(String) request.getAttribute("Key");
+			SYear = (String) request.getAttribute("FSyear");
+			SMonth =(String) request.getAttribute("FSMonth");
 			
 			if(SYear == "") {
 				SYear = null;
@@ -111,20 +119,23 @@
   		
   		%>
   		
-  		<div class="table">
+  		
+  	<div class="table">
   		
   		<% if(SYear == null && SMonth == null){  %>
-		<table style="height: 49%;" width="100%">
+		<table style="height: 380px; width: 100%;">
 			<tbody>
 			<tr>
-			<td style="width: 12.5043%; text-align:center;">&nbsp;The Report Preview will be Displayed here</td>
+			<td style="width: 12.5043%; text-align:center;">&nbsp; <b>The Report Preview will be Displayed here </b> </td>
 			</tr>
 			</tbody>
 		</table>
 		
 		<%	}
-	
-  		if(SMonth != null && SYear == null){ %>
+  		
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Monthly Report Table interface... +++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+		if(SMonth != null && SYear == null){ %>
 		<table style="height: 137px; width: 88.5%; margin-left:50px;">
 			<tbody>
 			<tr style="height: 31px;">
@@ -132,7 +143,11 @@
 			<td style="width: 316px; height: 31px;">
 			<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
 			</td>
-			<td style="width: 101px; height: 85px;" rowspan="4">Date:</td>
+			
+			<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy, HH:mm:ss");
+				Date date = new Date();
+			%>
+			<td style="width: 101px; height: 85px;" rowspan="4">Date: <%=formatter.format(date) %></td>
 			</tr>
 			<tr style="height: 18px;">
 			<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
@@ -152,24 +167,24 @@
 			<tbody>
 			<tr>
 			<td style="width: 400px;">
-			<h4 style="margin-top:20px;">FACTORY SALES REPORT</h4>
+			<h4 style="margin-top:20px; float:left; ">FACTORY SALES REPORT</h4>
 			</td>
-			<td style="width: 80.8px;" rowspan="2">Month: Feb </td>
+			<td style="width: 80.8px;" rowspan="2">Month: <%=SalesList.get(0).getMonth() %> </td>
 			</tr>
 			
 
 			<tr>
-			<td style="width: 400px;"><span style="text-decoration: underline;">MONTH REPROT</span></td>
+			<td style="width: 400px;"><span style="text-decoration: underline; float:left; ">MONTH REPROT</span></td>
 			</tr>
 			</tbody>
 		</table>
-		<hr style="width:90%; float:left; margin-left:50px;">
+		<hr style="width:94%; float:left; margin-left:50px; width: 90%;">
 
-			<table border="1" cellspacing="0" style="margin-left:50px;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			<table border="1" cellspacing="0" class="contentTable" >  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
 			<tr>
-				<th colspan="3" class ="tDataS"> Date of Sale</th>
-				<th colspan="3" class ="tDataS"> Tea Grade</th>
-				<th colspan="3" class ="tDataS"> Selling Quantity(kg)</th>
+				<th class ="tDataS"> Date of Sale</th>
+				<th class ="tDataS"> Tea Grade</th>
+				<th class ="tDataS"> Selling Quantity(kg)</th>
 			</tr>
 			
 			<%
@@ -177,9 +192,9 @@
 				{	
 			%>
 			<tr>
-				<td colspan="3" class ="tData"><%=fs.getDate() %> </td>
-				<td colspan="3" class ="tData" ><%=fs.getTea_Grade() %> </td>
-				<td colspan="3" class ="tData" ><%=fs.getSelling_Quantity() %> </td>
+				<td class ="tData"><%=fs.getDate() %> </td>
+				<td class ="tData" ><%=fs.getTea_Grade() %> </td>
+				<td class ="tData" ><%=fs.getSelling_Quantity() %> </td>
 			</tr>
 			<%
   				}
@@ -188,10 +203,83 @@
 		
 		<%
   			}
+  		
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Year Report Table interface... +++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+  		if(SMonth == null && SYear != null){ %>
+  		<table style="height: 137px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr style="height: 31px;">
+			<td style="width: 12%; height: 85px;" rowspan="4"><img id="logo" src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" /></td>
+			<td style="width: 316px; height: 31px;">
+			<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
+			</td>
+			
+			<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy, HH:mm:ss");
+				Date date = new Date();
+			%>
+			<td style="width: 101px; height: 85px;" rowspan="4">Date: <%=formatter.format(date) %></td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Tel : 0815630035</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Email : nmmbrosdtf@gmail.com</td>
+			</tr>
+			</tbody>
+		</table>
 		
+		
+		<hr style="width:90%; float:left; margin-left:50px;">
+		<table style="height: 112px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr>
+			<td style="width: 400px;">
+			<h4 style="margin-top:20px; float:left;">FACTORY SALES REPORT</h4>
+			</td>
+			<td style="width: 80.8px;" rowspan="2">Year: <%=SalesList.get(0).getYear() %> </td>
+			</tr>
+			
+
+			<tr>
+			<td style="width: 400px;"><span style="text-decoration: underline; float:left;">YEAR REPROT</span></td>
+			</tr>
+			</tbody>
+		</table>
+		<hr style="width:90%; float:left; margin-left:50px; width: 90%;">
+
+			<table border="1" cellspacing="0" class="contentTable" >  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			<tr>
+				<th class ="tDataS"> No of Sales</th>
+				<th class ="tDataS"> Month of Sales </th>
+				<th class ="tDataS"> Tea Grade</th>
+				<th class ="tDataS"> Selling Quantity(kg)</th>
+			</tr>
+			
+			<%
+				for(FactorySales fs : SalesList)
+				{	
+					
+			%>
+			<tr>
+				<td class ="tData"><%=fs.getTea_Grade_PriceID() %> </td>
+				<td class ="tData" ><%=fs.getMonth() %> </td>
+				<td class ="tData" ><%=fs.getTea_Grade() %> </td>
+				<td class ="tData" ><%=fs.getSelling_Quantity() %> </td>
+			</tr>
+			<%
+  				}
+			%>
+				</table>
+		
+		<%
+  			}
 		%>
 		
-  		</div>		
+  	</div>		
 				
 				
 				

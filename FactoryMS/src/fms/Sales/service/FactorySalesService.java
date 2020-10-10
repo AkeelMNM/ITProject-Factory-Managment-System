@@ -3,7 +3,6 @@ package fms.Sales.service;
 import java.util.ArrayList;
 
 import com.fms.model.FactorySales;
-import com.fms.model.Tea_Grade_Price;
 
 /**
  * @author Zumry
@@ -32,7 +31,7 @@ public interface FactorySalesService {
 	public String getTeaGrade(String FactorySalesID);
 	
 	//Get FactorySales by TeaGrade and Month
-	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndMonth(String SalesType,String Month);
+	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndMonth(String SalesType,String Month,String Year);
 		
 	//Get FactorySales by TeaGrade and year
 	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndYear(String SalesType,String Year);
