@@ -72,6 +72,9 @@ public class SalesCommonConstants {
 	//Constant for query id for get Tea Grade in SalesQuery.xml
 	public static final String Query_ID_GET_TeaGrade_IN_FACTORY_SALES ="GET_TeaGrade_IN_Sales";
 	
+	//Constant for query id for get Tea Grade and SellingQty in SalesQuery.xml
+	public static final String Query_ID_GET_TEA_GRADE_SELLING_QTY_IN_FACTORY_SALES ="GET_TeaGrade_Qty_by_Date_SalesType";
+	
 	//Constant for query id for get all by teaGrade and month in SalesQuery.xml
 	public static final String Query_ID_GET_FACTORY_SALES_BY_SALES_TYPE_MONTH = "get_Factory_Sales_by_SalesType_month";
 	

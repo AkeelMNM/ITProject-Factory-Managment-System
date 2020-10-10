@@ -39,7 +39,7 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 	@Override
 	public void AddSalesReturn(Sales_Return Sales_Return) {
 		
-		String FactorySalesID = SalesCommonUtil.generateTea_Grade_PriceIDs(getFactorySalesIDs());
+		String SalesReturnID = SalesCommonUtil.generateSalesReturnIDs(getSalesReturnIDs());
 		
 		try {
 			
@@ -50,7 +50,7 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 			connection.setAutoCommit(false);
 			
 			//Generate Sales_Return IDs
-			Sales_Return.setSales_ReturnID(FactorySalesID);
+			Sales_Return.setSales_ReturnID(SalesReturnID);
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_ONE, Sales_Return.getSales_ReturnID());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_TWO, Sales_Return.getFactory_SalesID());
 			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_THREE, Sales_Return.getDate());
@@ -416,7 +416,7 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 	
 /**---------------------    Array of Sales return id list will be return    ---------------**/
 	
-	private ArrayList<String> getFactorySalesIDs()
+	private ArrayList<String> getSalesReturnIDs()
 	{
 			ArrayList<String> arraylist = new ArrayList<String>();
 					

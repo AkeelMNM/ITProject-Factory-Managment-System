@@ -52,9 +52,9 @@
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Factory_Sales.jsp">Factory Sales</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Sales_Return.jsp">Sales Return</a></li>
 				  <li><a class="menu" href="#">Sales Revenue</a></li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Tea_Grade_price.jsp">Tea grade price</a></li>
-				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Sales_Return.jsp">Sales Return</a></li>
 		</ul>
 
 <div id="bodyDiv">
@@ -144,6 +144,44 @@
 						%>
 
 						<option value="<%=sales3.getFactory_Sales_ID() %>"> <%=sales3.getTea_Grade() %> </option>
+
+						<%
+							}
+						%>
+					</select>
+				</td>
+				<td> <input type="text" name="Sold_Qty[]"  > </td>
+				<td> <input type="text" name="total_Amount[]" id="num3" > </td>
+			</tr>
+			<tr>
+				<td>
+					<select name="FactorySalesID[]" > 
+						<option> --Select Grade-- </option>
+						<%
+							for(FactorySales sales4 : SalesList)
+							{
+						%>
+
+						<option value="<%=sales4.getFactory_Sales_ID() %>"> <%=sales4.getTea_Grade() %> </option>
+
+						<%
+							}
+						%>
+					</select>
+				</td>
+				<td> <input type="text" name="Sold_Qty[]"  > </td>
+				<td> <input type="text" name="total_Amount[]" id="num3" > </td>
+			</tr>
+			<tr>
+				<td>
+					<select name="FactorySalesID[]" > 
+						<option> --Select Grade-- </option>
+						<%
+							for(FactorySales sales5 : SalesList)
+							{
+						%>
+
+						<option value="<%=sales5.getFactory_Sales_ID() %>"> <%=sales5.getTea_Grade() %> </option>
 
 						<%
 							}

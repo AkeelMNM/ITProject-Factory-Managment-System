@@ -283,6 +283,61 @@ public class FactorySalesServiceImpt implements FactorySalesService{
 		return TeaGrade;
 	}
 	
+	
+	
+	
+/**-------------   Get TeaGrade and Selling Qty by Date , Sales type (Rtn table)  --------------**/			
+	@Override
+	public ArrayList<FactorySales> getTeaGrade_And_SellingQty(String date, String SalesType)
+	{
+		ArrayList<FactorySales> FactorySalesList = new ArrayList<FactorySales>();
+		
+		try {
+			
+			connection = DBConnection.getDBConnection();
+				
+			preparedStatement = connection.prepareStatement(SalesQueryUtil.queryByID(SalesCommonConstants.Query_ID_GET_TEA_GRADE_SELLING_QTY_IN_FACTORY_SALES));
+			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_ONE, date);
+			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_TWO, SalesType);
+			
+			ResultSet result  = preparedStatement.executeQuery();
+			
+			while(result.next())
+			{
+				FactorySales Fsales = new FactorySales();
+				
+				Fsales.setFactory_Sales_ID(result.getString(SalesCommonConstants.COLUMN_INDEX_ONE));
+				Fsales.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_TWO));
+				Fsales.setSelling_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_THREE));
+				
+				FactorySalesList.add(Fsales);
+			}
+			
+		} catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException ex ) {
+			
+			log.log(Level.SEVERE,ex.getMessage());
+		} finally {
+			
+			//Closing DB Connection and Prepared statement
+			try {	
+				if(preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if(connection != null) {
+					connection.close();
+				}	
+			}
+			catch (SQLException ex) {
+				log.log(Level.SEVERE,ex.getMessage());
+			}
+		}
+		
+		return FactorySalesList;
+	}
+	
+
+	
+	
 /** -------------  ***************************  Get FactorySales by TeaGrade and Month from FactorySales table   ***************************   ------------------------**/
 	@Override
 	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndMonth(String SalesType,String Month,String Year)

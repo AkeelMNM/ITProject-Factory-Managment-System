@@ -53,6 +53,7 @@ public class Add_SalesRevenueServlet extends HttpServlet {
 		response.setContentType("text/HTML");
 		
 		String Month = null;
+		String monthNum = null;
 		
 		Sales_Revenue Revenue = new Sales_Revenue();
 		
@@ -68,7 +69,36 @@ public class Add_SalesRevenueServlet extends HttpServlet {
 		{
 			String[] x = date.split("-");
 				
-			Month = x[1];
+			monthNum = x[1];
+			
+			if(monthNum != null)
+			{
+				if(monthNum.equals("01")) {
+					Month = "January";
+				}else if(monthNum.equals("02")) {
+					Month = "February";
+				}else if(monthNum.equals("03")) {
+					Month = "March";
+				}else if(monthNum.equals("04")) {
+					Month = "April";
+				}else if(monthNum.equals("05")) {
+					Month = "May";
+				}else if(monthNum.equals("06")) {
+					Month = "June";
+				}else if(monthNum.equals("07")) {
+					Month = "July";
+				}else if(monthNum.equals("08")) {
+					Month = "August";
+				}else if(monthNum.equals("09")) {
+					Month = "September";
+				}else if(monthNum.equals("10")) {
+					Month = "October";
+				}else if(monthNum.equals("11")) {
+					Month = "November";
+				}else if(monthNum.equals("12")) {
+					Month = "December";
+				}
+			}
 		}
 		
 		//call back end
@@ -90,6 +120,7 @@ public class Add_SalesRevenueServlet extends HttpServlet {
 				Revenue.setDate(date);
 				Revenue.setMonth(Month);
 				Revenue.setSales_Type(SalesType);
+				Revenue.setFactory_SalesID(FactorySalesID[i]);
 				Revenue.setTea_Grade(TeaGrade[i]);
 				Revenue.setSold_Quantity(Sold_Qty[i]);
 				Revenue.setAmount(Amount[i]);

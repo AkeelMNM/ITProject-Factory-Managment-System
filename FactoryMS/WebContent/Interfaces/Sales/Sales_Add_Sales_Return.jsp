@@ -53,9 +53,9 @@
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Factory_Sales.jsp">Factory Sales</a></li>
+				  <li><a class="menu" href="#">Sales Return</a></li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Sales Revenue.jsp">Sales Revenue</a></li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Tea_Grade_price.jsp">Tea grade price</a></li>
-				  <li><a class="menu" href="#">Sales Return</a></li>
 		</ul>
 
 <div id="bodyDiv">
@@ -72,19 +72,26 @@
 		<table class="form">
 		
 			<tr>
-				<td>Date :</td>
-				<td ><input type="date" name="RtnDate" size="55" required></td>
+				<td>Sales Date :</td>
+				<td ><input type="date" name="SalDate" size="55" required></td>
 			</tr>
 			
 			<tr>
-				<td>Sales Type : </td>
-				<td colspan="2">
+				<td>Sales Type : </td> 	
+				<td >
 					<select name="SalesType"  required> 
 						<option> --Select Type-- </option>
 						<option value="Auction">Auction</option>
 						<option value="Local Sales"> Local Sales </option>
 					</select>
 				</td>
+				
+				<td ><input type="submit" name="GetRtn" value="Get Return" class=""> </td>
+			</tr>
+			
+			<tr>
+				<td> Date :</td>
+				<td ><input type="date" name="RtnDate" size="55" ></td>
 			</tr>
 			
 			<tr>
@@ -92,30 +99,46 @@
 				<td>Return Quantity :</td>
 			</tr>
 			
+			<%
+				FactorySalesService FactorySales = new FactorySalesServiceImpt();
+				ArrayList<FactorySales> FSalesList = new ArrayList<FactorySales>();
+				FSalesList = (ArrayList<FactorySales>) request.getAttribute("SalesList");
+			
+			if(FSalesList != null)
+			{
+				
+				for(FactorySales sales : FSalesList)
+				{
+			%>
+			
 			<tr>
-				<td>
-					<select name="FactorySalesID[]" required> 
-						<option> --Select Grade-- </option>
-						<%
-							FactorySalesService FactorySales = new FactorySalesServiceImpt();
-							ArrayList<FactorySales> SalesList = FactorySales.getAllFactorySales();
-							
-							for(FactorySales sales : SalesList)
-							{
-						%>
-
-						<option value="<%=sales.getFactory_Sales_ID() %>"> <%=sales.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
+				<td> 
+					<input type="text" value="<%=sales.getTea_Grade() %>"  disabled>
+					<input type="hidden" name="FactorySalesID[]" value="<%=sales.getFactory_Sales_ID() %>" >
 				</td>
-				<td> <input type="text" name="Rtn_Qty[]" required> </td>
+
+				<td> 
+					<input type="text" name="Rtn_Qty[]" required>  Max sent Qty <%=sales.getSelling_Quantity() %>
+				</td>
 			</tr>
+			
+			<%
+				}
+			}
+			
+			
+			else
+			{
+				ArrayList<FactorySales> SalesList = FactorySales.getAllFactorySales();
+				
+			%>
+			
+			
+			
+			
 			<tr>
 				<td>
-					<select name="FactorySalesID[]"  required> 
+					<select name="FactorySalesID[]"  > 
 						<option> --Select Grade-- </option>
 						<%
 							for(FactorySales sales2 : SalesList)
@@ -129,11 +152,11 @@
 						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Rtn_Qty[]" required> </td>
+				<td> <input type="text" name="Rtn_Qty[]" > </td>
 			</tr>
 			<tr>
 				<td>
-					<select name="FactorySalesID[]" required> 
+					<select name="FactorySalesID[]" > 
 						<option> --Select Grade-- </option>
 						<%
 							for(FactorySales sales3 : SalesList)
@@ -147,19 +170,59 @@
 						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Rtn_Qty[]" required> </td>
+				<td> <input type="text" name="Rtn_Qty[]" > </td>
 			</tr>
+			<tr>
+				<td>
+					<select name="FactorySalesID[]" > 
+						<option> --Select Grade-- </option>
+						<%
+							for(FactorySales sales4 : SalesList)
+							{
+						%>
+
+						<option value="<%=sales4.getFactory_Sales_ID() %>"> <%=sales4.getTea_Grade() %> </option>
+
+						<%
+							}
+						%>
+					</select>
+				</td>
+				<td> <input type="text" name="Rtn_Qty[]" > </td>
+			</tr>
+			<tr>
+				<td>
+					<select name="FactorySalesID[]" > 
+						<option> --Select Grade-- </option>
+						<%
+							for(FactorySales sales5 : SalesList)
+							{
+						%>
+
+						<option value="<%=sales5.getFactory_Sales_ID() %>"> <%=sales5.getTea_Grade() %> </option>
+
+						<%
+							}
+						%>
+					</select>
+				</td>
+				<td> <input type="text" name="Rtn_Qty[]" > </td>
+			</tr>
+			
+			<%
+			}
+			%>
 			
 			<tr>
 				<td>Total Return Quantity (kg) :</td>
-				<td ><input type="text" name="Total_Return" size="55" required></td>
+				<td ><input type="text" name="Total_Return" size="55" ></td>
 			</tr>
 			
 			<tr ><td colspan="2" ></td></tr>
 			<tr ><td colspan="2" ></td></tr>
 			<tr ><td colspan="2" ></td></tr>
 			<tr >
-				<td colspan="2" ><input type="reset" value="Reset" class="Rest_btn">
+				<td colspan="3" ><input type="reset" value="Reset" class="Rest_btn">
 					<input type="submit" value="Submit" class="submit_btn"></td>
 			</tr>
 			
@@ -217,7 +280,7 @@
 						<td class ="TblData"> <%=Rtn.getReturn_Quantity() %> </td>
 						<td class ="TblData">
 							<form method="POST" action="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Update_Sales_Return.jsp">
-								<input type="hidden" name="RtnID"value="<%=Rtn.getSales_ReturnID() %>" /> 
+								<input type="hidden" name="RtnID" value="<%=Rtn.getSales_ReturnID() %>" /> 
 								<input type="submit" value="Edit" class="Edit_btn">
 							</form>
 						</td>

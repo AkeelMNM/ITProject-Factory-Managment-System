@@ -55,13 +55,43 @@ public class Update_SalesReturnServlet extends HttpServlet {
 		String ReturnID = request.getParameter("RtnID");
 		String date = request.getParameter("RtnDate");
 		String Month = null;
+		String monthNum = null;
 		
 		//Splitting Date
 		if(date != null && !date.isEmpty())
 		{
 			String[] x = date.split("-");
 				
-			Month = x[1];
+			monthNum = x[1];
+			
+			if(monthNum != null)
+			{
+				if(monthNum.equals("01")) {
+					Month = "January";
+				}else if(monthNum.equals("02")) {
+					Month = "February";
+				}else if(monthNum.equals("03")) {
+					Month = "March";
+				}else if(monthNum.equals("04")) {
+					Month = "April";
+				}else if(monthNum.equals("05")) {
+					Month = "May";
+				}else if(monthNum.equals("06")) {
+					Month = "June";
+				}else if(monthNum.equals("07")) {
+					Month = "July";
+				}else if(monthNum.equals("08")) {
+					Month = "August";
+				}else if(monthNum.equals("09")) {
+					Month = "September";
+				}else if(monthNum.equals("10")) {
+					Month = "October";
+				}else if(monthNum.equals("11")) {
+					Month = "November";
+				}else if(monthNum.equals("12")) {
+					Month = "December";
+				}
+			}
 		}
 		
 		Return.setFactory_SalesID(request.getParameter("SalesID"));
@@ -76,7 +106,7 @@ public class Update_SalesReturnServlet extends HttpServlet {
 		Sales_ReturnService UpdateReturn = new Sales_ReturnServiceImpt();
 		UpdateReturn.UpdateSalesReturn(ReturnID, Return);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Sales/Sales_Update_Sales_Return.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Sales/Sales_Add_Sales_Return.jsp");
 		dispatcher.forward(request, response);
 		
 	}

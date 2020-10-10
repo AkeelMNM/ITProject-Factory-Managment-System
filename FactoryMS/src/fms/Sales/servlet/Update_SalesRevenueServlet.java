@@ -55,13 +55,43 @@ public class Update_SalesRevenueServlet extends HttpServlet {
 		String RevenueID = request.getParameter("RevID");
 		String date = request.getParameter("RevDate");
 		String Month = null;
+		String monthNum = null;
 		
 		//Splitting Date
 		if(date != null && !date.isEmpty())
 		{
 			String[] x = date.split("-");
 				
-			Month = x[1];
+			monthNum = x[1];
+			
+			if(monthNum != null)
+			{
+				if(monthNum.equals("01")) {
+					Month = "January";
+				}else if(monthNum.equals("02")) {
+					Month = "February";
+				}else if(monthNum.equals("03")) {
+					Month = "March";
+				}else if(monthNum.equals("04")) {
+					Month = "April";
+				}else if(monthNum.equals("05")) {
+					Month = "May";
+				}else if(monthNum.equals("06")) {
+					Month = "June";
+				}else if(monthNum.equals("07")) {
+					Month = "July";
+				}else if(monthNum.equals("08")) {
+					Month = "August";
+				}else if(monthNum.equals("09")) {
+					Month = "September";
+				}else if(monthNum.equals("10")) {
+					Month = "October";
+				}else if(monthNum.equals("11")) {
+					Month = "November";
+				}else if(monthNum.equals("12")) {
+					Month = "December";
+				}
+			}
 		}
 		
 		Revenue.setFactory_SalesID(request.getParameter("FactorySalesID"));

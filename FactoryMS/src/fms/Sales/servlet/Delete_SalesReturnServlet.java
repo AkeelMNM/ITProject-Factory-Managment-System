@@ -53,7 +53,7 @@ public class Delete_SalesReturnServlet extends HttpServlet {
 		Sales_ReturnService DeleteReturn = new Sales_ReturnServiceImpt();
 		DeleteReturn.removeSalesReturn(ReturnID);
 		
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Sales/Sales_Update_Sales_Return.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Sales/Sales_Add_Sales_Return.jsp");
 		dispatcher.forward(request, response);
 		
 	}

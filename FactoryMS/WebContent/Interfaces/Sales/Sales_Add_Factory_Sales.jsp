@@ -53,9 +53,9 @@
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="#">Factory Sales</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Sales_Return.jsp">Sales Return</a></li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Sales Revenue.jsp">Sales Revenue</a></li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Tea_Grade_price.jsp">Tea grade price</a></li>
-				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Sales_Return.jsp">Sales Return</a></li>
 		</ul>
 
 <div id="bodyDiv">
@@ -121,13 +121,11 @@
 					<select id="dep"  name="TeaGradeID[]" > 
 						<option> --Select Grade-- </option>
 						<%
-							ArrayList<Tea_Grade_Price> TeaGradePriceList1 = AllTeaGradePrice.getTeaGradePrices();
-							
-							for(Tea_Grade_Price TGP : TeaGradePriceList1)
+							for(Tea_Grade_Price TGP2 : TeaGradePriceList)
 							{
 						%>
 					
-						<option value="<%=TGP.getTea_Grade_Price_ID() %>">  <%=TGP.getTea_Grade() %>  </option> 
+						<option value="<%=TGP2.getTea_Grade_Price_ID() %>">  <%=TGP2.getTea_Grade() %>  </option> 
 						
 						<%
 							}
@@ -142,13 +140,11 @@
 					<select id="dep"  name="TeaGradeID[]" > 
 						<option> --Select Grade-- </option>
 						<%
-							ArrayList<Tea_Grade_Price> TeaGradePriceList3 = AllTeaGradePrice.getTeaGradePrices();
-							
-							for(Tea_Grade_Price TGP : TeaGradePriceList3)
+							for(Tea_Grade_Price TGP3 : TeaGradePriceList)
 							{
 						%>
 					
-						<option value="<%=TGP.getTea_Grade_Price_ID() %>">  <%=TGP.getTea_Grade() %>  </option> 
+						<option value="<%=TGP3.getTea_Grade_Price_ID() %>">  <%=TGP3.getTea_Grade() %>  </option> 
 						
 						<%
 							}
@@ -157,6 +153,44 @@
 				</td>
 				<td> <input type="text" name="Selling_Qty[]" > </td>
 				<td> <input type="text" name="Price" > </td>
+			</tr>
+			<tr>
+				<td>
+					<select id="dep"  name="TeaGradeID[]" required> 
+						<option> --Select Grade-- </option>
+						<%
+							for(Tea_Grade_Price TGP4 : TeaGradePriceList)
+							{
+						%>
+					
+						<option value="<%=TGP4.getTea_Grade_Price_ID() %>">  <%=TGP4.getTea_Grade() %>  </option> 
+						
+						<%
+							}
+						%>
+					</select>
+				</td>
+				<td> <input type="text" name="Selling_Qty[]"  required> </td>
+				<td> <input type="text" name="Price"  required> </td>
+			</tr>
+			<tr>
+				<td>
+					<select id="dep"  name="TeaGradeID[]" required> 
+						<option> --Select Grade-- </option>
+						<%
+							for(Tea_Grade_Price TGP5 : TeaGradePriceList)
+							{
+						%>
+					
+						<option value="<%=TGP5.getTea_Grade_Price_ID() %>">  <%=TGP5.getTea_Grade() %>  </option> 
+						
+						<%
+							}
+						%>
+					</select>
+				</td>
+				<td> <input type="text" name="Selling_Qty[]"  required> </td>
+				<td> <input type="text" name="Price"  required> </td>
 			</tr>
 			
 			<tr ><td colspan="3" ></td></tr>
@@ -220,7 +254,7 @@
 						<td class ="TblData"> <%=fs.getSelling_Quantity() %></td>
 						<td class ="TblData">
 							<form method="POST" action="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Update_Factory_Sales.jsp">
-								<input type="hidden" name="SalesID"value="<%=fs.getFactory_Sales_ID() %>" />
+								<input type="hidden" name="SalesID" value="<%=fs.getFactory_Sales_ID() %>" />
 								<input type="submit" value="Edit" class="Edit_btn">
 							</form>
 						</td>

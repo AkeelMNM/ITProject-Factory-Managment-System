@@ -30,6 +30,9 @@ public interface FactorySalesService {
 	//Get Tea Garde only Factory Sales table
 	public String getTeaGrade(String FactorySalesID);
 	
+	//Get TeaGrade and Selling Qty by Date , Sales type (Rtn table)
+	public ArrayList<FactorySales> getTeaGrade_And_SellingQty(String date, String SalesType);
+	
 	//Get FactorySales by TeaGrade and Month
 	public ArrayList<FactorySales> getFactorySalesBySalesTypeAndMonth(String SalesType,String Month,String Year);
 		

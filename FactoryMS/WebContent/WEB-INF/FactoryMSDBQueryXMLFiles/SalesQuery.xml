@@ -139,6 +139,15 @@
 		]]>
 		</query>
 		
+		<!-- get Tea_Grade and Qty  by Date, Sales type -->
+		<query id="GET_TeaGrade_Qty_by_Date_SalesType">
+		<![CDATA[
+			select Factory_Sales_ID,Tea_Grade,Selling_Quantity 
+			from Factory_Sales
+			where Date= ? and Sales_Type = ?
+		]]>
+		</query>
+		
 		<!-- Get Factory Sales by SalesType and Month  -->
 		<query id="get_Factory_Sales_by_SalesType_month">
 		<![CDATA[
