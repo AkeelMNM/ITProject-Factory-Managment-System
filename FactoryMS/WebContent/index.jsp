@@ -114,6 +114,29 @@ input[type="submit"]{ padding: 10px 10px; line-height:15px; }
 	color:white;
 }
 
+.button2 {
+
+  background-color:#E85A4F;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+  width:100%;
+  size:10%;
+  cursor:pointer;
+  margin-top:5px;
+  padding: 7px ;
+  margin-left:95px;
+  
+}
+
+/* Change background color of buttons on hover */
+.button2:hover {
+  background-color: #0299a6;
+}
+
 </style>
 </head>
 <body>
@@ -125,8 +148,8 @@ input[type="submit"]{ padding: 10px 10px; line-height:15px; }
 					<label id="address">Hapugahayatatenna,Handessa</label>
 				</div>
 				<div id="manage">
-					<a href="#"><button>Sign in</button></a>
-					<a href="${pageContext.request.contextPath}/Interfaces/Home/Tech_Support.jsp"><button>Contact Us</button></a>
+					<a href="#"><button class="button2">Sign in</button></a>
+					<a href="${pageContext.request.contextPath}/Interfaces/Home/Tech_Support.jsp"><button class="button2">Contact Us</button></a>
 					</div>
 				</div>
 													
@@ -139,25 +162,6 @@ input[type="submit"]{ padding: 10px 10px; line-height:15px; }
 <div id="bodyDiv">
 		
 		<!-- Body Part -->
-
-		<%
-				
-				//Accsessing the Cookie
-				/*Cookie[] cookies = request.getCookies();;
-				String EmployeeID = null;
-				String AttendanceID;
-				for (Cookie aCookie : cookies) {
-					if (aCookie.getName().equals("employeeid"))
-					{
-						EmployeeID = aCookie.getValue();
-					}
-				}
-				
-					AttendanceService attendanceService = new AttendanceServiceImpt();
-					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
-					
-		%>
-		
 		 
 		<div  class="loginform">
 		<h3><u>LOGIN</u></h3>

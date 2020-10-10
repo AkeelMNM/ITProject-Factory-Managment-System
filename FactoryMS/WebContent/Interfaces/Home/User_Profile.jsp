@@ -101,6 +101,13 @@
 </head>
 <body>
 <!-- +++++++++++++++++++++++++++++++++ Header Part +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<%
+    if((String)session.getAttribute("uid")==null)
+    {
+        response.sendRedirect("/FactoryMS/index.jsp");
+    }
+
+%> 
 <div id="headDiv">
 					<img src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" id="logo"> 
 				<div id="name">
@@ -112,7 +119,7 @@
 							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
 									  <div id="myDropdown" class="dropdown-content">
 											<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
-											<a href="${pageContext.request.contextPath}/Interfaces/Home/LogoutServlet">Logout</a>
+											<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
 									  </div>
 					</div>
 				</div>

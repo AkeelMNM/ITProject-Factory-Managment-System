@@ -75,6 +75,29 @@
   background-color: #434343;
 }
 
+.button2 {
+
+  background-color:#E85A4F;
+  border: none;
+  color: white;
+  text-align: center;
+  text-decoration: none;
+  font-size: 14px;
+  transition: 0.3s;
+  width:100%;
+  size:10%;
+  cursor:pointer;
+  margin-top:5px;
+  padding: 7px ;
+  margin-left:95px;
+  
+}
+
+/* Change background color of buttons on hover */
+.button2:hover {
+  background-color: #0299a6;
+}
+
 </style>
 
 </head>
@@ -86,17 +109,13 @@
 					<label id="title">Dehiwatta Tea Factory</label><br>
 					<label id="address">Hapugahayatatenna,Handessa</label>
 				</div>
-				<div id="manage">
-					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
-									  <div id="myDropdown" class="dropdown-content">
-											<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
-											<a href="${pageContext.request.contextPath}/Interfaces/Home/LogoutServlet">Logout</a>
-									  </div>
+				<%if((String)session.getAttribute("uid") == null){%>
+					<div id="manage">
+					<a href="${pageContext.request.contextPath}/index.jsp"><button class="button2">Sign in</button></a>
+					<a href="#"><button class="button2">Contact Us</button></a>
 					</div>
 				</div>
-						<img src="${pageContext.request.contextPath}/Images_UserProfile/AB.jpg" alt="UserLogo" id="Userlogo">								
-
+				<%} %>
 </div>
 <div style="float:left; width:100%; margin-top:-4px"><hr></div>
 <div id="bodyDiv">
@@ -106,6 +125,8 @@
 <a href = "${pageContext.request.contextPath}/Interfaces/Home/Accountant_Home.jsp"><button class ="homebutton">Home</button></a>
 <%}else if("Manager".equals((String)session.getAttribute("type"))){ %>
 <a href = "${pageContext.request.contextPath}/Interfaces/Home/Manager_Home.jsp"><button class ="homebutton">Home</button></a>
+<%}else if ((String)session.getAttribute("type") == null){ %>
+
 <%} %>
 <h2>Technical Support  </h2>
 <h2>Contact Us  </h2>

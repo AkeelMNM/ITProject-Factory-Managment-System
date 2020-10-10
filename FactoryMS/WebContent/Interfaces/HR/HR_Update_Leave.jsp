@@ -14,6 +14,13 @@
 </head>
 <body>
 <!-- +++++++++++++++++++++++++++++++++ Header Part +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<%
+    if((String)session.getAttribute("uid")==null)
+    {
+        response.sendRedirect("/FactoryMS/index.jsp");
+    }
+
+%> 
 <div id="headDiv">
 					<img src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" id="logo"> 
 				<div id="name">
@@ -25,11 +32,11 @@
 							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
 									  <div id="myDropdown" class="dropdown-content">
 											<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
-											<a href="${pageContext.request.contextPath}/Interfaces/Home/LogoutServlet">Logout</a>
+											<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
 									  </div>
 					</div>
 				</div>
-						<img src="${pageContext.request.contextPath}/Images_UserProfile/AB.jpg" alt="UserLogo" id="Userlogo">								
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>" alt="UserLogo" id="Userlogo">								
 
 </div>
 <hr>
@@ -55,22 +62,7 @@
 		
 		<!-- Body Part -->
 
-		<%
-				
-				//Accsessing the Cookie
-				/*Cookie[] cookies = request.getCookies();;
-				String EmployeeID = null;
-				String AttendanceID;
-				for (Cookie aCookie : cookies) {
-					if (aCookie.getName().equals("employeeid"))
-					{
-						EmployeeID = aCookie.getValue();
-					}
-				}
-				
-					AttendanceService attendanceService = new AttendanceServiceImpt();
-					ArrayList<Attendance> attendanceList = attendanceService.getAttendance(); //Getting Employees All Attendance*/
-					
+		<%	
 					String date = null;
 					String month = null;
 					String JTitle = null;

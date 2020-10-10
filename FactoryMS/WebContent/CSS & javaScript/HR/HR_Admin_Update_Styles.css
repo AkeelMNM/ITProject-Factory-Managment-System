@@ -31,12 +31,12 @@ body
 #Userlogo
 {
 		display:block;
-		width:80px;
-		height:80px;
+		width:90px;
+		height:90px;
 		border-radius: 50%;
 		float:left;
 		margin-left:5px;
-		margin-top:30px;
+		margin-top:25px;
 }
 
 #name
