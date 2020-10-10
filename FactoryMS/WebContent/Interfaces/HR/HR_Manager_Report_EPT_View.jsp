@@ -1,3 +1,5 @@
+<%@page import="fms.HR.service.JobServiceImpt"%>
+<%@page import="fms.HR.service.JobService"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.fms.model.PerformanceTracking"%>
@@ -15,10 +17,10 @@
 <body>
 <!-- Header Part -->
 <%
-    if((String)session.getAttribute("uid")==null)
+    /*if((String)session.getAttribute("uid")==null)
     {
         response.sendRedirect("/FactoryMS/index.jsp");
-    }
+    }*/
 
 %> 
 <div id="headDiv">
@@ -64,11 +66,38 @@
 			<form method="POST" action="${pageContext.request.contextPath}/EPTReportGenerateServlet">
 			<table class="repviewtable">
 			<tr>
+			<td class="reptoolbartxt">Select Job:</td><td><select name="emp_job" tabindex="10" class="reviewdr" required>
+									<%String key =null;
+									key = (String) request.getAttribute("jName");
+									if(key !=null){ %>
+											<option value="<%=key%>"><%=key%></option>
+									<%}else{ %>
+									<option> --Select Job Name-- </option>
+									<%} %>
+									<%
+									JobService jobservice= new JobServiceImpt();
+									ArrayList<String> jobList =jobservice.getJobName();
+									
+									for(String name : jobList)
+									{
+								%>
+							
+										<option value="<%=name%>">  <%=name%>  </option> 			
+									
+								<%
+									}
+								%>  
+									
+					</select></td>
 					<td class="reptoolbartxt">Select Employee:</td><td><select name="emp_name" tabindex="10" class="reviewdr" required>
-									<option> --Select Name-- </option> 
+									<%if((String) request.getAttribute("name") != null){ %>
+											<option value="<%=(String) request.getAttribute("name")%>"><%=(String) request.getAttribute("name")%></option>
+									<%}else{ %>
+										<option> --Select Name-- </option>
+									<%} %>
 									<%
 									EmployeeService empservice= new EmployeeServiceImpt();
-									ArrayList<String> nameList =empservice.getAllEmployeeName();
+									ArrayList<String> nameList =empservice.getAllEmployeeNameByJobTitle(key);
 									
 									for(String name : nameList)
 									{
@@ -80,9 +109,14 @@
 									}
 								%>  
 									
-					</select></td>
+					</select></td><td><input type="submit" name="getjob" value="Get Employee Names" class="datagenbutton"></td>
 					<td class="reptoolbartxt">Month:</td><td><select name="month" tabindex="2" class="reviewdr" required> 
-								<option> --Select Month-- </option>
+								<%if((String) request.getAttribute("EPMonth") != null){ %>
+											<option value="<%=(String) request.getAttribute("EPMonth")%>"><%=(String) request.getAttribute("EPMonth")%></option>
+								<%}else{ %>
+									<option> --Select Month-- </option>
+								<%} %>
+								
 								<option value="January">January</option>
 								<option value="February"> February </option>
 								<option value="March"> March </option>

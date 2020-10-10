@@ -82,7 +82,7 @@
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">
 							<img src="${pageContext.request.contextPath}/Images/HR.png" alt="hrLogo" class="functionlogo">
 							<label>Human Resource Management</label>
 						</a>

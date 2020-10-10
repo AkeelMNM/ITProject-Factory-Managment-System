@@ -57,6 +57,13 @@ public class EPTReportGenerateServlet extends HttpServlet {
 			date = null;
 		}
 		
+		if("Get Employee Names".equals(request.getParameter("getjob"))) {
+			
+			request.setAttribute("jName", request.getParameter("emp_job"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Manager_Report_EPT_View.jsp");
+			dispatcher.forward(request, response);
+		}
+		
 		if("View".equals(request.getParameter("viewbutton"))) { 
 			
 			if(date != null) {
@@ -70,7 +77,9 @@ public class EPTReportGenerateServlet extends HttpServlet {
 				request.setAttribute("EPMonth", month);
 			}
 			
+			request.setAttribute("name", Name);
 			request.setAttribute("PerTList", ptList);
+			request.setAttribute("jName",request.getParameter("emp_job"));
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Manager_Report_EPT_View.jsp");
 			dispatcher.forward(request, response);
 			

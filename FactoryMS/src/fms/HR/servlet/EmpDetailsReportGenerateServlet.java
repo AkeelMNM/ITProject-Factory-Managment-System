@@ -52,10 +52,19 @@ public class EmpDetailsReportGenerateServlet extends HttpServlet {
 		id = empService.getEmployeeID(Name);
 		Employee employee = empService.getEmployeeByID(id);
 		
+		if("Get Employee Names".equals(request.getParameter("getjob"))) {
+			
+			request.setAttribute("jName", request.getParameter("jobList"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Manager_Report_Emp_View.jsp");
+			dispatcher.forward(request, response);
+		}
+		
 		if("View".equals(request.getParameter("viewbutton"))) { 
 
 			request.setAttribute("Key", "True");
 			request.setAttribute("employee", employee);
+			request.setAttribute("name", Name);
+			request.setAttribute("jName", request.getParameter("jobList"));
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Manager_Report_Emp_View.jsp");
 			dispatcher.forward(request, response);
 			

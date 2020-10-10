@@ -115,7 +115,7 @@
 									}
 								%>
 							</select>
-							<input type="submit" value="Get Employees" name="getJob" class="datagenbutton"> <!-- onclick="getEmpNameByJob();" -->
+							<input type="submit" value="Get Employees" name="getJob" class="datagenbutton">
 					</td>
 				</tr>
 				<tr>

@@ -63,13 +63,19 @@ public class LeaveDetailsReportGenerateServlet extends HttpServlet {
 			Name = null;
 		}
 		
+		if("Get Employee Names".equals(request.getParameter("getjob"))) {
+			
+			request.setAttribute("jName", request.getParameter("jobList"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Manager_Report_ELev_View.jsp");
+			dispatcher.forward(request, response);
+		}
 		
 		if("View".equals(request.getParameter("viewbutton"))) { 
 			
 			if(Name != null) {
 				
 				LeaveList =ELservice.getEmpLeaveByMonth(Name, month);
-				request.setAttribute("EmpName", Name);
+				request.setAttribute("name", Name);
 				
 			}
 			if(month != null && Name == null) {
@@ -77,7 +83,7 @@ public class LeaveDetailsReportGenerateServlet extends HttpServlet {
 				request.setAttribute("Key", request.getParameter("key"));
 			}
 			
-			request.setAttribute("job", JTitle);
+			request.setAttribute("jName", JTitle);
 			request.setAttribute("EPMonth", month);
 			request.setAttribute("ElList", LeaveList);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Manager_Report_ELev_View.jsp");
