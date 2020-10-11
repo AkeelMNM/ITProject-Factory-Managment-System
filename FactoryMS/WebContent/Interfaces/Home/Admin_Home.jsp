@@ -48,27 +48,27 @@
 		
 		<div class="divB">		
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Purchase/Add_TeaLeaf_Suppliers.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Purchase.png" alt="PurchaseLogo" class="functionlogo">
 							Purchase Management
 		
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Production/production.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Production.png" alt="ProductLogo" class="functionlogo">
 							Production Management
 						</a>
 				</div>
 				<div class="icondiv">
 					
-						<a href="#">
-							<img src="${pageContext.request.contextPath}/Images/Inventory.png" alt="inventoryLogo" class="functionlogo">
+						<a href="${pageContext.request.contextPath}/Interfaces/Inventory/Add_Stock.jsp">
+							<img src="${pageContext.request.contextPath}/Images/Inventory.png" alt="inventoryLogo" class="functionlogo"> <!-- **** -->
 							<label>Inventory Management</label>
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Factory_Sales.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Sales.png" alt="salesLogo" class="functionlogo">
 							<label>Sales Management</label>
 						</a>
@@ -76,8 +76,8 @@
 		</div>
 		<div class="divC">
 				<div class="icondiv">
-						<a href="#">
-							<img src="${pageContext.request.contextPath}/Images/Expense.png" alt="expenseLogo" class="functionlogo">
+						<a href="${pageContext.request.contextPath}/Interfaces/Expense/addExp.jsp">
+							<img src="${pageContext.request.contextPath}/Images/Expense.png" alt="expenseLogo" class="functionlogo"> <!-- **** -->
 							<label>Expense Management</label>
 						</a>
 				</div>

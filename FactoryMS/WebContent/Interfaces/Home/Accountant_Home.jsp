@@ -47,7 +47,7 @@
 		
 		<div class="divAcc">
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Payroll/MonthlyPayroll.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Payroll.png" alt="payrollLogo" class="functionlogo">
 							<label>Payroll Management</label>
 						</a>

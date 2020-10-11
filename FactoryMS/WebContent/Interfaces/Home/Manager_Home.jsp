@@ -46,45 +46,51 @@
 		<h2>Welcome to Manager Home Page  </h2>
 		
 		
-		<div class="divB">		
+		<div class="divB" style="width:60%;margin-left:300px">		
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Purchase/Manager.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Purchase.png" alt="PurchaseLogo" class="functionlogo">
 							Purchase Management
 		
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Production/index_maneger.html">
 							<img src="${pageContext.request.contextPath}/Images/Production.png" alt="ProductLogo" class="functionlogo">
 							Production Management
 						</a>
 				</div>
 				<div class="icondiv">
 					
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Inventory/InventManager.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Inventory.png" alt="inventoryLogo" class="functionlogo">
 							<label>Inventory Management</label>
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="#">
+						<a href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Manager_View.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Sales.png" alt="salesLogo" class="functionlogo">
 							<label>Sales Management</label>
+						</a>
+				</div>
+				<div class="icondiv">
+						<a href="${pageContext.request.contextPath}/Interfaces/Expense/reportUI.jsp">
+							<img src="${pageContext.request.contextPath}/Images/Expense.png" alt="expenseLogo" class="functionlogo">
+							<label>Expense Management</label>
 						</a>
 				</div>
 		</div>
 		<div class="divC">
 				<div class="icondiv">
-						<a href="#">
-							<img src="${pageContext.request.contextPath}/Images/Expense.png" alt="expenseLogo" class="functionlogo">
-							<label>Expense Management</label>
-						</a>
-				</div>
-				<div class="icondiv">
 						<a href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">
 							<img src="${pageContext.request.contextPath}/Images/HR.png" alt="hrLogo" class="functionlogo">
 							<label>Human Resource Management</label>
+						</a>
+				</div>
+				<div class="icondiv">
+						<a href="${pageContext.request.contextPath}/Interfaces/Payroll/Manager.jsp">
+							<img src="${pageContext.request.contextPath}/Images/Payroll.png" alt="payrollLogo" class="functionlogo">
+							<label>Payroll Management</label>
 						</a>
 				</div>
 				<div class="icondiv">
