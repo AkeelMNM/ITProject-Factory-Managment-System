@@ -50,7 +50,7 @@
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Inventory/InventManager.jsp">Inventory</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Expense/reportUI.jsp">Exspesne</a></li>
-					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/Manager.jsp">Payroll</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="Sales_Manager_View.jsp">Sales Management</a></li>
@@ -77,7 +77,7 @@
 				
 					<td class="reptoolbartxt">Month:</td>
 					<td>
-						<select name="month" class="Sele" class="reviewdr" required> 
+						<select name="month" class="reviewdr" class="reviewdr" required> 
 							<option> --Select Month-- </option>
 							<option value="January">January</option>
 							<option value="February"> February </option>
@@ -94,15 +94,15 @@
 						</select>
 					</td>
 					<td class="reptoolbartxt">Year :</td>
-					<td><input type="number" name="year" id="reviewdate" required></td>
+					<td><input type="number" name="year" id="reviewdate" maxlength="4" min="2019" max="2050" pattern="[0-9]{4}" required></td>
 					<td class="month">
-						<input type="radio" name="Option" value="Month" checked> Month Report
+						<input type="radio" name="Option" value="Month" class="Option" checked> Month Report
 					</td>
 				</tr>
 				<tr>
 					<td colspan="6"></td>
 					<td class="year" >
-						<input type="radio" name="Option" value="Year" > Year Report
+						<input type="radio" name="Option" value="Year" class="Option" > Year Report
 					</td>
 				</tr>
 			</table>
@@ -114,6 +114,7 @@
   		<%
 	  		String SYear =null;
 			String SMonth = null;
+			String key = "no";
 			
 			ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
 			SalesList = (ArrayList<FactorySales>) request.getAttribute("FactorySalesList");
@@ -125,6 +126,12 @@
 				SYear = null;
 			}
   		
+			/*if(SalesList.equals()){
+				SYear = null;
+				SMonth = null;
+				key = null;
+			}*/
+			
   		%>
   		
   		
@@ -134,7 +141,11 @@
 		<table style="height: 380px; width: 100%;">
 			<tbody>
 			<tr>
-			<td style="width: 12.5043%; text-align:center;">&nbsp; <b>The Report Preview will be Displayed here </b> </td>
+			<% if(SYear == null && SMonth == null && key != null){ %>
+				<td style="width: 12.5043%; text-align:center;">&nbsp; <b>The Report Preview will be Displayed here </b> </td>
+			<% } else if(key == null) { %>
+				<td style="width: 12.5043%; text-align:center;">&nbsp; <b> No Record found </b> </td>
+			<% }%>
 			</tr>
 			</tbody>
 		</table>

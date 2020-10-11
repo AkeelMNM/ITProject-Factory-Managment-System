@@ -51,7 +51,7 @@
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Inventory/InventManager.jsp">Inventory</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Expense/reportUI.jsp">Exspesne</a></li>
-					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/Manager.jsp">Payroll</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="Sales_Manager_View.jsp">Sales Management</a></li>
@@ -95,7 +95,7 @@
 						</select>
 					</td>
 					<td class="reptoolbartxt">Year :</td>
-					<td><input type="number" name="year" id="reviewdate" required></td>
+					<td><input type="number" name="year" id="reviewdate" maxlength="4" min="2019" max="2030" pattern="[0-9]{4}" required></td>
 					<td class="month">
 						<input type="radio" name="Option" value="Month" checked> Month Report
 					</td>
