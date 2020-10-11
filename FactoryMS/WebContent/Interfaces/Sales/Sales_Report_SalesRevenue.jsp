@@ -10,7 +10,15 @@
 <title>Insert title here</title>
 </head>
 <body>
-<!-- Header Part -->
+<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Header Part ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
+<%
+    if((String)session.getAttribute("uid")==null)
+    {
+        response.sendRedirect("/FactoryMS/index.jsp");
+    }
+
+%>
+
 <div id="headDiv">
 					<img src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" id="logo">
 				<div id="name">
@@ -19,26 +27,26 @@
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn">User Name</button>
-									  <div id="myDropdown" class="dropdown-content">
-											<a href="#home">View Profile</a>
-											<a href="#about">Logout</a>
-									  </div>
+							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
+								 <div id="myDropdown" class="dropdown-content">
+									<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
+									<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
+								</div>
 					</div>
 				</div>
-						<img src="UserPro.png" alt="UserLogo" id="Userlogo">								
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>" alt="UserLogo" id="Userlogo">									
 
 </div>
 <hr>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 		<ul><li><a class="menu" href="#">Home
 				<ul>
-					  <li><a class="menu" href="#">Purchase</a></li>
-					  <li><a class="menu" href="#">Production</a></li>
-					  <li><a class="menu" href="#">Inventory</a></li>
-					  <li><a class="menu" href="#">Sales</a></li>
-					  <li><a class="menu" href="#">Exspesne</a></li>
-					  <li><a class="menu" href="#">Payroll</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Purchase/Manager.jsp">Purchase</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Production/index_maneger.html">Production</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces//Inventory/InventManager.jsp">Inventory</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/">Exspesne</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/Manager.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="Sales_Manager_View.jsp">Sales Management</a></li>
