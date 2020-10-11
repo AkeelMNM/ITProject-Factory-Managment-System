@@ -65,12 +65,12 @@ public class Manager_Sales_Return_Report_GenerateServlet extends HttpServlet {
 			if("Year".equals(Option)) 
 			{
 				ReturnList = ReturnService.getSsalesReturnBySalesTypeAndYear(SalesType, Year);
-				request.setAttribute("FSyear", Year);
+				request.setAttribute("Rtnyear", Year);
 			}
 			if(month != null && "Month".equals(Option)) 
 			{
 				ReturnList = ReturnService.getSalesReturnBySalesTypeAndMonth(SalesType, month,Year);
-				request.setAttribute("FSMonth", month);
+				request.setAttribute("RtnMonth", month);
 			}
 			
 			request.setAttribute("ReturnList", ReturnList);
