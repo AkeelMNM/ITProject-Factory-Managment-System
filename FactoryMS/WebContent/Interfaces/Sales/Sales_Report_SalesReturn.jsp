@@ -1,3 +1,5 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.fms.model.Sales_Return"%>
 <%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
@@ -124,81 +126,167 @@
 			}
   		%>
   		
-  		<div class="table">
   		
-	  		<h3 id="Report_H"> Sales Return Report </h3>
+  	<div class="table">
   		
-	  		<table id="ShowTable" >
-				<tr class="viewTr">
-			    	<th>Tea Garde</th>
-			    	<th>Date</th>
-			    	<th>Return Quantity</th>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
-				<tr class="viewTr">
-						<td class ="TblData">Gold</td>
-						<td class ="TblData" >2020/02/01</td>
-						<td class ="TblData">150</td>
-				</tr>
+  		<% if(RtnYear == null && RtnMonth == null){  %>
+		<table style="height: 380px; width: 100%;">
+			<tbody>
+			<tr>
+			<td style="width: 12.5043%; text-align:center;">&nbsp; <b>The Report Preview will be Displayed here </b> </td>
+			</tr>
+			</tbody>
+		</table>
+		
+		<%	}
+  		
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Monthly Report Table interface... +++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+		if(RtnMonth != null && RtnYear == null){ %>
+		<table style="height: 137px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr style="height: 31px;">
+			<td style="width: 12%; height: 85px;" rowspan="4"><img id="logo" src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" /></td>
+			<td style="width: 316px; height: 31px;">
+			<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
+			</td>
 			
-	 		</table>
+			<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy, HH:mm:ss");
+				Date date = new Date();
+			%>
+			<td style="width: 101px; height: 85px;" rowspan="4">Date: <%=formatter.format(date) %></td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Tel : 0815630035</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Email : nmmbrosdtf@gmail.com</td>
+			</tr>
+			</tbody>
+		</table>
+		
+		
+		<hr style="width:90%; float:left; margin-left:50px;">
+		<table style="height: 112px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr>
+			<td style="width: 400px;">
+			<h4 style="margin-top:20px; float:left; ">SALES RETURN REPORT</h4>
+			</td>
+			<td style="width: 80.8px;" rowspan="2">Month: <%=ReturnList.get(0).getMonth() %> </td>
+			</tr>
+			
+
+			<tr>
+			<td style="width: 400px;"><span style="text-decoration: underline; float:left; ">MONTH REPROT</span></td>
+			</tr>
+			</tbody>
+		</table>
+		<hr style="width:94%; float:left; margin-left:50px; width: 90%;">
+
+			<table border="1" cellspacing="0" class="contentTable" >  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			<tr>
+				<th class ="tDataS"> Date of Return</th>
+				<th class ="tDataS"> Tea Grade</th>
+				<th class ="tDataS"> Return Quantity(kg)</th>
+			</tr>
+			
+			<%
+				for(Sales_Return rtn : ReturnList)
+				{	
+			%>
+			<tr>
+				<td class ="tData"><%=rtn.getDate() %> </td>
+				<td class ="tData" ><%=rtn.getTea_Grade() %> </td>
+				<td class ="tData" ><%=rtn.getReturn_Quantity() %> </td>
+			</tr>
+			<%
+  				}
+			%>
+				</table>
+		
+		<%
+  			}
   		
-  		</div>		
-				
+/*++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Year Report Table interface... +++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+
+  		if(RtnMonth == null && RtnYear != null){ %>
+  		<table style="height: 137px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr style="height: 31px;">
+			<td style="width: 12%; height: 85px;" rowspan="4"><img id="logo" src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" /></td>
+			<td style="width: 316px; height: 31px;">
+			<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
+			</td>
+			
+			<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy, HH:mm:ss");
+				Date date = new Date();
+			%>
+			<td style="width: 101px; height: 85px;" rowspan="4">Date: <%=formatter.format(date) %></td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Tel : 0815630035</td>
+			</tr>
+			<tr style="height: 18px;">
+			<td style="width: 316px; height: 18px;">Email : nmmbrosdtf@gmail.com</td>
+			</tr>
+			</tbody>
+		</table>
+		
+		
+		<hr style="width:90%; float:left; margin-left:50px;">
+		<table style="height: 112px; width: 88.5%; margin-left:50px;">
+			<tbody>
+			<tr>
+			<td style="width: 400px;">
+			<h4 style="margin-top:20px; float:left;">SALES RETURN REPORT</h4>
+			</td>
+			<td style="width: 80.8px;" rowspan="2">Year: <%=ReturnList.get(0).getYear() %> </td>
+			</tr>
+			
+
+			<tr>
+			<td style="width: 400px;"><span style="text-decoration: underline; float:left;">YEAR REPROT</span></td>
+			</tr>
+			</tbody>
+		</table>
+		<hr style="width:90%; float:left; margin-left:50px; width: 90%;">
+
+			<table border="1" cellspacing="0" class="contentTable" >  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			<tr>
+				<th class ="tDataS"> No of Return</th>
+				<th class ="tDataS"> Month of Return </th>
+				<th class ="tDataS"> Tea Grade</th>
+				<th class ="tDataS"> Return Quantity(kg)</th>
+			</tr>
+			
+			<%
+				for(Sales_Return rtn : ReturnList)
+				{	
+					
+			%>
+			<tr>
+				<td class ="tData"><%=rtn.getFactory_SalesID() %> </td>
+				<td class ="tData" ><%=rtn.getMonth() %> </td>
+				<td class ="tData" ><%=rtn.getTea_Grade() %> </td>
+				<td class ="tData" ><%=rtn.getReturn_Quantity() %> </td>
+			</tr>
+			<%
+  				}
+			%>
+				</table>
+		
+		<%
+  			}
+		%>
+		
+  	</div>				
 				
 				
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
