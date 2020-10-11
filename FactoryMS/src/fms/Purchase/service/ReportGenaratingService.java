@@ -146,7 +146,7 @@ public void generatePTReportMonth(ArrayList<PaymentToSuppliers> ptList,String mo
 			        
 			        /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/
 			        
-			        PdfPCell cell1 = new PdfPCell(new Paragraph("Supplier Name"));
+			        PdfPCell cell1 = new PdfPCell(new Paragraph("Employee Name"));
 			        cell1.setFixedHeight(25f);
 			        cell1.setPaddingLeft(10);
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);

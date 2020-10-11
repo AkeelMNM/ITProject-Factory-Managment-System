@@ -1,4 +1,6 @@
 
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.fms.model.PaymentToSuppliers"%>
 <%@page import="fms.Purchase.service.PaymenttoSuppliersimpt"%>
 <%@page import="fms.Purchase.service.PaymenttoSuppliers"%>
@@ -14,7 +16,28 @@
 </head>
 <body>
 <!-- Header Part -->
+
+
+
+
+
+<!-- ////////////////////////////////////////////////////// -->
+<%
+  /*  if((String)session.getAttribute("uid")==null)
+    {
+        response.sendRedirect("/FactoryMS/index.jsp");
+    }
+*/
+%>
+
+<!-- ////////////////////////////////////////////////////// -->
+
 <div id="headDiv">
+
+
+
+
+
 					<img src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" id="logo">
 				<div id="name">
 					<label id="title">Dehiwatta Tea Factory</label><br>
@@ -22,26 +45,32 @@
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn">User Name</button>
-									  <div id="myDropdown" class="dropdown-content">
-											<a href="#home">View Profile</a>
-											<a href="#about">Logout</a>
-									  </div>
+					<!-- ////////////////////////////////////////////////////// -->	
+					<button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
+	 <div id="myDropdown" class="dropdown-content">
+		<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
+		<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
+	</div>
+					
 					</div>
 				</div>
-						<img src="UserPro.png" alt="UserLogo" id="Userlogo">								
+						<!--  <img src="UserPro.png" alt="UserLogo" id="Userlogo">		-->
+						<!-- ////////////////////////////////////////////////////// -->
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	>
+												
+						<!-- ////////////////////////////////////////////////////// -->							
 
 </div>
 <hr>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-		<ul><li><a class="menu" href="#">Home
+		<ul><li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Home/Manager_Home.jsp">Home
 				<ul>
-					  <li><a class="menu" href="#">Purchase</a></li>
-					  <li><a class="menu" href="#">Production</a></li>
-					  <li><a class="menu" href="#">Inventory</a></li>
-					  <li><a class="menu" href="#">Sales</a></li>
-					  <li><a class="menu" href="#">Exspesne</a></li>
-					  <li><a class="menu" href="#">Payroll</a></li>
+					 <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Production/reportUI.jsp">Production</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Inventory/InventManager.jsp">Inventory</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Manager_View.jsp">Sales</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Expense/reportUI.jsp">Exspesne</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR Management</a></li>
@@ -57,7 +86,7 @@
 			<form method="POST" action="${pageContext.request.contextPath}/ReportGenarateServlet">
 			<table class="repviewtable">
 			<tr>
-					<td class="reptoolbartxt">Select Employee:</td><td><select name="emp_name" tabindex="10" class="reviewdr" required>
+					<td class="reptoolbartxt">Select Supplier:</td><td><select name="emp_name" tabindex="10" class="reviewdr" required>
 									<option> --Select Name-- </option> 
 									<%
 									SupplierService empservice= new SupplierServiceImpt();
@@ -94,9 +123,10 @@
 					<td><input type="date" name="r_date" id="reviewdate"></td>
 					<input type="hidden" name="key" value ="CkhDate">
 				</tr>
+				
 				</table>
 				<input type="submit" value="View" id="viewbutton" name="viewbutton">
-				<input type="submit" value="Generate" id="genbutton" name="genbutton">
+				<input type="submit" value="Generate" id="genbutton" name="genbutton">  
 			</form>
 		</div>
 		
@@ -139,7 +169,12 @@
 			<td style="width: 316px; height: 31px;">
 			<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
 			</td>
-			<td style="width: 101px; height: 85px;" rowspan="4">Date:</td>
+			<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");
+					Date date = new Date();
+				%>
+			
+			<td style="width: 101px; height: 85px;" rowspan="4">Date:<%=formatter.format(date)%></td>
+			
 			</tr>
 			<tr style="height: 18px;">
 			<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
@@ -159,7 +194,7 @@
 			<tbody>
 			<tr>
 			<td style="width: 400px;">
-			<h4 style="margin-top:20px;">EMPLOYEE PERFORMANCE TRACKING &amp; TIME CARD REPORT</h4>
+			<h4 style="margin-top:20px;"> TEA LEAF ORDER REORT </h4>
 			</td>
 			<td style="width: 80.8px;" rowspan="2">Month:<%=ptList.get(0).getMonth()%></td>
 			</tr>
@@ -172,52 +207,22 @@
 		</table>
 		<hr style="width:90%; float:left; margin-left:50px;">
 
-			<table border="1" cellspacing="0" style="margin-left:50px;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			<table border="1" cellspacing="0" style="margin-left:50px;width:90%;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
 			
 			<tr>
-				<td colspan="2" class ="tDataS">Employee Name</td>
-				<td colspan="7" class ="tDataS" ><%=ptList.get(0).getName() %></td>
+				<td colspan="2" class ="tDataS">Supplier Name</td>
+				<td colspan="6" class ="tDataS" ><%=ptList.get(0).getName() %></td>
 			</tr>
-			<tr>
-				<td colspan="2" class ="tDataS" >Job Title</td>
-				<td colspan="7" class ="tDataS"><%=ptList.get(0).getIspaid() %></td>
-			</tr>
-			<tr>
-				<td colspan="2" class ="tDataS">Overall Performance</td>
-				<%
-					int ovP = 0; 
-					for(int i=0;i<ptList.size();i++){
-						
-						ovP = ovP +Integer. parseInt(ptList.get(i).getPayment_Type());////////////////////////deletetjis///////
-					}
-					int ovPSum = ovP/ptList.size();
-				%>
-				<td colspan="7" class ="tDataS">
-				<%
-							int staremptyOP = 5 - ovPSum;
-							
-							for(int i = 0;i < ovPSum;i++){
-						%>
-							<img src="${pageContext.request.contextPath}/Images/FullStar.png" alt="FullStar" class="FullStar">
-						<%
-							}
-							for(int i = 0;i < staremptyOP;i++){
-						%>
-							<img src="${pageContext.request.contextPath}/Images/EmptyStar.png" alt="EmptyStar" class="EmptyStar">
-						<%
-							}
-						%>
-				</td>
-			</tr>
+		
+		
 				<tr>
 						<th colspan="2" >Date</th>
-						<th >Time In</th>
-						<th >Lunch In</th>
-						<th >Lunch Out</th>
-						<th >Time Out</th>
-						<th >Over Time</th>
-						<th >Performance</th>
-						<th >Description</th>
+						<th >Quantity</th>
+						<th >Payment Type</th>
+						<th >Rate</th>
+						<th >Value</th>
+						<th >Net Amount</th>
+				
 						
 				</tr>
 				<%
@@ -231,7 +236,7 @@
 						<td class ="tData"><%=pt.getRate()%></td>
 						<td class ="tData"><%=pt.getValue()%></td>
 						<td class ="tData"><%=pt.getFinal_Amount() %></td>
-						<td class ="tData">
+					
 						 
 						
 				</tr>
