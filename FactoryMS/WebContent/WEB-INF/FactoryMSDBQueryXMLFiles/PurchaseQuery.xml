@@ -1,1 +1,281 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
+
+<Querys >
+
+<!-- *******************************TEA LEAVES**************************************************************** -->
+
+<!-- insert  Leaf Query -->
+	<query id="insert_tealeaf">
+        <![CDATA[
+          Insert into  tealeaves(TLID,SupID,Supplier_Name,Quantity,Unit_Price,Paid,PDate)
+          	values (?,?,?,?,?,?,?)
+        ]]>
+	</query>
+	
+	<!-- Select a particular leaf by id Query -->
+	<query id="getTeaLeafIDs">
+         <![CDATA[        
+            select TLID from tealeaves 
+        ]]>
+	</query>
+	
+	
+	
+	
+	
+	<!-- Select a particular Leaf by id Query new -->
+	<query id="getTeaLeafbyID">
+         <![CDATA[        
+            select TLID from tealeaves 
+        ]]>
+	</query>
+	
+		<!--get all Leafs  Query new -->
+	<query id="getallTeaLeaforder">
+         <![CDATA[        
+            select * from tealeaves 
+        ]]>
+	</query>
+	
+	
+<!-- Delete a particular supplier by id Query -->
+		<query id="remove_leaf">
+	         <![CDATA[        
+	            delete from tealeaves where tealeaves.TLID = ?
+	        ]]>
+		</query>
+		
+		
+	
+	
+	
+	
+	
+
+<!-- Select a particular Leaf by id Query -->
+	<query id="leaf_by_id">
+         <![CDATA[        
+            select * from tealeaves where TLID = ?
+        ]]>
+	</query>
+	
+	<!-- Select a particular leaforder by id Query -->
+	<query id="get_leaforderids">
+         <![CDATA[        
+            select TLID from tealeaves where TLID = ?
+        ]]>
+	</query>
+
+
+
+
+<!-- Update a particular tea leaf order by id Query -->
+		<query id="update_leaforder">
+	         <![CDATA[        
+	            update tealeaves as t
+	            set  t.Quantity = ?, t.Unit_Price = ?, t.Paid = ?, t.PDate = ? 
+	            where t.TLID = ?
+	        ]]>
+		</query>
+
+
+
+	
+
+	
+	
+	
+	
+	
+	
+
+<!-- ********************************************************************************************************************* -->
+
+
+
+<!-- **********************TEA LEAF SUPPLIER***************************************** -->
+
+<!-- insert  supplier Query -->
+	<query id="insert_supplier">
+        <![CDATA[
+          Insert into  tealeaf_supplier(SupID,Name,Nic,Contact_No,Address,License_No,Estate)
+          	values (?, ?, ?, ?, ?, ?, ?)
+        ]]>
+	</query>
+	
+		<!--get all Supplier  Query -->
+	<query id="getall_supplier">
+         <![CDATA[        
+            select * from tealeaf_supplier 
+        ]]>
+	</query>
+	
+	<!-- Select a particular Supplier by id Query -->
+	<query id="get_supplierids">
+         <![CDATA[        
+            select SupID from tealeaf_supplier 
+        ]]>
+	</query>
+	<!-- Delete a particular supplier by id Query -->
+		<query id="remove_supplier">
+	         <![CDATA[        
+	            delete from tealeaf_supplier where tealeaf_supplier.SupID = ?
+	        ]]>
+		</query>
+
+
+<!-- Select a particular Supplier by id Query -->
+	<query id="supplier_by_id">
+         <![CDATA[        
+            select * from tealeaf_supplier where SupID = ?
+        ]]>
+	</query>
+
+<!-- Select a particular Supplier by id Query -->
+	<query id="supplierpayment_by_id">
+         <![CDATA[        
+            select * from tealeaf_supplier where SupID = ?
+        ]]>
+	</query>
+	
+	<!-- get a particular supid by name Query -->
+		<query id="get_supID_by_name">
+	         <![CDATA[        
+	            select SupID from tealeaf_supplier where Name = ?
+	        ]]>
+		</query>
+	
+
+
+<!-- Update a particular tea leaf supplier by id Query -->
+		<query id="update_supplier">
+	         <![CDATA[        
+	            update tealeaf_supplier as ts 
+	            set ts.Name= ?,ts.NIC= ?, ts.Contact_No = ?, ts.Address = ?, ts.License_No = ?, ts.Estate = ? 
+	            where ts.SupID = ?
+	        ]]>
+		</query>
+
+
+
+<!-- Update a particular tea leaf supplier by id Query -->
+		<query id="update_supplier">
+	         <![CDATA[        
+	            update tealeaf_supplier as ts 
+	            set ts.Name= ?,ts.NIC= ?, ts.Contact_No = ?, ts.Address = ?, ts.License_No = ?, ts.Estate = ? 
+	            where ts.SupID = ?
+	        ]]>
+		</query>
+	
+	
+	<!-- getall_suppliername Query -->
+		<query id="getallsuppliername">
+	         <![CDATA[        
+	            select Name from tealeaf_supplier
+				
+	        ]]>
+		</query>
+	
+	
+		
+
+
+	
+
+
+
+<!-- ****************************************************************************************************************** -->
+
+
+
+
+<!-- **********************TEA LEAF SUPPLIER PAYMENT***************************************** -->
+
+<!-- insert  supplier payment Query -->
+	<query id="insert_supplierpayment">
+        <![CDATA[
+          Insert into payment(PaymentID,SupID,Date,Month,Name,Rate,Value,Final_Amount,Ispaid,Payment_Type)
+          	values (?, ?,?, ?, ?, ?, ?, ?,?, ?)
+        ]]>
+        </query>
+        
+
+		<!-- Select a particular payment by id Query -->
+	<query id="get_tealeafpaymentids">
+         <![CDATA[        
+            select PaymentID from payment 
+        ]]>
+	</query>
+	
+	
+		<!--get all payment Query -->
+	<query id="getall_payment">
+         <![CDATA[        
+            select * from payment 
+        ]]>
+	</query>
+	
+	<!-- Select a particular payment by id Query -->
+	<query id="get_paymentids">
+         <![CDATA[        
+            select PaymentID from payment 
+        ]]>
+	</query>
+	
+
+	
+	<!-- Delete a particular payment by id Query -->
+		<query id="delete_supplierpayment">
+	         <![CDATA[        
+	            delete from payment where payment.PaymentID = ?
+	        ]]>
+	</query>
+	
+	
+	
+	
+	<!-- Update a particular payment  by id Query -->
+		<query id="update_supplierpayment">
+	         <![CDATA[        
+	            update payment as p
+	            set p.Date= ?,p.Month=?,p.Rate= ?, p.Value = ?, p.Final_Amount= ?,p.Ispaid= ?,p.Payment_Type= ?
+	            where p.PaymentID = ?
+	        ]]>
+		</query>
+	
+	<!-- Select a particular payment by id Query -->
+	<query id="get_by_id">
+         <![CDATA[        
+            select * from payment where PaymentID = ?
+        ]]>
+	</query>
+
+<!-- *******************************TEA LEAVES REPORT**************************************************************** -->
+	<!-- payment by  day -->
+	<query id="paymentbyday">
+         <![CDATA[        
+            select * from payment where Name =? and Date=? 
+        ]]>
+	</query>
+	
+	
+	
+	<!-- payment by month -->
+	<query id="paymentbymonth">
+         <![CDATA[        
+         select * from payment where Name =? and Month=? 
+        ]]>
+	</query>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+
+</Querys>
