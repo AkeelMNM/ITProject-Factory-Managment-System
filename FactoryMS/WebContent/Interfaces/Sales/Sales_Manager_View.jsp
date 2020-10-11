@@ -231,16 +231,10 @@
 				
 	  			else
 			  		{
-			  			ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
 			  			
-			  			if(Value == ""){
-				  			FactorySalesService FactorySalesView = new FactorySalesServiceImpt();
-				  			SalesList = FactorySalesView.getAllFactorySales();
-			  			}
-			  			else {
-			  				SalesList = search.SearchFactorySales(Value);
-			  			}
-		  			
+		  			FactorySalesService FactorySalesView = new FactorySalesServiceImpt();
+		  			ArrayList<FactorySales> SalesList = FactorySalesView.getAllFactorySales();
+		  		
 		  		%>
 		  		
 		  			<h3 id="Table_H"> Factory Sales Details  </h3>
