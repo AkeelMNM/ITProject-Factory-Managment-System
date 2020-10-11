@@ -69,17 +69,33 @@ public class EPTReportGenerateServlet extends HttpServlet {
 			if(date != null) {
 				
 				ptList =ptservice.getPerformacneTrackingByEmpNameAndDay(Name, date);
-				request.setAttribute("EPDate", date);
-				request.setAttribute("Key", request.getParameter("key"));
+				
+				if(ptList.isEmpty()) {
+					request.setAttribute("erMsg", "F");
+				}
+				else {
+					request.setAttribute("EPDate", date);
+					request.setAttribute("Key", request.getParameter("key"));
+					request.setAttribute("name", Name);
+					request.setAttribute("PerTList", ptList);
+					request.setAttribute("jName",request.getParameter("emp_job"));
+				}
 			}
 			if(month != null && date == null) {
+				
 				ptList = ptservice.getPerformacneTrackingByEmpNameAndMonth(Name, month);
-				request.setAttribute("EPMonth", month);
+				
+				if(ptList.isEmpty()) {
+					request.setAttribute("erMsg", "F");
+				}
+				else {
+					request.setAttribute("EPMonth", month);
+					request.setAttribute("name", Name);
+					request.setAttribute("PerTList", ptList);
+					request.setAttribute("jName",request.getParameter("emp_job"));
+				}
 			}
 			
-			request.setAttribute("name", Name);
-			request.setAttribute("PerTList", ptList);
-			request.setAttribute("jName",request.getParameter("emp_job"));
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/HR/HR_Manager_Report_EPT_View.jsp");
 			dispatcher.forward(request, response);
 			

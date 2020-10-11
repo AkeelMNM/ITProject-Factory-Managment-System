@@ -58,7 +58,7 @@
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Inventory/InventManager.jsp">Inventory</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Manager_View.jsp">Sales</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Expense/reportUI.jsp">Exspense</a></li>
-					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/Manager.jsp">Payroll</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="#">HR Management</a></li>
@@ -292,15 +292,15 @@
 						<td class ="tData"><%=leave.getLeave_Status()%></td>
 
 				</tr>
+		<% }%>
 				</table>
-		<% }
-		}
+		<%}
 		else{
 			%>
 			<table style="height: 49%;" width="100%">
 			<tbody>
 			<tr>
-			<td style="width: 12.5043%; text-align:center;">&nbsp;The Search Preview will be Displayed here</td>
+			<td style="width: 12.5043%; text-align:center;">&nbsp;The Searched Details will be Displayed here</td>
 			</tr>
 			</tbody>
 		</table>

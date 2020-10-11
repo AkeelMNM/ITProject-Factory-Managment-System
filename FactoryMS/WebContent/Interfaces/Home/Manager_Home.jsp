@@ -88,7 +88,7 @@
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="${pageContext.request.contextPath}/Interfaces/Payroll/Manager.jsp">
+						<a href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Payroll.png" alt="payrollLogo" class="functionlogo">
 							<label>Payroll Management</label>
 						</a>

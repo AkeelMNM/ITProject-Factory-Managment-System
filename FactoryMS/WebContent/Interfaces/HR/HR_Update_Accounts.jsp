@@ -53,11 +53,11 @@
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Expense/addExp.jsp">Exspesne</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="#">Manage Employee</a></li>
-				  <li><a class="menu" href="#">Manage Jobs</a></li>
-				  <li><a class="menu" href="#">Employee Performance Tracking</a></li>
-				  <li><a class="menu" href="#">Manage Account</a></li>
-				  <li><a class="menu" href="#">Manage Employee Leaves</a></li>
+				 <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Employee.jsp">Manage Employee</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Jobs.jsp">Manage Jobs</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Performance_Tracking.jsp">Employee Performance Tracking</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Accounts.jsp">Manage Account</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Leave.jsp">Manage Employee Leaves</a></li>
 		</ul>
 
 <div id="bodyDiv">

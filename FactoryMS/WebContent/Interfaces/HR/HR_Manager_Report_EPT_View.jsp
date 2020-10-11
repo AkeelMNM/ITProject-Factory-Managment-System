@@ -17,10 +17,15 @@
 <body>
 <!-- Header Part -->
 <%
-    /*if((String)session.getAttribute("uid")==null)
+    if((String)session.getAttribute("uid")==null)
     {
         response.sendRedirect("/FactoryMS/index.jsp");
-    }*/
+    }
+
+	if((String)request.getAttribute("erMsg")!=null)
+	{%>
+	    <script>alert("Don't have Datas to View or Generate")</script>
+	<%}
 
 %> 
 <div id="headDiv">
@@ -50,7 +55,7 @@
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Inventory/InventManager.jsp">Inventory</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Manager_View.jsp">Sales</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Expense/reportUI.jsp">Exspense</a></li>
-					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/Manager.jsp">Payroll</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR Management</a></li>
@@ -72,7 +77,7 @@
 									if(key !=null){ %>
 											<option value="<%=key%>"><%=key%></option>
 									<%}else{ %>
-									<option> --Select Job Name-- </option>
+										<option> --Select Job Name-- </option>
 									<%} %>
 									<%
 									JobService jobservice= new JobServiceImpt();

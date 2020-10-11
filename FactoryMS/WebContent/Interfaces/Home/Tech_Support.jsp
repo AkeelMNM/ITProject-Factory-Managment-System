@@ -138,11 +138,11 @@
 		<tbody>
 		<tr>
 		<td style="width: 269.6px;" class="th1">Contect No</td>
-		<td style="width: 269.6px;">123456789</td>
+		<td style="width: 269.6px;">0812345674</td>
 		</tr>
 		<tr>
 		<td style="width: 269.6px;" >Contact Email</td>
-		<td style="width: 269.6px;" class="th1">123@gmail.com</td>
+		<td style="width: 269.6px;" class="th1">FMS.Info@gmail.com</td>
 		</tr>
 		<tr>
 		<td style="width: 269.6px;" class="th1">System Design By</td>

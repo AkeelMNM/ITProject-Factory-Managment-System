@@ -44,8 +44,6 @@ public class AddAccountServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		EmployeeService empservice = new EmployeeServiceImpt();
-		String empid = empservice.getEmployeeID(request.getParameter("name"));
 		
 		
 		if("Get Employees".equals(request.getParameter("getJob"))) {
@@ -63,6 +61,10 @@ public class AddAccountServlet extends HttpServlet {
 			
 		}
 		else if("Create".equals(request.getParameter("CAccount"))) {
+			
+			EmployeeService empservice = new EmployeeServiceImpt();
+			String empid = empservice.getEmployeeID(request.getParameter("name"));
+			
 			Account account = new Account();
 			
 			account.setAccType(request.getParameter("acctype"));
