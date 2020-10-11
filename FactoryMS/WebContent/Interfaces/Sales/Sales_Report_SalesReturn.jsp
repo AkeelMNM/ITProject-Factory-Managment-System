@@ -62,7 +62,7 @@
 		<!-- Body Part -->
 		
 		<div class="ViewRepDiv">
-			<form method="POST" action="${pageContext.request.contextPath}/Manager_Factory_Sales_Report_GenerateServlet">
+			<form method="POST" action="${pageContext.request.contextPath}/Manager_Sales_Return_Report_GenerateServlet">
 			<table class="BarTable">
 				<tr>
 					<td class="reptoolbartxt">Select Sales Type : </td>
@@ -176,7 +176,7 @@
 			<td style="width: 400px;">
 			<h4 style="margin-top:20px; float:left; ">SALES RETURN REPORT</h4>
 			</td>
-			<td style="width: 80.8px;" rowspan="2">Month: <%=ReturnList.get(0).getMonth() %> </td>
+			<td style="width: 80.8px;" rowspan="2">Month: <%=RtnMonth %> </td>
 			</tr>
 			
 
