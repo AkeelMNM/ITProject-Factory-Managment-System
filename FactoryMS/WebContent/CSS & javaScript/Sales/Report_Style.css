@@ -219,6 +219,13 @@ div.bigDiv
 
 /* -------------------------- Search style ------------------------------------- */
 
+.BarTable {
+	border-collapse: collapse;
+	width: 55%;
+	height:35px;
+	float:left;
+	margin-left: 12%;
+}
 
 .reptoolbartxt
 {
@@ -228,8 +235,8 @@ div.bigDiv
 
 .reviewdr{
 
-	width: 100%;
-	height:80%;
+	width: 95%;
+	height:100%;
 	float:left;
 	background: #f1f1f1;
 }
@@ -270,6 +277,14 @@ div.viewlist{  /* Toolbar div */
 	padding-left:35px;
 }
 
+div.ViewRepDiv{ /* Toolbar div */
+	float:left;
+	width: 100%;
+	margin-top:30px;
+	margin-bottom: 7px;
+	padding-left:35px;
+}
+
 .repviewtable /* table Report Toolbar */
 {
 	border-collapse: collapse;
@@ -277,6 +292,18 @@ div.viewlist{  /* Toolbar div */
 	height:35px;
 	float:left;
     
+}
+
+#reviewdate{  /* report view year field */
+
+	width: 90%;
+	height:100%;
+	float:left;
+	background: #f1f1f1;
+}
+
+.Option { /* Search bar radio button */
+	margin-left: 15px;
 }
 
 
@@ -292,30 +319,10 @@ div.viewlist{  /* Toolbar div */
 	font-size: 20px;
 }
 
-div.ViewRepDiv{
-	float:left;
-	width: 100%;
-	margin-top:30px;
-	margin-bottom: 7px;
-}
-
-.BarTable {
-	border-collapse: collapse;
-	width: 55%;
-	height:35px;
-	float:left;
-	margin-left: 15%;
-}
-
 .txtLabal {
 
 	}
 
-.Sele{ 
-	width: 100%;
-	height:80%;
-	float:left;
-}
 
 #view_btn {
 	background-color:	#2B7A78;
@@ -330,9 +337,11 @@ div.ViewRepDiv{
 	border-radius:3px;
 	width:12%;
 	align:center;
-	margin-left:6px;
+	float:left;
+	margin-left:50px;
 	height:33px;
 }
+
 #Generate_btn {
 	background:#2B7A78;
 	border: none;
@@ -346,7 +355,8 @@ div.ViewRepDiv{
 	border-radius:3px;
 	width:12%;
 	align:center;
-	margin-left:6px;
+	float:left;
+	margin-left:10px;
 	height:33px;
 }
 
