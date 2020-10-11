@@ -9,11 +9,18 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fms.model.Purchase;
+import com.fms.model.TeaLeaf_Supplier;
+import com.fms.model.TeaLeaves;
+
+import fms.Purchase.service.LeaforderentryService;
+import fms.Purchase.service.LeaforderentryServiceimpt;
+import fms.Purchase.service.SupplierService;
+import fms.Purchase.service.SupplierServiceImpt;
 
 
-import fms.Purchase.service.PurchaseService;
-import fms.Purchase.service.PurchaseServiceImpt;
+
+
+
 
 /**
  * Servlet implementation class UpdateLeafOrderEntry
@@ -44,24 +51,29 @@ public class UpdateLeafOrderEntry extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	
+		String TLID = request.getParameter("TLID");	
 		
+		TeaLeaves tealeaf = new TeaLeaves ();
 		
-		String SupplierId = request.getParameter("SupplierId");
-		Purchase purchase = new Purchase();
+		tealeaf.setTLID(TLID);
+		//tealeaf.setSupID(id);
+		//tealeaf.setSupplier_Name(name);
+		//tealeaf.setSupplier_Name(request.getParameter("supname"));
+		tealeaf.setQuantity(request.getParameter("quantity"));
+		tealeaf.setUnit_Price(request.getParameter("price"));
+		tealeaf.setPaid(request.getParameter("paid"));
+		tealeaf.setPDate(request.getParameter("date"));
+	
 		
+		LeaforderentryService leaforderentryService = new LeaforderentryServiceimpt();
+		leaforderentryService.UpdateTeaLeaves(TLID, tealeaf);
+
 		
-		purchase.setDate(request.getParameter("date"));
-		purchase.setSupplier("supplier");
-		purchase.setGrade("grade");
-		purchase.setQuantity("quantity");
-		purchase.setPrice("price");
-		purchase.setPaid("paid");
+	
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/Leaforderentry.jsp");
+		dispatcher.forward(request, response);
 		
-		
-		PurchaseService purchaseservice = new PurchaseServiceImpt();
-		purchaseservice.updateleaforder( SupplierId, purchase);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Purchase/Leaforderentry.jsp");
-		doGet(request, response);
+	
 		
 		
 		

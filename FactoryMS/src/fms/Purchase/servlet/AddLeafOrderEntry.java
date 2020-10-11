@@ -10,11 +10,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 
-import com.fms.model.Purchase;
 
+import com.fms.model.TeaLeaves;
 
-import fms.Purchase.service.PurchaseService;
-import fms.Purchase.service.PurchaseServiceImpt;
+import fms.Purchase.service.LeaforderentryService;
+import fms.Purchase.service.LeaforderentryServiceimpt;
+import fms.Purchase.service.SupplierService;
+import fms.Purchase.service.SupplierServiceImpt;
 
 /**
  * Servlet implementation class AddLeafOrderEntry
@@ -48,21 +50,25 @@ public class AddLeafOrderEntry extends HttpServlet {
 		
 		response.setContentType("text/html");
 		
+		String name = request.getParameter("supname");
 		
-		Purchase purchase = new Purchase();
+		SupplierService se = new SupplierServiceImpt();
+		String id = se.getSupplierIdByName(name);
+		
+		
+		TeaLeaves tealeaves = new TeaLeaves();
+		tealeaves.setSupID(id);
+		tealeaves.setSupplier_Name(name);
+		tealeaves.setQuantity(request.getParameter("quantity"));
+		tealeaves.setUnit_Price(request.getParameter("price"));
+		tealeaves.setPaid(request.getParameter("paid"));
+		tealeaves.setPDate(request.getParameter("date"));
 
-		purchase.setDate(request.getParameter("date"));
-		purchase.setSupplier("supplier");
-		purchase.setGrade("grade");
-		purchase.setQuantity("quantity");
-		purchase.setPrice("price");
-		purchase.setPaid("paid");
 		
-		
-		PurchaseService purchaseservice = new PurchaseServiceImpt();
-		purchaseservice.addleaforder(purchase);
+		LeaforderentryService  leaforderentryservice = new LeaforderentryServiceimpt();
+		leaforderentryservice.addTeaLeaves(tealeaves);
 
-		request.setAttribute("purchase", purchase);
+		request.setAttribute("tealeaves", tealeaves);
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/Leaforderentry.jsp");
 		dispatcher.forward(request, response);
 		

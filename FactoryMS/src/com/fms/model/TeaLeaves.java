@@ -9,6 +9,10 @@ public class TeaLeaves {
 	private String  Quantity;
 	private String  Unit_Price;
 	private String  Paid;
+	private String  PDate;
+	
+	
+	
 	
 	public String getTLID() {
 		return TLID;
@@ -53,11 +57,21 @@ public class TeaLeaves {
 		Paid = paid;
 	}
 	
+
+	
+	public String getPDate() {
+		return PDate;
+	}
+	public void setPDate(String pDate) {
+		PDate = pDate;
+	}
 	@Override
 	public String toString() {
 		return "TeaLeaves [TLID=" + TLID + ", PaymenID=" + PaymenID + ", SupID=" + SupID + ", Supplier_Name="
-				+ Supplier_Name + ", Quantity=" + Quantity + ", Unit_Price=" + Unit_Price + ", Paid=" + Paid + "]";
+				+ Supplier_Name + ", Quantity=" + Quantity + ", Unit_Price=" + Unit_Price + ", Paid=" + Paid
+				+ ", PDate=" + PDate + "]";
 	}
+	
 	
 
 	

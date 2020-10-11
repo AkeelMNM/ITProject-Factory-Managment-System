@@ -12,14 +12,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ViewSupplier
  */
-@WebServlet("/ViewSupplier")
-public class ViewSupplier extends HttpServlet {
+@WebServlet("/ViewTeaLeaf_Suppliers")
+public class ViewTeaLeaf_Suppliers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ViewSupplier() {
+    public ViewTeaLeaf_Suppliers() {
         super();
         // TODO Auto-generated constructor stub
     }

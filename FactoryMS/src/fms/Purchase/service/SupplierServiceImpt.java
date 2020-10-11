@@ -11,17 +11,16 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.sql.Statement;
 import javax.xml.parsers.ParserConfigurationException;
-
 import javax.security.auth.message.callback.PrivateKeyCallback.Request;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
-
 
 import com.fms.DBconnection.DBConnection;
 import com.fms.QueryUtil.PurchaseQueryUtil;
 import com.fms.commonConstant.PurchaseCommonConstants;
 import com.fms.commonUtil.PurchaseCommonUtil;
 import com.fms.model.TeaLeaf_Supplier;
+
 
 
 public class SupplierServiceImpt implements SupplierService {
@@ -92,7 +91,7 @@ public class SupplierServiceImpt implements SupplierService {
 	/********************************************************** View suppliers *****************************************/
 	//view tea leaf suppliers
 	@Override
-	public ArrayList<TeaLeaf_Supplier> getDepartments() {
+	public ArrayList<TeaLeaf_Supplier> getSupplier() {
 	
 		return actionOnSupplier(null);
 	}
@@ -168,17 +167,20 @@ public class SupplierServiceImpt implements SupplierService {
 				
 				preparedStatement =connection.prepareStatement(PurchaseQueryUtil.queryByID(PurchaseCommonConstants.QUERY_ID_UPDATE_SUPPLIER ));
 				
+				
 	
 				
-				//preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_ONE ,Supplier.getSupID());
-				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_TWO, Supplier.getName());
-				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_THREE, Supplier.getNIC());
-				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_FOUR, Supplier.getContact_No());
-				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_FIVE, Supplier.getAddress());
-				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_SIX, Supplier.getLicense_No());
-				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_SEVEN, Supplier.getEstate());
+				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_ONE, Supplier.getName());
+				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_TWO, Supplier.getNIC());
+				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_THREE, Supplier.getContact_No());
+				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_FOUR, Supplier.getAddress());
+				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_FIVE, Supplier.getLicense_No());
+				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_SIX, Supplier.getEstate());
+				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_SEVEN, SupID);
+				
 				
 				preparedStatement.executeUpdate();
+				
 				
 				
 			}catch(SQLException | SAXException | ClassNotFoundException | IOException | ParserConfigurationException ex) {
@@ -213,7 +215,7 @@ public class SupplierServiceImpt implements SupplierService {
 			try {
 				connection = DBConnection.getDBConnection();
 				
-				preparedStatement = connection.prepareStatement(PurchaseQueryUtil.queryByID(PurchaseCommonConstants.Query_id_REMOVE_SUPPLIER_BY_ID));
+				preparedStatement = connection.prepareStatement(PurchaseQueryUtil.queryByID(PurchaseCommonConstants.QUERY_ID_DELETE_SUPPLIER));
 				
 				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_ONE, SupID);
 				preparedStatement.executeUpdate();
@@ -236,6 +238,62 @@ public class SupplierServiceImpt implements SupplierService {
 		
 	}
 
+	/* *************************************** Get Supplier ID By Supplier Name ************************************************************ */
+	
+	@Override
+	public String getSupplierIdByName(String supName) {
+		String supID = null;
+		
+		//Checking the supName id is available
+	
+		if(supName != null && !supName.isEmpty())
+		{
+			try 
+			{
+				connection = DBConnection.getDBConnection();
+				
+				// Get Employee Name Query will be Retrieve from EmployeeMSDBQuery.xml
+				preparedStatement =connection.prepareStatement(PurchaseQueryUtil.queryByID(PurchaseCommonConstants.QUERY_ID_TO_GET_NAME_BY_SUPID));
+				
+				preparedStatement.setString(PurchaseCommonConstants.COLUMN_INDEX_ONE, supName);
+				
+				
+				ResultSet result = preparedStatement.executeQuery();
+				
+				if(result.next())
+				{
+					supID = result.getString(1); 
+				}
+			}
+			catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
+			{
+				
+				log.log(Level.SEVERE,e.getMessage());
+			}
+			finally
+			{
+				//Closing DB Connection and Prepared statement
+				try 
+				{	
+					if(preparedStatement != null)
+					{
+						preparedStatement.close();
+					}
+					if(connection != null)
+					{
+						connection.close();
+					}
+					
+				}
+				catch (SQLException e)
+				{
+					log.log(Level.SEVERE,e.getMessage());
+				}
+				
+			}
+		}
+		return supID;
+	}
 	
 /* *************************************** Get all Supplier IDs ************************************************************ */
 
@@ -283,6 +341,61 @@ public class SupplierServiceImpt implements SupplierService {
 		}
 			return arraylist;
 
+	}
+	@Override
+	public ArrayList<String> getallSupplierName() {
+		// TODO Auto-generated method stub
+		
+		
+		
+ArrayList<String> arraylist = new ArrayList<String>();
+		
+		try {
+				
+				connection = DBConnection.getDBConnection();
+				
+				//Get All Supplier ID Query will be Retrieve from EmployeeMSDBQuery.xml
+				preparedStatement = connection.prepareStatement(PurchaseQueryUtil.queryByID(PurchaseCommonConstants.Query_ID_ALL_Supplier_name));
+				
+				ResultSet result = preparedStatement.executeQuery();
+				while(result.next())
+				{
+					arraylist.add(result.getString(PurchaseCommonConstants.COLUMN_INDEX_ONE));
+				}	
+		} 
+		catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException e)
+		{	
+				log.log(Level.SEVERE,e.getMessage());
+		}
+		finally
+		{
+				//Closing DB Connection and Prepared statement
+				try 
+				{
+					
+					if(preparedStatement != null)
+					{
+						preparedStatement.close();
+					}
+					if(connection != null)
+					{
+						connection.close();
+					}
+					
+				} 
+				catch (SQLException e) 
+				{
+					log.log(Level.SEVERE,e.getMessage());
+				}
+				
+		}
+			return arraylist;
+		
+		
+		
+		
+		
+		
 	}
 
 	

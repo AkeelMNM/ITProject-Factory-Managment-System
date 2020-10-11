@@ -226,4 +226,120 @@ float:right;
     top: 50%;
     right: 30%;
 }
+
+
+
+
+
+.button1{
+ background-color:#4d4d4d;
+   color: white;;
+   height: 25px;
+    width: 60px;
+    
+  
+
+}
+.button2{
+ background-color:#e06653;
+  color: white;
+    height: 25px;
+    width: 60px;
+
+}
+.button3{
+ background-color: #289c96;
+  color: black;
+   height: 25px;
+    width: 60px;
+
+}
+.tableh{
+ background-color: #596b70;
+  color: white;
+
+}
+.search{
+
+ height: 20px;
+    width: 500px;
+  
+
+}
+
+
+.tabled{
+	
+/*background-color:#cccccc;*/
+background-color: #f1f1f1
+	
+}
+
+
+.h2{
+text-decoration-line: underline;	
+	
+	
+}
+.btnsave{
+	
+	background-color:#de6a3c;
+	 height: 25px;
+    width: 80px;
+     color: white;
+	
+}
+
+.btnreset{
+	
+	background-color: #5f9e63;
+	 height: 25px;
+    width: 100px;
+     color: white;
+}
+
+
+.tablerowreport{
+	background-color:#4d4d4d;
+	color: white;
+	
+}
+
+.tr1{
+	background-color: #badbda;
+	
+}
+.tr2{
+	background-color:#858585;
+	
+}
+.tr3{
+	background-color:#badbda;
+	
+}
+.tr4{
+	background-color:#858585;
+	
+}
+
+
+
+
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+
+.heading{
+	
+	
+	text-decoration-line: underline;
+}
+
+
+
+
 /*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/

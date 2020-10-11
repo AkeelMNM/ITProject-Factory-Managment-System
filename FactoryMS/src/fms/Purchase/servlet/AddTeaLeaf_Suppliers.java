@@ -10,22 +10,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fms.model.Purchase;
+import com.fms.model.TeaLeaf_Supplier;
 
-import fms.Purchase.service.PurchaseService;
-import fms.Purchase.service.PurchaseServiceImpt;
+import fms.Purchase.service.SupplierService;
+import fms.Purchase.service.SupplierServiceImpt;
 
 /**
  * Servlet implementation class AddSuppliers
  */
-@WebServlet("/AddSuppliers")
-public class AddSuppliers extends HttpServlet {
+@WebServlet("/AddTeaLeaf_Suppliers")
+public class AddTeaLeaf_Suppliers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddSuppliers() {
+    public AddTeaLeaf_Suppliers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -42,34 +42,28 @@ public class AddSuppliers extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
 	
+		response.setContentType("text/html");
+	
+		TeaLeaf_Supplier supplier = new TeaLeaf_Supplier();
 		
 		
-	response.setContentType("text/html");
-		
-		
-		Purchase supplier=new Purchase();
-		
-		
-		
-		supplier.setSupplierId(request.getParameter("suppid"));
-		supplier.setSupplier(request.getParameter("supname"));
-		supplier.setNic(request.getParameter("nic"));
-		supplier.setContact_no(request.getParameter("contactno"));
+		supplier.setSupID(request.getParameter("suppid"));
+		supplier.setName(request.getParameter("supname"));
+		supplier.setNIC(request.getParameter("nic"));
+		supplier.setContact_No(request.getParameter("contactno"));
 		supplier.setAddress(request.getParameter("address "));
-		supplier.setLicence_no(request.getParameter("licenseno"));
+		supplier.setLicense_No(request.getParameter("licenseno"));
 		supplier.setEstate(request.getParameter("estate"));
 		
 		//leave.setEmployee(request.getParameter("employee"));
 		
-		
-		PurchaseService purchaseservice = new PurchaseServiceImpt();
-		purchaseservice.addsupplier(supplier);
+		SupplierService AddSupplier = new SupplierServiceImpt();
+		AddSupplier.addSupplier(supplier);
 		
 		
 		request.setAttribute("supplier", supplier);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/Suppliers.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/Add_TeaLeaf_Suppliers.jsp");
 		dispatcher.forward(request, response);
 		
 		

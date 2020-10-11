@@ -9,6 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fms.model.TeaLeaves;
+
+import fms.Purchase.service.LeaforderentryService;
+import fms.Purchase.service.LeaforderentryServiceimpt;
+import fms.Purchase.service.SupplierService;
+import fms.Purchase.service.SupplierServiceImpt;
+
 /**
  * Servlet implementation class ViewSupplierPayment
  */
@@ -38,9 +45,36 @@ public class ViewSupplierPayment extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		
-		response.setContentType("text/html");
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("Interfaces/Purchase/Paymenttosuppliers.jsp");
-		doGet(request, response);
+
+		
+response.setContentType("text/html");
+		
+		String name = request.getParameter("supname");
+		
+		SupplierService se = new SupplierServiceImpt();
+		String id = se.getSupplierIdByName(name);
+		
+		
+		TeaLeaves tealeaves = new TeaLeaves();
+		tealeaves.setSupID(id);
+		tealeaves.setSupplier_Name(name);
+		tealeaves.setQuantity(request.getParameter("quantity"));
+		tealeaves.setUnit_Price(request.getParameter("price"));
+		tealeaves.setPaid(request.getParameter("paid"));
+		tealeaves.setPDate(request.getParameter("date"));
+
+		
+		LeaforderentryService  leaforderentryservice = new LeaforderentryServiceimpt();
+		leaforderentryservice.addTeaLeaves(tealeaves);
+
+		request.setAttribute("tealeaves", tealeaves);
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/leaforderreportnew.jsp");
+		dispatcher.forward(request, response);
+		
+		
+		
+		
+		
 	}
 
 }

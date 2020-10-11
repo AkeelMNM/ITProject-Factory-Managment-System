@@ -6,12 +6,10 @@ import java.util.logging.Logger;
 
 import com.fms.commonConstant.PurchaseCommonConstants;
 
-import fms.Purchase.service.PurchaseService;
-
 public class PurchaseCommonUtil {
 
 	
-	public static final Logger log = Logger.getLogger(PurchaseService.class.getName());
+	public static final Logger log = Logger.getLogger(PurchaseCommonUtil.class.getName());
 
 	//Creating new Supplier ID
 	
@@ -30,11 +28,6 @@ public class PurchaseCommonUtil {
 	}
 
 
-	
-	
-	
-	
-	
 	public static String generateAIDs(ArrayList<String> arrayList)
 	{
 		String id;
@@ -48,6 +41,45 @@ public class PurchaseCommonUtil {
 		}
 		return id;
 	}
+	
+	
+	//Creating new payment ID
+	public static String generatePaymentIDS(ArrayList<String> arrayList)
+	{
+		String id;
+		int alSize = arrayList.size();
+		alSize++;
+		id=PurchaseCommonConstants.PAYMENT_ID_PREFIX + alSize;
+		if(arrayList.contains(id))
+		{
+			alSize++;
+			id=PurchaseCommonConstants.PAYMENT_ID_PREFIX+ alSize;
+		}
+		return id;
+	}
+
+	//Creating new tea leaf ID
+	public static String generateTealeafIDS(ArrayList<String> arrayList)
+	{
+		String id;
+		int alSize = arrayList.size();
+		alSize++;
+		id=PurchaseCommonConstants.TEALEAF_ID_PREFIX + alSize;
+		if(arrayList.contains(id))
+		{
+			alSize++;
+			id=PurchaseCommonConstants.TEALEAF_ID_PREFIX + alSize;
+		}
+		return id;
+	}
+
+	
+	
+	
+	
+	
+
+	
 	
 
 }

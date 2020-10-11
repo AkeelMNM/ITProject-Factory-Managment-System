@@ -9,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import fms.Purchase.service.PurchaseService;
-import fms.Purchase.service.PurchaseServiceImpt;
+import fms.Purchase.service.LeaforderentryService;
+import fms.Purchase.service.LeaforderentryServiceimpt;
+
+
 
 /**
  * Servlet implementation class DeleteLeafOrderEntry
@@ -45,14 +47,16 @@ public class DeleteLeafOrderEntry extends HttpServlet {
 		
 		response.setContentType("text/html");
 
-		String TealeafId= request.getParameter("TealeafId");
+		String TLID= request.getParameter("TealeafId");
 		
 		
-		PurchaseService purchaseservice = new PurchaseServiceImpt();
-		purchaseservice.removeleaforder(TealeafId);
+		LeaforderentryService leaforderentryervice = new LeaforderentryServiceimpt();
+		leaforderentryervice.removeTeaLeaves(TLID);
 	
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Purchase/Leaforderentry.jsp");
-		doGet(request, response);
+	
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/Leaforderentry.jsp");
+		dispatcher.forward(request, response);
+		
 	}
 
 }

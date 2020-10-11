@@ -1,17 +1,30 @@
+<%@page import="com.fms.model.PaymentToSuppliers"%>
+<%@page import="fms.Purchase.service.PaymenttoSuppliersimpt"%>
+<%@page import="fms.Purchase.service.PaymenttoSuppliers"%>
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
 <head>
-
-
 <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/Purchase/Admin_Styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="${pageContext.request.contextPath}/CSS & javaScript/Purchase/Admin&Manager_Script.js"></script>
 <style>
 .button1{
- background-color: #706a69;
+ background-color: #756d70;
   color: white;
+   height: 25px;
+    width: 60px;
+    
+  
+
+}
+.button2{
+ background-color: #e06653;
+  color: white;
+    height: 25px;
+    width: 60px;
 
 }
 </style>
@@ -49,8 +62,8 @@
 					  <li><a class="menu" href="#">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="#">Leaf Order Entry</a></li>
-				  <li><a class="menu" href="#">Suppliers</a></li>
+				   <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Purchase/Leaforderentry.jsp">Leaf Order Entry</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Purchase/Add_TeaLeaf_Suppliers.jsp">Suppliers</a></li>
 				  <li><a class="menu" href="#">Payment to Suppliers</a></li>
 				  <li><a class="menu" href="#">Report</a></li>
 				
@@ -59,59 +72,85 @@
 <div id="bodyDiv">
 	
 		<!-- Body Part -->
+		
+		
+		
+			<%
+		
+		String PaymentID =request.getParameter("PaymentId");
+		
+		 PaymenttoSuppliers getPaymentByID =new PaymenttoSuppliersimpt();
+		 PaymentToSuppliers payment =getPaymentByID.getPaymentByID(PaymentID);
+		
+		request.setAttribute("payment", payment);
+
+		%>
+			
 				
 				
 				
-				<form method="POST" action="${pageContext.request.contextPath}/AddPurchaseServlet">
+	<form method="POST" action="${pageContext.request.contextPath}/UpdateSupplierPayment" style="margin-top:50px;">
 
 
-<h2>
-			Suppliers Update Form
-			<hr>
-		</h2>
 		<table>
+
+		
+		
+		<tr>
+			<td>Date :</td>	
+			<td><input type="date"  name="Date" size="55"value="<%=payment.getDate()%>"  ></td>
+		</tr>
+		
+		
+		
+		<tr>
+			<td>Month:</td>	
+			<td><input type="text"  name="month" size="55" value="<%=payment.getMonth()%>" ></td>
+		</tr>
+		
+		
+		
+		
+		
+		<tr>
+			<td>Suppier Name :</td>	
+			<td><input type="text"  name="name" size="55" value="<%=payment.getName()%>" disabled></td>
+		</tr>
+		
+			<tr>
+		  <td>Quantity</td>
+  		<td><input type="text"  name="paid" value="<%=payment.getIspaid()%>" size="55">
+  		
+		</tr>
+			<tr>
+			<td>Rate(Rs):</td>
+			<td><input type="text" name="rate" size="55" value="<%=payment.getRate()%>" ></td>
+		</tr>
+		
+			<tr>
+			<td>Value(Rs):</td>
+			<td><input type="text" name="value" size="55"value="<%=payment.getValue()%>" ></td>
+		</tr>
+		<tr>
+			<td>Final Amount(Rs):</td>
+			<td><input type="text" name="finalamount" size="55"value="<%=payment.getFinal_Amount() %>" ></td>
+		</tr>
+		
 	
+
+		<tr>
+			<td>Payment Type:</td>	
+		<td> <input type="text"  name="paymenttype" size="55"value="<%=payment.getPayment_Type()%>" >   </td>    
+		</tr>
+		
 	
-		<tr>
-			<td>License No:</td>
-			<td><input type="text" " name="licenseno" ></td>
-		</tr>
-		 <tr>
-			<td>Supplier Name :</td>	
-			<td> <select name="name">        
-                <option value="p">Willomson</option>
-                <option value="b">Bandara</option>
-                <option value="r">Ravi</option>
-                <option value="w">William</option>
-        </select></td>
-		</tr>
+
 		
-		
-		<tr>
-			<td>Address:</td>
-			<td><input type="text" name="address "></td>
-		</tr>
-		
-		<tr>
-			<td>Estate:</td>
-			<td><input type="text" name="estate" ></td>
-		</tr>
-		<tr>
-			<td>NIC:</td>
-			<td><input type="text" name="nic" ></td>
-		</tr>
-		<tr>
-			<td>Contact NO:</td>
-			<td><input type="text" name="contactno" ></td>
-		</tr>
-		
-		
-		
-		
-	<tr>
+	<tr>	<br>
 			<td><input type="submit" value ="Update" class="button1"/></td>
+			<td><input type="hidden" name="PaymentID" value ="<%=payment.getPaymenID()%>"/></td>
 		
-			<td><input type="reset" value ="Delete"class="button1" /> </td>
+			<td><input type="reset" value ="Reset"class="button2" /> </td>
 		</tr>
 		</table>
 	</form>
@@ -127,10 +166,5 @@
 		
 				
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-</div>
-
-
-
-
 </body>
 </html>

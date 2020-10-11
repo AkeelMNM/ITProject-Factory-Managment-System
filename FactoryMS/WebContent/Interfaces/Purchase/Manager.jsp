@@ -4,6 +4,37 @@
 <html>
 <head>
 
+<style>
+
+
+.viewreport{
+	background-color:#4d4d4d;
+  color: white;
+    height: 45px;
+    width: 500px;
+
+}
+
+.genaratereport{
+	background-color:#4d4d4d;
+  color: white;
+    height: 45px;
+    width: 500px;
+
+}
+.title1{
+
+font-family:'Gabriela';
+	font-size:30px;
+	color:  #0a5c54;
+	padding-left:60px;
+text-decoration-line: underline;
+
+}
+
+
+
+</style>
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/Purchase/Manager_Styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="${pageContext.request.contextPath}/CSS & javaScript/Purchase/Admin&Manager_Script.js"></script>
@@ -46,69 +77,32 @@
 		</ul>
 
 <div id="bodyDiv">
+<br>
+	<label class="title1">PURCHASING REPORT</label>
+	<br><br><br><br><br>
 	
-		<!-- Body Part -->
-				
-				
-				<form method="POST" action="${pageContext.request.contextPath}/AddPurchaseServlet">
-
-		
-		
-		
-		
-			Date :
-			<input type="date"  name="Date" ><br><br>
 	
-		
-      
-        Supplier :
-        <select>        
-                <option value="p">Peter</option>
-                <option value="b">Bandara</option>
-                <option value="r">Ravi</option>
-                <option value="w">William</option>
-        </select><br><br>
 	
-		
-
-			Grade :
-			<input type="text" name="grade" ><br><br>
-	
-		
-	
-			Quantity(KG) :
-			<input type="text" name="quantity" ><br><br>
-	
-		
-	
-			Price(Rs) :
-			<input type="text" name="price" ><br><br>
-		
-			Paid? :
-			<input type="text" name="paid" ><br><br>
-	
-		
-		
-		
-		
-		
-	
-			<input type="submit" value ="Save" class="button1"/>
-		
-			<input type="reset" value ="Reset"class="button1" /> 
-	
-	</form>
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
-				
+						<form method="POST" action="${pageContext.request.contextPath}/Interfaces/Purchase/lastreport.jsp">
+						<input type="submit" name="report" value="VIEW REPORT" size="40" class="viewreport"/> 
+						
+					</form>
+					
+					<br> <br>
+							<form method="POST" action="${pageContext.request.contextPath}/Interfaces/Purchase/FinalReport.jsp">
+						<input type="submit" name="report" value="GENARATE REPORT" size="40" class="genaratereport"/> 
+							
+					</form>
+						
+						<!-- <input type="submit" value ="VIEW LEAF ORDER REORT"class="btnreset" href="${pageContext.request.contextPath}/Interfaces/Purchase/lastreport.jsp"/>  --> 
+						
+						
+						
+						
+						
+						
+						
+	<br><br><br><br><br><br><br><br><br><br><br>
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 </div>
 

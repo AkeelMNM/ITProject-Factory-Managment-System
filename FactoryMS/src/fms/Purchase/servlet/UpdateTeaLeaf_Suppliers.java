@@ -9,24 +9,22 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fms.model.PaymentToSuppliers;
+import com.fms.model.TeaLeaf_Supplier;
 
-import fms.Purchase.service.LeaforderentryService;
-import fms.Purchase.service.LeaforderentryServiceimpt;
-import fms.Purchase.service.PaymenttoSuppliersimpt;
-import fms.Purchase.service.PaymenttoSuppliers;
+import fms.Purchase.service.SupplierService;
+import fms.Purchase.service.SupplierServiceImpt;
 
 /**
- * Servlet implementation class DeleteSupplierPayment
+ * Servlet implementation class UpdateSupplier
  */
-@WebServlet("/DeleteSupplierPayment")
-public class DeleteSupplierPayment extends HttpServlet {
+@WebServlet("/UpdateTeaLeaf_Suppliers")
+public class UpdateTeaLeaf_Suppliers extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public DeleteSupplierPayment() {
+    public UpdateTeaLeaf_Suppliers() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -44,23 +42,29 @@ public class DeleteSupplierPayment extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.setContentType("text/html");
-
-		String PaymentID= request.getParameter("PaymentId");
+response.setContentType("text/html");
 		
+		String SupID = request.getParameter("SuppId");	
 		
-	PaymenttoSuppliers paymenttosup=new PaymenttoSuppliersimpt();
-	paymenttosup.removeSupplierPayment(PaymentID);
+		TeaLeaf_Supplier supplier = new TeaLeaf_Supplier ();
+		
+		supplier.setSupID(SupID);
+		supplier.setName(request.getParameter("supname"));
+		supplier.setNIC(request.getParameter("nic"));
+		supplier.setContact_No(request.getParameter("contactno"));
+		supplier.setAddress(request.getParameter("address"));
+		supplier.setLicense_No(request.getParameter("licenseno"));
+		supplier.setEstate(request.getParameter("estate"));
 	
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/AddPaymentToSuppliers.jsp");
+	
+		
+		SupplierService supplierService = new SupplierServiceImpt();
+		supplierService.UpdateSupplier(SupID, supplier);
+
+		
+	
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/Add_TeaLeaf_Suppliers.jsp");
 		dispatcher.forward(request, response);
-		
-		
-		
-		
-		
-		
-		
 		
 	}
 

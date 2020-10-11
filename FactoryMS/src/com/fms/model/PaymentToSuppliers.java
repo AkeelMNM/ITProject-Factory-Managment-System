@@ -1,6 +1,6 @@
 package com.fms.model;
 
-public class PaymenttoSuppliers {
+public class PaymentToSuppliers {
 	
 	
 	private String  PaymenID;
@@ -10,6 +10,12 @@ public class PaymenttoSuppliers {
 	private String  Final_Amount;
 	private String  Ispaid;
 	private String  Payment_Type;
+	private String  SupID;
+	private String  name;
+	private String  month;
+	//private String  Supplier_Name;
+	
+	
 	public String getPaymenID() {
 		return PaymenID;
 	}
@@ -52,10 +58,33 @@ public class PaymenttoSuppliers {
 	public void setPayment_Type(String payment_Type) {
 		Payment_Type = payment_Type;
 	}
+	
+	public String getSupID() {
+		return SupID;
+	}
+	public void setSupID(String supID) {
+		SupID = supID;
+	}
+
+	
+	public String getName() {
+		return name;
+	}
+	public void setName(String name) {
+		this.name = name;
+	}
+	
+	public String getMonth() {
+		return month;
+	}
+	public void setMonth(String month) {
+		this.month = month;
+	}
 	@Override
 	public String toString() {
-		return "PaymenttoSuppliers [PaymenID=" + PaymenID + ", Date=" + Date + ", Rate=" + Rate + ", Value=" + Value
-				+ ", Final_Amount=" + Final_Amount + ", Ispaid=" + Ispaid + ", Payment_Type=" + Payment_Type + "]";
+		return "PaymentToSuppliers [PaymenID=" + PaymenID + ", Date=" + Date + ", Rate=" + Rate + ", Value=" + Value
+				+ ", Final_Amount=" + Final_Amount + ", Ispaid=" + Ispaid + ", Payment_Type=" + Payment_Type
+				+ ", SupID=" + SupID + ", name=" + name + ", month=" + month + "]";
 	}
 	
 	

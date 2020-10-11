@@ -1,3 +1,8 @@
+<%@page import="fms.Purchase.service.LeaforderentryServiceimpt"%>
+<%@page import="fms.Purchase.service.LeaforderentryService"%>
+<%@page import="com.fms.model.TeaLeaves"%>
+
+
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
@@ -13,8 +18,19 @@
 
 <style>
 .button1{
- background-color: #706a69;
+ background-color: #756d70;
   color: white;
+   height: 25px;
+    width: 60px;
+    
+  
+
+}
+.button2{
+ background-color: #e06653;
+  color: white;
+    height: 25px;
+    width: 60px;
 
 }
 #bodyDiv{
@@ -57,10 +73,10 @@ height: 100%
 					  <li><a class="menu" href="#">Exspesne</a></li>
 					  <li><a class="menu" href="#">Payroll</a></li>
 				</a></ul>
-				</li>
+			</li>
 				  <li><a class="menu" href="#">Leaf Order Entry</a></li>
-				  <li><a class="menu" href="#">Suppliers</a></li>
-				  <li><a class="menu" href="#">Payment to Suppliers</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Purchase/Add_TeaLeaf_Suppliers.jsp">Suppliers</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Purchase/AddPaymentToSuppliers.jsp">Payment to Suppliers</a></li>
 				  <li><a class="menu" href="#">Report</a></li>
 				
 		</ul>
@@ -74,65 +90,71 @@ height: 100%
 			<hr>
 		</h2>
 		<!-- Body Part -->
+		
+		
+		<%
+		
+		String TLID =request.getParameter("TLID");
+		
+		LeaforderentryService getTeaLeafByID =new LeaforderentryServiceimpt();
+		TeaLeaves tealeaves =getTeaLeafByID.getTeaLeafByID(TLID);
+		
+		request.setAttribute("TeaLeaves", tealeaves);
+
+		%>
 				
 				
 				
-				<form method="POST" action="${pageContext.request.contextPath}/AddPurchaseServlet">
+				<form method="POST" action="${pageContext.request.contextPath}/UpdateLeafOrderEntry" style="margin-top:50px;">
+
 
 		<table>
+
 		
 		
-		<tr>
-			<td>Date :</td>	
-			<td><input type="date"  name="Date" ></td>
+		
+		<td>Supplier Name:</td>
+			<td><input type="text" name="supname" size="55" value="<%=tealeaves.getSupplier_Name()%> " disabled ></td>
 		</tr>
-	
 		<tr>
-			<td>Supplier :</td>
-			<td> <select name="name">        
-                <option value="p">Willomson</option>
-                <option value="b">Bandara</option>
-                <option value="r">Ravi</option>
-                <option value="w">William</option>
-        </select></td>
-		</tr>
-		 <tr>
-			<td >TeaLeaf Grade :</td>
-			<td> <select name="grade">        
-                <option value="p" >Best</option>
-                <option value="b">Below Best</option>
-                <option value="r">Poor</option>
-            
-        </select></td>
+			<td>Quantity(KG):</td>
+			<td><input type="text" name="quantity" size="55" value="<%=tealeaves.getQuantity()%>"></td>
 		</tr>
 		
 		<tr>
-			<td>Quantity(KG) :</td>
-			<td><input type="text" name="quantity" ></td>
+			<td>Unit Price(Rs) :</td>
+			<td><input type="text" name="price"  size="55" value="<%=tealeaves.getUnit_Price()%>"></td>
 		</tr>
-		
 		<tr>
-			<td>Price(Rs) :</td>
-			<td><input type="text" name="price" ></td>
-		</tr>
-	  <td>Paid?</td>
-  		<td><input type="radio" id="male" name="gender" value="male">
+			<tr>
+		 <label name="paid" value="<%=tealeaves.getPaid()%>"> <td>Paying?</td>	</label>
+  		<td><input type="radio" id="paid" name="paid" value="yes"size="50">
   		<label for="male">Yes</label>
-  		<input type="radio" id="female" name="gender" value="female">
+  		<input type="radio" id="paid" name="paid" value="no">
   		<label for="female">No</label><br></td>
 		</tr>
+  			
+  				<td>Date:</td>
+			<td><input type="text" name="date"  size="55" value="<%=tealeaves.getPDate()%>"></td>
+		</tr>
+		<tr>
+			</tr>
+		
+	
+		<tr>
 		
 		
+	
 		
-		
-		
+	<tr>	<br>
 			<td><input type="submit" value ="Update" class="button1"/></td>
+			<td><input type="hidden" name="TLID" value ="<%=tealeaves.getTLID()%>"/></td>
 		
-			<td><input type="reset" value ="Delete"class="button1" /> </td>
-		
+			<td><input type="reset" value ="Reset"class="button2" /> </td>
+		</tr>
 		</table>
 	</form>
-			
+			<br>
 				
 	
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

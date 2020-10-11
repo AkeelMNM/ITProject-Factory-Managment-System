@@ -28,6 +28,14 @@
 
 background-color:"powderblue;"
 }
+.search{
+
+ height: 20px;
+    width: 500px;
+  
+
+}
+
 
 </style>
 
@@ -86,7 +94,7 @@ background-color:"powderblue;"
 				
 			<h2 >Purchase Report</h2>
 			<hr>
-			<input class="button2" type="text" placeholder="Search..">
+			<input type="text" placeholder="Search.." class="search">
 			
 				<input type="submit" value ="Search" class="button1"/><br><br>
 		<table class="center "border="1" cellpadding="12">
@@ -95,7 +103,7 @@ background-color:"powderblue;"
 				
 			</caption>
 
-			<tr >
+			<tr class="tablerowreport" >
 				<th>Purchase Date</th>
 				<th>Supplier ID</th>
 				<th>Supplier Name</th>
@@ -107,7 +115,7 @@ background-color:"powderblue;"
 			
 			</tr>
 			
-			 <tr>
+		 <tr class="tr1">
 				    <td>9/9/2020</td>
 				    <td>P001</td>
 				    <td>Smith</td>
@@ -118,7 +126,7 @@ background-color:"powderblue;"
 			</tr>
 			
 			
-			 <tr>
+			 <tr class="tr2">
 				    <td>10/9/2020</td>
 				    <td>P0011</td>
 				    <td>Smith</td>
@@ -130,7 +138,7 @@ background-color:"powderblue;"
 			
 			
 			
-			 <tr>
+			 <tr  class="tr3">
 				    <td>11/9/2020</td>
 				    <td>P0021</td>
 				    <td>Wilson</td>
@@ -141,7 +149,7 @@ background-color:"powderblue;"
 			</tr>
 			
 			
-			 <tr>
+			 <tr  class="tr4">
 				    <td>15/9/2020</td>
 				    <td>P00551</td>
 				    <td>Smith</td>
@@ -189,11 +197,7 @@ background-color:"powderblue;"
 				
 				
 				
-			<!--  <input type="submit" value ="Save" class="button1"/>
 		
-			<input type="reset" value ="Reset"class="button1" /> -->
-				
-				
 				
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 </div>

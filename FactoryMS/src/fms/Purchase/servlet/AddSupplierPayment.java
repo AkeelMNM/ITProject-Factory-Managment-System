@@ -9,12 +9,13 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.fms.model.PaymentToSuppliers;
 
-import com.fms.model.Purchase;
+import fms.Purchase.service.PaymenttoSuppliers;
+import fms.Purchase.service.PaymenttoSuppliersimpt;
+import fms.Purchase.service.SupplierService;
+import fms.Purchase.service.SupplierServiceImpt;
 
-
-import fms.Purchase.service.PurchaseService;
-import fms.Purchase.service.PurchaseServiceImpt;
 
 /**
  * Servlet implementation class AddSupplierPayment
@@ -43,26 +44,34 @@ public class AddSupplierPayment extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+		
 	response.setContentType("text/html");
 		
-		Purchase payment = new Purchase();
+		String name = request.getParameter("supname");
+		
+		SupplierService se = new SupplierServiceImpt();
+		String id = se.getSupplierIdByName(name);
+	
+	
+  		PaymentToSuppliers payment = new PaymentToSuppliers();
 
-		payment.setDate("date");
-		payment.setSupplier("supname");
-		payment.setQuantity("quantity");
-		payment.setRate("rate");
-		payment.setValue("value");
-		payment.setFinalPayment("finalPayment");
+  		payment.setSupID(id);
+  		payment.setName(name);
+		payment.setDate(request.getParameter("Date"));
+		payment.setMonth(request.getParameter("month"));
+		payment.setRate(request.getParameter("rate"));
+		payment.setValue(request.getParameter("value"));
+		payment.setFinal_Amount(request.getParameter("finalamount"));
+		payment.setIspaid(request.getParameter("paid"));
+		payment.setPayment_Type(request.getParameter("paymenttype"));
 		
-		
-		
-		PurchaseService purchaseservice = new PurchaseServiceImpt();
-		purchaseservice.addsupplier(payment);
+	
+		PaymenttoSuppliers Addpayment =new PaymenttoSuppliersimpt();
+		Addpayment.addSupplierPayment(payment);
 		
 		
 		request.setAttribute("payment",payment);
-		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/Paymenttosuppliers.jsp");
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/AddPaymentToSuppliers.jsp");
 		dispatcher.forward(request, response);
 
 		
