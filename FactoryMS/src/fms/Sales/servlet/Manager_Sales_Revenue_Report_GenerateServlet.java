@@ -64,12 +64,12 @@ public class Manager_Sales_Revenue_Report_GenerateServlet extends HttpServlet {
 			if("Year".equals(Option)) 
 			{
 				RevenueList = RevenueService.getSsalesRevenueBySalesTypeAndYear(SalesType, Year);
-				request.setAttribute("FSyear", Year);
+				request.setAttribute("ReYear", Year);
 			}
 			if(month != null && "Month".equals(Option)) 
 			{
 				RevenueList = RevenueService.getSalesRevenueBySalesTypeAndMonth(SalesType, month,Year);
-				request.setAttribute("FSMonth", month);
+				request.setAttribute("ReMonth", month);
 			}
 			
 			request.setAttribute("ReturnList", RevenueList);
