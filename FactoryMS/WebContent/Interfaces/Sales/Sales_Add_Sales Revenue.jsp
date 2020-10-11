@@ -92,6 +92,8 @@
 						<option value="Local Sales"> Local Sales </option>
 					</select>
 				</td>
+				
+				<td ><input type="submit" name="Get" value="Generate" class=""> </td>
 			</tr>
 			
 			<tr>
@@ -100,9 +102,37 @@
 				<td>Total Amount :</td>
 			</tr>
 			
+			<%
+				
+				ArrayList<Sales_Revenue> SoldList = new ArrayList<Sales_Revenue>();
+				SoldList = (ArrayList<Sales_Revenue>) request.getAttribute("SoldList");
+			
+				if(SoldList != null)
+				{
+					for(Sales_Revenue re : SoldList)
+					{
+					
+			%>
+			
 			<tr>
 				<td>
-					<select name="FactorySalesID[]"   required> 
+					<input type="text" value="<%=re.getTea_Grade() %>"  disabled>
+					<input type="hidden" name="FactorySalesID[]" value="<%=re.getFactory_SalesID() %>" >
+				</td>
+				<td> <input type="text" name="Sold_Qty[]" pattern="\d+" value="<%=re.getSold_Quantity() %>" required> </td>
+				<td> <input type="text" name="total_Amount[]" id="num1" value="<%=re.getAmount() %>" required> </td>
+			</tr>
+			
+			<%
+					}
+				}
+				else
+				{
+			%>
+			
+			<tr>
+				<td>
+					<select name="FactorySalesID[]"   > 
 						<option> --Select Grade-- </option>
 						<%
 							FactorySalesService FactorySales = new FactorySalesServiceImpt();
@@ -119,8 +149,8 @@
 						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Sold_Qty[]" pattern="\d+" required> </td>
-				<td> <input type="text" name="total_Amount[]" id="num1" required> </td>
+				<td> <input type="text" name="Sold_Qty[]" pattern="\d+" > </td>
+				<td> <input type="text" name="total_Amount[]" id="num1" > </td>
 			</tr>
 			<tr>
 				<td>
@@ -160,45 +190,11 @@
 				<td> <input type="text" name="Sold_Qty[]"  > </td>
 				<td> <input type="text" name="total_Amount[]" id="num3" > </td>
 			</tr>
-			<tr>
-				<td>
-					<select name="FactorySalesID[]" > 
-						<option> --Select Grade-- </option>
-						<%
-							for(FactorySales sales4 : SalesList)
-							{
-						%>
-
-						<option value="<%=sales4.getFactory_Sales_ID() %>"> <%=sales4.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
-				</td>
-				<td> <input type="text" name="Sold_Qty[]"  > </td>
-				<td> <input type="text" name="total_Amount[]" id="num3" > </td>
-			</tr>
-			<tr>
-				<td>
-					<select name="FactorySalesID[]" > 
-						<option> --Select Grade-- </option>
-						<%
-							for(FactorySales sales5 : SalesList)
-							{
-						%>
-
-						<option value="<%=sales5.getFactory_Sales_ID() %>"> <%=sales5.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
-				</td>
-				<td> <input type="text" name="Sold_Qty[]"  > </td>
-				<td> <input type="text" name="total_Amount[]" id="num3" > </td>
-			</tr>
 			
+			<%
+				}
+			%>
+						
 			<tr>
 				<td>Total Revenue :</td>
 				<td colspan="2"><input type="text" name="Total_Revenue" size="55" id="TotalRevenue" onkeyup="Calculate()" ></td>
@@ -216,6 +212,7 @@
 		</form>
 		
 	</div>			
+		
 		
 <div class="v_line"></div>
 				

@@ -2,7 +2,10 @@ package fms.Sales.service;
 
 import java.util.ArrayList;
 
+import com.fms.model.FactorySales;
+import com.fms.model.Sales_Return;
 import com.fms.model.Sales_Revenue;
+import com.fms.model.Tea_Grade_Price;
 
 /**
  * @author Zumry
@@ -32,5 +35,9 @@ public interface Sales_RevenueService {
 		
 	//Get SalesRevenue by SalesType and year		//Year Report
 	public ArrayList<Sales_Revenue> getSsalesRevenueBySalesTypeAndYear(String SalesType,String Year);
+	
+	//get Sold Details by FactorySales,Return,TeaGeadePrice ArrayList
+	public ArrayList<Sales_Revenue> getSoldDetails(ArrayList<FactorySales> SalesList, ArrayList<Sales_Return> ReturnList,ArrayList<Tea_Grade_Price> priceList );
+	
 	
 }

@@ -17,7 +17,10 @@ import com.fms.DBconnection.DBConnection;
 import com.fms.QueryUtil.SalesQueryUtil;
 import com.fms.commonConstant.SalesCommonConstants;
 import com.fms.commonUtil.SalesCommonUtil;
+import com.fms.model.FactorySales;
+import com.fms.model.Sales_Return;
 import com.fms.model.Sales_Revenue;
+import com.fms.model.Tea_Grade_Price;
 
 /**
  * @author Zumry A.M
@@ -409,6 +412,41 @@ public class Sales_RevenueServiceImpt implements Sales_RevenueService {
 		return RevenueList;
 	}
 
+
+	
+	
+/** -------------  ***************************  Get sold Details by Sales ArrayList, Return ArrayList and TeaGradePrice ArrayList  ***************************   ------------------------**/
+	@Override
+	public ArrayList<Sales_Revenue> getSoldDetails(ArrayList<FactorySales> SalesList, ArrayList<Sales_Return> ReturnList,ArrayList<Tea_Grade_Price> priceList )
+	{
+		ArrayList<Sales_Revenue> SoldList = new ArrayList<Sales_Revenue>();
+		
+		for(int i = 1 ; i<SalesList.size() ; i++) 
+		{
+			double key = 0 ; 
+			double amount = 0 ;
+			
+			if(SalesList.get(i).getFactory_Sales_ID().equals(ReturnList.get(i).getFactory_SalesID())) 
+			{
+				Sales_Revenue Re = new Sales_Revenue();
+				
+				key = Double.parseDouble(SalesList.get(i).getSelling_Quantity()) - Double.parseDouble(ReturnList.get(i).getReturn_Quantity());
+				
+				Re.setFactory_SalesID(SalesList.get(i).getFactory_Sales_ID());
+				Re.setTea_Grade(SalesList.get(i).getTea_Grade());
+				Re.setSold_Quantity(String.valueOf(key));
+				
+				if(SalesList.get(i).getTea_Grade().equals(priceList.get(i).getTea_Grade())) 
+				{
+					amount = Double.parseDouble(priceList.get(i).getPrice()) * key ;
+					Re.setAmount(String.valueOf(amount));
+				}
+				
+				SoldList.add(Re);
+			}
+		}
+		return SoldList;
+	}
 	
 	
 /**-------------   ******************************************************  --------------**/
