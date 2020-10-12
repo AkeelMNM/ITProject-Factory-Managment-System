@@ -301,12 +301,12 @@
 						</td>
 						<td class ="tData"><%=pt.getDescription() %></td>
 						
+				<%
+					}%>
 				</tr>
 				</table>
-				<%
-					}
+			<%
 			}
-			
 			if(SDate != null && SKey != null){ %>
 			<table style="height: 137px; width: 88.5%; margin-left:50px;">
 				<tbody>

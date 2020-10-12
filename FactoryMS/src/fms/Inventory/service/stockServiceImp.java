@@ -428,8 +428,107 @@ String TeaGradeId = null;
 
 
 
-	
-	
+	@Override
+	public ArrayList<TeaStock> getStockDetailsMonth(String month) {
+		ArrayList<TeaStock> tList = new ArrayList<TeaStock>();
+		
+		try {
+			connection = DBConnection.getDBConnection();
+			
+			preparedStatement = connection.prepareStatement(InventoryQueryUtil.queryByID(InventryComman.QUERY_ID_ALL_STOCK_BY_MONTH));
+			preparedStatement.setString(InventryComman.COLUMN_INDEX_ONE, month);
+
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				
+				 TeaStock ts = new TeaStock();
+				
+				 ts.setStockID(result.getString(InventryComman.COLUMN_INDEX_ONE));
+				 ts.setTeaGrade_ID(result.getString(InventryComman.COLUMN_INDEX_TWO));
+				 ts.setStoring_Date(result.getString(InventryComman.COLUMN_INDEX_THREE));
+				 ts.setMonth(result.getString(InventryComman.COLUMN_INDEX_FOUR));
+				 ts.setTea_Grades(result.getString(InventryComman.COLUMN_INDEX_FIVE));
+				 ts.setTea_Grades_Qty(result.getString(InventryComman.COLUMN_INDEX_SIX));
+				 ts.setLocation(result.getString(InventryComman.COLUMN_INDEX_SEVEN));
+				
+				 tList.add(ts);
+				
+			}
+
+		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of
+			 * transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		return tList;
+	}
+
+
+
+	@Override
+	public ArrayList<TeaStock> getStockDetailsDate(String date) {
+		
+		ArrayList<TeaStock> tList = new ArrayList<TeaStock>();
+		
+		try {
+			connection = DBConnection.getDBConnection();
+			
+			preparedStatement = connection.prepareStatement(InventoryQueryUtil.queryByID(InventryComman.QUERY_ID_ALL_STOCK_BY_DATE));
+			preparedStatement.setString(InventryComman.COLUMN_INDEX_ONE, date);
+
+			ResultSet result = preparedStatement.executeQuery();
+
+			while (result.next()) {
+				
+				 TeaStock ts = new TeaStock();
+				
+				ts.setStockID(result.getString(InventryComman.COLUMN_INDEX_ONE));
+				ts.setTeaGrade_ID(result.getString(InventryComman.COLUMN_INDEX_TWO));
+				ts.setStoring_Date(result.getString(InventryComman.COLUMN_INDEX_THREE));
+				ts.setMonth(result.getString(InventryComman.COLUMN_INDEX_FOUR));
+				ts.setTea_Grades(result.getString(InventryComman.COLUMN_INDEX_FIVE));
+				ts.setTea_Grades_Qty(result.getString(InventryComman.COLUMN_INDEX_SIX));
+				ts.setLocation(result.getString(InventryComman.COLUMN_INDEX_SEVEN));
+				
+				tList.add(ts);
+				
+			}
+
+		} catch (SQLException | SAXException | IOException | ParserConfigurationException | ClassNotFoundException e) {
+			log.log(Level.SEVERE, e.getMessage());
+		} finally {
+			/*
+			 * Close prepared statement and database connectivity at the end of
+			 * transaction
+			 */
+			try {
+				if (preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if (connection != null) {
+					connection.close();
+				}
+			} catch (SQLException e) {
+				log.log(Level.SEVERE, e.getMessage());
+			}
+		}
+		return tList;
+	}
+
 }
 
 

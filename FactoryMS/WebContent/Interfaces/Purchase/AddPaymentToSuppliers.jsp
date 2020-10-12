@@ -80,7 +80,6 @@ background-color:#a0dbd6;
 <body>
 <!-- Header Part -->
 
-<!-- ////////////////////////////////////////////////////// -->
 <%
     if((String)session.getAttribute("uid")==null)
     {
@@ -89,7 +88,6 @@ background-color:#a0dbd6;
 
 %>
 
-<!-- ////////////////////////////////////////////////////// -->
 
 
 
@@ -101,23 +99,18 @@ background-color:#a0dbd6;
 					<label id="address">Hapugahayatatenna,Handessa</label>
 				</div>
 				<div id="manage">
-					<div class="dropdown">
-						<!-- ////////////////////////////////////////////////////// -->	
+					<div class="dropdown">	
 					<button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
-	 <div id="myDropdown" class="dropdown-content">
-		<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
-		<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
+						 <div id="myDropdown" class="dropdown-content">
+							<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
+							<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
 	</div>
 					
 					
 					</div>
 				</div>
-				
-						<!-- <img src="UserPro.png" alt="UserLogo" id="Userlogo"> -->
-						<!-- ////////////////////////////////////////////////////// -->
-						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	>
-												
-						<!-- ////////////////////////////////////////////////////// -->								
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	alt="UserLogo" id="Userlogo">
+							
 
 </div>
 <hr>

@@ -94,7 +94,7 @@
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="${pageContext.request.contextPath}/Interfaces/Home/User_profile.jsp">
+						<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Profile.png" alt="ProfileFlLogo" class="functionlogo">
 							<label>User Profile</label>
 						</a>

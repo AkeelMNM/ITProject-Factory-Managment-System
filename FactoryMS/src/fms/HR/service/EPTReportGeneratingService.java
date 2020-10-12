@@ -728,7 +728,6 @@ public class EPTReportGeneratingService {
 			        /** +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/
 				    cell1 = new PdfPCell(new Paragraph("Date"));
 				    cell1.setFixedHeight(25f);
-			        cell1.setBackgroundColor(BaseColor.CYAN);
 			        cell1.setPaddingLeft(10);
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        table.addCell(cell1);

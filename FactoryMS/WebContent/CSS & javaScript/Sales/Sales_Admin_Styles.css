@@ -201,7 +201,7 @@ div.bigDiv
 /* -------------------------- Body Div ------------------------------------- */
 
 #bodyDiv {
-	background-color:white;
+	background-color:#F5F5F5;
 	width:100%;
 	float:left;
 	border: 1px solid #ccc;

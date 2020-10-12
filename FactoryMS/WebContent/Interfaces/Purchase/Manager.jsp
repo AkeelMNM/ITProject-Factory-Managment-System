@@ -45,11 +45,10 @@ text-decoration-line: underline;
 
 <!-- ////////////////////////////////////////////////////// -->
 <%
-    /*if((String)session.getAttribute("uid")==null)
+    if((String)session.getAttribute("uid")==null)
     {
         response.sendRedirect("/FactoryMS/index.jsp");
     }
-*/
 %>
 
 <!-- ////////////////////////////////////////////////////// -->
@@ -79,14 +78,14 @@ text-decoration-line: underline;
 						<!--  <img src="UserPro.png" alt="UserLogo" id="Userlogo">-->
 						
 							<!-- ////////////////////////////////////////////////////// -->
-						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	>
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	alt="UserLogo" id="Userlogo">
 												
 						<!-- ////////////////////////////////////////////////////// -->										
 
 </div>
 <hr>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-		<ul><li><a class="menu" href="#">Home
+		<ul><li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Home/Manager_Home.jsp">Home
 				<ul>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Production/reportUI.jsp">Production</a></li>

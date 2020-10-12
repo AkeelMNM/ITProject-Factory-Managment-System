@@ -34,6 +34,10 @@ public interface stockService {
 
 	public String getLocation(String LocationName);
 	
+	public ArrayList<TeaStock> getStockDetailsMonth(String month);
+	
+	public ArrayList<TeaStock> getStockDetailsDate(String date);
+	
 	
 	
 }

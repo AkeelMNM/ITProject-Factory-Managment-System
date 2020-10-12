@@ -119,13 +119,13 @@
 		<ul><li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Home/Admin_Home.jsp">Home
 				<ul>
 					   <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Purchase/Add_TeaLeaf_Suppliers.jsp">Purchase</a></li>
-					  <li><a class="${pageContext.request.contextPath}Interfaces/Production/production.jsp">Production</a></li>
+					  <li><a class="${pageContext.request.contextPath}/Interfaces/Production/production.jsp">Production</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Add_Employee.jsp">HR</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Add_Factory_Sales.jsp">Sales</a></li>
 					  <li><a class="menu" href="#">Exspesne</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="#">Tea Stock</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Inventory/Add_Stock.jsp">Tea Stock</a></li>
 				  <li><a class="menu" href="#">Sales Stock</a></li>
 				  <li><a class="menu" href="#">Report</a></li>
 

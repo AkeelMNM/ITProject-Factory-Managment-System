@@ -124,7 +124,7 @@
 				</a></ul>
 				</li>
 				  <li><a class="menu" href="#">Tea Stock</a></li>
-				  <li><a class="menu" href="#">Sales Stock</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Inventory/Add_SalesStock.jsp">Sales Stock</a></li>
 				  <li><a class="menu" href="#">Report</a></li>
 
 		</ul>

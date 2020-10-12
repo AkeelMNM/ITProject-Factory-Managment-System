@@ -172,14 +172,14 @@ input[type="submit"]{ padding: 10px 10px; line-height:15px; }
 						</tr>
 						
 						<tr >
-							 <td class="tdsp"><input type ="text" name ="username"  value="123@gmail.com" placeholder="Email Address" class="inputtype"></td>
+							 <td class="tdsp"><input type ="text" name ="username" placeholder="Email Address" class="inputtype"></td>
 						</tr> 
 						<tr>
 							<td class="tbltd">Password</td>
 						</tr>
 						
 						<tr>
-							<td class="tdsp"><input type="password" name="password" placeholder="Password" value="123456" class="inputtype"></td>
+							<td class="tdsp"><input type="password" name="password" placeholder="Password" class="inputtype"></td>
 						</tr>
 						
 						<tr>

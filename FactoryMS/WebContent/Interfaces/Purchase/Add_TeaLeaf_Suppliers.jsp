@@ -93,15 +93,14 @@ text-decoration-line: underline;
 <body>
 <!-- Header Part -->
 <!-- ////////////////////////////////////////////////////// -->
-<%/*
+<%
     if((String)session.getAttribute("uid")==null)
     {
         response.sendRedirect("/FactoryMS/index.jsp");
     }
-*/
+
 %>
 
-<!-- ////////////////////////////////////////////////////// -->
 
 <div id="headDiv">
 					<img src="${pageContext.request.contextPath}/Images/MainLogo.jpeg" alt="MainLogo" id="logo"> 
@@ -111,7 +110,6 @@ text-decoration-line: underline;
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-				<!-- ////////////////////////////////////////////////////// -->	
 					<button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
 	 <div id="myDropdown" class="dropdown-content">
 		<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
@@ -121,11 +119,8 @@ text-decoration-line: underline;
 				
 					</div>
 				</div>
-						<!--  <img src="UserPro.png" alt="UserLogo" id="Userlogo">	-->
-						<!-- ////////////////////////////////////////////////////// -->
-						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	>
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	alt="UserLogo" id="Userlogo">
 												
-<!-- ////////////////////////////////////////////////////// -->
 </div>
 <hr>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->

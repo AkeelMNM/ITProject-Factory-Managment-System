@@ -8,7 +8,14 @@ public class TeaStock {
 	private String Tea_Grades;
 	private String Tea_Grades_Qty;
 	private String Location;
+	private String Month;
 	
+	public String getMonth() {
+		return Month;
+	}
+	public void setMonth(String month) {
+		Month = month;
+	}
 	public String getStockID() {
 		return StockID;
 	}

@@ -45,20 +45,16 @@
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-					<!-- ////////////////////////////////////////////////////// -->	
 					<button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
-	 <div id="myDropdown" class="dropdown-content">
-		<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
-		<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
-	</div>
+					 <div id="myDropdown" class="dropdown-content">
+						<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
+						<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
+					</div>
 					
 					</div>
 				</div>
-						<!--  <img src="UserPro.png" alt="UserLogo" id="Userlogo">		-->
-						<!-- ////////////////////////////////////////////////////// -->
-						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	>
-												
-						<!-- ////////////////////////////////////////////////////// -->							
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>" alt="UserLogo" id="Userlogo"	>
+						
 
 </div>
 <hr>

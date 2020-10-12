@@ -32,6 +32,10 @@ public class InventryComman {
 	
 	/** Constant for query id of remove a employee in InventoryQuery.xml */
 	public static final String QUERY_ID_REPORT = "report";
+	
+	public static final String QUERY_ID_ALL_STOCK_BY_MONTH = "get_tea_stock_by_month";
+	
+	public static final String QUERY_ID_ALL_STOCK_BY_DATE = "get_tea_stock_by_date";
 
 
 	
@@ -92,6 +96,7 @@ public class InventryComman {
 	
 	//Constant for column index eight 
 	public static final int COLUMN_INDEX_EIGHT = 8;
+
 
 	public static String generateStockIDs(Object stockIDs) {
 		// TODO Auto-generated method stub
