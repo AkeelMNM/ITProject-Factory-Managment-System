@@ -289,7 +289,7 @@ public class EPTReportGeneratingService {
 			        imageS1.scaleAbsolute(20, 20);
 			        imageS2.scaleAbsolute(20, 20);
 			        
-			        Paragraph paraS = new Paragraph();
+			        
 			        cell1 = new PdfPCell();
 			        
 			        
@@ -337,6 +337,8 @@ public class EPTReportGeneratingService {
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        	table.addCell(cell1);
 
+			        	Paragraph paraS = new Paragraph();
+			        	
 				        int starfull =Integer. parseInt(pt.getPerformace());
 						int starempty = 5 - starfull;
 						for(int i = 0;i < starfull;i++){

@@ -12,11 +12,11 @@
 <body>
 <!-- Header Part -->
 <%
-    if((String)session.getAttribute("uid")==null)
+   /* if((String)session.getAttribute("uid")==null)
     {
         response.sendRedirect("/FactoryMS/index.jsp");
     }
-
+*/
 	if((String)request.getAttribute("erMsg")!=null)
 	{%>
 	    <script>alert("Don't have Datas to View or Generate")</script>
@@ -121,7 +121,7 @@
 		<table style="height: 49%;" width="100%">
 			<tbody>
 			<tr>
-			<td style="width: 12.5043%; text-align:center;">&nbsp;The Report Preview will be Displayed here</td>
+			<td style="width: 12.5043%; text-align:center;">&nbsp;The TeaStock Report Preview will be Displayed here</td>
 			</tr>
 			</tbody>
 		</table>
@@ -174,11 +174,11 @@
 		</table>
 		<hr style="width:90%; float:left; margin-left:50px;">
 
-			<table border="1" cellspacing="0" style="margin-left:50px;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			<table border="1" cellspacing="0" style="margin-left:50px; width:93% ;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
 			
 			<tr>
 				<td class ="tDataS">Month</td>
-				<td colspan="3" class ="tDataS" ><%=ptList.get(0).getMonth()%></td>
+				<td colspan="4" class ="tDataS" ><%=ptList.get(0).getMonth()%></td>
 			</tr>
 				<tr>
 						<th colspan="2" >Stored Date</th>
@@ -197,9 +197,12 @@
 						<td class ="tData"><%=t.getTea_Grades_Qty() %></td>
 						<td class ="tData"><%=t.getLocation() %></td>
 				</tr>
+				<%  }
+				
+				%>
 				<tr>
-						<td colspan="2" >Total Stored Qty(Kg):</td>
-						<%
+						<td style = "padding-left:800px; "colspan="3" >Total Stored Qty(Kg):</td>
+						<% 
 							float sumOT = 0;
 					        for (int i = 0; i < ptList.size(); i++) {
 								
@@ -207,11 +210,11 @@
 							}
 					        String Tot = String.valueOf(sumOT);
 						%>
-						<td><%=Tot%></td>
+						<td colspan = "2" style =padding-left:65px;><%=Tot%></td>
 				</tr>
 				</table>
 				<%
-				
+					
 			}
 			
 			if(SDate != null && SMonth == null){ %>
@@ -223,10 +226,10 @@
 			<h2 style="margin-top:20px;"><strong>Dehiwatta Tea Factory</strong></h2>
 			</td>
 			
-			<% SimpleDateFormat formatter1 = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
-	         	Date date1 = new Date();
+			<% SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss");  
+	         	Date date = new Date();
 	        %>
-			<td style="width: 101px; height: 85px;" rowspan="4">Date:<%=formatter1.format(date1)%></td>
+			<td style="width: 101px; height: 85px;" rowspan="4">Date:<%=formatter.format(date)%></td>
 			</tr>
 			<tr style="height: 18px;">
 			<td style="width: 316px; height: 18px;">Address : Hapugahayatatenna,Handessa</td>
@@ -259,7 +262,7 @@
 		</table>
 		<hr style="width:90%; float:left; margin-left:50px;">
 
-			<table border="1" cellspacing="0" style="margin-left:50px;">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
+			<table border="1" cellspacing="0" style="margin-left:50px; width:93%">  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
 			
 			<tr>
 				<td class ="tDataS">Month</td>
@@ -267,8 +270,8 @@
 			</tr>
 				<tr>
 						<th >Tea Grade</th>
-						<th >Stored Quantity</th>
 						<th >Stored Location</th>
+						<th >Stored Quantity</th>
 						
 				</tr>
 				<%
@@ -283,7 +286,7 @@
 					}
 				%>		
 				<tr>
-						<td colspan="2" >Total Stored Qty(Kg):</td>
+						<td style = "padding-left:750px ;colspan="2" >Total Stored Qty(Kg):</td>
 						<%
 							float sumOT = 0;
 					        for (int i = 0; i < ptList.size(); i++) {
@@ -292,13 +295,12 @@
 							}
 					        String Tot = String.valueOf(sumOT);
 						%>
-						<td><%=Tot%></td>
+						<td style = padding-left:250px ; colspan="2"><%=Tot%></td>
 				</tr>
 			
 				</table>
 				<%
 					}
-		}
 				%>	
 				<br>
 		</div>

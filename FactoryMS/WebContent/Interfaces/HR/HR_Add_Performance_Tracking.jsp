@@ -132,27 +132,27 @@
 								<option value="July"> July </option>
 								<option value="August"> August </option>
 								<option value="September"> September </option>
-								<option value="October"> October </option>
+								<option value="October" selected> October </option>
 								<option value="November"> November </option>
 								<option value="December"> December </option>
 												
-						</select>&emsp;Date:&emsp;<input type="date" name="date" ></td>
+						</select>&emsp;Date:&emsp;<input type="date" name="date" value="2020-10-13" ></td>
 				</tr>
 				<tr>
 					<td>Time in: </td>
-					<td><input type="time" name="timein" tabindex="3" ></td>
+					<td><input type="time" name="timein" tabindex="3" value="08:30:00"></td>
 				</tr>
 				<tr>
 					<td>Lunch in : </td>
-					<td><input type="time" name="lunchin" tabindex="4" size="55"  ></td>
+					<td><input type="time" name="lunchin" tabindex="4" size="55" value="12:30:00" ></td>
 				</tr>
 				<tr>
 					<td>Lunch out : </td>
-					<td><input type="time" name="lunchout" tabindex="5" size="55" ></td>
+					<td><input type="time" name="lunchout" tabindex="5" size="55" value="13:00:00"></td>
 				</tr>
 				<tr>
 					<td>Time out : </td>
-					<td><input type="time" name="timeout" tabindex="6" size="55" ></td>
+					<td><input type="time" name="timeout" tabindex="6" size="55" value="17:30:00"></td>
 				</tr>
 				<tr>
 					<td >Over Time (hr) : </td>
@@ -168,7 +168,7 @@
 								<option> --Select State-- </option>
 								<option value="1">Poor</option>
 								<option value="2">Fair </option>
-								<option value="3">Average</option>
+								<option value="3" selected>Average</option>
 								<option value="4">Good</option>
 								<option value="5">Excellent </option> 
 								
@@ -177,7 +177,7 @@
 				</tr>
 				<tr>
 					<td>Description : </td>
-					<td><textarea rows="4" cols="55" name="description" tabindex="9"></textarea></td>
+					<td><textarea rows="4" cols="55" name="description" tabindex="9">Rolling Room</textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="reset" value="Reset" class="resetbutton">
