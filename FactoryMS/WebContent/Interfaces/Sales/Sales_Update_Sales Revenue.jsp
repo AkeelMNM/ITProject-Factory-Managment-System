@@ -83,23 +83,26 @@
 			
 			<tr>
 				<td>Date :</td>
-				<td ><input type="date" name="RevDate" size="55" value="<%=Revenue.getDate() %>" ></td>
+				<td ><input type="date" name="RevDate" size="55" value="<%=Revenue.getDate() %>" required></td>
 			</tr>
 			<tr>
 				<td>Sales Type :</td>
-				<td><input type="text" name="Sales_Type" size="55" value="<%=Revenue.getSales_Type() %>" ></td>
+				<td>
+					<input type="text" size="55" value="<%=Revenue.getSales_Type() %>" disabled required>
+					<input type="hidden" name="Sales_Type" value="<%=Revenue.getSales_Type() %>" >
+				</td>
 			</tr>
 			<tr>
 				<td>Tea Garde :</td>
-				<td><input type="text" name="Tea_Garde" size="55" value="<%=Revenue.getTea_Grade() %>" ></td>
+				<td><input type="text" name="Tea_Garde" size="55" value="<%=Revenue.getTea_Grade() %>" required></td>
 			</tr>
 			<tr>
 				<td>Sold Quantity :</td>
-				<td><input type="text" name="Sold_Qty" size="55" value="<%=Revenue.getSold_Quantity() %>" ></td>
+				<td><input type="text" name="Sold_Qty" size="55" value="<%=Revenue.getSold_Quantity() %>" required></td>
 			</tr>
 			<tr>
 				<td>Total Amount :</td>
-				<td><input type="text" name="total_Amount" size="55" value="<%=Revenue.getAmount() %>" ></td>
+				<td><input type="text" name="total_Amount" size="55" value="<%=Revenue.getAmount() %>" required></td>
 			</tr>
 			
 			<tr > <input type="hidden" name="FactorySalesID" value="<%=Revenue.getFactory_SalesID()%>" /> 

@@ -290,7 +290,8 @@ public class Sales_RevenueServiceImpt implements Sales_RevenueService {
 							Revenue.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
 							Revenue.setSold_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
 							Revenue.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
-							Revenue.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+							Revenue.setAmount(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+							Revenue.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_EIGHT));
 							Revenue.setYear(yr);
 							
 							RevenueList.add(Revenue);
@@ -347,6 +348,7 @@ public class Sales_RevenueServiceImpt implements Sales_RevenueService {
 					for(int j=0 ; j<TeaGradeList.size(); j++)
 					{
 						double Total = 0;
+						double amount = 0 ;
 						int Count = 0;
 						String date = null;
 						String yr;
@@ -363,10 +365,11 @@ public class Sales_RevenueServiceImpt implements Sales_RevenueService {
 							
 							Total = Total + Double.parseDouble(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
 							date = result.getString(SalesCommonConstants.COLUMN_INDEX_THREE);
+							amount = amount + Double.parseDouble(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN) );
 							
 							Rtn.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
 							Rtn.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
-							Rtn.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+							Rtn.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_EIGHT));
 
 							Count = Count + 1;
 						}
@@ -379,6 +382,7 @@ public class Sales_RevenueServiceImpt implements Sales_RevenueService {
 						
 							Rtn.setYear(yr);
 							Rtn.setSold_Quantity(String.valueOf(Total));
+							Rtn.setAmount(String.valueOf(amount));
 							Rtn.setFactory_SalesID(String.valueOf(Count)); // number of Return 
 							
 							if(Total != 0.0) 
@@ -421,7 +425,8 @@ public class Sales_RevenueServiceImpt implements Sales_RevenueService {
 	{
 		ArrayList<Sales_Revenue> SoldList = new ArrayList<Sales_Revenue>();
 		
-		for(int i = 1 ; i<SalesList.size() ; i++) 
+		
+		for(int i = 0 ; i<SalesList.size() ; i++) 
 		{
 			double key = 0 ; 
 			double amount = 0 ;

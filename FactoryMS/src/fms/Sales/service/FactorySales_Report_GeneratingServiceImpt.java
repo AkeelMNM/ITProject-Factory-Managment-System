@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 import com.fms.model.FactorySales;
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -154,6 +155,7 @@ public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_R
 			        PdfPCell cell1 = new PdfPCell(new Paragraph("Date of sale"));
 			        cell1.setFixedHeight(25f);
 			        cell1.setPaddingLeft(10);
+			        cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
 			        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        table.addCell(cell1);
@@ -161,6 +163,7 @@ public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_R
 			        cell1 = new PdfPCell(new Paragraph("Tea Grade"));
 			        cell1.setFixedHeight(25f);
 			        cell1.setPaddingLeft(10);
+			        cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
 			        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        table.addCell(cell1);
@@ -168,6 +171,7 @@ public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_R
 			        cell1 = new PdfPCell(new Paragraph("Selling Quantity(kg)"));
 			        cell1.setFixedHeight(25f);
 			        cell1.setPaddingLeft(10);
+			        cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
 			        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        table.addCell(cell1);
@@ -196,6 +200,30 @@ public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_R
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        	table.addCell(cell1);
 			        }
+			        
+			        cell1 = new PdfPCell(new Paragraph("Total Selling Quantity(kg)" ));
+			        cell1.setFixedHeight(28f);
+			        cell1.setPaddingLeft(10);
+			        cell1.setColspan(2);
+			        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		        	table.addCell(cell1);
+		        	
+		        	
+					float sumQty = 0;
+					for (int i = 0; i < salesList.size(); i++) 
+					{
+						sumQty = sumQty +Float.parseFloat((salesList.get(i).getSelling_Quantity()));
+					}
+					
+					String Tot = String.valueOf(sumQty);
+				
+					cell1 = new PdfPCell(new Paragraph(Tot ));
+			        cell1.setFixedHeight(28f);
+			        cell1.setPaddingLeft(10);
+			        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+			        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		        	table.addCell(cell1);
 			        
 			        document.add(table);
 			        
@@ -370,6 +398,7 @@ public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_R
 	        PdfPCell cell1 = new PdfPCell(new Paragraph("No of Sales"));
 	        cell1.setFixedHeight(25f);
 	        cell1.setPaddingLeft(10);
+	        cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
 	        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 	        table.addCell(cell1);
@@ -377,6 +406,7 @@ public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_R
 	        cell1 = new PdfPCell(new Paragraph("Month of Sales"));
 	        cell1.setFixedHeight(25f);
 	        cell1.setPaddingLeft(10);
+	        cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
 	        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 	        table.addCell(cell1);
@@ -384,6 +414,7 @@ public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_R
 	        cell1 = new PdfPCell(new Paragraph("Tea Grade"));
 	        cell1.setFixedHeight(25f);
 	        cell1.setPaddingLeft(10);
+	        cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
 	        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 	        table.addCell(cell1);
@@ -391,6 +422,7 @@ public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_R
 	        cell1 = new PdfPCell(new Paragraph("Selling Quantity(kg)"));
 	        cell1.setFixedHeight(25f);
 	        cell1.setPaddingLeft(10);
+	        cell1.setBackgroundColor(BaseColor.LIGHT_GRAY);
 	        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 	        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 	        table.addCell(cell1);
@@ -426,6 +458,30 @@ public class FactorySales_Report_GeneratingServiceImpt implements FactorySales_R
 		        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 	        	table.addCell(cell1);
 	        }
+	        
+	        cell1 = new PdfPCell(new Paragraph("Total Selling Quantity(kg)"));
+	        cell1.setFixedHeight(28f);
+	        cell1.setPaddingLeft(10);
+	        cell1.setColspan(3);
+	        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        	table.addCell(cell1);
+        	
+        	
+			float sumQty = 0;
+			for (int i = 0; i < salesList.size(); i++) 
+			{
+				sumQty = sumQty +Float.parseFloat((salesList.get(i).getSelling_Quantity()));
+			}
+			
+			String Tot = String.valueOf(sumQty);
+		
+			cell1 = new PdfPCell(new Paragraph(Tot ));
+	        cell1.setFixedHeight(28f);
+	        cell1.setPaddingLeft(10);
+	        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
+	        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
+        	table.addCell(cell1);
 	        
 	        document.add(table);
 	        

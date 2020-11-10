@@ -99,7 +99,7 @@ public class Update_SalesReturnServlet extends HttpServlet {
 		Return.setMonth(Month);
 		Return.setTea_Grade(request.getParameter("TeaGarde"));
 		Return.setReturn_Quantity(request.getParameter("RtnQty"));
-		Return.setSales_Type(request.getParameter("SalesID"));
+		Return.setSales_Type(request.getParameter("Sales_Type"));
 		Return.setSales_ReturnID(ReturnID);
 		
 		//Call back End

@@ -65,12 +65,30 @@ public class Manager_Sales_Return_Report_GenerateServlet extends HttpServlet {
 			if("Year".equals(Option)) 
 			{
 				ReturnList = ReturnService.getSsalesReturnBySalesTypeAndYear(SalesType, Year);
-				request.setAttribute("Rtnyear", Year);
+				
+				if(ReturnList.isEmpty()) {
+					request.setAttribute("erMsg", "F");	
+				}else 
+				{
+					request.setAttribute("Rtnyear", Year);
+					request.setAttribute("SalesType", SalesType);
+					request.setAttribute("month", month);
+					request.setAttribute("Year", Year);
+				}
 			}
 			if(month != null && "Month".equals(Option)) 
 			{
 				ReturnList = ReturnService.getSalesReturnBySalesTypeAndMonth(SalesType, month,Year);
-				request.setAttribute("RtnMonth", month);
+				
+				if(ReturnList.isEmpty()) {
+					request.setAttribute("erMsg", "F");	
+				}else 
+				{
+					request.setAttribute("RtnMonth", month);
+					request.setAttribute("SalesType", SalesType);
+					request.setAttribute("month", month);
+					request.setAttribute("Year", Year);
+				}
 			}
 			
 			request.setAttribute("ReturnList", ReturnList);

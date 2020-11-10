@@ -79,27 +79,52 @@
 		<table class="form">
 		
 			<tr>
-				<td>Sales Date :</td>
-				<td ><input type="date" name="SalDate" size="55" required></td>
-			</tr>
-			
-			<tr>
 				<td>Sales Type : </td> 	
-				<td >
+				<td colspan="2">
 					<select name="SalesType"  required> 
-						<option> --Select Type-- </option>
-						<option value="Auction">Auction</option>
-						<option value="Local Sales"> Local Sales </option>
+						<%String key2 = null;
+						key2 = (String) request.getAttribute("SalesType");
+						if(key2 != null) { %>
+							<option value="<%=key2 %>"> <%=key2 %> </option>
+						<%}else{ %>
+							<option> --Select Type-- </option>
+							<option value="Auction">Auction</option>
+							<option value="Local Sales"> Local Sales </option>
+							<option value="Factory"> Factory </option>
+						<%} %>
+						
 					</select>
 				</td>
-				
-				<td ><input type="submit" name="GetRtn" value="Get Return" class=""> </td>
 			</tr>
 			
-			<tr>
-				<td> Date :</td>
-				<td ><input type="date" name="RtnDate" size="55" ></td>
+			<%
+				String key = null;
+				key = (String) request.getAttribute("SalDate");
+				if(key != null)
+				{
+			
+			%>
+				<tr>
+					<td> Date :</td>
+					<td ><input type="date" name="RtnDate" size="55" required>
+						<input type="submit" value="Generate" class="dataGenButton">
+					</td>
+			<%
+				}
+				else{
+			%>
+				<tr>
+					<td>Sales Date :</td>
+					<td ><input type="date" name="SalDate" size="55" required>
+						<input type="submit" name="GetRtn" value="Generate" class="dataGenButton">
+					</td>
+			<%
+				}
+			%>
+			
 			</tr>
+			
+			
 			
 			<tr>
 				<td>Tea Garde : </td>
@@ -131,99 +156,34 @@
 			
 			<%
 				}
-			}
-			
-			
-			else
-			{
-				ArrayList<FactorySales> SalesList = FactorySales.getAllFactorySales();
-				
+			} else 
+				{	
 			%>
 			
-			
-			
-			
 			<tr>
-				<td>
-					<select name="FactorySalesID[]"  > 
-						<option> --Select Grade-- </option>
-						<%
-							for(FactorySales sales2 : SalesList)
-							{
-						%>
-
-						<option value="<%=sales2.getFactory_Sales_ID() %>"> <%=sales2.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
-				</td>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
 				<td> <input type="text" name="Rtn_Qty[]" > </td>
 			</tr>
 			<tr>
-				<td>
-					<select name="FactorySalesID[]" > 
-						<option> --Select Grade-- </option>
-						<%
-							for(FactorySales sales3 : SalesList)
-							{
-						%>
-
-						<option value="<%=sales3.getFactory_Sales_ID() %>"> <%=sales3.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
-				</td>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
 				<td> <input type="text" name="Rtn_Qty[]" > </td>
 			</tr>
 			<tr>
-				<td>
-					<select name="FactorySalesID[]" > 
-						<option> --Select Grade-- </option>
-						<%
-							for(FactorySales sales4 : SalesList)
-							{
-						%>
-
-						<option value="<%=sales4.getFactory_Sales_ID() %>"> <%=sales4.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
-				</td>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
 				<td> <input type="text" name="Rtn_Qty[]" > </td>
 			</tr>
 			<tr>
-				<td>
-					<select name="FactorySalesID[]" > 
-						<option> --Select Grade-- </option>
-						<%
-							for(FactorySales sales5 : SalesList)
-							{
-						%>
-
-						<option value="<%=sales5.getFactory_Sales_ID() %>"> <%=sales5.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
-				</td>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
+				<td> <input type="text" name="Rtn_Qty[]" > </td>
+			</tr>
+			<tr>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
 				<td> <input type="text" name="Rtn_Qty[]" > </td>
 			</tr>
 			
 			<%
-			}
+				}
 			%>
-			
-			<tr>
-				<td>Total Return Quantity (kg) :</td>
-				<td ><input type="text" name="Total_Return" size="55" ></td>
-			</tr>
 			
 			<tr ><td colspan="2" ></td></tr>
 			<tr ><td colspan="2" ></td></tr>

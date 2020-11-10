@@ -45,11 +45,10 @@ text-decoration-line: underline;
 
 <!-- ////////////////////////////////////////////////////// -->
 <%
-    /*if((String)session.getAttribute("uid")==null)
+    if((String)session.getAttribute("uid")==null)
     {
         response.sendRedirect("/FactoryMS/index.jsp");
     }
-*/
 %>
 
 <!-- ////////////////////////////////////////////////////// -->
@@ -79,14 +78,14 @@ text-decoration-line: underline;
 						<!--  <img src="UserPro.png" alt="UserLogo" id="Userlogo">-->
 						
 							<!-- ////////////////////////////////////////////////////// -->
-						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	>
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	alt="UserLogo" id="Userlogo">
 												
 						<!-- ////////////////////////////////////////////////////// -->										
 
 </div>
 <hr>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-		<ul><li><a class="menu" href="#">Home
+		<ul><li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Home/Manager_Home.jsp">Home
 				<ul>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Production/reportUI.jsp">Production</a></li>
@@ -96,25 +95,25 @@ text-decoration-line: underline;
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="#">HR Management</a></li>
-				  <li><a class="menu" href="#">Report</a></li>
+				  <li><a class="menu" href="#">Purchase Management</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Purchase/lastreport.jsp">Report</a></li>
 		</ul>
 
 <div id="bodyDiv">
 <br>
-	<label class="title1">PURCHASING REPORT</label>
+	<label class="title1">GEARATING REPORTS ON PURCHASING MANAGMENT</label>
 	<br><br><br><br><br>
 	
 	
 	
 						<form method="POST" action="${pageContext.request.contextPath}/Interfaces/Purchase/lastreport.jsp">
-						<input type="submit" name="report" value="VIEW REPORT" size="40" class="viewreport"/> 
+						<input type="submit" name="report" value="DEMO REPORT" size="40" class="viewreport"/> 
 						
 					</form>
 					
 					<br> <br>
 							<form method="POST" action="${pageContext.request.contextPath}/Interfaces/Purchase/FinalReport.jsp">
-						<input type="submit" name="report" value="GENARATE REPORT" size="40" class="genaratereport"/> 
+						<input type="submit" name="report" value="TEA LEAF ORDER REPORT" size="40" class="genaratereport"/> 
 							
 					</form>
 						

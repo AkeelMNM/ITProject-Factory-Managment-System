@@ -1,1 +1,174 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<Querys>
+
+
+<!-- +++++++++++++++++++++++++++++++++++++ Tea Stock ++++++++++++++++++++++++ -->
+
+	<!-- Get Tea Stock IDs -->
+	<query id="get_TeaStockIDs">
+    <![CDATA[
+	     select Tea_StockID
+	     from  Tea_Stock
+    ]]>
+	</query>
+	
+	<!-- Insert Tea Stock IDs -->
+	<query id=	"insert_stock">
+	<![CDATA[
+		Insert into Tea_Stock(Tea_StockID ,TeaGrade_ID,Storing_Date, Month,Tea_Grades, Tea_Grades_Quantity, Storing_Location) 
+		Values(?,?,?,?,?,?,?)          	
+	]]>
+	</query>
+	
+	<!-- Update Tea Stock IDs -->
+	<query id=	"update_stock">
+	<![CDATA[
+		update Tea_Stock as us 
+		set us.Storing_Date = ?,us.Month=?, us.Tea_Grades =?, us.Tea_Grades_Quantity = ?, us.Storing_Location =? 
+		where   Tea_StockID = ?   	
+	]]>
+	</query>
+	
+	<!-- get Tea Stock by ID -->
+	<query id=	"stock_by_id">
+    <![CDATA[
+          select * from Tea_Stock where Tea_Stock.Tea_StockID = ?
+    ]]>
+	</query>
+
+	<!-- get All Tea Stock -->
+	<query id="all_stock">
+    <![CDATA[
+        select * from Tea_Stock
+    ]]>
+	</query>
+	
+	<!-- get Location Details Report -->
+	<query id="report">
+    <![CDATA[
+       	select  Storing_Location, COUNT(TeaGrade_ID) AS TeaGradeTypes, SUM(Tea_Grades_Quantity) AS TotalQuantity from tea_stock group by Storing_Location 
+    ]]>
+	</query>
+	
+	<!-- Remove Tea Stock -->
+	<query id="remove_stock">
+    <![CDATA[
+        delete from Tea_Stock where Tea_Stock.Tea_StockID = ? 
+    ]]>
+	</query>
+	
+
+	
+	
+<!-- +++++++++++++++++++++++++++++++++++++ +++++++++++++ ++++++++++++++++++++++++ -->
+
+<!-- +++++++++++++++++++++++++++++++++++++ sales Tea Stock ++++++++++++++++++++++++ -->
+
+<!-- Get sales Tea Stock IDs -->
+	<query id="Get_Sales_Tea_Stocks_id">
+    <![CDATA[
+	     select ReleaseStock_ID
+	     from  Sales_ReleaseStock
+    ]]>
+	</query>
+	
+	<!-- Insert released Tea Stock IDs -->
+	<query id=	"Insert_Sales_Stock">
+	<![CDATA[
+		Insert into Sales_ReleaseStock( ReleaseStock_ID, TeaStockID , ReleasedDate , Tea_Grades_Quantity, Tea_Grades,Location ) 
+		Values(?,?,?,?,?,?)          	
+	]]>
+	</query>
+
+
+	<!-- Get All TeaStock Locations -->
+	<query id=	"Get_TeaStock_Locations">
+	<![CDATA[
+		select Storing_Location from tea_stock   
+		where Tea_Grades = ?       	
+	]]>
+	</query>
+	
+	 <query id="GET_Storing_location_by_Stock_Id">
+
+         <![CDATA[
+
+            
+			select Tea_StockID
+			
+             from Tea_Stock
+
+             where Storing_Location = ?
+
+         ]]>
+
+         </query>
+
+<!-- get sales Tea Stock by ID -->
+	<query id=	"Sales_Stock_By_ID">
+    <![CDATA[
+          select * from Sales_ReleaseStock where Sales_ReleaseStock.ReleaseStock_ID = ?
+    ]]>
+	</query>
+
+<!-- get All sales  Tea Stock -->
+	<query id="ALL_Sales_Tea_Stock">
+    <![CDATA[
+        select * from Sales_ReleaseStock
+    ]]>
+	</query>
+	
+	<!-- Remove sales Tea Stock -->
+	<query id="Remove_Sales_Stock">
+    <![CDATA[
+        delete from Sales_ReleaseStock where Sales_ReleaseStock.ReleaseStock_ID = ? 
+    ]]>
+	</query>
+	
+	
+<!-- +++++++++++++++++++++++++++++++++++++ +++++++++++++ ++++++++++++++++++++++++ -->
+<!-- get Tea_Grade_Name by TeaGrade ID -->
+
+         <query id="GET_TeaGradeId">
+
+         <![CDATA[
+
+            
+			select TeaGrade_ID
+			
+             from Tea_Grades
+
+             where Tea_Grade_Name = ?
+
+         ]]>
+
+         </query>
+         
+         <!-- Get All Tea Grades from TGP select button -->
+
+ 	<query id="get_All_Tea_Grades">
+
+ 	<![CDATA[
+
+ 		select * from Tea_Grades
+
+ 		]]>
+
+ 		</query>
+<!-- +++++++++++++++++++++++++++++++++++++ Tea Stock Report++++++++++++++++++++++++ -->
+
+<!-- Get Tea Stock by Month -->
+	<query id="get_tea_stock_by_month">
+    <![CDATA[
+        select * from Tea_Stock where Month = ?
+    ]]>
+	</query>
+	
+	<!-- Get Tea Stock by Date -->
+	<query id="get_tea_stock_by_date">
+    <![CDATA[
+        select * from Tea_Stock where Storing_Date = ?
+    ]]>
+	</query>
+
+</Querys>

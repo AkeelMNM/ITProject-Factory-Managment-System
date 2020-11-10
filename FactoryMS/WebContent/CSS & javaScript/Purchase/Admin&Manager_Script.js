@@ -18,3 +18,26 @@ window.onclick = function(event) {
     }
   }
 }
+
+
+ function calc() { // Calculating Value
+
+
+        var quantity = document.getElementById("quantity").value;
+        var quantity = parseInt(quantity, 10);
+        var rate = document.getElementById("rate").value;
+        var rate = parseInt(rate, 10);
+        var total = quantity * rate;
+
+        document.getElementById("total").value = total;
+ }
+
+
+
+
+
+
+
+
+
+

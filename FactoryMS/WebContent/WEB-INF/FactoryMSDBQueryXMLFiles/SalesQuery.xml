@@ -215,6 +215,13 @@
 		]]>
 		</query>
 		
+		<!-- Get Return By FactorySalesID -->
+		<query id="GetReturnByFactorySalesID">
+		<![CDATA[
+			select * from Sales_Return where Factory_SalesID = ?
+		]]>
+		</query>
+		
 		
 		
 <!-- ********************************************************************************************************************* --> 

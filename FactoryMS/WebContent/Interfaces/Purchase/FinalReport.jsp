@@ -10,7 +10,8 @@
 
 <html>
 <head>
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/Purchase/Admin_Styles.css">
+		<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/Purchase/Admin_Styles.css"> -->
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/HR/HR_Manager_Report_View_Styles.css">
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<script src="${pageContext.request.contextPath}/CSS & javaScript/Admin&Manager_Script.js"></script>
 </head>
@@ -23,11 +24,11 @@
 
 <!-- ////////////////////////////////////////////////////// -->
 <%
-  /*  if((String)session.getAttribute("uid")==null)
+   if((String)session.getAttribute("uid")==null)
     {
         response.sendRedirect("/FactoryMS/index.jsp");
     }
-*/
+
 %>
 
 <!-- ////////////////////////////////////////////////////// -->
@@ -45,20 +46,16 @@
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-					<!-- ////////////////////////////////////////////////////// -->	
 					<button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
-	 <div id="myDropdown" class="dropdown-content">
-		<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
-		<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
-	</div>
+					 <div id="myDropdown" class="dropdown-content">
+						<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
+						<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
+					</div>
 					
 					</div>
 				</div>
-						<!--  <img src="UserPro.png" alt="UserLogo" id="Userlogo">		-->
-						<!-- ////////////////////////////////////////////////////// -->
-						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>"	>
-												
-						<!-- ////////////////////////////////////////////////////// -->							
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>" alt="UserLogo" id="Userlogo"	>
+						
 
 </div>
 <hr>
@@ -73,8 +70,8 @@
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_View.jsp">HR Management</a></li>
-				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/HR/HR_Manager_Report.jsp">Report</a></li>
+				  <li><a class="menu" href=""${pageContext.request.contextPath}/Interfaces/Purchase/lastreport.jsp">Purchase Management</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Purchase/Manager.jsp">Report</a></li>
 		</ul>
 
 <div id="bodyDiv">

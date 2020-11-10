@@ -84,17 +84,18 @@
 			
 			<tr>
 				<td>Date :</td>
-				<td ><input type="date" name="T-Date" size="55" value="<%=TGP.getDate() %>" ></td>
+				<td ><input type="date" name="T-Date" size="55" value="<%=TGP.getDate() %>" required></td>
 			</tr>
 			<tr>
 				<td>Tea Garde :</td>
 				<td>
-					<input type="text" name="TeaGarde" size="55" value="<%=TGP.getTea_Grade() %>">
+					<input type="text" size="55" value="<%=TGP.getTea_Grade() %>" disabled required>
+					<input type="hidden" name="TeaGarde" value="<%=TGP.getTea_Grade() %>" required>
 				</td>
 			</tr>
 			<tr>
 				<td>Price (per kg) :</td>
-				<td><input type="text" name="TeaPrice" size="55" value="<%=TGP.getPrice() %>" ></td>
+				<td><input type="text" name="TeaPrice" size="55" value="<%=TGP.getPrice() %>" required></td>
 			</tr>
 			
 			<tr > <input type="hidden" name="TeaGradeID" value="<%=TGP.getTeaGrade_ID() %>" /> 

@@ -82,15 +82,22 @@
 			
 			<tr>
 				<td>Date :</td>
-				<td ><input type="date" name="RtnDate" size="55" value="<%=Return.getDate() %>" ></td>
+				<td ><input type="date" name="RtnDate" size="55" value="<%=Return.getDate() %>" required></td>
+			</tr>
+			<tr>
+				<td>Sales Type :</td>
+				<td>
+					<input type="text" size="55" value="<%=Return.getSales_Type() %>" disabled required>
+					<input type="hidden" name="Sales_Type" value="<%=Return.getSales_Type() %>" >
+				</td>
 			</tr>
 			<tr>
 				<td>Tea Garde :</td>
-				<td><input type="text" name="TeaGarde" size="55" value="<%=Return.getTea_Grade() %>" ></td>
+				<td><input type="text" name="TeaGarde" size="55" value="<%=Return.getTea_Grade() %>" required></td>
 			</tr>
 			<tr>
 				<td>Return Quantity :</td>
-				<td><input type="text" name="RtnQty" size="55" value="<%=Return.getReturn_Quantity() %>" ></td>
+				<td><input type="text" name="RtnQty" size="55" value="<%=Return.getReturn_Quantity() %>" required></td>
 			</tr>
 			
 			<tr > <input type="hidden" name="SalesID" value="<%=Return.getFactory_SalesID() %>" /> 

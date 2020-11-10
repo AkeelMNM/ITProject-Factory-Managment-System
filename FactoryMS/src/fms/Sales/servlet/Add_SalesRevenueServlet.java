@@ -66,6 +66,7 @@ public class Add_SalesRevenueServlet extends HttpServlet {
 		
 		Sales_Revenue Revenue = new Sales_Revenue();
 		
+		String SalDate = request.getParameter("SalDate");
 		String date = request.getParameter("RevDate");
 		String SalesType = request.getParameter("SalesType");
 		String[] Sold_Qty = request.getParameterValues("Sold_Qty[]");
@@ -80,14 +81,33 @@ public class Add_SalesRevenueServlet extends HttpServlet {
 			Sales_ReturnService List2 = new Sales_ReturnServiceImpt();
 			Tea_Grade_PriceService List3 = new Tea_Grade_PriceServiceImpt();
 			
-			ArrayList<FactorySales> SalesList = List1.getTeaGrade_And_SellingQty(date, SalesType) ;
-			ArrayList<Sales_Return> ReturnList = List2.getSalesReturn();
+			ArrayList<FactorySales> SalesList = List1.getTeaGrade_And_SellingQty(SalDate, SalesType) ;
+			
+			String ID;
+			ArrayList<Sales_Return> ReturnList = new ArrayList<Sales_Return>();
+			
+			for(int i=0 ; i<SalesList.size() ;i++)
+			{
+				ID = SalesList.get(i).getFactory_Sales_ID();
+				ArrayList<Sales_Return> ReturnList2 = new ArrayList<Sales_Return>();
+				int j = i;
+				
+				if(i == j )
+				{
+					ReturnList2 = List2.GetReturnByFactorySalesID(ID);
+				}
+				
+				ReturnList.addAll(i, ReturnList2);
+			}
+			
+		//	ArrayList<Sales_Return> ReturnList = List2.getSalesReturn();
 			ArrayList<Tea_Grade_Price> PriceList = List3.getTeaGradePrices();
 			
 			Sales_RevenueService Re = new Sales_RevenueServiceImpt();
 			ArrayList<Sales_Revenue> SoldList = Re.getSoldDetails(SalesList, ReturnList, PriceList);
 			
-			request.setAttribute("SoldList", SoldList);
+			request.setAttribute("SalDate", SalDate); request.setAttribute("SoldList", SoldList);
+			request.setAttribute("SalesType", SalesType);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Sales/Sales_Add_Sales Revenue.jsp");
 			dispatcher.forward(request, response);
 		}

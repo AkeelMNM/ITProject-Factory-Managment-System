@@ -34,7 +34,7 @@
 									  </div>
 					</div>
 				</div>
-						<img src="UserPro.png" alt="UserLogo" id="Userlogo">								
+						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>" alt="UserLogo" id="Userlogo">								
 
 </div>
 <hr>

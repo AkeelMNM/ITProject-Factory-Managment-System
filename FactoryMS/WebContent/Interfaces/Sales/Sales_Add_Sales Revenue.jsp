@@ -78,22 +78,50 @@
 		<form method="POST" action="${pageContext.request.contextPath}/Add_SalesRevenueServlet" style="margin-top:50px;">
 		<table class="form">
 		
-			<tr>
-				<td>Date :</td>
-				<td colspan="2"><input type="date" name="RevDate" size="55" required></td>
-			</tr>
 			
 			<tr>
 				<td>Sales Type : </td>
-				<td colspan="2">
+				<td >
 					<select name="SalesType"  required> 
-						<option> --Select Type-- </option>
-						<option value="Auction">Auction</option>
-						<option value="Local Sales"> Local Sales </option>
+						<%String key2 = null;
+						key2 = (String) request.getAttribute("SalesType");
+						if(key2 != null) { %>
+							<option value="<%=key2 %>"> <%=key2 %> </option>
+						<%}else{ %>
+							<option> --Select Type-- </option>
+							<option value="Auction">Auction</option>
+							<option value="Local Sales"> Local Sales </option>
+							<option value="Factory"> Factory </option>
+						<%} %>
+						
 					</select>
 				</td>
-				
-				<td ><input type="submit" name="Get" value="Generate" class=""> </td>
+			</tr>
+			
+			<%
+				String key = null;
+				key = (String) request.getAttribute("SalDate");
+				if(key != null)
+				{
+			
+			%>
+				<tr>
+					<td> Date :</td>
+					<td ><input type="date" name="RevDate" size="55" required >
+						<input type="submit" name="Get" value="Generate" class="RneDataGenButton">
+					</td>
+			<%
+				}
+				else{
+			%>
+				<tr>
+					<td>Sales Date :</td>
+					<td ><input type="date" name="SalDate" size="55" required >
+						<input type="submit" name="Get" value="Generate" class="RneDataGenButton">
+					</td>
+			<%
+				}
+			%>
 			</tr>
 			
 			<tr>
@@ -119,8 +147,8 @@
 					<input type="text" value="<%=re.getTea_Grade() %>"  disabled>
 					<input type="hidden" name="FactorySalesID[]" value="<%=re.getFactory_SalesID() %>" >
 				</td>
-				<td> <input type="text" name="Sold_Qty[]" pattern="\d+" value="<%=re.getSold_Quantity() %>" required> </td>
-				<td> <input type="text" name="total_Amount[]" id="num1" value="<%=re.getAmount() %>" required> </td>
+				<td> <input type="text" name="Sold_Qty[]" value="<%=re.getSold_Quantity() %>" required> </td>
+				<td> <input type="text" name="total_Amount[]" value="<%=re.getAmount() %>" required> </td>
 			</tr>
 			
 			<%
@@ -131,62 +159,27 @@
 			%>
 			
 			<tr>
-				<td>
-					<select name="FactorySalesID[]"   > 
-						<option> --Select Grade-- </option>
-						<%
-							FactorySalesService FactorySales = new FactorySalesServiceImpt();
-							ArrayList<FactorySales> SalesList = FactorySales.getAllFactorySales();
-							
-							for(FactorySales sales : SalesList)
-							{
-						%>
-
-						<option value="<%=sales.getFactory_Sales_ID() %>"> <%=sales.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
-				</td>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
 				<td> <input type="text" name="Sold_Qty[]" pattern="\d+" > </td>
 				<td> <input type="text" name="total_Amount[]" id="num1" > </td>
 			</tr>
 			<tr>
-				<td>
-					<select name="FactorySalesID[]" > 
-						<option> --Select Grade-- </option>
-						<%
-							for(FactorySales sales2 : SalesList)
-							{
-						%>
-
-						<option value="<%=sales2.getFactory_Sales_ID() %>"> <%=sales2.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
-				</td>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
 				<td> <input type="text" name="Sold_Qty[]"  > </td>
 				<td> <input type="text" name="total_Amount[]" id="num2" > </td>
 			</tr>
 			<tr>
-				<td>
-					<select name="FactorySalesID[]" > 
-						<option> --Select Grade-- </option>
-						<%
-							for(FactorySales sales3 : SalesList)
-							{
-						%>
-
-						<option value="<%=sales3.getFactory_Sales_ID() %>"> <%=sales3.getTea_Grade() %> </option>
-
-						<%
-							}
-						%>
-					</select>
-				</td>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
+				<td> <input type="text" name="Sold_Qty[]"  > </td>
+				<td> <input type="text" name="total_Amount[]" id="num3" > </td>
+			</tr>
+			<tr>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
+				<td> <input type="text" name="Sold_Qty[]"  > </td>
+				<td> <input type="text" name="total_Amount[]" id="num3" > </td>
+			</tr>
+			<tr>
+				<td> <input type="text" name="FactorySalesID[]" > </td>
 				<td> <input type="text" name="Sold_Qty[]"  > </td>
 				<td> <input type="text" name="total_Amount[]" id="num3" > </td>
 			</tr>
@@ -194,11 +187,6 @@
 			<%
 				}
 			%>
-						
-			<tr>
-				<td>Total Revenue :</td>
-				<td colspan="2"><input type="text" name="Total_Revenue" size="55" id="TotalRevenue" onkeyup="Calculate()" ></td>
-			</tr>
 			
 			<tr ><td colspan="3" ></td></tr>
 			<tr ><td colspan="3" ></td></tr>
