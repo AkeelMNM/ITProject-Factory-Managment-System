@@ -477,7 +477,7 @@
 
         <title>Monthly Salary</title>
     </head>
-    <body  style="background-color: black">
+    <body  style="background-color: #222629">
         <!-- +++++++++++++++++++++++++++++++++ Header Part +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
    
      <%

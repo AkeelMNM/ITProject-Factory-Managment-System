@@ -52,7 +52,7 @@ public class SalesStockServiceImp implements SalesStockService{
 			//Generate employee IDs
 			salesteastock.setReleseStock_ID(relesedTeaStock);
 			preparedStatement.setString(InventryComman.COLUMN_INDEX_ONE, salesteastock.getReleseStock_ID());
-			//preparedStatement.setString(InventryComman.COLUMN_INDEX_TWO, salesteastock.getStockId());
+			preparedStatement.setString(InventryComman.COLUMN_INDEX_TWO, salesteastock.getStockId());
 			preparedStatement.setString(InventryComman.COLUMN_INDEX_THREE, salesteastock.getRelesedDate());
 			preparedStatement.setString(InventryComman.COLUMN_INDEX_FOUR, salesteastock.getTea_Grades_Quantity());
 			preparedStatement.setString(InventryComman.COLUMN_INDEX_FIVE, salesteastock.getTea_Grades());
@@ -221,7 +221,8 @@ ArrayList<String> arraylist = new ArrayList<String>();
 	}
 
 	@Override
-	public void getSalesTeaStockById(String releseStock_ID) {
+	public SalesTeaStock getSalesTeaStockById(String releseStock_ID) {
+		return null;
 		// TODO Auto-generated method stub
 		
 	}
@@ -273,6 +274,52 @@ String TeaGradeId = null;
 			
 		 return TeaGradeId;
 	}
+
+	@Override
+	public String getStockId(String Location) {
+		// TODO Auto-generated method stub
+String StockId = null;
+		
+		if(Location != null && !Location.isEmpty()) {
+			try {
+				connection = DBConnection.getDBConnection();
+				
+				preparedStatement = connection.prepareStatement(InventoryQueryUtil.queryByID(InventryComman.QUERY_ID_GET_LOCATION_BY_STOCK_ID));
+				
+				preparedStatement.setString(InventryComman.COLUMN_INDEX_ONE, Location);
+				
+				ResultSet result = preparedStatement.executeQuery();
+				if(result.next()) {
+					
+					StockId = result.getString(1);
+				}
+			} catch (IOException | ClassNotFoundException |SQLException| ParserConfigurationException |SAXException ex) {
+				
+				log.log(Level.SEVERE, ex.getMessage());
+			}
+			finally {
+				try {
+					if(preparedStatement!= null) {
+						
+						preparedStatement.close();
+					}
+					if(connection != null) {
+						
+						connection.close();
+					}
+				} catch (SQLException ex) {
+					log.log(Level.SEVERE, ex.getMessage());
+				}
+			}
+		}
+			
+			
+		 return StockId;
+	}
+
+	
+
+
 	
 	
 	

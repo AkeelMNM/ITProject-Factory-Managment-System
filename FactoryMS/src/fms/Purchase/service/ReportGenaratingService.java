@@ -99,7 +99,7 @@ public void generatePTReportMonth(ArrayList<PaymentToSuppliers> ptList,String mo
 	        tableST.setWidths(columnWidthsST);
 	        
 	        PdfPCell cellS = new PdfPCell();
-	        cellS = new PdfPCell(new Paragraph(new Phrase(0f,"TEA LEAF SUPPLIER LEAF OEDER REPORT")));
+	        cellS = new PdfPCell(new Paragraph(new Phrase(0f,"TEA LEAF OEDER REPORT")));
 	        cellS.setColspan(5);
 	        cellS.setPaddingBottom(8);
 	        cellS.setVerticalAlignment(Element.ALIGN_MIDDLE);
@@ -256,7 +256,7 @@ public void generatePTReportMonth(ArrayList<PaymentToSuppliers> ptList,String mo
 			        	cell1 = new PdfPCell(new Paragraph(pt.getFinal_Amount()));
 				        cell1.setFixedHeight(28f);
 				        cell1.setPaddingLeft(10);
-				        cell1.setHorizontalAlignment(Element.ALIGN_RIGHT);
+				        cell1.setHorizontalAlignment(Element.ALIGN_CENTER);
 				        cell1.setVerticalAlignment(Element.ALIGN_MIDDLE);
 			        	table.addCell(cell1);
 

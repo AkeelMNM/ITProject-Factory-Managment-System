@@ -1,3 +1,4 @@
+<%@page import="com.itextpdf.awt.geom.misc.RenderingHints.Key"%>
 <%@page import="java.util.Date"%>
 <%@page import="java.text.SimpleDateFormat"%>
 <%@page import="com.fms.model.FactorySales"%>
@@ -21,6 +22,11 @@
         response.sendRedirect("/FactoryMS/index.jsp");
     }
 
+	if((String)request.getAttribute("erMsg")!=null)
+	{%>
+	    <script>alert("Don't have Datas to View or Generate")</script>
+	<%}
+	
 %>
 
 <div id="headDiv">
@@ -53,8 +59,8 @@
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="Sales_Manager_View.jsp">Sales Management</a></li>
-				  <li><a class="menu" href="Sales_Manager_Report.jsp">Report</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Manager_View.jsp">Sales Management</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Manager_Report.jsp">Report</a></li>
 		</ul>
 
 <div id="bodyDiv">
@@ -68,7 +74,13 @@
 					<td class="reptoolbartxt">Select Sales Type : </td>
 					<td>
 						<select name="SalesType" class="reviewdr" required>
-							<option>--Select Type--</option>
+							<%String key = null;
+							key = (String) request.getAttribute("SalesType");
+							if(key != null) { %>
+								<option value="<%=key %>"> <%=key %> </option>
+							<%}else{ %>
+								<option>--Select Type--</option>
+							<%} %>
 							<option value="Auction">Auction</option>
 							<option value="Local Sales"> Local Sales </option>
 							<option value="Factory"> Factory </option>
@@ -77,8 +89,14 @@
 				
 					<td class="reptoolbartxt">Month:</td>
 					<td>
-						<select name="month" class="reviewdr" class="reviewdr" required> 
-							<option> --Select Month-- </option>
+						<select name="month" class="reviewdr" class="reviewdr" required>
+							<%String key2 = null;
+							key2 = (String) request.getAttribute("month");
+							if(key2 != null) { %> 
+								<option value="<%=key2 %>"> <%=key2 %> </option>
+							<%} else{ %>
+								<option> --Select Month-- </option>
+							<%} %>
 							<option value="January">January</option>
 							<option value="February"> February </option>
 							<option value="March"> March </option>
@@ -94,7 +112,15 @@
 						</select>
 					</td>
 					<td class="reptoolbartxt">Year :</td>
-					<td><input type="number" name="year" id="reviewdate" maxlength="4" min="2019" max="2050" pattern="[0-9]{4}" required></td>
+					
+					<%String key3 =null;
+					key3 = (String) request.getAttribute("Year");
+					if(key3 != null) { %>
+						<td><input type="number" name="year" id="reviewdate" value="<%=key3 %>" min="2019" max="2050" pattern="[0-9]{4}" required></td>
+					<%}else { %>
+						<td><input type="number" name="year" id="reviewdate" maxlength="4" min="2019" max="2050" pattern="[0-9]{4}" required></td>
+					<%} %>
+					
 					<td class="month">
 						<input type="radio" name="Option" value="Month" class="Option" checked> Month Report
 					</td>
@@ -114,7 +140,6 @@
   		<%
 	  		String SYear =null;
 			String SMonth = null;
-			String key = "no";
 			
 			ArrayList<FactorySales> SalesList = new ArrayList<FactorySales>();
 			SalesList = (ArrayList<FactorySales>) request.getAttribute("FactorySalesList");
@@ -125,12 +150,6 @@
 			if(SYear == "") {
 				SYear = null;
 			}
-  		
-			/*if(SalesList.equals()){
-				SYear = null;
-				SMonth = null;
-				key = null;
-			}*/
 			
   		%>
   		
@@ -141,11 +160,7 @@
 		<table style="height: 380px; width: 100%;">
 			<tbody>
 			<tr>
-			<% if(SYear == null && SMonth == null && key != null){ %>
-				<td style="width: 12.5043%; text-align:center;">&nbsp; <b>The Report Preview will be Displayed here </b> </td>
-			<% } else if(key == null) { %>
-				<td style="width: 12.5043%; text-align:center;">&nbsp; <b> No Record found </b> </td>
-			<% }%>
+			<td style="width: 12.5043%; text-align:center;">&nbsp; <b>The Report Preview will be Displayed here </b> </td>
 			</tr>
 			</tbody>
 		</table>
@@ -200,25 +215,39 @@
 		<hr style="width:94%; float:left; margin-left:50px; width: 90%;">
 
 			<table border="1" cellspacing="0" class="contentTable" >  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
-			<tr>
-				<th class ="tDataS"> Date of Sale</th>
-				<th class ="tDataS"> Tea Grade</th>
-				<th class ="tDataS"> Selling Quantity(kg)</th>
-			</tr>
-			
-			<%
-				for(FactorySales fs : SalesList)
-				{	
-			%>
-			<tr>
-				<td class ="tData"><%=fs.getDate() %> </td>
-				<td class ="tData" ><%=fs.getTea_Grade() %> </td>
-				<td class ="tData" ><%=fs.getSelling_Quantity() %> </td>
-			</tr>
-			<%
-  				}
-			%>
-				</table>
+				
+				<tr>
+					<th class ="tDataS"> Date of Sale</th>
+					<th class ="tDataS"> Tea Grade</th>
+					<th class ="tDataS"> Selling Quantity(kg)</th>
+				</tr>
+				
+				<%
+					for(FactorySales fs : SalesList)
+					{	
+				%>
+				<tr>
+					<td class ="tData"><%=fs.getDate() %> </td>
+					<td class ="tData" ><%=fs.getTea_Grade() %> </td>
+					<td class ="tData" ><%=fs.getSelling_Quantity() %> </td>
+				</tr>
+				<%
+	  				}
+				%>
+				
+				<tr>
+					<td colspan="2" style="padding-left: 25px ; padding: 8px;"> <b> Total Selling Quantity(kg) </b> </td>
+				<%
+					float sumQty = 0;
+					for (int i = 0; i < SalesList.size(); i++) {
+					sumQty = sumQty +Float.parseFloat((SalesList.get(i).getSelling_Quantity()));
+					}
+					String Tot = String.valueOf(sumQty);
+				%>
+				<td> <b> <%=Tot %> </b> </td>
+				</tr>
+				
+			</table>
 		
 		<%
   			}
@@ -271,28 +300,44 @@
 		<hr style="width:90%; float:left; margin-left:50px; width: 90%;">
 
 			<table border="1" cellspacing="0" class="contentTable" >  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
-			<tr>
-				<th class ="tDataS"> No of Sales</th>
-				<th class ="tDataS"> Month of Sales </th>
-				<th class ="tDataS"> Tea Grade</th>
-				<th class ="tDataS"> Selling Quantity(kg)</th>
-			</tr>
+				
+				<tr>
+					<th class ="tDataS"> No of Sales</th>
+					<th class ="tDataS"> Month of Sales </th>
+					<th class ="tDataS"> Tea Grade</th>
+					<th class ="tDataS"> Selling Quantity(kg)</th>
+				</tr>
+				
+				<%
+					for(FactorySales fs : SalesList)
+					{	
+						
+				%>
+				<tr>
+					<td class ="tData"><%=fs.getTea_Grade_PriceID() %> </td>
+					<td class ="tData" ><%=fs.getMonth() %> </td>
+					<td class ="tData" ><%=fs.getTea_Grade() %> </td>
+					<td class ="tData" ><%=fs.getSelling_Quantity() %> </td>
+				</tr>
+				<%
+	  				}
+				%>
+				
+				<tr>
+					<td colspan="3" style="padding-left: 25px ; padding: 8px;"> <b> Total Selling Quantity(kg) </b> </td>
+				<%
+					float sumQty = 0;
+					for (int i = 0; i < SalesList.size(); i++) {
+						sumQty = sumQty +Float.parseFloat((SalesList.get(i).getSelling_Quantity()));
+					}
+					String Tot = String.valueOf(sumQty);
+				%>
+				<td> <b> <%=Tot %> </b> </td>
+				</tr>
 			
-			<%
-				for(FactorySales fs : SalesList)
-				{	
-					
-			%>
-			<tr>
-				<td class ="tData"><%=fs.getTea_Grade_PriceID() %> </td>
-				<td class ="tData" ><%=fs.getMonth() %> </td>
-				<td class ="tData" ><%=fs.getTea_Grade() %> </td>
-				<td class ="tData" ><%=fs.getSelling_Quantity() %> </td>
-			</tr>
-			<%
-  				}
-			%>
-				</table>
+			</table>
+		
+		
 		
 		<%
   			}

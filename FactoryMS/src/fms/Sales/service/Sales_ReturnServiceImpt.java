@@ -409,6 +409,59 @@ public class Sales_ReturnServiceImpt implements Sales_ReturnService {
 		return ReturnList;
 	}
 
+
+	
+/**-------------   ******************************************************  --------------**/
+	@Override
+	public ArrayList<Sales_Return> GetReturnByFactorySalesID(String FactorySalesID)
+	{
+		ArrayList<Sales_Return> ReturnList = new ArrayList<Sales_Return>();
+		
+		try
+		{
+			connection = DBConnection.getDBConnection();
+			
+			preparedStatement = connection.prepareStatement(SalesQueryUtil.queryByID(SalesCommonConstants.Query_ID_GET_SALES_RETURN_BY_FACTORY_SALES_ID));
+			preparedStatement.setString(SalesCommonConstants.COLUMN_INDEX_ONE, FactorySalesID);
+			
+			ResultSet result = preparedStatement.executeQuery();
+			
+			while(result.next())
+			{
+				Sales_Return rtn = new Sales_Return();
+				
+				rtn.setSales_ReturnID(result.getString(SalesCommonConstants.COLUMN_INDEX_ONE));
+				rtn.setFactory_SalesID(result.getString(SalesCommonConstants.COLUMN_INDEX_TWO));
+				rtn.setDate(result.getString(SalesCommonConstants.COLUMN_INDEX_THREE));
+				rtn.setTea_Grade(result.getString(SalesCommonConstants.COLUMN_INDEX_FOUR));
+				rtn.setReturn_Quantity(result.getString(SalesCommonConstants.COLUMN_INDEX_FIVE));
+				rtn.setSales_Type(result.getString(SalesCommonConstants.COLUMN_INDEX_SIX));
+				rtn.setMonth(result.getString(SalesCommonConstants.COLUMN_INDEX_SEVEN));
+				
+				ReturnList.add(rtn);
+			}
+			
+		} catch (IOException | ClassNotFoundException | SQLException | ParserConfigurationException | SAXException ex ) {
+			
+			log.log(Level.SEVERE,ex.getMessage());
+		} finally {
+			
+			//Closing DB Connection and Prepared statement
+			try {	
+				if(preparedStatement != null) {
+					preparedStatement.close();
+				}
+				if(connection != null) {
+					connection.close();
+				}	
+			}
+			catch (SQLException ex) {
+				log.log(Level.SEVERE,ex.getMessage());
+			}
+		}
+		
+		return ReturnList;
+	}
 	
 	
 /**-------------   ******************************************************  --------------**/

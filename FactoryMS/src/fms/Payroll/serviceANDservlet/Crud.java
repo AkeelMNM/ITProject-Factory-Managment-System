@@ -1,10 +1,11 @@
-package fms.Payroll.servlet;
+package fms.Payroll.serviceANDservlet;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import fms.Payroll.servlet.*;
 
 import com.fms.DBconnection.DBConnection;
+
+import fms.Payroll.serviceANDservlet.*;
 
 
 public class Crud {

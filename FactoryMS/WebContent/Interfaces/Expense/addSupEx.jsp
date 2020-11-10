@@ -1,6 +1,6 @@
-<%@page import="fms.Expense.service.ExSupplierDao"%>
+<%@page import="fms.Expense.serviceANDservlet.ExSupplierDao"%>
 <%@page import="fms.Expense.*"%>  
-<jsp:useBean id="u" class="fms.Expense.service.ExSupplier"></jsp:useBean>  
+<jsp:useBean id="u" class="fms.Expense.serviceANDservlet.ExSupplier"></jsp:useBean>  
 <jsp:setProperty property="*" name="u"/>  
   
 <%  

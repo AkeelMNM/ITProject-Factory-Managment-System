@@ -67,12 +67,13 @@ public class Add_SalesReturnServlet extends HttpServlet {
 		String[] TeaGrade = new String [FactorySalesID.length];
 		
 		
-		if("Get Return".equals(request.getParameter("GetRtn"))) {
+		if("Generate".equals(request.getParameter("GetRtn"))) {
 			
 			FactorySalesService List = new FactorySalesServiceImpt();
 			ArrayList<FactorySales> SalesList = List.getTeaGrade_And_SellingQty(SalDate, SalesType) ;
 			
-			request.setAttribute("SalesList", SalesList);
+			request.setAttribute("SalDate", SalDate); request.setAttribute("SalesList", SalesList);
+			request.setAttribute("SalesType", SalesType);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Sales/Sales_Add_Sales_Return.jsp");
 			dispatcher.forward(request, response);
 		}

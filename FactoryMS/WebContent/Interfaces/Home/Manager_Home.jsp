@@ -55,7 +55,7 @@
 						</a>
 				</div>
 				<div class="icondiv">
-						<a href="${pageContext.request.contextPath}/Interfaces/Production/index_maneger.html">
+						<a href="${pageContext.request.contextPath}/Interfaces/Production/index_maneger.jsp">
 							<img src="${pageContext.request.contextPath}/Images/Production.png" alt="ProductLogo" class="functionlogo">
 							Production Management
 						</a>

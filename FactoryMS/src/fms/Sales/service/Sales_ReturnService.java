@@ -32,5 +32,7 @@ public interface Sales_ReturnService {
 		
 	//Get SalesRetunn by TeaGrade and year
 	public ArrayList<Sales_Return> getSsalesReturnBySalesTypeAndYear(String SalesType,String Year);
+
+	public ArrayList<Sales_Return> GetReturnByFactorySalesID(String FactorySalesID);
 	
 }

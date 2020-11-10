@@ -97,6 +97,8 @@ public class InventryComman {
 	//Constant for column index eight 
 	public static final int COLUMN_INDEX_EIGHT = 8;
 
+	public static final String QUERY_ID_GET_LOCATION_BY_STOCK_ID = null;
+
 
 	public static String generateStockIDs(Object stockIDs) {
 		// TODO Auto-generated method stub

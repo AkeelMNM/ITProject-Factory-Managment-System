@@ -15,16 +15,16 @@
 	<!-- Insert Tea Stock IDs -->
 	<query id=	"insert_stock">
 	<![CDATA[
-		Insert into Tea_Stock(Tea_StockID ,TeaGrade_ID,Storing_Date, Tea_Grades, Tea_Grades_Quantity, Storing_Location) 
-		Values(?,?,?,?,?,?)          	
+		Insert into Tea_Stock(Tea_StockID ,TeaGrade_ID,Storing_Date, Month,Tea_Grades, Tea_Grades_Quantity, Storing_Location) 
+		Values(?,?,?,?,?,?,?)          	
 	]]>
 	</query>
 	
-	<!-- Insert Tea Stock IDs -->
+	<!-- Update Tea Stock IDs -->
 	<query id=	"update_stock">
 	<![CDATA[
 		update Tea_Stock as us 
-		set us.Storing_Date = ?, us.Tea_Grades =?, us.Tea_Grades_Quantity = ?, us.Storing_Location =? 
+		set us.Storing_Date = ?,us.Month=?, us.Tea_Grades =?, us.Tea_Grades_Quantity = ?, us.Storing_Location =? 
 		where   Tea_StockID = ?   	
 	]]>
 	</query>
@@ -57,20 +57,6 @@
     ]]>
 	</query>
 	
-	<!-- Get Tea Stock by Month -->
-	<query id="get_tea_stock_by_month">
-    <![CDATA[
-        select * from Tea_Stock where Month = ?
-    ]]>
-	</query>
-	
-	<!-- Get Tea Stock by Date -->
-	<query id="get_tea_stock_by_date">
-    <![CDATA[
-        select * from Tea_Stock where Storing_Date = ?
-    ]]>
-	</query>
-	
 
 	
 	
@@ -89,8 +75,8 @@
 	<!-- Insert released Tea Stock IDs -->
 	<query id=	"Insert_Sales_Stock">
 	<![CDATA[
-		Insert into Sales_ReleaseStock( ReleaseStock_ID, ReleasedDate , Tea_Grades_Quantity , Tea_Grades, Location ) 
-		Values(?,?,?,?,?)          	
+		Insert into Sales_ReleaseStock( ReleaseStock_ID, TeaStockID , ReleasedDate , Tea_Grades_Quantity, Tea_Grades,Location ) 
+		Values(?,?,?,?,?,?)          	
 	]]>
 	</query>
 
@@ -98,9 +84,25 @@
 	<!-- Get All TeaStock Locations -->
 	<query id=	"Get_TeaStock_Locations">
 	<![CDATA[
-		select Storing_Location from tea_stock          	
+		select Storing_Location from tea_stock   
+		where Tea_Grades = ?       	
 	]]>
 	</query>
+	
+	 <query id="GET_Storing_location_by_Stock_Id">
+
+         <![CDATA[
+
+            
+			select Tea_StockID
+			
+             from Tea_Stock
+
+             where Storing_Location = ?
+
+         ]]>
+
+         </query>
 
 <!-- get sales Tea Stock by ID -->
 	<query id=	"Sales_Stock_By_ID">
@@ -153,8 +155,20 @@
  		]]>
 
  		</query>
-<!-- +++++++++++++++++++++++++++++++++++++ Tea Stock ++++++++++++++++++++++++ -->
+<!-- +++++++++++++++++++++++++++++++++++++ Tea Stock Report++++++++++++++++++++++++ -->
 
-
+<!-- Get Tea Stock by Month -->
+	<query id="get_tea_stock_by_month">
+    <![CDATA[
+        select * from Tea_Stock where Month = ?
+    ]]>
+	</query>
+	
+	<!-- Get Tea Stock by Date -->
+	<query id="get_tea_stock_by_date">
+    <![CDATA[
+        select * from Tea_Stock where Storing_Date = ?
+    ]]>
+	</query>
 
 </Querys>

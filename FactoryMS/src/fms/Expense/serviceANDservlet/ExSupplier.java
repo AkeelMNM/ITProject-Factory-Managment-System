@@ -1,4 +1,4 @@
-package fms.Expense.service;
+package fms.Expense.serviceANDservlet;
 
 public class ExSupplier {
 	private String dealerName,address,status,remark;

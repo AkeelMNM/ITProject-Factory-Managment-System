@@ -208,22 +208,22 @@ background-color:#a0dbd6;
 		 
 		 	<tr>
 			<td>Quantity</td>
-			<td><input type="text" name="paid" size="45"required></td>
+			<td><input type="number" name="paid" size="45" id ="quantity" required oninput="calc();"></td>
 		</tr>
 		
 				
 			<tr>
 			<td>Rate(Rs):</td>
-			<td><input type="text" name="rate" size="45" required></td>
+			<td><input type="number" name="rate" size="45" id ="rate"  required  oninput="calc();"></td>
 		</tr>
 			<tr>
 			<td>Value(Rs):</td>
-			<td><input type="text" name="value" size="45"required></td>
+			<td><input type="number" name="value" size="45" id ="total" required></td>
 		</tr>
 		
 		<tr>
 			<td>Final Amount(Rs):</td>
-			<td><input type="text" name="finalamount" size="45" required></td>
+			<td><input type="text" name="finalamount" size="45"  required></td>
 		</tr>
 		
 		<!--  <tr>

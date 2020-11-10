@@ -61,15 +61,34 @@ public class Manager_Sales_Revenue_Report_GenerateServlet extends HttpServlet {
 		
 		if("View".equals(request.getParameter("viewbutton"))) 
 		{
-			if("Year".equals(Option)) 
+			if(Year != null && "Year".equals(Option)) 
 			{
 				RevenueList = RevenueService.getSsalesRevenueBySalesTypeAndYear(SalesType, Year);
-				request.setAttribute("ReYear", Year);
+				
+				if(RevenueList.isEmpty()) {
+					request.setAttribute("erMsg", "F");	
+				}else 
+				{
+					request.setAttribute("ReYear", Year);
+					request.setAttribute("SalesType", SalesType);
+					request.setAttribute("month", month);
+					request.setAttribute("Year", Year);
+				}
 			}
+			
 			if(month != null && "Month".equals(Option)) 
 			{
 				RevenueList = RevenueService.getSalesRevenueBySalesTypeAndMonth(SalesType, month,Year);
-				request.setAttribute("ReMonth", month);
+				
+				if(RevenueList.isEmpty()) {
+					request.setAttribute("erMsg", "F");	
+				}else 
+				{
+					request.setAttribute("ReMonth", month);
+					request.setAttribute("SalesType", SalesType);
+					request.setAttribute("month", month);
+					request.setAttribute("Year", Year);
+				}
 			}
 			
 			request.setAttribute("ReturnList", RevenueList);

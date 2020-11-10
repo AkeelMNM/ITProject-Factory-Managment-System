@@ -65,11 +65,12 @@
 				<td><a href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Report_FactorySales.jsp"><button class="Report_btn">Factory Sales Report</button></a></td>
 			</tr>
 			<tr>
-				<td><a href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Report_SalesRevenue.jsp"><button class="Report_btn">Sales Revenue Report</button></a></td>
-			</tr>
-			<tr>
 				<td><a href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Report_SalesReturn.jsp"><button class="Report_btn">Sales Return Report</button></a></td>
 			</tr>
+			<tr>
+				<td><a href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Report_SalesRevenue.jsp"><button class="Report_btn">Sales Revenue Report</button></a></td>
+			</tr>
+			
 		</table>
 				
 				

@@ -246,7 +246,7 @@ width:150px;
 		
 		</table>
 		
-		<br><br><br><br><br><br><br><br><br><br><br>
+		<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>	
 	</form>
 			
 				
@@ -254,7 +254,7 @@ width:150px;
 
 <div class="tableview">
 <br>
-		<table cellpadding="12">
+		<table cellpadding="12" >
 		<caption>
 			<br>
 			 
@@ -341,6 +341,7 @@ width:150px;
 							
 						
 					</form>
+				
 				</td>
 			
 			
@@ -352,11 +353,11 @@ width:150px;
 
 </div>
 
-<br><br><br><br><br><br><br><br>
+<br><br><br><br><br><br><br><br><br><br>
 		<!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 </div>
 
-
+<br><br><br>
 
 	<!-- Footer Part -->
 	<hr>

@@ -1,7 +1,7 @@
-<%@page import="fms.Expense.service.Expe_DAO"%>
-<%@page import="fms.Expense.service.Expenses"%>
-<%@page import="fms.Expense.service.ExSupplierDao"%>
-<%@page import="fms.Expense.service.ExSupplier"%>
+<%@page import="fms.Expense.serviceANDservlet.Expe_DAO"%>
+<%@page import="fms.Expense.serviceANDservlet.Expenses"%>
+<%@page import="fms.Expense.serviceANDservlet.ExSupplierDao"%>
+<%@page import="fms.Expense.serviceANDservlet.ExSupplier"%>
 <%@page import="com.mysql.cj.xdevapi.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" import="java.util.*" %>
@@ -53,14 +53,14 @@ $( "#datepicker1" ).datepicker( "option", "dateFormat", "yy-mm-dd" );
 				</div>
 				<div id="manage">
 					<div class="dropdown">
-							  <button onclick="myFunction()" class="dropbtn"><%=(String)session.getAttribute("uname")%></button>
+							  <button onclick="myFunction()" class="dropbtn">User Name</button>
 									  <div id="myDropdown" class="dropdown-content">
-											<a href="${pageContext.request.contextPath}/Interfaces/Home/User_Profile.jsp">View Profile</a>
-											<a href="${pageContext.request.contextPath}/LogoutServlet">Logout</a>
+											<a href="#home">View Profile</a>
+											<a href="#about">Logout</a>
 									  </div>
 					</div>
 				</div>
-						<img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>" alt="UserLogo" id="Userlogo">								
+						<img src="../../Images/user.png" alt="UserLogo" id="Userlogo">								
 
 </div>
 <hr>

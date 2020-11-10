@@ -1,7 +1,7 @@
-<%@page import="fms.Expense.service.Expe_DAO"%>
-<%@page import="fms.Expense.service.Expenses"%>
-<%@page import="fms.Expense.service.ExSupplierDao"%>
-<%@page import="fms.Expense.service.ExSupplier"%>
+<%@page import="fms.Expense.serviceANDservlet.Expe_DAO"%>
+<%@page import="fms.Expense.serviceANDservlet.Expenses"%>
+<%@page import="fms.Expense.serviceANDservlet.ExSupplierDao"%>
+<%@page import="fms.Expense.serviceANDservlet.ExSupplier"%>
 <%@page import="com.mysql.cj.xdevapi.Statement"%>
 <%@page import="java.sql.Connection"%>
 <%@ page language="java" import="java.util.*" %>

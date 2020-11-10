@@ -73,15 +73,15 @@
 		<table class="form">
 				<tr>
 					<td>Employee Name : </td>
-					<td><input type="text" name="name" size="55" value="Ranjan" required></td>
+					<td><input type="text" name="name" size="55"  required></td>
 				</tr>
 				<tr>
 					<td>Date of birth : </td>
-					<td><input type="Date" name="DOB" value="1994-10-11" required></td>
+					<td><input type="Date" name="DOB" required></td>
 				</tr>
 				<tr>
 					<td>NIC : </td>
-					<td><input type="text" name="NIC" size="55" value="941523458V" required pattern="[0-9]{9}[v|V]|[0-9]{12}"></td>
+					<td><input type="text" name="NIC" size="55" required pattern="[0-9]{9}[v|V]|[0-9]{12}"></td>
 				</tr>
 				<tr>
 					<td>Gender : </td>
@@ -95,15 +95,15 @@
 				</tr>
 				<tr>
 					<td>Contact Number : </td>
-					<td><input type="text" name="PhoneNo" value="0775489892"  size="55" required pattern="[0-9]{10}" ></td>
+					<td><input type="text" name="PhoneNo" size="55" required pattern="[0-9]{10}" ></td>
 				</tr>
 				<tr>
 					<td>Email : </td>
-					<td><input type="text" name="email" value="Ranjan@gmail.com"  size="55" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A_Za-z]{2,3}" ></td>
+					<td><input type="text" name="email" size="55" required pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A_Za-z]{2,3}" ></td>
 				</tr>
 				<tr>
 					<td>Address : </td>
-					<td><textarea rows="3" cols="55" name="Address"  required>No:10 Gelioya watta,Gelioya</textarea></td>
+					<td><textarea rows="3" cols="55" name="Address"  required></textarea></td>
 				</tr>
 				<tr>
 					<td>Job Title : </td>
@@ -128,11 +128,11 @@
 				</tr>
 				<tr>
 					<td >Joint Date : </td>
-					<td><input type="date" name="Joint_date" value="2020-10-13" required></td>
+					<td><input type="date" name="Joint_date" required></td>
 				</tr>
 				<tr>
 					<td>Qualification : </td>
-					<td><textarea rows="3" cols="55" name="qualification" required>Working Experience in Sales </textarea></td>
+					<td><textarea rows="3" cols="55" name="qualification" required></textarea></td>
 				</tr>
 				<tr>
 					<td colspan="2"><input type="reset" value="Reset" class="resetbutton">

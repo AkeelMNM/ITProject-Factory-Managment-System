@@ -80,12 +80,12 @@
 		
 			<tr>
 				<td>Date :</td>
-				<td colspan="2"><input type="date" name="fs-Date" size="55" required></td>
+				<td ><input type="date" name="fs-Date" size="55" required></td>
 			</tr>
 			
 			<tr>
 				<td for="dep">Sales Type : </td>
-				<td colspan="2">
+				<td >
 					<select id="dep"  name="salesType"  required> 
 						<option> --Select Type-- </option>
 						<option value="Auction">Auction</option>
@@ -98,7 +98,6 @@
 			<tr>
 				<td>Tea Garde : </td>
 				<td>Selling Quantity :</td>
-				<td>Price (per kg) :</td>
 			</tr>
 			
 			<tr>
@@ -121,7 +120,6 @@
 					</select>
 				</td>
 				<td> <input type="text" name="Selling_Qty[]"  required> </td>
-				<td> <input type="text" name="Price"  required> </td>
 			</tr>
 			<tr>
 				<td>
@@ -140,7 +138,6 @@
 					</select>
 				</td>
 				<td> <input type="text" name="Selling_Qty[]" > </td>
-				<td> <input type="text" name="Price" > </td>
 			</tr>
 			<tr>
 				<td>
@@ -159,11 +156,10 @@
 					</select>
 				</td>
 				<td> <input type="text" name="Selling_Qty[]" > </td>
-				<td> <input type="text" name="Price" > </td>
 			</tr>
 			<tr>
 				<td>
-					<select id="dep"  name="TeaGradeID[]" required> 
+					<select id="dep"  name="TeaGradeID[]" > 
 						<option> --Select Grade-- </option>
 						<%
 							for(Tea_Grade_Price TGP4 : TeaGradePriceList)
@@ -177,12 +173,11 @@
 						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Selling_Qty[]"  required> </td>
-				<td> <input type="text" name="Price"  required> </td>
+				<td> <input type="text" name="Selling_Qty[]"  > </td>
 			</tr>
 			<tr>
 				<td>
-					<select id="dep"  name="TeaGradeID[]" required> 
+					<select id="dep"  name="TeaGradeID[]" > 
 						<option> --Select Grade-- </option>
 						<%
 							for(Tea_Grade_Price TGP5 : TeaGradePriceList)
@@ -196,8 +191,7 @@
 						%>
 					</select>
 				</td>
-				<td> <input type="text" name="Selling_Qty[]"  required> </td>
-				<td> <input type="text" name="Price"  required> </td>
+				<td> <input type="text" name="Selling_Qty[]" > </td>
 			</tr>
 			
 			<tr ><td colspan="3" ></td></tr>

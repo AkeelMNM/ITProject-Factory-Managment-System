@@ -47,6 +47,9 @@ public class AddSalesStockServlet extends HttpServlet {
 		SalesTeaStock salesTeaStock = new SalesTeaStock();
 		SalesStockService salesStockService = new SalesStockServiceImp();
 		
+		String location = request.getParameter("location");
+		String sl = salesStockService.getStockId(location);
+		salesTeaStock.setStockId(sl);
 		//String grades = request.getParameter("grades");
 		//String sr = salesStockService.getTeaGradeId(grades);
 		//salesTeaStock.setStockId(sr);

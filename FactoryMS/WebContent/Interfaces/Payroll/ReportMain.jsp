@@ -12,7 +12,7 @@
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/Payroll/alertStyle.css">
         <link rel="stylesheet" href="${pageContext.request.contextPath}/CSS & javaScript/Payroll/style.css">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <script src="${pageContext.request.contextPath}/CSS & javaScript/Payroll/Admin&Manager_Script.js"></script>
+        <script src="${pageContext.request.contextPath}/CSS & javaScript/Payroll/Admin_Manager_Script.js"></script>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
@@ -20,7 +20,7 @@
 
         <title>Report</title>
     </head>
-    <body  style="background-color: black">
+    <body  style="background-color:#222629">
         <!-- +++++++++++++++++++++++++++++++++ Header Part +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
              
    <%--   <%
@@ -48,17 +48,14 @@
             <img src="${pageContext.request.contextPath}/Interfaces/Home/getImages.jsp?id=<%=(String)session.getAttribute("uid")%>" alt="UserLogo" id="Userlogo">		
            
         </div>
-        <hr>
         <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
-        <ul><li><a class="menu" href="#">Home
+        <ul><li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Home/Manager_Home.jsp">Home
                     <ul>
-                        <li><a class="menu" href="#">Add Payroll</a></li>
-                        <li><a class="menu" href="#">Update </a></li>
+                        
 	                </a></ul>
 	    </li>
-		<li><a class="menu" href="Payroll.jsp">Add Daily salary</a></li>
-		<li><a class="menu" href="MonthlyPayroll.jsp">Add Monthly Salary</a></li>
 		</ul>
+        <hr>
 
 <div id="bodyDiv" style="min-height: 485px;">
 

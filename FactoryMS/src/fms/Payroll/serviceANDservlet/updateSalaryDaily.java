@@ -1,7 +1,6 @@
-package fms.Payroll.servlet;
+package fms.Payroll.serviceANDservlet;
 
 import java.io.IOException;
-
 import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
@@ -12,20 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.fms.DBconnection.DBConnection;
 
-/**
- * Servlet implementation class updateDailySal
- */
-@WebServlet("/updateDailySal")
-public class updateDailySal extends HttpServlet {
-	private static final long serialVersionUID = 1L;
-   
-    public updateDailySal() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
+@WebServlet(name = "updateSalaryDaily", urlPatterns = {"/updateSalaryDaily"})
+public class updateSalaryDaily extends HttpServlet {
+	private static final long serialVersionUID = 1L;
+       
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -36,6 +28,7 @@ public class updateDailySal extends HttpServlet {
             return;
         }
 
+        String date = "0";
         String insurance = "0";
         String medical = "0";
         String bonus = "0" ;
@@ -47,7 +40,7 @@ public class updateDailySal extends HttpServlet {
         String totDeduction = "0";
         String netTotal = "0";
 
-       
+        date = request.getParameter("updatedDailyDate");
         insurance = request.getParameter("updateDailyInsurance");
         ot = request.getParameter("updateDailyHours");
         totAllowance = request.getParameter("updateTotalAllowance");
@@ -60,7 +53,7 @@ public class updateDailySal extends HttpServlet {
         }
         try {
 
-            String sql = "UPDATE salary SET medical = '" + medical + "',bonus = '" + bonus + "',over_time_hours='"+ot+"',net_salary='"+netTotal
+            String sql = "UPDATE salary SET date = '" + date + "medical = '" + medical + "',bonus = '" + bonus + "',over_time_hours='"+ot+"',net_salary='"+netTotal
             		+"',tax='"+absent+"',"+ "absent='"+absent+"',total_allowance='"+totAllowance
             		+"',total_deduction='"+totDeduction+"' WHERE sal_id='"+request.getParameter("salID")+"'";
             DBConnection.getDBConnection().createStatement().execute(sql);
@@ -72,7 +65,6 @@ public class updateDailySal extends HttpServlet {
             out.write("Failed to Save! " + e.getMessage());
 
         }
-    }
-	
+	}
 
 }

@@ -335,6 +335,50 @@ td {
 	margin-bottom: 10px;
 }
 
+
+.dataGenButton{  /* insert form data generating buttons */
+
+	background-color:	#434343;
+	border: none;
+	color: white;
+	padding: 5px ;
+	text-align: center;
+	text-decoration: none;
+	font-size: 13px;
+	transition: 0.3s;
+	cursor:pointer;
+	width:75px;
+	align:center;
+	margin-right: 90px;
+ 
+  
+}
+/* Change background color of data generating button on hover */
+.dataGenButton:hover {
+  background-color:#ed3330;
+}
+
+.RneDataGenButton{  /* insert form data generating buttons  (Add revenue form btn) */ 
+
+  background-color:	#434343;
+	border: none;
+	color: white;
+	padding: 5px ;
+	text-align: center;
+	text-decoration: none;
+	font-size: 13px;
+	transition: 0.3s;
+	cursor:pointer;
+	width:75px;
+ 
+ 
+  
+}
+/* Change background color of data generating button on hover */
+.RneDataGenButton:hover {
+  background-color:#ed3330;
+}
+
 /* Change background color of submit button on hover */
 .submit_btn:hover {
 	background-color: #434343;

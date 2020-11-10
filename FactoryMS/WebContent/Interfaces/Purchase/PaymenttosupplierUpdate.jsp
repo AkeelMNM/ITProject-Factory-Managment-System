@@ -155,17 +155,17 @@
 		
 			<tr>
 		  <td>Quantity</td>
-  		<td><input type="text"  name="paid" value="<%=payment.getIspaid()%>" size="55">
+  		<td><input type="text"  name="paid" value="<%=payment.getIspaid()%>" size="55" id ="quantity" oninput="calc();">
   		
 		</tr>
 			<tr>
 			<td>Rate(Rs):</td>
-			<td><input type="text" name="rate" size="55" value="<%=payment.getRate()%>" ></td>
+			<td><input type="text" name="rate" size="55" value="<%=payment.getRate()%>"  id ="rate" oninput="calc();" ></td>
 		</tr>
 		
 			<tr>
 			<td>Value(Rs):</td>
-			<td><input type="text" name="value" size="55"value="<%=payment.getValue()%>" ></td>
+			<td><input type="text" name="value" size="55"value="<%=payment.getValue()%>"id ="total" ></td>
 		</tr>
 		<tr>
 			<td>Final Amount(Rs):</td>

@@ -105,6 +105,9 @@ public class SalesCommonConstants {
 	//Constant for query id for get all by teaGrade and month in SalesQuery.xml
 	public static final String Query_ID_GET_SALES_RETURN_BY_SALES_TYPE_MONTH = "get_Sales_Return_by_SalesType_month";
 	
+	//Constant for query id for get all by teaGrade and month in SalesQuery.xml
+	public static final String Query_ID_GET_SALES_RETURN_BY_FACTORY_SALES_ID = "GetReturnByFactorySalesID";
+	
 	
 	
 /**++++++++++++++++++++++++++++++++ Sales Revenue ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ **/	

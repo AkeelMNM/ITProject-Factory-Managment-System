@@ -63,15 +63,35 @@ public class Manager_Factory_Sales_Report_GenerateServlet extends HttpServlet {
 		
 		if("View".equals(request.getParameter("viewbutton"))) 
 		{
+			
 			if("Year".equals(Option)) 
 			{
 				FactorySalesList = SalesService.getFactorySalesBySalesTypeAndYear(SalesType, Year);
-				request.setAttribute("FSyear", Year);
+				
+				if(FactorySalesList.isEmpty()) {
+					request.setAttribute("erMsg", "F");	
+				}else 
+				{
+					request.setAttribute("FSyear", Year);
+					request.setAttribute("SalesType", SalesType);
+					request.setAttribute("month", month);
+					request.setAttribute("Year", Year);
+				}		
 			}
+			
 			if(month != null && "Month".equals(Option)) 
 			{
 				FactorySalesList = SalesService.getFactorySalesBySalesTypeAndMonth(SalesType, month,Year);
-				request.setAttribute("FSMonth", month);
+				
+				if(FactorySalesList.isEmpty()) {
+					request.setAttribute("erMsg", "F");
+				}else 
+				{
+					request.setAttribute("FSMonth", month);	
+					request.setAttribute("SalesType", SalesType);
+					request.setAttribute("month", month);
+					request.setAttribute("Year", Year);
+				}
 			}
 			
 			request.setAttribute("FactorySalesList", FactorySalesList);

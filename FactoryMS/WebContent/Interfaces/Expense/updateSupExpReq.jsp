@@ -1,5 +1,5 @@
-<%@page import="fms.Expense.service.ExSupplierDao"%>
-<jsp:useBean id="u" class="fms.Expense.service.ExSupplier"></jsp:useBean>  
+<%@page import="fms.Expense.serviceANDservlet.ExSupplierDao"%>
+<jsp:useBean id="u" class="fms.Expense.serviceANDservlet.ExSupplier"></jsp:useBean>  
 <jsp:setProperty property="*" name="u"/>  
 <%  
 int i=ExSupplierDao.updateSupExp(u);  

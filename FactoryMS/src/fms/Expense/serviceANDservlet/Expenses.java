@@ -1,4 +1,4 @@
-package fms.Expense.service;
+package fms.Expense.serviceANDservlet;
 
 public class Expenses {
 	private String date,exp_type,descrp,ex_supp,pay_method,chek_no;

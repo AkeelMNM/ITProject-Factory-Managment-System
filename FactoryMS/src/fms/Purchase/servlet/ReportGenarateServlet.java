@@ -57,6 +57,14 @@ public class ReportGenarateServlet extends HttpServlet {
 			date = null;
 		}
 		
+	//////////////////////////////////////////////////////////////////////	
+       if("Get Employee Names".equals(request.getParameter("getjob"))) {
+			
+			request.setAttribute("jName", request.getParameter("emp_job"));
+			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/FinalReport.jsp");
+			dispatcher.forward(request, response);
+		}
+	//////////////////////////////////////////////////////////////////////////////	
 		if("View".equals(request.getParameter("viewbutton"))) {
 			
 			if(date != null) {
@@ -69,7 +77,18 @@ public class ReportGenarateServlet extends HttpServlet {
 				ptList = ptservice.getpaymentBySupNameAndMonth(Name, month);
 				request.setAttribute("EPMonth", month);
 			}
-			
+			////////////////////////////////////////////
+			else {
+				request.setAttribute("EPMonth", month);
+				request.setAttribute("name", Name);
+				request.setAttribute("PerTList", ptList);
+				request.setAttribute("jName",request.getParameter("emp_job"));
+				
+				
+				
+				
+			}
+			/////////////////////////////////////////////////
 			request.setAttribute("PerTList", ptList);
 			RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Purchase/FinalReport.jsp");
 			dispatcher.forward(request, response);

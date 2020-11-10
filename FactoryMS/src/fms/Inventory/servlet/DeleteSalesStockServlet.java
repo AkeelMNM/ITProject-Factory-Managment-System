@@ -1,11 +1,18 @@
 package fms.Inventory.servlet;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import fms.Inventory.service.SalesStockService;
+import fms.Inventory.service.SalesStockServiceImp;
+import fms.Inventory.service.stockService;
+import fms.Inventory.service.stockServiceImp;
 
 /**
  * Servlet implementation class DeleteSalesStockServlet
@@ -35,7 +42,14 @@ public class DeleteSalesStockServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+	
+	String sales_StockID = request.getParameter("SalesSid");			
+		
+		SalesStockService salesService = new SalesStockServiceImp();
+		salesService.RemoveSalesTeaStock(sales_StockID);
+
+		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/Interfaces/Inventory/Add_SalesStock.jsp");
+		dispatcher.forward(request, response);
 	}
 
 }

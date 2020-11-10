@@ -54,7 +54,7 @@
 		<ul><li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Home/Manager_Home.jsp">Home
 				<ul>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Purchase/Manager.jsp">Purchase</a></li>
-					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Production/index_maneger.html">Production</a></li>
+					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Production/index_maneger.jsp">Production</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Inventory/InventManager.jsp">Inventory</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Manager_View.jsp">Sales</a></li>
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Expense/reportUI.jsp">Exspense</a></li>
@@ -300,7 +300,7 @@
 			<table style="height: 49%;" width="100%">
 			<tbody>
 			<tr>
-			<td style="width: 12.5043%; text-align:center;">&nbsp;The Searched Details will be Displayed here</td>
+			<td style="width: 12.5043%; text-align:center;">&nbsp;The Searched Details in Human Resource will be Displayed here</td>
 			</tr>
 			</tbody>
 		</table>

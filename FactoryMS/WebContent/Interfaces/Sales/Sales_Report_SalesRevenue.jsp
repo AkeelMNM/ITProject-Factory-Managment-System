@@ -17,10 +17,15 @@
 <body>
 <!-- ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ Header Part ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++ -->
 <%
-   if((String)session.getAttribute("uid")==null)
+/*   if((String)session.getAttribute("uid")==null)
     {
         response.sendRedirect("/FactoryMS/index.jsp");
     }
+*/
+	if((String)request.getAttribute("erMsg")!=null)
+	{%>
+	    <script>alert("Don't have Datas to View or Generate")</script>
+	<%}
 
 %>
 
@@ -54,8 +59,8 @@
 					  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Payroll/ReportMain.jsp">Payroll</a></li>
 				</a></ul>
 				</li>
-				  <li><a class="menu" href="Sales_Manager_View.jsp">Sales Management</a></li>
-				  <li><a class="menu" href="Sales_Manager_Report.jsp">Report</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Manager_View.jsp">Sales Management</a></li>
+				  <li><a class="menu" href="${pageContext.request.contextPath}/Interfaces/Sales/Sales_Manager_Report.jsp">Report</a></li>
 		</ul>
 
 <div id="bodyDiv">
@@ -63,13 +68,19 @@
 		<!-- Body Part -->
 		
 		<div class="ViewRepDiv">
-			<form method="POST" action="${pageContext.request.contextPath}/Manager_Factory_Sales_Report_GenerateServlet">
+			<form method="POST" action="${pageContext.request.contextPath}/Manager_Sales_Revenue_Report_GenerateServlet">
 			<table class="BarTable">
 				<tr>
 					<td class="reptoolbartxt">Select Sales Type : </td>
 					<td>
 						<select name="SalesType" class="reviewdr" required>
-							<option>--Select Type--</option>
+							<%String key = null;
+							key = (String) request.getAttribute("SalesType");
+							if(key != null) { %>
+								<option value="<%=key %>"> <%=key %> </option>
+							<%}else{ %>
+								<option>--Select Type--</option>
+							<%} %>
 							<option value="Auction">Auction</option>
 							<option value="Local Sales"> Local Sales </option>
 							<option value="Factory"> Factory </option>
@@ -78,8 +89,14 @@
 				
 					<td class="reptoolbartxt">Month:</td>
 					<td>
-						<select name="month" class="Sele" class="reviewdr" required> 
-							<option> --Select Month-- </option>
+						<select name="month" class="reviewdr" class="reviewdr" required>
+							<%String key2 = null;
+							key2 = (String) request.getAttribute("month");
+							if(key2 != null) { %> 
+								<option value="<%=key2 %>"> <%=key2 %> </option>
+							<%} else{ %>
+								<option> --Select Month-- </option>
+							<%} %>
 							<option value="January">January</option>
 							<option value="February"> February </option>
 							<option value="March"> March </option>
@@ -95,15 +112,23 @@
 						</select>
 					</td>
 					<td class="reptoolbartxt">Year :</td>
-					<td><input type="number" name="year" id="reviewdate" maxlength="4" min="2019" max="2030" pattern="[0-9]{4}" required></td>
+					
+					<%String key3 =null;
+					key3 = (String) request.getAttribute("Year");
+					if(key3 != null) { %>
+						<td><input type="number" name="year" id="reviewdate" value="<%=key3 %>" min="2019" max="2050" pattern="[0-9]{4}" required></td>
+					<%}else { %>
+						<td><input type="number" name="year" id="reviewdate" maxlength="4" min="2019" max="2050" pattern="[0-9]{4}" required></td>
+					<%} %>
+					
 					<td class="month">
-						<input type="radio" name="Option" value="Month" checked> Month Report
+						<input type="radio" name="Option" value="Month" class="Option" checked> Month Report
 					</td>
 				</tr>
 				<tr>
 					<td colspan="6"></td>
 					<td class="year" >
-						<input type="radio" name="Option" value="Year" > Year Report
+						<input type="radio" name="Option" value="Year" class="Option" > Year Report
 					</td>
 				</tr>
 			</table>
@@ -118,7 +143,7 @@
 			String ReMonth = null;
 			
 			ArrayList<Sales_Revenue> RevenueList = new ArrayList<Sales_Revenue>();
-			RevenueList = (ArrayList<Sales_Revenue>) request.getAttribute("");
+			RevenueList = (ArrayList<Sales_Revenue>) request.getAttribute("ReturnList");
 			
 			ReYear = (String) request.getAttribute("ReYear");
 			ReMonth =(String) request.getAttribute("ReMonth");
@@ -191,27 +216,54 @@
 		<hr style="width:94%; float:left; margin-left:50px; width: 90%;">
 
 			<table border="1" cellspacing="0" class="contentTable" >  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
-			<tr>
-				<th class ="tDataS"> Date of Sold</th>
-				<th class ="tDataS"> Tea Grade</th>
-				<th class ="tDataS"> Sold Quantity(kg)</th>
-				<th class ="tDataS"> Revenue </th>
-			</tr>
-			
-			<%
-				for(Sales_Revenue re : RevenueList)
-				{	
-			%>
-			<tr>
-				<td class ="tData"><%=re.getDate() %> </td>
-				<td class ="tData" ><%=re.getTea_Grade() %> </td>
-				<td class ="tData" ><%=re.getSold_Quantity() %> </td>
-				<td class ="tData" ><%=re.getAmount() %> </td>
-			</tr>
-			<%
-  				}
-			%>
-				</table>
+				
+				<tr>
+					<th class ="tDataS"> Date of Sold</th>
+					<th class ="tDataS"> Tea Grade</th>
+					<th class ="tDataS"> Sold Quantity(kg)</th>
+					<th class ="tDataS"> Revenue </th>
+				</tr>
+				
+				<%
+					for(Sales_Revenue re : RevenueList)
+					{	
+				%>
+				<tr>
+					<td class ="tData"><%=re.getDate() %> </td>
+					<td class ="tData" ><%=re.getTea_Grade() %> </td>
+					<td class ="tData" ><%=re.getSold_Quantity() %> </td>
+					<td class ="tData" ><%=re.getAmount() %> </td>
+				</tr>
+				<%
+	  				}
+				%>
+				
+				<tr>
+					<td colspan="2" style="padding-left: 25px ; padding: 8px;"> <b> Total Sold Quantity(kg) </b> </td>
+				<%
+					float sumQty = 0;
+					for (int i = 0; i < RevenueList.size(); i++) {
+					sumQty = sumQty +Float.parseFloat((RevenueList.get(i).getSold_Quantity()));
+					}
+					String Tot = String.valueOf(sumQty);
+				%>
+				<td> <b> <%=Tot %> </b> </td> 
+				<td></td>
+				</tr>
+				
+				<tr>
+					<td colspan="3" style="padding-left: 25px ; padding: 8px;"> <b> Total Revenue(Rs) </b> </td>
+				<%
+					float sumAmo = 0;
+					for (int i = 0; i < RevenueList.size(); i++) {
+					sumAmo = sumAmo +Float.parseFloat((RevenueList.get(i).getAmount()));
+					}
+					String Total = String.valueOf(sumAmo);
+				%>
+				<td> <b> <%=Total %> </b> </td>
+				</tr>
+				
+			</table>
 		
 		<%
   			}
@@ -264,30 +316,56 @@
 		<hr style="width:90%; float:left; margin-left:50px; width: 90%;">
 
 			<table border="1" cellspacing="0" class="contentTable" >  <!-- class="view" =table, class="viewTr"= tr, class ="tData" =td -->
-			<tr>
-				<th class ="tDataS"> No of Sold</th>
-				<th class ="tDataS"> Month of Sold </th>
-				<th class ="tDataS"> Tea Grade</th>
-				<th class ="tDataS"> Sold Quantity(kg)</th>
-				<th class ="tDataS"> Revenue </th>
-			</tr>
+		
+				<tr>
+					<th class ="tDataS"> No of Sold</th>
+					<th class ="tDataS"> Month of Sold </th>
+					<th class ="tDataS"> Tea Grade</th>
+					<th class ="tDataS"> Sold Quantity(kg)</th>
+					<th class ="tDataS"> Revenue </th>
+				</tr>
+				
+				<%
+					for(Sales_Revenue re : RevenueList)
+					{	
+						
+				%>
+				<tr>
+					<td class ="tData"><%=re.getFactory_SalesID() %> </td> <!-- Count -->
+					<td class ="tData" ><%=re.getMonth() %> </td>
+					<td class ="tData" ><%=re.getTea_Grade() %> </td>
+					<td class ="tData" ><%=re.getSold_Quantity() %> </td>
+					<td class ="tData" ><%=re.getAmount() %> </td>
+				</tr>
+				<%
+	  				}
+				%>
 			
-			<%
-				for(Sales_Revenue re : RevenueList)
-				{	
-					
-			%>
-			<tr>
-				<td class ="tData"><%=re.getFactory_SalesID() %> </td> <!-- Count -->
-				<td class ="tData" ><%=re.getMonth() %> </td>
-				<td class ="tData" ><%=re.getTea_Grade() %> </td>
-				<td class ="tData" ><%=re.getSold_Quantity() %> </td>
-				<td class ="tData" ><%=re.getAmount() %> </td>
-			</tr>
-			<%
-  				}
-			%>
-				</table>
+				<tr>
+					<td colspan="3" style="padding-left: 25px ; padding: 8px;"> <b> Total Sold Quantity(kg) </b> </td>
+				<%
+					float sumQty = 0;
+					for (int i = 0; i < RevenueList.size(); i++) {
+					sumQty = sumQty +Float.parseFloat((RevenueList.get(i).getSold_Quantity()));
+					}
+					String Tot = String.valueOf(sumQty);
+				%>
+				<td> <b> <%=Tot %> </b> </td>
+				</tr>
+				
+				<tr>
+					<td colspan="4" style="padding-left: 25px ; padding: 8px;"> <b> Total Revenue(Rs) </b> </td>
+				<%
+					float sumAmo = 0;
+					for (int i = 0; i < RevenueList.size(); i++) {
+					sumAmo = sumAmo +Float.parseFloat((RevenueList.get(i).getAmount()));
+					}
+					String Total = String.valueOf(sumAmo);
+				%>
+				<td> <b> <%=Total %> </b> </td>
+				</tr>
+				
+			</table>
 		
 		<%
   			}

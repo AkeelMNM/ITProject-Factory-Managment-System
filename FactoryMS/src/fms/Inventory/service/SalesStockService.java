@@ -1,3 +1,4 @@
+
 package fms.Inventory.service;
 
 import java.io.IOException;
@@ -37,10 +38,12 @@ public interface SalesStockService {
 		public ArrayList<SalesTeaStock> getAllSalesTeaStock();
 		
 		//view by id
-		public void  getSalesTeaStockById(String releseStock_ID );
+		public SalesTeaStock  getSalesTeaStockById(String releseStock_ID );
 		
 		void addSalesStock(SalesTeaStock salesteastock);
 		
 		public void UpdateSalesTeaStock(String releseStock_ID, SalesTeaStock salesteastock);
 		public String getTeaGradeId(String TeaGradeName);
+		public String getStockId(String Location);
+		
 }

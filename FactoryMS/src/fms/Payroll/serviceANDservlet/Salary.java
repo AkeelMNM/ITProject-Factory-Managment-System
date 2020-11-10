@@ -1,4 +1,4 @@
-package fms.Payroll.servlet;
+package fms.Payroll.serviceANDservlet;
 
 public class Salary {
 	
