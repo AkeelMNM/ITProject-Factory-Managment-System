@@ -1,0 +1,464 @@
+
+/* ++++++++++++++++++++++++++++++++++++++ CSS For Header,Footer And Divs ++++++++++++++++++++++++++++++++++++++++++++++++++++++++ */
+body
+{
+	background-color:#222629;
+	background-size: cover;
+	font-family: 'Lucida Grande', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	text-align: center;
+ 
+}
+/*--------------------------------------------------*/
+
+/* ---------------- Header Part ----------------------*/
+
+#headDiv
+{
+	width:100%;
+	float:left;
+	height:140px;
+	
+}
+
+#logo
+{
+		display:block;
+		width:140px;
+		height:130px;
+		float:left;
+		margin-top:5px;
+}
+#Userlogo
+{
+		display:block;
+		width:80px;
+		height:80px;
+		border-radius: 50%;
+		float:left;
+		margin-left:5px;
+		margin-top:30px;
+}
+
+#name
+{
+	float:left;
+	width:74%;
+	text-align:center;
+	margin-top:20px;
+	
+}
+
+#manage
+{
+	float:left;
+	width:10%;
+	margin-top:40px;
+	margin-left:5px;
+	
+}
+
+#title
+{
+	font-family:'Gabriela';
+	font-size:50px;
+	color:white;
+	padding-left:60px;
+
+}
+#address
+{
+	font-size:25px;
+	color:white;
+	padding-left:60px;
+}
+
+#copyright
+{
+	font-size:15px;
+	color:white;
+}
+
+/* ------------ Manage Buttons --------------------*/
+
+/* Dropdown Button */
+.dropbtn {
+  background-color: transparent;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+/* Dropdown button on hover & focus */
+.dropbtn:hover, .dropbtn:focus {
+  background-color: 3AAFA9;
+}
+
+/* The container <div> - needed to position the dropdown content */
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #ddd}
+
+/* Show the dropdown menu (use JS to add this class to the .dropdown-content container when the user clicks on the dropdown button) */
+.show {display:block;}
+/*--------------------------------------------------*/
+
+/* ------------------- Navigation Menu --------------------------- */
+
+a.menu{
+	text-decoration: none;
+	color:white;
+}
+
+ul {
+  text-align: center;
+  padding-left:4px;
+  width:100%;
+  list-style: none;
+  -webkit-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  -moz-box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.15);
+}
+ul li {
+  font: bold 14px/18px sans-serif;
+  width:30%;
+  display: inline-block;
+  margin-right: -5px;
+  position: relative;
+  padding: 15px 20px;
+  background: #86C232;
+  cursor: pointer;
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  transition: all 0.2s;
+}
+ul li:hover {
+  background: #2B7A78;
+  color: #fff;
+}
+ul li ul {
+  padding: 0;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  width: 1500px;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  display: none;
+  opacity: 0;
+  visibility: hidden;
+  -webkit-transiton: opacity 0.2s;
+  -moz-transition: opacity 0.2s;
+  -ms-transition: opacity 0.2s;
+  -o-transition: opacity 0.2s;
+  -transition: opacity 0.2s;
+}
+ul li ul li { 
+  background: #61892F; 
+  display: block; 
+  color: #fff;
+  text-shadow: 0 -1px 0 #000;
+}
+ul li ul li:hover { background: #2B7A78; }
+ul li:hover ul {
+  display: block;
+  opacity: 1;
+  visibility: visible;
+}
+
+div.bigDiv
+{
+	background-color:#2c2c2c;
+	width:100%;
+	padding:5px;
+	float:left;
+	
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  
+}
+/* -------------------------------------------------------------------------------------------------------------- */
+
+/* -------------------------- Body Div ------------------------------------- */
+
+#bodyDiv
+{
+	background-color:white;
+	width:100%;
+	float:left;
+	border: 1px solid #ccc;
+}
+
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+/* -------------------------- Search style ------------------------------------- */
+
+.BarTable {
+	border-collapse: collapse;
+	width: 55%;
+	height:35px;
+	float:left;
+	margin-left: 12%;
+}
+
+.reptoolbartxt
+{
+	font-size:16px;
+	text-align:right;
+}
+
+.reviewdr{
+
+	width: 95%;
+	height:100%;
+	float:left;
+	background: #f1f1f1;
+}
+
+.month{
+	float: left;
+	margin-top: -10px;
+    margin-left: 10px;
+}
+
+.year{
+	float: left;
+	margin-top: -7px;
+    margin-left: 10px;
+}
+
+div.table /* table div */
+{
+	border-collapse: collapse;
+	width: 96%;
+	float:left;
+	overflow:scroll;
+    margin-left:20px;
+    margin-top:20px;
+    border: 2px solid;
+    height: 49%;
+   	margin-bottom: 12px;
+}
+.table::-webkit-scrollbar {
+    display: none;
+}
+
+div.viewlist{  /* Toolbar div */
+	
+	float:left;
+	width: 95%;
+	margin-top:30px;
+	padding-left:35px;
+}
+
+div.ViewRepDiv{ /* Toolbar div */
+	float:left;
+	width: 100%;
+	margin-top:30px;
+	margin-bottom: 7px;
+	padding-left:35px;
+}
+
+.repviewtable /* table Report Toolbar */
+{
+	border-collapse: collapse;
+	width: 80%;
+	height:35px;
+	float:left;
+    
+}
+
+#reviewdate{  /* report view year field */
+
+	width: 90%;
+	height:100%;
+	float:left;
+	background: #f1f1f1;
+}
+
+.Option { /* Search bar radio button */
+	margin-left: 15px;
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+/* -------------------------- Report style ------------------------------------- */
+
+#Report_H { 
+	text-decoration: underline;
+    font-family: cursive;
+	margin-top:5px;
+	font-size: 20px;
+}
+
+.txtLabal {
+
+	}
+
+
+#view_btn {
+	background-color:	#2B7A78;
+	border: none;
+	color: white;
+	padding: 7px ;
+	text-align: center;
+	text-decoration: none;
+	font-size: 13px;
+	transition: 0.3s;
+	cursor:pointer;
+	border-radius:3px;
+	width:12%;
+	align:center;
+	float:left;
+	margin-left:50px;
+	height:33px;
+}
+
+#Generate_btn {
+	background:#2B7A78;
+	border: none;
+	color: white;
+	padding: 7px ;
+	text-align: center;
+	text-decoration: none;
+	font-size: 13px;
+	transition: 0.3s;
+	cursor:pointer;
+	border-radius:3px;
+	width:12%;
+	align:center;
+	float:left;
+	margin-left:10px;
+	height:33px;
+}
+
+#view_btn:hover {
+	background-color: #434343;
+}
+
+#Generate_btn:hover {
+	background-color: #434343;
+} 
+
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+/* -------------------------- Table style ------------------------------------- */
+
+div.table { /* table div */
+	border-collapse: collapse;
+	width: 98%;
+	height:152%;
+	float:left;
+	overflow:hidden;
+    overflow-y: scroll;
+    overflow-x: scroll;
+    margin-left:15px;
+    margin-top:20px;
+}
+
+.table::-webkit-scrollbar {
+    display: none;
+}
+
+#ShowTable { /* view record table */
+	border-collapse: collapse;
+	width: 96%;
+    margin-left: 2%;
+	table-layout: fixed;	
+	margin-bottom: 2%;
+}
+
+tr.viewTr{
+	background-color: #f2f2f2;
+}
+
+tr.viewTr{background-color: #f2f2f2;}  /* view record table row class*/	
+.viewTr:hover { background-color:#def2f1;}/* view record table row hover class*/
+
+th  /* view record table header */
+{	
+	background-color: #767b8c;
+	color: white;
+	top: 0;
+    z-index: 0;
+    position: sticky;
+    position: -webkit-sticky;
+    text-align: center;
+	padding:6px;
+	width:150px;
+	height:35px;
+	font-size: 15px;
+}
+
+td.tData  /* view record table data class */
+{
+	text-align: center;
+	padding:5px;
+	width:150px;
+	font-size: 14px;
+}
+
+td.tDataS  /* view record table data class */
+{
+	padding:5px;
+	width:150px;
+	font-size: 14px;
+}
+
+img.FullStar
+{
+		
+		width:20px;
+		height:20px;
+}
+
+img.EmptyStar
+{
+		
+		width:20px;
+		height:20px;
+		
+}
+
+
+table.contentTable
+{
+	margin-left:50px; 
+	width: 90%;
+}
+
+
+
+/* -------------------------------------------------------------------------------------------------------------- */
+
+/*+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++*/
+

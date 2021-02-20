@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- SQL Queries -->
+<Querys>
+
+
+<!-- Tea Grades -->
+
+		<!-- Get All Tea Grades from TGP select button   -->
+		<query id="get_All_Tea_Grades">
+		<![CDATA[
+			select * from Tea_Grades
+		]]>
+		</query>
+		
+		<!-- get Tea_Grade_Name by TeaGrade ID -->
+		<query id="GET_TeaGradeName">
+		<![CDATA[
+			select Tea_Grade_Name
+			from Tea_Grades
+        	where TeaGrade_ID = ?
+		]]>
+		</query>
+		
+<!-- ********************************************************************************************************************* --> 
+		
+<!-- Tea Grade Price  --> 
+
+		<!-- Get Tea_Grade_Price IDs  -->
+		<query id="get_TeaGradePriceIDs">
+		<![CDATA[
+			select Tea_Grade_Price_ID from Tea_Grade_Price
+		]]>
+		</query>
+		
+		<!-- Insert Tea_Grade_Price  -->
+		<query id="insert_Tea_Grade_Price">
+		<![CDATA[
+			insert into Tea_Grade_Price(Tea_Grade_Price_ID,TeaGrade_ID,Tea_Grade,Date,Price)
+			values(?, ?, ?, ?, ?)
+		]]>
+		</query>
+		
+		<!-- Select All Tea_Grade_Price  -->
+		<query id="get_all_TeaGradePrice">
+		<![CDATA[
+			select * from Tea_Grade_Price
+		]]>
+		</query>
+		
+		<!-- Select Tea_Grade_Price by Tea_Grade_Price ID  -->
+		<query id="TeaGradePrice_by_id">
+		<![CDATA[
+			select * from Tea_Grade_Price where Tea_Grade_Price_ID = ?
+		]]>
+		</query>
+				
+		<!-- Delete Tea_Grade_Price -->
+		<query id="remove_TeaGradePrice">
+		<![CDATA[
+			delete from Tea_Grade_Price where Tea_Grade_Price_ID = ?
+		]]>
+		</query>
+
+		<!-- Update Tea_Grade_Price by ID -->
+		<query id="update_TeaGradePrice">
+		<![CDATA[
+			update Tea_Grade_Price 
+			set TeaGrade_ID = ? , Tea_Grade = ?,Date = ?, Price = ?
+			where Tea_Grade_Price_ID = ? 
+		]]>
+		</query>
+		
+		<!-- get Tea_Grade only by TGP ID -->
+		<query id="GET_TeaGrade_IN_TGP">
+		<![CDATA[
+			select Tea_Grade
+			from Tea_Grade_Price
+        	where Tea_Grade_Price_ID = ?
+		]]>
+		</query>
+
+
+<!-- ********************************************************************************************************************* --> 
+
+<!-- Factory Sales  --> 
+
+		<!-- Get Factory Sales IDs  -->
+		<query id="get_FactorySalesIDs">
+		<![CDATA[
+			select Factory_Sales_ID from Factory_Sales
+		]]>
+		</query>
+		
+		<!-- Insert Factory Sales  -->
+		<query id="insert_FactorySales">
+		<![CDATA[
+			insert into Factory_Sales(Factory_Sales_ID,Tea_Grade_PriceID,Date,Tea_Grade,Selling_Quantity,Sales_Type,Month)
+			values(?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</query>
+		
+		<!-- Select All Factory Sales  -->
+		<query id="get_all_FactorySales">
+		<![CDATA[
+			select * from Factory_Sales
+		]]>
+		</query>
+		
+		<!-- Select Factory Sales by ID  -->
+		<query id="FactorySales_by_id">
+		<![CDATA[
+			select * from Factory_Sales where Factory_Sales_ID = ?
+		]]>
+		</query>
+				
+		<!-- Delete Factory Sales -->
+		<query id="remove_FactorySales">
+		<![CDATA[
+			delete from Factory_Sales where Factory_Sales_ID = ?
+		]]>
+		</query>
+		
+		<!-- Update Factory Sales by ID -->
+		<query id="update_FactorySales">
+		<![CDATA[
+			update Factory_Sales 
+			set Tea_Grade_PriceID = ? , Date = ?,Tea_Grade = ?, Selling_Quantity = ?, Sales_Type = ?, Month = ?
+			where Factory_Sales_ID = ? 
+		]]>
+		</query>
+		
+		<!-- get Tea_Grade only by FactorySales ID -->
+		<query id="GET_TeaGrade_IN_Sales">
+		<![CDATA[
+			select Tea_Grade
+			from Factory_Sales
+        	where Factory_Sales_ID = ?
+		]]>
+		</query>
+		
+		<!-- get Tea_Grade and Qty  by Date, Sales type -->
+		<query id="GET_TeaGrade_Qty_by_Date_SalesType">
+		<![CDATA[
+			select Factory_Sales_ID,Tea_Grade,Selling_Quantity 
+			from Factory_Sales
+			where Date= ? and Sales_Type = ?
+		]]>
+		</query>
+		
+		<!-- Get Factory Sales by SalesType and Month  -->
+		<query id="get_Factory_Sales_by_SalesType_month">
+		<![CDATA[
+			select * from Factory_Sales where Sales_Type = ? and Month = ?
+			
+		]]>
+		</query>
+		
+		
+		
+<!-- ********************************************************************************************************************* --> 
+
+<!-- Sales Return --> 	
+
+		<!-- Get Sales Return IDs  -->
+		<query id="get_SalesReturnIDs">
+		<![CDATA[
+			select Sales_ReturnID from Sales_Return
+		]]>
+		</query>
+		
+		<!-- Insert Sales Return  -->
+		<query id="insert_SalesReturn">
+		<![CDATA[
+			insert into Sales_Return(Sales_ReturnID,Factory_SalesID,Date,Tea_Grade,Return_Quantity,Sales_Type,Month)
+			values(?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</query>
+		
+		<!-- Select All Sales Return  -->
+		<query id="get_all_SalesReturn">
+		<![CDATA[
+			select * from Sales_Return
+		]]>
+		</query>
+		
+		<!-- Select Sales Return by ID  -->
+		<query id="SalesReturn_by_id">
+		<![CDATA[
+			select * from Sales_Return where Sales_ReturnID = ?
+		]]>
+		</query>
+				
+		<!-- Delete Sales Return -->
+		<query id="remove_SalesReturn">
+		<![CDATA[
+			delete from Sales_Return where Sales_ReturnID = ?
+		]]>
+		</query>
+		
+		<!-- Update Sales Return by ID -->
+		<query id="update_SalesReturn">
+		<![CDATA[
+			update Sales_Return 
+			set Factory_SalesID = ? , Date = ?,Tea_Grade = ?, Return_Quantity = ?, Sales_Type = ?, Month = ?
+			where Sales_ReturnID = ?   
+		]]>
+		</query>
+		
+		<!-- Get Sales Return by SalesType and Month  -->
+		<query id="get_Sales_Return_by_SalesType_month">
+		<![CDATA[
+			select * from Sales_Return where Sales_Type = ? and Month = ?
+			
+		]]>
+		</query>
+		
+		
+		
+<!-- ********************************************************************************************************************* --> 
+
+<!-- Sales Revenue -->
+
+		<!-- Get Sales Revenue IDs  -->
+		<query id="get_SalesRevenueIDs">
+		<![CDATA[
+			select Sales_RevenueID from Sales_Revenue
+		]]>
+		</query>
+		
+		<!-- Insert Sales Revenue  -->
+		<query id="insert_SalesRevenue">
+		<![CDATA[
+			insert into Sales_Revenue(Sales_RevenueID,Factory_SalesID,Date,Tea_Grade,Sold_Quantity,Sales_Type,Amount,Month)
+			values(?, ?, ?, ?, ?, ?, ?, ?)
+		]]>
+		</query>
+		
+		<!-- Select All Sales Revenue -->
+		<query id="get_all_SalesRevenue">
+		<![CDATA[
+			select * from Sales_Revenue
+		]]>
+		</query>
+		
+		<!-- Select Sales Revenue by ID  -->
+		<query id="SalesRevenue_by_id">
+		<![CDATA[
+			select * from Sales_Revenue where Sales_RevenueID = ?
+		]]>
+		</query>
+				
+		<!-- Delete Sales Revenue -->
+		<query id="remove_SalesRevenue">
+		<![CDATA[
+			delete from Sales_Revenue where Sales_RevenueID = ?
+		]]>
+		</query>
+		
+		<!-- Update Sales Revenue by ID -->
+		<query id="update_SalesRevenue">
+		<![CDATA[
+			update Sales_Revenue 
+			set Factory_SalesID = ? , Date = ?,Tea_Grade = ?, Sold_Quantity = ?, Sales_Type = ?, Amount = ?, Month = ?
+			where Sales_RevenueID = ?   
+		]]>
+		</query> 		
+		
+		<!-- Get Sales Revenue by SalesType and Month  -->
+		<query id="get_Sales_Revenue_by_SalesType_month">
+		<![CDATA[
+			select * from Sales_Revenue where Sales_Type = ? and Month = ?
+			
+		]]>
+		</query>
+		
+		
+		
+		
+<!-- ********************************************************************************************************************* --> 
+
+
+</Querys>
