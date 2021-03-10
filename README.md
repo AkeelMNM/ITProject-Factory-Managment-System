@@ -47,12 +47,14 @@ Required softwares to run the project
 
 1. Clone the Repository in Eclipse IDE
 2. Setup tomcat server
-3. configure runtime of tomcat server
+3. Configure runtime of tomcat server
 4. Setup MySQL databse in eclipse IDE
-5. configure username and password for Database connection in DBconnection.class file
-    - configure project file path = src -> com.fms.DBconnection package -> DBConnection.java
-6. Run the project in IDE
-7. project will be deployed and run in the tomcatserver 
+5. Configure username and password for Database connection in DBconnection.class file
+    - Configuration file path located in the project = src -> com.fms.DBconnection package -> DBConnection.java
+6. Run the SQL query file in the MySQL database to add database tables
+    - SQL query file path located in the project = WebContent -> WEB-INF -> FMS SQL Query -> FMS SQL Queries.sql
+8. Run the project in IDE
+9. Project will be deployed and run in the tomcatserver 
 
 
 ## <a name="team-members"></a>Team Members
