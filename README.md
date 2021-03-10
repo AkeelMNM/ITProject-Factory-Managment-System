@@ -27,15 +27,15 @@ Technologies used to create the project
 Example System Screenshots
 
 #### Login page
-<img src="FactoryMS/WebContent/SystemScreenShots/Login.png" width="50%">
+<img src="FactoryMS/WebContent/SystemScreenShots/Login.png" width="75%">
 
 #### Home pages
-<img src="FactoryMS/WebContent/SystemScreenShots/Admin%20Home.png" width="50%">
-<img src="FactoryMS/WebContent/SystemScreenShots/Manager%20Home.png" width="50%">
-<img src="FactoryMS/WebContent/SystemScreenShots/Accountant%20Home.png" width="50%">
+<img src="FactoryMS/WebContent/SystemScreenShots/Admin%20Home.png" width="75%">
+<img src="FactoryMS/WebContent/SystemScreenShots/Manager%20Home.png" width="75%">
+<img src="FactoryMS/WebContent/SystemScreenShots/Accountant%20Home.png" width="75%">
 
 #### User profile edit
-<img src="FactoryMS/WebContent/SystemScreenShots/Edit%20user%20profile.png" width="50%">
+<img src="FactoryMS/WebContent/SystemScreenShots/Edit%20user%20profile.png" width="75%">
 
 ## <a name="req"></a>Requirements
 Required softwares to run the project
